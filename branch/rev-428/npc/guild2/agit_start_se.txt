@@ -1,0 +1,41 @@
+//==================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ---------------------------------
+// - SE攻城戰開啟 控制腳本 - 
+//===================================
+// 版本：1.0
+//===================================
+// 若想知道如何設定攻城戰開啟時間，請到doc\woe_time_explanation.txt
+// 裡面的 WoE Start/Stop times
+//======================================
+//= gettime(3): 現在'幾點'，24小時制
+//= gettime(4): 星期'幾'，1~7(禮拜天)
+//======================================
+
+// WoE Start/Stop times
+//======================================
+-	script	Agit2_Event	-1,{
+	end;
+
+OnClock2100:	//開始時間 星期六
+OnClock2300:	//結束時間
+
+OnAgitInit2:
+	// 開始時間檢查
+	if( (gettime(4)==6) && (gettime(3)>=21 && gettime(3)<23) ) {
+		if (!agitcheck2()) {
+			AgitStart2;
+		}
+		end;
+	}
+
+	// 結束時間檢查
+	if ( (gettime(4)==6) && (gettime(3)==23) ) { 
+		if (agitcheck2()) {
+			AgitEnd2;
+		}
+		end;
+	}
+	end;
+}

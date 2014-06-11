@@ -1,0 +1,1122 @@
+//===========================================
+// [­ß] The PlutoEA Project [¤ý]
+// http://opensvn.csie.org/PlutoEA
+// ------------------------------------------
+// - ­¸ªÅ¸¥ ¸}¥» -
+// ------------------------------------------
+// ª©¥» 0.9
+//================================================================
+// ¨qµo¯÷µo¼w°ê¤º½u (¦¶¿Õ -> ·´¸¯ -> ¦¶¿Õ -> ¦ã­µ¥¬Ã¹§J -> ¨½§Æ¶ð¼ÖÂí -> ¦ã­µ¥¬Ã¹§J -> ­«½Æ)
+//================================================================
+
+airplane,243,74,4	script	#AirshipWarp-1	45,2,2,{
+OnTouch:
+	if($@airplanelocation == 1)warp "einbroch",90,275;
+	if($@airplanelocation == 2)warp "yuno",85,265;
+	if($@airplanelocation == 3)warp "lighthalzen",302,75;
+	if($@airplanelocation == 4)warp "hugel",182,150;
+	end;
+
+OnHide:
+	misceffect 16;
+	end;
+OnUnhide:
+	misceffect 215;
+	end;
+}
+
+airplane,243,29,4	script	#AirshipWarp-2	45,2,2,{
+OnTouch:
+	if($@airplanelocation == 1)warp "einbroch",90,275;
+	if($@airplanelocation == 2)warp "yuno",85,265;
+	if($@airplanelocation == 3)warp "lighthalzen",302,75;
+	if($@airplanelocation == 4)warp "hugel",182,150;
+	end;
+
+OnHide:
+	misceffect 16;
+	end;
+OnUnhide:
+	misceffect 215;
+	end;
+}
+
+airplane,1,1,0	script	EinYuno_Airship	-1,{
+OnInit:
+while(1)
+{
+	initnpctimer;
+	setnpctimer 0;
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	disablenpc "#AirshipWarp-1";
+	disablenpc "#AirshipWarp-2";
+	mapannounce "airplane","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¬O·´¸¯",1,0xBA55D3;
+	end;
+OnTimer15000:
+	mapannounce "airplane","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹·´¸¯³~¤¤",1,0xBA55D3;
+	end;
+OnTimer30000:
+	mapannounce "airplane","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b·´¸¯¤F",1,0xBA55D3;
+	end;
+OnTimer40000:
+	set $@airplanelocation,4;
+	enablenpc "#AirshipWarp-1";
+	enablenpc "#AirshipWarp-2";
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";	
+	mapannounce "airplane","§Ú­Ì¤w¸g¨ì¹F·´¸¯¤F¡A¤U¾÷ªº®È«È¦A·|¤F",1,0xBA55D3;
+	end;
+OnTimer50000:
+	mapannounce "airplane","§Ú­Ì¥Ø«e¥¿°±¾a¦b·´¸¯¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0xBA55D3;
+	end;
+OnTimer60000:
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	disablenpc "#AirshipWarp-1";
+	disablenpc "#AirshipWarp-2";
+	mapannounce "airplane","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¬O¦¶¿Õ",1,0x00FF00;
+	end;
+OnTimer75000:
+	mapannounce "airplane","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹¦¶¿Õ³~¤¤",1,0x00FF00;
+	end;
+OnTimer90000:
+	mapannounce "airplane","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b¦¶¿Õ¤F",1,0x00FF00;
+	end;
+OnTimer100000:
+	set $@airplanelocation,2;
+	enablenpc "#AirshipWarp-1";
+	enablenpc "#AirshipWarp-2";
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","§Ú­Ì¤w¸g¨ì¹F¦¶¿Õ¤F¡A¤U¾÷ªº®È«È¦A·|¤F",1,0x00FF00;
+	end;
+OnTimer110000:
+	mapannounce "airplane","§Ú­Ì¥Ø«e¥¿°±¾a¦b¦¶¿Õ¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0x00FF00;
+	end;
+OnTimer120000:
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	disablenpc "#AirshipWarp-1";
+	disablenpc "#AirshipWarp-2";
+	mapannounce "airplane","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¬O¦ã­µ¥¬Ã¹§J",1,0xFF8600;
+	end;
+OnTimer135000:
+	mapannounce "airplane","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹¦ã­µ¥¬Ã¹§J³~¤¤",1,0xFF8600;
+	end;
+OnTimer150000:
+	mapannounce "airplane","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b¦ã­µ¥¬Ã¹§J¤F",1,0xFF8600;
+	end;
+OnTimer160000:
+	set $@airplanelocation,1;
+	enablenpc "#AirshipWarp-1";
+	enablenpc "#AirshipWarp-2";
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","§Ú­Ì¤w¸g¨ì¹F¦ã­µ¥¬Ã¹§J¤F¡A¤U¾÷ªº®È«È¦A·|¤F",1,0xFF8600;
+	end;
+OnTimer170000:
+	mapannounce "airplane","§Ú­Ì¥Ø«e¥¿°±¾a¦b¦ã­µ¥¬Ã¹§J¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0xFF8600;
+	end;
+OnTimer180000:
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	disablenpc "#AirshipWarp-1";
+	disablenpc "#AirshipWarp-2";
+	mapannounce "airplane","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¬O¨½§Æ¶ð¼ÖÂí",1,0x70DBDB;
+	end;
+OnTimer195000:
+	mapannounce "airplane","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹¨½§Æ¶ð¼ÖÂí³~¤¤",1,0x70DBDB;
+	end;
+OnTimer210000:
+	mapannounce "airplane","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b¨½§Æ¶ð¼ÖÂí¤F",1,0x70DBDB;
+	end;
+OnTimer220000:
+	set $@airplanelocation,3;
+	enablenpc "#AirshipWarp-1";
+	enablenpc "#AirshipWarp-2";
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","§Ú­Ì¤w¸g¨ì¹F¨½§Æ¶ð¼ÖÂí¤F¡A¤U¾÷ªº®È«È¦A·|¤F",1,0x70DBDB;
+	end;
+OnTimer230000:
+	mapannounce "airplane","§Ú­Ì¥Ø«e¥¿°±¾a¦b¨½§Æ¶ð¼ÖÂí¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0x70DBDB;
+	end;
+
+OnTimer240000:
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	disablenpc "#AirshipWarp-1";
+	disablenpc "#AirshipWarp-2";
+	mapannounce "airplane","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¬O¦ã­µ¥¬Ã¹§J",1,0x00FF00;
+	end;
+OnTimer255000:
+	mapannounce "airplane","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹¦ã­µ¥¬Ã¹§J³~¤¤",1,0x00FF00;
+	end;
+OnTimer270000:
+	mapannounce "airplane","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b¦ã­µ¥¬Ã¹§J¤F",1,0x00FF00;
+	end;
+OnTimer280000:
+	set $@airplanelocation,1;
+	enablenpc "#AirshipWarp-1";
+	enablenpc "#AirshipWarp-2";
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","§Ú­Ì¤w¸g¨ì¹F¦ã­µ¥¬Ã¹§J¤F¡A¤U¾÷ªº®È«È¦A·|¤F",1,0x00FF00;
+	end;
+OnTimer290000:
+	mapannounce "airplane","§Ú­Ì¥Ø«e¥¿°±¾a¦b¦ã­µ¥¬Ã¹§J¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0x00FF00;
+	end;
+OnTimer300000:
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	disablenpc "#AirshipWarp-1";
+	disablenpc "#AirshipWarp-2";
+	mapannounce "airplane","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¬O¦¶¿Õ",1,0xFF8600;
+	end;
+OnTimer315000:
+	mapannounce "airplane","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹¦¶¿Õ³~¤¤",1,0xFF8600;
+	end;
+OnTimer330000:
+	mapannounce "airplane","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b¦¶¿Õ¤F",1,0xFF8600;
+	end;
+OnTimer340000:
+	set $@airplanelocation,2;
+	enablenpc "#AirshipWarp-1";
+	enablenpc "#AirshipWarp-2";
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","§Ú­Ì¤w¸g¨ì¹F¦¶¿Õ¤F¡A¤U¾÷ªº®È«È¦A·|¤F",1,0xFF8600;
+	end;
+OnTimer350000:
+	mapannounce "airplane","§Ú­Ì¥Ø«e¥¿°±¾a¦b¦¶¿Õ¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0xFF8600;
+	end;
+OnTimer360000:
+	stopnpctimer;
+}
+}
+
+//============================================================ 
+//= Some normal NPCS (airplane)
+//============================================================ 
+
+airplane,240,64,5	script	¥X¤f#01::Exit2	857,{
+
+end;
+
+}
+
+airplane,247,64,5	duplicate(Exit2)	¥X¤f#02	857
+
+airplane,240,39,1	duplicate(Exit2)	¥X¤f#03	857
+
+airplane,247,39,1	duplicate(Exit2)	¥X¤f#04	857
+
+airplane,100,69,2	script	¾÷²Õ­û#01::Airship Crew	852,{
+
+	mes "[¾÷²Õ­û]";
+	mes "¦pªG§A­n¦b­¸ªÅ¸¥¤U¨Óªº¸Ü,½Ð§Q¥Î¨ì¤W¼hªº¼Ó±è,·PÁÂ§A·f­¼­¸ªÅ¸¥,";
+	mes "¯¬§A¦³­Ó´r§Öªº¤@¤Ñ!";
+	close;
+
+}
+
+airplane,250,58,3	script	­¸ªÅ¸¥ ¤u§@¤H­û::AirshipInfo	67,{
+
+	mes "[­¸ªÅ¸¥ ¤u§@¤H­û]";
+	mes "§A¦n, §Ú­Ì­¸ªÅ¸¥ÀH®É·|ºÉ¨ä©Ò¯àªº´£¨Ñµ¹ÅU«È«K±¶¤SµÎ¾Aªº®È¦æªA°È, ½Ð°Ý±z»Ý­nÀ°¦£¶Ü?";
+	next;
+	switch (select("§Q¥Î­¸ªÅ¸¥ªº¤èªk:²îªø«Çªº¦ì¸m:¤º³¡³]¬I¤¶²Ð:¨ú®ø")) {
+	case 1:
+		mes "[­¸ªÅ¸¥ ¤u§@¤H­û]";
+		mes "°²¦p·Q·f­¼­¸ªÅ¸¥¨ì¹F¥Øªº¦aªº¸Ü, ¥²¶·Å¥¨ì¾÷¤º¼s¼½³qª¾¨ì¹F¥Øªº¦a«á, ¸g¥Ñ¨â°¼ªº¥X¤f¤U¾÷§Y¥i";
+		next;
+		mes "[­¸ªÅ¸¥ ¤u§@¤H­û]";
+		mes "¸U¤@¤U¾÷®É¿ù¹L¾÷·|ªº¸Ü, ¥Ñ©ó­¸ªÅ¸¥¬O¤@ª½´`Àô­¸¦æªº, ©Ò¥H½Ðµ¥¨ì¤U¤@¦¸®É¦A¤U¾÷";
+		close;
+	case 2:
+		mes "[­¸ªÅ¸¥ ¤u§@¤H­û]";
+		mes "²îªø«Ç¦ì©ó­¸ªÅ¸¥ªº³Ì«eºÝ, ¨º¸Ì¦³«ü´§­¸ªÅ¸¥ªº²îªø©M¾r¾p²îªº²ë¤â¦b´x²ë, ²îªø¬°¤H«Ü¦n, ¤@©w­n¨£­Ó­±";
+		close;
+	case 3:
+		mes "[­¸ªÅ¸¥ ¤u§@¤H­û]";
+		mes "¬°¤FÁ×§K®È«È¦b®È¦æ³~¤¤·P¨ìµL²á, ©Ò¥H¦b­¸ªÅ¸¥ªº¤º³¡·Ç³Æ¤F¤p«¬¹CÀ¸, ®È³~³Ò¹y®É¥i¥H·í°µ¥ð®§ªºªÅ¶¡, ½Ð¦h¥[§Q¥Î";
+		close;
+
+	case 4:
+		mes "[­¸ªÅ¸¥ ¤u§@¤H­û]";
+		mes "¯¬§A®È³~¥­¦w´r§Ö";
+		close;
+	}
+}
+
+airplane,50,66,5	script	ÀN·O::AirshipApples	86,{
+	mes "[ÀN·O]";
+	mes "Åwªï¥úÁ{¡A§Ú³oùØ¦³³c°â·sÂAªºÄ«ªG©Mº^Ä«ªG¥ÄªºªA°È³á~";
+	next;
+	switch (select("§Ú­nÁÊ¶RÄ«ªG:§Ú­n§âÄ«ªGº^¦¨Ä«ªG¥Ä:¨ú®ø")) {
+	case 1:
+		mes "[ÀN·O]";
+		mes "½Ð±z¿é¤J­nÁÊ¶RªºÄ«ªG¼Æ¶q¡AÄ«ªG¨CÁû15ª÷¹ô¡A¤@¦¸³Ì¦h¯à¶R500Áû";
+		mes "¡A­Y­n¨ú®øÁÊ¶R®É½Ð¿é¤J0";
+		next;
+		input @tempapple;
+		if(!@tempapple) break;
+		if(@tempapple > 0 && @tempapple < 501) {
+			mes "[ÀN·O]";
+			mes "±z­nÁÊ¶RªºÄ«ªG¼Æ¶q¬O ^FF0000" + @tempapple + "­Ó^000000¡B";
+			mes "©Ò¥H­n¤ä¥Iªºª÷ÃB¬O ^FF0000" + @tempapple * 15 + "Zeny^000000";
+			mes "±z½T©w­nÁÊ¶R¶Ü?";
+			next;
+			if (select("¬Oªº:¤£¶R")==2) break;
+			if(zeny < (@tempapple * 15)) {
+				mes "[ÀN·O]";
+				mes "¨þ¨þ~ «È¤H¡A§Aªº¿ú¤£°÷³á!";
+				close;
+			}
+			mes "[ÀN·O]";
+			mes "ÁÂÁÂ±z¡A¦pªG±zÁÙ»Ý­nÄ«ªGªº¸Ü¡AÅwªï±z¦A¨Ó";
+			getitem 512,@tempapple;
+			set zeny,zeny - (@tempapple * 15);
+			close;
+		}
+		if(@tempapple < 0)close;
+		mes "[ÀN·O]";
+		mes "±z¿é¤Jªº¼Æ¶q¶W¹L¤W­­¤F¡A½Ð±z­«·s¿é¤J";
+		close;
+	case 2:
+		mes "[ÀN·O]";
+		mes "Ä«ªG¥Ä»Ý­n ^FF0000Ä«ªG3Áû©MªÅ²~1­Ó^000000¡A½Ð±z§â³o¨Ç§÷®Æ¥æ";
+		mes "µ¹§Ú´N¯à»s§@¤F¡A½Ð°Ý±z­nº^Ä«ªG¥Ä¶Ü?";
+		next;
+		if (select("¬Oªº:¤£­n")==2) break;
+		if(countitem(512) < 3 || !countitem(713)) {
+			mes "[ÀN·O]";
+			mes "±z©Ò¾Ö¦³ªº§÷®Æ¦n¹³¤£°÷©O¡A§Ú¦A§i¶D§A¤@¹M§a¡A»Ý­nÄ«ªG3Áû©MªÅ²~ 1­Ó¡A½Ð±z§â³o¨Ç§÷®Æ¥æµ¹§Ú´N¯à»s§@¤F¡A»`¶°§÷®Æ«á¦A¨Ó§ä§Ú§a";
+			close;
+		}
+		mes "[ÀN·O]";
+		mes "Thank you,";
+		mes "please wait";
+		mes "just a moment.";
+		next;
+		mes "*Grind grind*";
+		mes "*Grind grind*";
+		mes "*Clang...!*";
+		next;
+		mes "[ÀN·O]";
+		mes "There you go~";
+		mes "I hope you enjoy!";
+		mes "Please feel free to";
+		mes "stop by for your Apple";
+		mes "and Apple Juice needs";
+		mes "at anytime, adventurer~";
+		delitem 512,3;
+		delitem 713,1;
+		getitem 531,1;
+		close;
+	case 3:
+	}
+	mes "[ÀN·O]";
+	mes "Åwªï±z¤U¦¸¦A¨Ó­ò¡A«ô«ôÅo~";
+	close;
+}
+
+airplane,80,71,4	script	³Ç¼Ö¶ð	834,{
+	mes "[³Ç¼Ö¶ð]";
+	mes "§Ú¬O¬°¤F¶Ç¹F±Ð»£¤~½ñ¤J®È³~ªº, ³z¹L±Ð»£¯à¨Ï¿c®¦--¦Ì¼w¥[¯÷¥þ³¡¹Îµ²°_¨Óªº¸Ü, ¤~¬O§Ú¯u¥¿ªº´Á±æ";
+	close;
+}
+
+airplane,65,63,4	script	¤Ö¤k#air	714,{
+	mes "[¤Ö¤k]";
+	mes "³o¿´­¸ªÅ¸¥¦³¨ìÁ¤»æ«°§a? ¤£¹L§Úµ¥¤F¦Ñ¥b¤Ñ³£¨SÅ¥¨ì¨ì¹FÁ¤»æ«°ªº¼s¼½...";
+	close;
+}
+
+airplane,72,34,6	script	¨È§V¥q	702,{
+	mes "[¨È§V¥q]";
+	mes "¦bªÅ¤¤¬Ýªº´º¦â«D±`º}«G, ­Y¯à¹³³¾¯ë¿¬µ¾¤ÑªÅ¸Ó¦h¦n©O";
+	close;
+}
+
+airplane,32,61,4	script	¬ù¿« ²¦::TypingContest	49,{
+	callfunc "F_ClearGarbage"; //Clear outdated, unused variables
+loopback:
+	mes "[¬ù¿« ²¦]";
+	mes "§A¦n¶Ü¡A§Ú¬O¬D¾Ô^FF0000¥´¦r¹CÀ¸¤ñÁÉ^000000¤§¥D«ù¤H¬ù¿« ²¦¡A½Ð°Ý»Ý­nÀ°¦£¶Ü?";
+	next;
+	menu "¬D¾Ô^FF0000¥´¦r¹CÀ¸¤ñÁÉ^000000",s_Play,"§Ú­nÅ¥^FF0000¥´¦r¹CÀ¸¤ñÁÉ^000000ªº»¡©ú",s_Info,"§Ú­n¬Ý³Ì°ª±Æ¦æº]ªº¬ö¿ý",s_Record,"¨ú®ø",-;
+
+	mes "[¬ù¿« ²¦]";
+	mes "¾÷·|¤£¥u¦³³o¤@¦¸¦Ó¤w¡A­Y·Q¬D¾Ô^0000FF¥´¦r¹CÀ¸¤ñÁÉ^000000ªº¸Ü¡AÅwªï§AÀH®É¨Ó§ä§Ú³á!";
+	close;
+
+s_Play:
+	mes "[¬ù¿« ²¦]";
+	mes "§A­n¿ï¾Ü¬D¾Ô^FF0000¥´¦r¹CÀ¸¤ñÁÉ^000000°Ú¡A½Ð§A§â´£¥Üªº¤å³¹¤º®e¦b³Ì§Öªº®É¶¡¤º¡A¥¿½Tªº¿é¤J§a¡A¨º»ò­n¶}©l¤F";
+	next;
+	//below arrays are for simplified entering of new lines ;P
+
+	//first lines array
+	setarray $@textstringsa$[0],
+	"^00FFFFthkelfkskeldmsiejdlsle^0000FFhfndkelsheidl",
+	"^993366hfjdkeldjsieldjs^663366hfjdjeiskdlefvbd",
+	"^00FFFFCoboman no chikara-yumei na",
+	"^993366belief love luck grimace sweat rush",
+	"^00FFFFcallipygian salacious lascivious",
+	"^663366uNflAPPaBLe LoVaBLe SeCreTs AnD",
+	"^00CCFFburrdingdingdilidingdingphoohudaamb",
+	"^FF33CCbarapaphurarlandreamduranbatuhi^990066wooi",
+	"^FF33CCLiGhTsPeEd RiGhT SPEed leFT TURn",
+	"^00CCFFI'm the King of all Weirdos! Now",
+	"^00CCFFBy the power of^000000",
+	"^00CCFF...silence. quiet benevolence...";
+
+	//second lines array
+	setarray $@textstringsb$[0],"skemd",
+	"",
+	"chikara-dalookii na chikara da ze!",
+	"folktale rodimus optimus bumblebee",
+	"licentious prurient concupiscent",
+	"BoWLiNg aGaINST tHe KarMA of YoUtH",
+	"andoora^0000FFbambarambambamburanbamding",
+	"kabamturubamdingding",
+	"RiGhT BuRn OrIGInAL GaNgSteR SmACk",
+	"you know of my true power. Obey~!",
+	"p-po-poi-po-poi-poin-poing",
+	"soul mate... wonder. enigma...";
+	//for the few 3-liners... =X
+
+	setarray $@textstringsc$[0],"",
+	"",
+	"COBO ON!",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"GOD-POING. I NEVER LOSE!",
+	"cloud.";
+
+	//comparisation strings
+	setarray $@compstring$[0],
+	"thkelfkskeldmsiejdlslehfndkelsheidlskemd",
+	"hfjdkeldjsieldjshfjdjeiskdlefvbd",
+	"Coboman no chikara-yumei na chikara-dalookii na chikara da ze! COBO ON!",
+	"belief love luck grimace sweat rush folktale rodimus optimus bumblebee",
+	"callipygian salacious lascivious licentious prurient concupiscent",
+	"uNflAPPaBLe LoVaBLe SeCreTs AnD BoWLiNg aGaINST tHe KarMA of YoUtH",
+	"burrdindingdilidingdingphoohudaambandoorabambarambambamburanbamding",
+	"barapaphurarlandreamduranbatuhiwooikabamturubamdingding",
+	"LiGhTsPeEd RiGhT SPEed leFT TURn RiGhT BuRn OrIGInAL GaNgSteR SmACk",
+	"I'm the King of all Weirdos! Now you know of my true power. Obey~!",
+	"By the power of p-po-poi-po-poi-poin-poing GOD-POING. I NEVER LOSE!",
+	"...silence. quiet benevolence... soul mate... wonder. enigma... cloud";
+
+	//lengths
+	setarray $@lengths[0],20,32,73,73,65,66,67,55,67,66,67,69;
+
+	//	initnpctimer;
+	// pick 2 distinct phrases and initialize related variables
+	set @index,rand(1,getarraysize($@textstringsa$))-1;
+	set @string1a$,$@textstringsa$[@index];
+	set @string1b$,$@textstringsb$[@index];
+	set @string1c$,$@textstringsc$[@index];
+	set @typingstring1$,$@compstring$[@index];
+
+	set @index2,rand(1,getarraysize($@textstringsa$))-1;
+	while (@index2 == @index) {
+		set @index2,rand(1,getarraysize($@textstringsa$))-1;
+	}
+	set @string2a$,$@textstringsa$[@index2];
+	set @string2b$,$@textstringsb$[@index2];
+	set @string2c$,$@textstringsc$[@index2];
+	set @typingstring2$,$@compstring$[@index2];
+
+	set @typingkeys,$@lengths[@index]+$@lengths[@index2];
+	set @start,gettime(3)*60*60+gettime(2)*60+gettime(1);
+
+	mes "[Nils]";
+	mes @string1a$;
+	if(@string1b$ != "")mes @string1b$;
+	if(@string1c$ != "")mes @string1c$;
+	input @comparisonvar$[1];
+	next;
+	mes "^000000[Nils]";
+	mes @string2a$;
+	if(@string2b$ != "")mes @string2b$;
+	if(@string2c$ != "")mes @string2c$;
+	input @comparisonvar$[2];
+	if(@comparisonvar$[1] == @typingstring1$ && @comparisonvar$[2] == @typingstring2$)set @typingcorrect,1;
+	next;
+	if(!@typingcorrect)goto s_Fail;
+	set @time,(gettime(3)*60*60+gettime(2)*60+gettime(1))-@start; //seconds taken
+	set @mypoints,(@typingkeys * 100) / @time;
+	mes "[Nils]";
+	mes "Your typing time";
+	mes "was ^FF0000" + @time + " seconds^000000";
+	mes "and your score is";
+	mes "^0000FF" + @mypoints + "^000000 points";
+	next;
+	if(@mypoints <= $TypingRecord)goto loopback;
+	mes "[Nils]";
+	mes "Congratulations!";
+	mes "It's a new record.";
+	mes "I'll put you on the high-";
+	mes "score list immediately.";
+	set $TypingRecord,@mypoints;
+	set $TypingRecord$,strcharinfo(0);
+	close;
+
+s_Fail:
+	mes "^000000[Nils]";
+	mes "I'm sorry you didn't type";
+	mes "all characters correctly.";
+	mes "But remember, practice makes";
+	mes "perfect!";
+	close;
+
+s_Info:
+	mes "[¬ù¿« ²¦]";
+	mes "^0000FF¥´¦r¹CÀ¸¤ñÁÉ^000000¬O§â§Ú´£¥Üªº¤å³¹¡A¥¿½T¤S¨³³tªº¥´Áä½L¿é¤Jªº¹CÀ¸¡A§Ú­Ì·|§â³Ì§Ö³t§¹¦¨ªºª±®a¤§©m¦W©M®É¶¡¬ö¿ý¤U¨Ó¡A­Y¹ï¦Û¤vªº³t«×¦³«H¤ßªº¤H¡AÅwªï¨Ó¬D¾Ô³á!";
+	close;
+
+s_Record:
+	mes "[¬ù¿« ²¦]";
+	mes "¥Ø«e³Ì°ª¬ö¿ý¬O¥Ñ";
+	mes "^0000FF" + $TypingRecord$ + "^000000¥ý¥Í/¤p©j©Ò¥ß¤Uªº";
+	mes "^0000FF" + $TypingRecord + "^000000¦r¬O³Ì§Öªº¬ö¿ý";
+	close;
+
+}
+
+airplane_01,221,158,6	script	Pilot#air-0::Pilot	852,{
+	set @pilot, rand(1,4);
+	if (@pilot == 1) {
+		mes "[²ë¤â]";
+		mes "¥Ø«e­¸¦æ¸ô½u¬O¬OªF¸g131«×¡A¥_½n37«×¡A";
+		mes "¤@¤Á¥¿±`!";
+		close;
+	} else if(@aa == 2) {
+		mes "[²ë¤â]";
+		mes "¤µ¤Ñ¬O¦h¶³ªº¤Ñ®ð¡A";
+		mes "³oºØ¤Ñ®ð­n»{¸ô«Ü§xÃø..¶â¶â";
+		close;
+	} else if(@aa == 3) {
+		mes "[²ë¤â]";
+		mes "²îªøªº©Ê®æ«Ü©ÇÂ}§a¡A";
+		mes "¨C¦¸³£¬O²î­û­Ì¨ÓÀ¿§¾ªÑ¡A";
+		mes "¤µ¤Ñ¤£ª¾¤S­nÂô¤°»òº× ..";
+		mes "­ü«¦..";
+		next;
+		mes "[^FF0000»p³°^000000]";
+		mes "^FF0000³Þ§A­Ì!! §O¥uÅU¶¢²á¡A§Ö¥h¤u§@!";
+		mes "¤u§@°Õ!^000000";
+		next;
+		mes "[²ë¤â]";
+		mes "¬O~ ¬O~ ª¾¹D¤F";
+		close;
+	}
+		mes "[²ë¤â]";
+		mes "©I¶ã...³o¨îªA¬O«Ü«Ó°Õ¡A¥u¬O¤Ó¼ö...";
+		mes "²îªø«Ç¸Ì¤]¤£·|¦³¥~¤H¶i¨Ó";
+		mes "¤£¯à¥u¬ï¤º¿Ç¤u§@¶Ü?";
+		next;
+		mes "[²ë¤â]";
+		mes ".......";
+		next;
+		//emotion 23;
+		mes "[²ë¤â]";
+		mes "§c!? §A¬O½Ö°Ú?!";
+		close;
+}
+
+//============================================================ 
+//= °ê»Ú½u (¦¶¿Õ -> ¨Ì´µ¾|±o®q -> ©Ô»® -> ­«½Æ)
+//============================================================ 
+
+airplane_01,243,74,4	script	#AirshipWarp-3	45,2,2,{
+OnTouch:
+	if($@airplanelocation2 == 1)warp "izlude",202,56;
+	if($@airplanelocation2 == 2)warp "yuno",20,265;
+	if($@airplanelocation2 == 3)warp "ra_fild12",292,204;
+	end;
+
+OnHide:
+	misceffect 16;
+	end;
+OnUnhide:
+	misceffect 215;
+	end;
+}
+
+airplane_01,243,29,4	script	#AirshipWarp-4	45,2,2,{
+OnTouch:
+	if($@airplanelocation2 == 1)warp "izlude",202,56;
+	if($@airplanelocation2 == 2)warp "yuno",20,265;
+	if($@airplanelocation2 == 3)warp "ra_fild12",292,204;
+	end;
+
+OnHide:
+	misceffect 16;
+	end;
+OnUnhide:
+	misceffect 215;
+	end;
+}
+
+airplane_01,1,1,0	script	YunoIzl_Airship	-1,{
+OnInit:
+while(1)
+{
+	disablenpc "Quest_Izl";
+	initnpctimer;
+	setnpctimer 0;
+	set $@airplanelocation2,0;
+	donpcevent "#AirshipWarp-3::OnHide";
+	donpcevent "#AirshipWarp-4::OnHide";
+	disablenpc "#AirshipWarp-3";
+	disablenpc "#AirshipWarp-4";
+	mapannounce "airplane_01","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¦a¬O¨Ì´µ¾|±o®q",1,0x00FF00;
+	end;
+OnTimer15000:
+	set $@mobinv, $@mobinv+1;
+	set $@mobrand, rand(1,3);
+	if($@mobinv >= 9 && $@mobrand == 3) {
+		stopnpctimer;
+		enablenpc "Quest_Izl";
+		donpcevent "Quest_Izl::OnInvasion";
+	}
+	mapannounce "airplane_01","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹¨Ì´µ¾|±o®q³~¤¤",1,0x00FF00;
+	end;
+OnTimer30000:
+	mapannounce "airplane_01","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b¨Ì´µ¾|±o®q¤F",1,0x00FF00;
+	end;
+OnTimer45000:
+	set $@airplanelocation2,1;
+	enablenpc "#AirshipWarp-3";
+	enablenpc "#AirshipWarp-4";
+	donpcevent "#AirshipWarp-3::OnUnhide";
+	donpcevent "#AirshipWarp-4::OnUnhide";	
+	mapannounce "airplane_01","§Ú­Ì¤w¸g¨ì¹F¨Ì´µ¾|±o®q¡A¤U¾÷ªº®È«È¦A·|¤F",1,0x00FF00;
+	end;
+OnTimer55000:
+	mapannounce "airplane_01","§Ú­Ì¥Ø«e¥¿°±¾a¦b¨Ì´µ¾|±o®q¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0x00FF00;
+	end;
+OnTimer65000:
+	set $@airplanelocation2,0;
+	donpcevent "#AirshipWarp-3::OnHide";
+	donpcevent "#AirshipWarp-4::OnHide";
+	disablenpc "#AirshipWarp-3";
+	disablenpc "#AirshipWarp-4";
+	mapannounce "airplane_01","ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¦a¬O¦¶¿Õ",1,0x70DBDB;
+	end;
+OnTimer80000:
+	mapannounce "airplane_01","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹¦¶¿Õ³~¤¤",1,0x70DBDB;
+	end;
+OnTimer95000:
+	mapannounce "airplane_01","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b¦¶¿Õ¤F",1,0x70DBDB;
+	end;
+OnTimer110000:
+	set $@airplanelocation2,2;
+	enablenpc "#AirshipWarp-3";
+	enablenpc "#AirshipWarp-4";
+	donpcevent "#AirshipWarp-3::OnUnhide";
+	donpcevent "#AirshipWarp-4::OnUnhide";
+	mapannounce "airplane_01","§Ú­Ì¤w¸g¨ì¹F¦¶¿Õ¡A¤U¾÷ªº®È«È¦A·|¤F",1,0x70DBDB;
+	end;
+OnTimer120000:
+	mapannounce "airplane_01","§Ú­Ì¥Ø«e¥¿°±¾a¦b¦¶¿Õ¤¤¡Aµ¥¤@¤U§Y±N­n¥XµoÅo",1,0x70DBDB;
+	end;
+OnTimer130000:
+	set $@airplanelocation2,0;
+	donpcevent "#AirshipWarp-3::OnHide";
+	donpcevent "#AirshipWarp-4::OnHide";
+	disablenpc "#AirshipWarp-3";
+	disablenpc "#AirshipWarp-4";
+	mapannounce "airplane_01","­¸ªÅ¸¥­n°_­¸¤F¡A¤U¤@­Ó¥Øªº¬O©Ô»®",1,0xFF8600;
+	end;
+OnTimer145000:
+	mapannounce "airplane_01","¥Ø«e¥»­¸ªÅ¸¥¥¿­¸©¹©Ô»®¤¤",1,0xFF8600;
+	end;
+OnTimer160000:
+	mapannounce "airplane_01","µ¥¤@¤U­¸ªÅ¸¥´N­n­°¸¨¦b©Ô»®¤F",1,0xFF8600;
+	end;
+OnTimer175000:
+	set $@airplanelocation2,3;
+	enablenpc "#AirshipWarp-3";
+	enablenpc "#AirshipWarp-4";
+	donpcevent "#AirshipWarp-3::OnUnhide";
+	donpcevent "#AirshipWarp-4::OnUnhide";
+	mapannounce "airplane_01","§Ú­Ì¤w¸g¨ì©Ô»®¤F¡A¤U¾÷ªº®È«È¦A·|¤F",1,0xFF8600;
+	end;
+OnTimer185000:
+	mapannounce "airplane_01","§Ú­Ì¥Ø«e¥¿°±¾a¦b©Ô»®¤¤¡Aµ¥¤@¤U§Y±N¥XµoÅo",1,0xFF8600;
+	end;
+OnTimer195000:
+ 	stopnpctimer;
+}
+OnReturn:
+	killmonsterall "airplane_01";
+	set $@mobinv, 0;
+	mapannounce "airplane_01","¾÷¤º¼s¼½ : Å]ª«­Ì¦n¹³³£¤w¸gÂ÷¥h¤F, ¦^´_¨ì¥¿±`­¸¦æ",1,0x00FF00;
+	startnpctimer;
+	end;
+}
+
+//============================================================ 
+//= Some normal NPCS (airplane_01)
+//============================================================ 
+
+airplane_01,240,64,5	duplicate(Exit2)	¥X¤f#05	857
+
+airplane_01,247,64,5	duplicate(Exit2)	¥X¤f#06	857
+
+airplane_01,240,39,1	duplicate(Exit2)	¥X¤f#07	857
+
+airplane_01,247,39,1	duplicate(Exit2)	¥X¤f#08	857
+
+airplane_01,100,69,2	duplicate(Airship Crew)	¾÷²Õ­û#02	852
+
+airplane_01,250,59,3	duplicate(AirshipInfo)	­¸ªÅ¸¥ ¤u§@¤H­û#info	67
+
+airplane_01,50,66,4	duplicate(AirshipApples)	ÀN·O	86
+
+airplane_01,32,61,4	duplicate(TypingContest)	¬ù¿« ²¦	49
+
+airplane_01,221,158,6	duplicate(Pilot)	Pilot#air-1	852
+
+
+airplane_01,83,61,2	script	¤Ö ¤k#10	72,{
+
+	mes "[¤Ö ¤k]";
+	mes "¶ã«z«z«z«z«½.......";
+	mes "§Ú±q¥~­±¶]µÛª±®É, ¦³°¦³À¬ðµM¹ï§Ú¤¿¤Ú¤Úªº, À~¦º§Ú¤F.. °ãª_";
+	close;
+OnTouch:
+	Emotion 28, "Dianne";
+	end;
+}
+
+airplane_01,69,63,2	script	¶Q±Ú²Ô¤h#06	55,{
+
+	mes "[¶Q±Ú²Ô¤h]";
+	mes "­¸ªÅ¸¥¤º´£¨ÑªºÀ\¶¼ÁÙ¬O¤£¦X§Úªº¤f¨ý, ¦â­»¨ý³£¤£¨Î, À³¸Ó±a§Úªº±M¥Î¼p®v¨Ó¤~¹ï...";
+	close;
+
+}
+
+airplane_01,33,68,4	script	§J©Ô²úµ·	74,{
+	mes "[§J©Ô²úµ·]";
+	mes "§A¦n¶Ü¡A§Úªº¦W¦r¥s§J©Ô²úµ·¡A±z¤@ª½«Ý¦b­¸";
+	mes "ªÅ¸¥·P¨ìµL²á§a¡A±z­n¤£­n¸ò§Ú»´ÃPªºª±";
+	mes "¤@§âÂY»ë¤l¹CÀ¸°Ú?";
+	next;
+	callfunc "applegamble","§J©Ô²úµ·";
+	end;
+}
+
+airplane_01,71,31,6	script	¼C¤h	106,{
+	mes "[¼C¤h]";
+	mes "Finally, after five";
+	mes "years of waiting...";
+	mes "I can have my revenge!";
+	next;
+	mes "[¼C¤h]";
+	mes "I just...";
+	mes "Have to make sure that";
+	mes "I don't keep missing my";
+	mes "stop. But soon, very soon,";
+	mes "vengeance will be mine!";
+	close;
+}
+
+//============================================================ 
+//= ¨Ì´µ¾|±o®q ¾÷³õ Â¾­û
+//============================================================
+
+izlude,206,55,3	script	¾÷³õ Â¾­û#izl	90,{
+	mes "[¾÷³õ Â¾­û]";
+	mes "±z¦n¡A§Ú­Ì¯èªÅÀH®É´£¨Ñµ¹ÅU«È«K±¶¤SµÎ";
+	mes "¾Aªº®È¦æªA°È¡A·|ºÉ¨ä©Ò¯àªº¡A½Ð°Ý±z»Ý";
+	mes "­nÀ°¦£¶Ü?";
+	next;
+	switch(select("§Ú·Q­n·f­¼­¸©¹¦¶¿Õ/©Ô»®ªº­¸ªÅ¸¥","¨ú®ø")) {
+		case 1:
+			mes "[¾÷³õ Â¾­û]";
+			mes "§Q¥Î­¸ªÅ¸¥ªº¶O¥Î¬°1200ª÷¹ô¡A¦pªG±z«ù";
+			mes "¦³­¸ªÅ¸¥§K¶O·f­¼¨éªº¸Ü¡A´N¯à§K¶O¶i¤J";
+			mes "¡A½Ð°Ý±z­n¶i¤J¾÷³õ¤º³¡¶Ü?";
+			next;
+			switch(select("¬Oªº","¤£­n")) {
+				case 1:
+					if(countitem(7311) > 0) {
+						delitem 7311,1;
+						warp "airplane_01",244,58;
+						close;
+					}
+					if(Zeny < 1200) {
+						mes "[¾÷³õ Â¾­û]";
+						mes "±z­nªá¶O1200ª÷¹ô¤~¯à¶i¤J¡A¦ý±z«ù¦³ªºª÷¹ô¦n¹³¤£°÷­C";
+						close;
+					}
+						set Zeny, Zeny - 1200;
+						warp "airplane_01",244,58;
+						close;
+				case 2:
+					mes "[¾÷³õ Â¾­û]";
+					mes "½Ð±z¤U¦¸¦A§Q¥Î§a¡AÁÂÁÂ¥úÁ{";
+					close;
+			}
+		case 2:
+			mes "[¾÷³õ Â¾­û]";
+			mes "½Ð±z¤U¦¸¦A§Q¥Î§a¡AÁÂÁÂ¥úÁ{";
+			close;
+	}
+}
+
+//============================================================ 
+//= ·´¸¯ µn¾÷³B
+//============================================================
+
+hugel,178,142,0	script	hugelwarp	45,1,1,{
+	mes "§Q¥Î­¸ªÅ¸¥ªº¶O¥Î¬O1200ª÷¹ô¡A¦pªG±z«ù";
+	mes "¦³­¸ªÅ¸¥§K¶O·f­¼¨éªº¸Ü¡A´N¯à§K¶O¶i¤J";
+	mes "½Ð°Ý±z­nå¼§¤¶Ü?";
+	next;
+	if(select("¬Oªº","¤£­n")==2) {
+	mes "Åwªï±z¤U¦¸¦A¨Ó¡CÁÂÁÂ¥úÁ{";
+	close;
+	}
+	if(countitem(7311))
+	delitem 7311,1;
+	else if(Zeny<1200) {
+	mes "±z­nªá¶O1200ª÷¹ô¤~¯à¶i¤J¡A";
+	mes "¦ý±z«ù¦³ªºª÷¹ô¤£°÷³á";
+	close;
+	}
+	else
+	set Zeny,Zeny-1200;
+	warp "airplane",244,58;
+	end;
+}
+
+//============================================================ 
+//= ©Ô»® µn¾÷³B
+//============================================================
+
+ra_fild12,295,208,0	script	rachelwarp	45,1,1,{
+	mes "§Q¥Î­¸ªÅ¸¥ªº¶O¥Î¬O1200ª÷¹ô¡A¦pªG±z«ù";
+	mes "¦³­¸ªÅ¸¥§K¶O·f­¼¨éªº¸Ü¡A´N¯à§K¶O¶i¤J";
+	mes "¡A½Ð°Ý±z­n·f§¤¶Ü?";
+	next;
+	if(select("¬Oªº","¤£­n")==2) {
+	mes "Åwªï±z¤U¦¸¦A¨Ó¡CÁÂÁÂ¥úÁ{";
+	close;
+	}
+	if(countitem(7311))
+	delitem 7311,1;
+	else if(Zeny<1200) {
+	mes "±z­nªá¶O1200ª÷¹ô¤~¯à¶i¤J¡A";
+	mes "¦ý±z«ù¦³ªºª÷¹ô¤£°÷³á";
+	close;
+	}
+	else
+	set Zeny,Zeny-1200;
+	warp "airplane_01",245,60;
+	end;
+}
+
+//============================================================ 
+//= ¦¶¿Õ¾÷³õ¡A©¹µn¾÷³q¹DªºNPC
+//============================================================
+
+y_airport,145,63,5	script	¾÷³õ Â¾­û#Ein	91,{
+	mes "[¾÷³õ Â¾­û]";
+	mes "½Ð°Ý§A­n¨Ï¥Î­¸©¹¨qµo¯÷µo¼w¤ºªº­¸ªÅ¸¥";
+	mes "¶Ü?";
+	next;
+	switch(select("¬Oªº","¤£­n")) {
+		case 1:
+			warp "yuno",59,244;
+			end;
+		case 2:
+			mes "[¾÷³õ Â¾­û]";
+			mes "¯¬±z¤µ¤Ñ¦³¤@­Ó´r§Öªº®È¦æ";
+			close;
+	}
+}
+
+y_airport,140,63,5	script	¾÷³õ Â¾­û#Izl	91,{
+
+	mes "[¾÷³õ Â¾­û]";
+	mes "½Ð°Ý§A­n¨Ï¥Î­¸©¹¦¶¿Õ/¨Ì´µ¾|±o®q/©Ô»®";
+	mes "ªº­¸ªÅ¸¥¶Ü?";
+	next;
+	switch(select("¬Oªº","¤£­n")) {
+		case 1:
+			warp "yuno",47,244;
+			end;
+		case 2:
+			mes "[¾÷³õ Â¾­û]";
+			mes "¯¬±z¤µ¤Ñ¦³¤@­Ó´r§Öªº®È¦æ";
+			close;
+	}
+
+}
+
+yuno,14,262,5	script	­¸ªÅ¸¥ Â¾­û#yuno01::­¸ªÅ¸¥ Â¾­û	91,{
+	mes "[­¸ªÅ¸¥ Â¾­û]";
+	mes "§A¦n,";
+	mes "§Ú­Ì­¸ªÅ¸¥ÀH®É·|ºÉ¨ä©Ò¯àªº´£¨Ñµ¹ÅU«È";
+	mes "«K±¶¤SµÎ¾Aªº®È¦æªA°È,";
+	mes "·Q­n·f­¼­¸ªÅ¸¥½Ð§Q¥Î³o®°ªù¶i¤J,";
+	mes "·Q­nÂ÷¶}¾÷³õ½Ð§Q¥Î¶¥±è¤U¥h´N¥i¥H¤F";
+	close;
+}
+
+yuno,87,263,3	duplicate(­¸ªÅ¸¥ Â¾­û)	­¸ªÅ¸¥ Â¾­û#yuno02	91
+
+//============================================================ 
+//= Apple Gambling Function
+//============================================================
+
+function	script	applegamble	{
+	switch(select("§Ú­nª±¤@§âÂY»ë¤l:§Ú·QÁA¸ÑÂY»ë¤l¹CÀ¸ªº³W«h:¨ú®ø")){
+	case 3:
+		mes "["+getarg(0)+"]";
+		mes "¦pªG±z·Qª±¹CÀ¸ªº¸ÜÀH®É¨Ó§ä§Ú§a¡A§Ú";
+		mes "¦b³o¸Ìµo§b¤]ÆZµL²áªº¡A¨º»ò¦A¨£Åo";
+		close;
+	case 2:
+		mes "["+getarg(0)+"]";
+		mes "²{¦b§Ú¨ÓÁ¿¸ÑÂY»ë¤lªº¹CÀ¸³W«h¡A¨ä¹ê«Ü";
+		mes "Â²³æ¡A­º¥ý¶}©l¹CÀ¸®É¡A¥i¥H¤Uª`³Ì¦h5";
+		mes "0ÁûÄ«ªG¡A·íµM¦pªG¨S¦³Ä«ªG´N¤£¯à°Ñ";
+		mes "¥[¹CÀ¸¤F";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "Ä«ªG¤Uª`«á¡A§å¦¸¦UÂY¨â¦¸»ë¤l¡A¥ÑÂY¥X";
+		mes "¨Óªº¦X­pÂI¼Æ¤jªº¤@¤èÀò³Ó¡A·íµM¦pªG´å";
+		mes "À¸¤@¦¸©w¦¿¤s´N¤£¤j¦nª±¡A©Ò¥H¨âÃä¦U¦³";
+		mes "¦A¤@¦¸¡]²Ä¤T¦¸¡^ÂY»ë¤lªº¾÷·|";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "­n¤£­n¦AÂY¤@¦¸»ë¤l¬O­Ó¤Hªº¦Û¥Ñ°Ú¡A¤£¹L";
+		mes "¤@¥¹¦AÂY¤@¦¸»ë¤l«á¡AÂI¼Æ­Y¶W¹L12ÂI®É";
+		mes "¡A¥Ñ¶W¹Lªº¤@¤è¬°¿é®a";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "·í§A¿ï¾ÜÂY²Ä¤T¦¸»ë¤l®É¡A¥Ñ±z¥ýÂY¡A¦p";
+		mes "¹LÂY¥X¨ÓªºÂI¼Æ¶W¹L12ÂI¡A§Y¨Ï§Ú¤£¦AÂY";
+		mes "¡A¤]¦³§Ú¥D°ÊÀò³Ó";
+		next;
+		mes "["+getarg(0)+"]";
+		mes "¦b¹CÀ¸Àò³Óªº¤@¤è¡A¥i¥H¥þ³¡¾Ö¦³Âù¤è²Ä";
+		mes "¤@¦¸©Ò¤Uª`ªºÄ«ªG¼Æ¶q¡A§Ú³o¼Ë»¡©ú¤w¸g";
+		mes "«Ü²M·¡¤F§a";
+		close;
+	case 1:
+		break;
+	}
+	mes "["+getarg(0)+"]";
+	mes "­Y·Q­nª±ÂY»ë¤l¹CÀ¸¡A´N»Ý­n¦³Ä«ªG¡A½Ð";
+	mes "°Ý±z­n¤U¦h¤Ö­ÓÄ«ªGªº½äª`©O?";
+	mes "³Ì¦h¥i¤@¤U¨ì50Áû¡A·Q­n¨ú®ø¹CÀ¸½Ð¿é¤J0";
+	next;
+L_Input:
+	input @amount;
+	if(@amount == 0) {
+		mes "["+getarg(0)+"]";
+		mes "±z§ïÅÜ¥D·NÅo¡A¤U¦¸µL²á®É¦A¨Óª±§a¡A¦A¨£";
+		close;
+	}
+	if(@amount > 50) {
+		mes "["+getarg(0)+"]";
+		mes "³Ì¤j50­Ó";
+		mes "§A¨S§Ë¿ù§a";
+		next;
+		goto L_Input;
+	}
+	mes "["+getarg(0)+"]";
+	mes "±z©Ò¿é¤Jªº½äª`¼Æ¶q¬O ^FF0000" +@amount+ "Áû^000000ÇN";
+	mes "¹ï¶Ü??";
+	next;
+	if(select("¬Oªº:¤£¬O")==2){
+		mes "["+getarg(0)+"]";
+		mes "½Ð±z­«·s¿é¤J";
+		next;
+		goto L_Input;
+	}
+	if(countitem(512)<@amount){
+		//more apples then in inventory
+		//-Improvised-
+		mes "["+getarg(0)+"]";
+		mes "Ä«ªG¤£¨¬³á !";
+		mes "½ä´X­Ó?";
+		close;
+	}
+	delitem 512,@amount;
+	mes "["+getarg(0)+"]";
+	mes "¦n§a,§Ú­Ì´N¶}©lª±¹CÀ¸Åo,¥Ñ§Ú¨Ó¥ýÂY";
+	mes "»ë¤l";
+	next;
+	mes "- ´µÅSÅS...©B©N©B©N...ºu°± -";
+	set @table1,rand(1,6);
+	set @table2,rand(1,6);
+	set @tablesub,@table1+@table2;
+	next;
+	mes "§ÚÂY¥X¨Óªº¨âÁû»ë¤lÂI¼Æ¬O ^0000FF"+@table1+"^000000 ©M ^0000FF"+@table2+"^000000B";
+	mes "¦X­p¬O ^0000FF"+@tablesub+"^000000 ÂI";
+	mes "³o¦¸¥Ñ^FF0000" +strcharinfo(0)+ "^000000¥ý¥Í/¤p©j¨ÓÂY»ë¤lÅo";
+	next;
+	menu "Lucky Ball Go!",-;
+
+	mes "´µÅSÅS...©B©N©B©N...ºu°±";
+	set @player1,rand(1,6);
+	set @player2,rand(1,6);
+	set @playersub,@player1+@player2;
+	next;
+	mes "["+getarg(0)+"]";
+	mes "^FF0000"+strcharinfo(0)+"^000000¥ý¥Í/¤p©jÂY¥X¨Óªº¨âÁû»ë¤lÂI¼Æ";
+	mes "^FF0000"+@player1+"^000000©M^FF0000"+@player2+"^000000ÂI";
+	mes "¦X­p¬O^FF0000"+@playersub+"^000000ÂI!";
+	next;
+	mes "["+getarg(0)+"]";
+	mes "§Úªº¬O^0000FF"+@tablesub+"^000000ÂI";
+	mes "^FF0000" +strcharinfo(0)+ "^000000ªº¬O^FF0000"+@playersub+"^000000ÂI";
+	if(@playersub == @tablesub) {
+		mes "¬Û¦P?";
+		mes "¦A¨Ó¤@¦¸¶Ü?";
+	} else if(@playersub > @tablesub) {
+		mes "^FF0000"+getarg(0)+"^000000‚³‚ñ‚ª";
+		mes "§A»â¥ý!";
+		mes "¦A¨Ó¤@¦¸¶Ü?";
+	} else if(@tablesub > @playersub) {
+		mes "§Ú»â¥ý!";
+		mes "¦A¨Ó¤@¦¸¶Ü?";
+	}
+	next;
+	if(select("¦nªº:ºâ¤F")==2){
+		mes "["+getarg(0)+"]";
+		mes "Not gonna roll, huh?";
+		if(@tablesub == @playersub) {
+			mes "±z¤]¤£·Q«_µÛ­·ÀIÂY»ë¤l¶Ü";
+			mes "²{¦bªºª¬ªp§Ú¤]¦³¤@ÂI­·ÀI";
+			mes "§Ú­Ì´N·í§@¥­¤â§a§Ú­Ì¤U¦¸¦A¨Ó½ä¤@§â§a";
+			next;
+			goto L_Table3;
+		} else if(@tablesub < @playersub) {
+			next;
+			mes "["+getarg(0)+"]";
+			mes "Alright, I see that you";
+			mes "don't want to risk rolling";
+			mes "higher than 12 and busting.";
+			mes "I'll go ahead and roll then.";
+			next;
+			goto L_Table3;
+		} else if(@tablesub > @playersub) {
+		//you have a lower sub total then table, and do not roll 3th -Improvised-
+			mes "["+getarg(0)+"]";
+			mes "Not gonna roll, huh?";
+			mes "Well, then I'm not";
+			mes "gonna roll either.";
+			next;
+			mes "["+getarg(0)+"]";
+			mes "That means that I";
+			mes "have a total of ^0000FF"+@tablesub+"^000000";
+			mes "wich beats your ^FF0000"+@playersub+"^000000.";
+			mes "I'm sorry, but you lose";
+			mes "this game, "+strcharinfo(0)+". Better";
+			mes "luck next time.";
+		}
+		close;
+	}
+	mes "´µÂPÂP.....©N©B©B..©N©B©BÂPÂP..°±!";
+	set @player3,rand(1,6);
+	set @playersub,@playersub+@player3;
+	if(@playersub > 12) {
+	//player bust --Improvised--
+		next;
+		mes "["+getarg(0)+"]";
+		mes "^FF0000"+strcharinfo(0)+"^000000¥ý¥Í/¤p©jÂY¥X¨Óªº»ë¤lÂI¼Æ¬O";
+		mes "^FF0000"+@player3+"^000000ÂI";
+		mes "¦X­p¬O^FF0000"+@playersub+"^000000ÂI";
+		mes "Á`­p¶W¶V¤F 12 ";
+		mes "¥¢±Ñ¤F!";
+		mes "«á®¬§a!";
+		close;
+	}
+	next;
+	mes "["+getarg(0)+"]";
+	mes "Oh hey! You rolled";
+	if(@playersub >= @tablesub) {
+		mes "a ^FF0000"+@player3+"^000000, giving you a total";
+		mes "of ^FF0000"+@playersub+"^000000. Now, if I don't";
+		mes "roll, I'll lose for sure!";
+		mes "I'm gonna go for it...";
+		next;
+		goto L_Table3;
+	} else if(@playersub < @tablesub) {
+		//player's sub together with 3th die is still too low
+		//--Improvised--
+		mes "§Úªº¤â®ð¯u¦n!";
+		mes "§A¥¢±Ñ¤F!";
+		close;
+	}
+L_Table3:
+	mes "^0000FF*Rolling and rumbling*";
+	set @table3,rand(1,6);
+	set @tablesub,@tablesub+@table3;
+	next;
+	if(@tablesub > 12) {
+		mes "["+getarg(0)+"]";
+		mes "Eh? I rolled a ^0000FF"+@table3+"^000000, making";
+		mes "my total ^0000FF"+@tablesub+"^000000. I hate to say";
+		mes "it, but I gambled and lost.";
+		mes "Take your winnings before";
+		mes "I cry, "+strcharinfo(0)+"~!";
+		close2;
+		getitem 512,@amount*2;
+		end;
+	}
+	mes "["+getarg(0)+"]";
+	if(@tablesub < @playersub) {
+		mes "I rolled a "+@table3+", which";
+		mes "gives me a total of ^0000FF"+@tablesub+"^000000.";
+		mes "But... It's still not enough";
+		mes "to beat your ^FF0000"+@playersub+"^000000. It looks";
+		mes "like I can't compete with";
+		mes "you, "+strcharinfo(0)+"...";
+		close2;
+		getitem 512,@amount*2;
+		end;
+	} else if(@tablesub > @playersub) {
+	mes "I rolled a ^0000FF"+@table3+"^000000, giving";
+	mes "me a total of ^0000FF"+@tablesub+"^000000 which";
+	mes "beats your total of ^FF0000"+@playersub+"^000000.";
+	mes "Sorry, but you lose this";
+	mes "game, "+strcharinfo(0)+". Them's";
+	mes "the breaks, I suppose...";
+	close;
+	} else if(@tablesub == @playersub) {
+		//Result = tie, --Improvised--
+		mes "I rolled a ^0000FF"+@table3+"^000000, giving";
+		mes "me a total of ^0000FF"+@tablesub+"^000000, which";
+		mes "is the same as your total.";
+		mes "Well, this game didn't have a";
+		mes "winner or loser, "+strcharinfo(0)+".";
+		close2;
+		getitem 512,@amount;
+		end;
+	}
+}

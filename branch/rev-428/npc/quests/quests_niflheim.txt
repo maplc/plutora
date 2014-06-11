@@ -1,0 +1,318 @@
+//===== eAthena Script ======================================= 
+//= Quests NPCs located in Niflheim
+//===== By: ================================================== 
+//= eAthena Dev Team
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= eAthena 7.15 +
+//===== Description: ========================================= 
+//= Book of Devil and Piano Key quest
+//===== Additional Comments: ================================= 
+//= 1.0 Initial release, moved Book of Devil and Piano quest from npc/cities/niflheim.txt
+//============================================================ 
+
+//=============================================================
+//Quest for Book of Devil
+//=============================================================
+niflheim,184,199,5	script	小女孩#02	793,{
+	mes "[紗玲]";
+	if(MISC_QUEST & 256){
+		mes "謝謝你協助我們!";
+		close;
+	}
+	if(@niflheimlost == 2){
+		mes "你找到馬猷斯了?";
+		mes "噢! 真是太感謝你了!";
+		mes "這裡有點小東西算是我給你的謝禮.";
+		getitem 642,1;//Items: Book of Devil,
+		set MISC_QUEST,MISC_QUEST | 256;
+		set @niflheimlost,0;
+		close;
+	}
+	if(@niflheimlost == 1){
+M_YES:
+		set @niflheimlost,1;
+		mes "請你幫我找到他並且轉告他我在這裡! 我最後一次見到他是在城外的原野，第一個原野...";
+		close;
+	}
+	mes "先生!你可以幫我一個忙嗎?";
+	if(BaseJob==Job_Novice){
+		mes "哦... 你也迷路了...";
+		close;
+	}
+	next;
+	menu "沒問題!",-, "再說吧...",M_NO;
+
+	mes "[紗玲]";
+	mes "我的朋友跟我一起來健行但是走失在這個陌生的地方了.";
+	next;
+	mes "[紗玲]";
+	mes "突然，我發現一個娃娃，我把他撿了起來，結果它變成了一個幽魂!";
+	next;
+	mes "[紗玲]";
+	mes "我尖叫著逃開，盡我所能地快跑。之後當我停下來的時候，我發現我身處在這個陌生的城市裡..";
+	next;
+	mes "[紗玲]";
+	mes "這裡沒有人願意幫主我，而且這裡到處都是幽靈! 你可以幫我找到我的朋友嗎?";
+	next;
+	menu "沒問題!",M_YES, "你的朋友該不會也是幽魂吧...",M_NO;
+M_NO:
+	close;
+}
+
+nif_fild01,213,268,5	script	小男孩	797,{
+	if(MISC_QUEST & 256){
+L_DONE:
+		set @niflheimlost,2;
+		mes "[馬猷斯]";
+		mes "謝謝你協助我們!";
+		close;
+	}
+	if(@niflheimlost == 2) goto L_PART2;
+	if(@niflheimlost == 1){
+		mes "你是誰?";
+		mes "...";
+		mes "你知道紗玲在哪裡?";
+		mes "他跑進城裡去了?";
+		next;
+L_PART2:
+		mes "[馬猷斯]";
+		mes "你可以轉告他我立刻動身去找她嗎?";
+		mes "我走路有點慢，但是請務必讓她知道我已經上路了，這很重要.";
+		next;
+		menu "沒問題!",L_DONE, "那你就慢慢走吧!",-;
+		close;	
+	}
+	mes "[馬猷斯]";
+	mes "紗玲...你在哪裡?";
+	close;
+}
+
+//=============================================================
+//Piano Quest
+//=============================================================
+//-----------------魔女任務--------------//
+niflheim,224,243,3	script	阿雷戈	795,{
+	mes "[阿雷戈]";
+	mes "我喜歡肉 嗯哈，";
+	mes "你看起來...好好吃喔";
+	next;
+	mes "[阿雷戈]";
+	mes "我要吃你";
+	next;
+	mes "-嘖 嘖 嘖 -";
+	if(nif_piano&1 || (MISC_QUEST & 32)) goto L_end;
+	percentheal -60,0;
+	next;
+	mes "[阿雷戈]";
+	mes "好久沒吃到這麼好吃的肉了...";
+	mes "是西式烤肉師傅等級，喜歡的肉，";
+	mes "相似服務腓力牛排定食時，";
+	mes "交叉附帶做出來的話，";
+	mes "應該會很好吃... ";
+	next;
+	mes "[阿雷戈]";
+	mes "用這個來當謝禮，是不久前";
+	mes "在地上撿到的，嗝喔";
+	getitem 7184,1;//Items: Piano Key,
+	set nif_piano, nif_piano|1;
+	close;
+L_end:
+	percentheal -30,0;
+ 	close;
+}
+
+nif_in,105,81,3	script	克雷佑	794,{
+	mes "[克雷佑]";
+	mes "活在世上的人類啊..";
+	mes "不知從何時，從哪個人開始..";
+	mes "什麼都不知道的詩，";
+	mes "就這樣流傳下來";
+	next;
+	mes "[克雷佑]";
+	mes "^FF0000當日落掛在西山時，^000000";
+	mes "^FF0000紫色黃昏所指的地方，^000000";
+	mes "^FF0000漂亮的旋律纏繞在身上時，^000000";
+	mes "^FF0000是避開死靈騎士的鑰匙^000000";
+	next;
+	mes "[克雷佑]";
+	if(nif_piano&2 || (MISC_QUEST & 32)){
+		mes "是什麼意義呢... 再仔細看的話，";
+		mes "又非常的深奧，";
+		mes "確實像是含有，";
+		mes "什麼秘密的詩";
+		close;
+	}
+	set @nif_random,rand(1,4);
+	switch(@nif_random){
+	case 1:
+		set @str1$,"當日落掛在西山時，";
+		set @str2$,"第一行，";
+		break;
+	case 2:
+		set @str1$,"紫色黃昏所指的地方，";
+		set @str2$,"第二行，";
+		break;
+	case 3:
+		set @str1$,"漂亮的旋律纏繞在身上時，";
+		set @str2$,"第三行，";
+		break;
+	case 4:
+		set @str1$,"是避開死靈騎士的鑰匙";
+		set @str2$,"第四行，";
+		break;
+	}
+	mes "那麼在此測驗一下! 請把剛剛所聽到";
+	mes "那首詩的" + @str2$ + "，";
+	mes "完整的寫一遍!";
+	next;
+	input @inputstr1$;
+	mes "[克雷佑]";
+	if(@inputstr1$ == @str1$){
+		mes "喔喔...有注意聽啊!";
+		mes "我克雷佑，身為吟遊詩人，";
+		mes "你是最受歡迎的聽眾，";
+		mes "這是送你的獎勵";
+		getitem 7184,1;//Items: Piano Key,
+		set nif_piano, nif_piano|2;
+		next;
+		mes "[克雷佑]";
+		mes "那麼希望對其他吟遊詩人，";
+		mes "也是一樣要有禮貌";
+		close;
+	}
+	mes "唉唷... 如果有專心聽的話，";
+	mes "一定會答對的!";
+	mes "好好的想想之後，";
+	mes "再來挑戰吧!";
+	close;
+}
+
+nif_in,31,20,3	script	庫茲咖希納	794,{
+	mes "[庫茲咖希納]";
+	mes "目前生意真是很差...";
+	mes "上輩子我的店也是";
+	mes "生意很差呢~!";
+	if(nif_piano&4 || (MISC_QUEST & 32)) close;
+	next;
+	mes "[庫茲咖希納]";
+	mes "喂 那位! 出去時幫我，";
+	mes "把這個丟掉再走";
+	getitem 7184,1;//Items: Piano Key,
+	set nif_piano, nif_piano|4;
+	next;
+	mes "[庫茲咖希納]";
+	mes "到底生意為什麼會";
+	mes "這麼差呢... 嘀咕嘀咕嘀咕嘀咕";
+	close;
+}
+
+niflheim,169,71,1	script	#1	111,1,1,{
+	end;
+
+OnTouch:
+	if(MISC_QUEST & 32 || nif_piano&8) end;
+
+	mes "- 你發現在墳墓附近 -";
+	mes "- 有個東西 -";
+	mes "- 被埋沒了一半 -";
+	mes "- 是什麼的碎片? -";
+	mes "- 像是修整過的樣子 -";
+	next;
+	mes "- 要撿起來嗎? -";
+	menu "是的",-,"不是",L_end;
+	getitem 7184,1;//Items: Piano Key,
+	set nif_piano, nif_piano|8;
+L_end:
+	close;
+}
+
+niflheim,208,103,1	script	#2	111,1,1,{
+	end;
+
+OnTouch:
+	if(MISC_QUEST & 32 || nif_piano&32) end;
+	if(nif_piano&16){
+		mes "- 你在剛挖出來的地方 -";
+		mes "- 發現那土裡還有東西 -";
+		mes "- 被埋起來了 -";
+		mes "- 果然像是個修整 -";
+		mes "- 過的碎片 -";
+		next;
+		mes "- 要撿起來嗎? -";
+		menu "是的",-,"不是",L_end;
+		getitem 7184,1;//Items: Piano Key,
+		set nif_piano, nif_piano|32;
+	L_end:
+		close;
+	}
+	mes "- 你發現在墳墓附近 -";
+	mes "- 有個東西 -";
+	mes "- 被埋沒了一半 -";
+	mes "- 是什麼的碎片? -";
+	mes "- 像是修整過的樣子 -";
+	next;
+	mes "- 要撿起來嗎? -";
+	menu "是的",-,"不是",L_end;
+	getitem 7184,1;//Items: Piano Key,
+	set nif_piano, nif_piano|16;
+	close;
+}
+
+nif_in,115,181,1	script	#4	111,1,1,{
+	end;
+
+OnTouch:
+	mes "- 你在鋼琴脫落的部分 -";
+	if((MISC_QUEST & 32)==0) mes "- with a few keys missing  -";
+	if(MISC_QUEST & 32) mes "- with one key missing -";
+	if(MISC_QUEST & 32 || countitem(7184) < 6) close;
+
+	delitem 7184,countitem(7184);//Items: Piano Key,
+	set MISC_QUEST,MISC_QUEST | 32;
+	set nif_piano, 0;
+	mes "- 把鍵盤一個一個 -";
+	mes "- 插進去了，可是 -";
+	mes "- 發現最左邊 -";
+	mes "- 的部分缺少一個 -";
+	mes "- 鍵盤 -";
+	close;
+}
+
+
+nif_in,118,151,0	script	#5	111,1,1,{
+	end;
+
+OnTouch:
+	if((MISC_QUEST & 32)==0) end;
+	mes "- 你身體延長的影子 -";
+	mes "- 剛好迭在脫落 -";
+	mes "- 的鋼琴鍵盤上 -";
+	mes "- 的那一刻 -";
+	next;
+	soundeffect "complete.wav",0;
+	mes "- 身體有著變輕的感覺， -";
+	mes "- 周圍的視野也 -";
+	mes "- 開始模糊不清了-";
+	next;
+	warp "nif_in",179,163;
+	close;
+}
+
+nif_in,188,168,3	script	魔女	792,{
+	mes "[奇樂凱娜]";
+	mes "嗯?... 你不是活的人嗎，";
+	mes "來到這裡，";
+	mes "應該不容易啊...";
+	mes "不管理由是什麼，這裡不是活著的人";
+	mes "可以來的地方";
+	next;
+	mes "[奇樂凱娜]";
+	mes "利用我的力量把你傳到";
+	mes "外面去，以後最好是";
+	mes "不要再來了";
+	close2;
+	warp "umbala",138,208;
+	end;
+}

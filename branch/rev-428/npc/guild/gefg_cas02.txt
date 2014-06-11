@@ -1,0 +1,134 @@
+//===== eAthena Script =======================================
+//= 攻城戰 (吉芬 耀布力格)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.1+(c)
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Geffen Guild Castle 2
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
+//= +(c) 繁體中文化 [笨冰]
+//============================================================
+
+// Guild Flag (Town)
+//============================================================
+geffen,113,130,1	script	耀布力格#g2-1::Eeyolbriggar	722,{
+	end;
+
+OnRecvCastleG02:
+	FlagEmblem GetCastleData("gefg_cas02",1);
+	end;
+}
+
+// Guild Flag (Outside Castle)
+//============================================================
+gef_fild13,303,243,4	script	耀布力格#g2-2::Eeyolbriggar2	722,{
+	set .@GID, GetCastleData("gefg_cas02",1);
+	if (.@GID == 0) {
+		mes "　　 [ 普隆德拉王國 公告令 ]";
+		mes " ";
+		mes "1. 根據這裡的，普隆德拉王國令";
+		mes "　　把這裡認定為";
+		mes "　　沒有正式所有權的秘密基地";
+		mes " ";
+		mes "2. 戰勝守在這裡，可怕的考驗後，";
+		mes "　　給破壞華麗金屬的人，";
+		mes " ";
+		mes "國王會賜予經國王認證的，秘密基地所有權";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ 響亮的嗓音 ]";
+			mes "勇敢的人們...";
+			mes "要回到您的名譽之地嗎?";
+			next;
+			if (select("回到秘密基地.:放棄") == 1) {
+				if (getcharid(2) == GetCastleData("gefg_cas02",1)) {
+					warp "gefg_cas02",23,66;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ 普隆德拉王國 公告令 ]";
+		mes " ";
+		mes "1. 根據這裡的，普隆德拉王國令";
+		mes "　　這裡被認定為 ^ff0000" + GetGuildName(.@GID) + "^000000工會的";
+		mes "　　私有物";
+		mes " ";
+		mes "2. ^ff0000"+ GetGuildName(.@GID) + "^000000 工會的主人是";
+		mes "　　^ff0000" + GetGuildMaster(.@GID) + "^000000 ， 無論是誰";
+		mes "　　對這件事情有意見者";
+		mes " ";
+		mes "請你舉起您的劍，提高自己的名譽吧";
+	}
+	close;
+
+OnRecvCastleG02:
+	FlagEmblem GetCastleData("gefg_cas02",1);
+	end;
+}
+
+gef_fild13,312,243,4	duplicate(Eeyolbriggar2)	耀布力格#g2-3	722
+gef_fild13,290,243,4	duplicate(Eeyolbriggar2)	耀布力格#g2-4	722
+gef_fild13,324,243,4	duplicate(Eeyolbriggar2)	耀布力格#g2-5	722
+
+// Guild Flag (Inside Castle)
+//============================================================
+gefg_cas02,65,130,5	script	耀布力格#g2-6::Eeyolbriggar3	722,{
+	end;
+
+OnRecvCastleG02:
+	FlagEmblem GetCastleData("gefg_cas02",1);
+	end;
+}
+
+gefg_cas02,30,123,5	duplicate(Eeyolbriggar3)	耀布力格#g2-7	722
+gefg_cas02,65,139,6	duplicate(Eeyolbriggar3)	耀布力格#g2-8	722
+gefg_cas02,37,177,6	duplicate(Eeyolbriggar3)	耀布力格#g2-9	722
+gefg_cas02,37,168,6	duplicate(Eeyolbriggar3)	耀布力格#g2-10	722
+gefg_cas02,68,47,2	duplicate(Eeyolbriggar3)	耀布力格#g2-11	722
+gefg_cas02,68,36,2	duplicate(Eeyolbriggar3)	耀布力格#g2-12	722
+
+// AGIT Manager
+//============================================================
+gefg_cas02,176,178,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas02	-1
+
+// Steward
+//============================================================
+gefg_cas02,12,66,5	duplicate(Gld_Mngr_Template)	愛斯馬樂克#gefg_cas02	55
+
+// Guardians
+//============================================================
+gefg_cas02,12,66,5	duplicate(Gld_Guard_Template)	Guardian#gefg_cas02	-1
+
+// Kafra Staff
+//============================================================
+gefg_cas02,23,66,3	duplicate(Gld_Kafra_Template)	卡普拉 職員#gefg_cas02	117
+
+// Master's Room Exit
+//============================================================
+gefg_cas02,145,115,0	script	#switch_G02	111,{
+	mes " ";
+	mes "有個某種小的裝置 ，請問你要操作嗎?";
+	next;
+	if(select("操作:結束") == 2) close;
+	warp "gefg_cas02",12,67;
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+gefg_cas02,140,116,0	duplicate(Gld_Trea_Protect)	ban_warp#gefg_cas02	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+gefg_cas02,140,116,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas02	-1
+
+// Guild Dungeon Switch
+//============================================================
+gefg_cas02,167,40,0	duplicate(Gld_Dun_Template)	#gefg_cas02	111

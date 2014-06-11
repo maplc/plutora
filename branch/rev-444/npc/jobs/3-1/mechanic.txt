@@ -1,0 +1,881 @@
+//===== rAthena Script ======================================= 
+//= 機械工匠轉職任務
+//===== By: ================================================== 
+//= 原作 : Masao                              翻譯 : D.weizhe
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= [Aegis Conversion]
+//= Jobchange Quest from Blacksmith / Whitesmith -> Mechanic.
+//===== Additional Comments: ================================= 
+//= v1.0 First Version.
+//= v1.1 Fixed the 真理之門 NPC - [JayPee].
+//============================================================ 
+
+yuno,129,156,3	script	蔡宜辛	923,{
+
+	if (Upper == 2)
+	{
+		mes "[蔡宜辛]";
+		mes "孩子, 這不是你該來的地方";
+		mes "快回去找你的爸爸、媽媽.";
+		mes "你不應該到處流浪.";
+		next;
+		mes "[蔡宜辛]";
+		mes "想要了解科技?";
+		mes "孩子, 等你大一點再來找我吧.";
+		mes "";
+		close;
+	}
+
+	if(BaseLevel > 99)
+	{
+		mes "[蔡宜辛]";
+		mes "身為一個機械工匠,";
+		mes "雖然生活困難, 但我過的很開心";
+		mes "畢竟這是我想要的";
+		close;
+	}
+	if(job__mechanic == 12)
+	{
+		mes "[蔡宜辛]";
+		mes "現在對你來說什麼力學、機械學都沒什麼了";
+		mes "你已經充分了解他了.";
+		next;
+		mes "[蔡宜辛]";
+		mes "繼續在這世上增長你的知識吧";
+		close;
+	}
+	if(job__mechanic == 11)
+	{
+		if((Class == Job_Blacksmith || Class == Job_Whitesmith) && (JobLevel > 49) && (SkillPoint == 0) && (BaseLevel > 98))
+		{
+			mes "[蔡宜辛]";
+			mes "什麼!? 這是你嘛?";
+			mes "等等.. 你看起來和之前完全不同了";
+			mes "到底發生了什麼事情";
+			next;
+			mes "[蔡宜辛]";
+			mes "喔! 你照我說的去找了 優配擂斯";
+			mes "就像 Franklson 一樣";
+			next;
+			mes "[蔡宜辛]";
+			mes "我敢肯定，你已經獲得了足夠的知識，能夠成為一個真正的機械工匠";
+			mes "";
+			mes "";
+			next;
+			mes "[蔡宜辛]";
+			mes "好吧, 看來我沒有什麼好質疑的了";
+			mes "你已經是一個偉大的機械工匠.";
+			mes "記住, 千萬別失去你的勇氣";
+			mes "還有, 最重要的是，你要持續增長你的知識.";
+			next;
+			mes "[蔡宜辛]";
+			mes "看來你的個性不適合將你綁在實驗室或者圖書館";
+			mes "去外面實戰練習看看吧!";
+			mes "";
+			next;
+			mes "[蔡宜辛]";
+			mes "我喜歡這樣的你，而且我認為我們需要一種新的方法研究機械.";
+			next;
+			mes "[蔡宜辛]";
+			mes "真正的科學是尋找世上的真理，並證明它";
+			mes "諷刺的是，科學通常只能像魔法般存在於理論間.";
+			next;
+			mes "[蔡宜辛]";
+			mes "正如我之前說的，如果是真正有天賦的人就能夠了解真正的科學!";
+			mes "恭喜通過機械工匠的考試，接下來的路請勇往直前!!";
+			next;
+			set job__mechanic,12;
+			completequest 10101;
+			if(Sex == 1) {
+				getitem 5749,1; //Driver_Band
+			} else {
+				getitem 5760,1; //Driver_Band_
+			}
+			getitem 2795,1; //Green_Apple_Ring
+			if(Class == Job_Blacksmith) {
+				jobchange Job_Mechanic;
+			} else if(Class == Job_Whitesmith) {
+				jobchange Job_Mechanic_T;
+			}
+			mes "[蔡宜辛]";
+			mes "嘿! 這是給你的禮物";
+			mes "把它帶在你的身旁";
+			mes "總有一天, 你會感謝我的.";
+			next;
+			mes "[蔡宜辛]";
+			mes "好了! 出發吧! ";
+			mes "這世界將會是你的實驗室";
+			mes "一切都是你的教科書";
+			mes "讓我們共創美好的機械未來吧!";
+			close;
+		}
+		mes "[蔡宜辛]";
+		mes "什麼?";
+		close;
+	}
+	if(job__mechanic >= 3)
+	{
+		mes "[蔡宜辛]";
+		mes "順道一題, Franklson 失蹤了.";
+		mes "他說他想去學習然後就消失了";
+		mes "他去了哪呢?";
+		mes "";
+		next;
+		mes "[蔡宜辛]";
+		mes "如果你堅持走下去, 最後成為一名機械工匠";
+		mes "在未來的路上你將有可能遇到他";
+		next;
+		mes "[蔡宜辛]";
+		mes "不管怎樣, 祝妳好運";
+		close;
+	}
+	if(job__mechanic == 2)
+	{
+		mes "[蔡宜辛]";
+		mes "我已經交給你我所有的東西，你還有想知道什麼嘛?";
+		next;
+		switch(select("我想知道更多.:沒什麼."))
+		{
+		case 1:
+			mes "[蔡宜辛]";
+			mes "痾..? 你想要知道更多關於魔法機械的事情?";
+			mes "摁... 我告訴你, 這並不是一件簡單的事情.";
+			next;
+			mes "[蔡宜辛]";
+			mes "好吧! 看來你似乎有一點才華, ";
+			mes "如果你能成為一個機械工匠, 那對我們也不是件壞事";
+			mes "但事實上這份工作並沒有你想像的那麼簡單";
+			next;
+			mes "[蔡宜辛]";
+			mes "機械學者們將不會輕易的將知識交付於你, 你必須先向他們展示你的決心";
+			next;
+			mes "[蔡宜辛]";
+			mes "當然, 我是學者之一, 所以我想我可以考慮給你一些考驗";
+			next;
+			mes "[蔡宜辛]";
+			mes "我只是覺得排斥任何人參與考試是不對的行為";
+			next;
+			mes "[蔡宜辛]";
+			mes "摁...";
+			next;
+			mes "[蔡宜辛]";
+			mes "事實上, 如果有人不願意教你. 你也可以自行學習";
+			mes ""; //看不懂... 如果有人可以做到這一點, 那他將能夠獨攬大權?
+			next;
+			mes "[蔡宜辛]";
+			mes "雖然這將是不容易的, 但如果你擁有對機械的熱情與天賦, 那應該不會有太大的問題";
+			next;
+			mes "[蔡宜辛]";
+			mes "試著想想看...";
+			mes "Franklson 獨自開發了魔法機械";
+			mes "為什麼你不試著前往 優配擂斯 的遺址?";
+			mes "";
+			mes "";
+			next;
+			mes "[蔡宜辛]";
+			mes "如同我告訴你的, 如果你擁有對機械的熱情與天賦, 那你一定會找到你需要的東西";
+			next;
+			mes "[蔡宜辛]";
+			mes "尋找屬於你自己的知識";
+			mes "就像我們一樣.";
+			mes "不要只是等待別人交給你. 展示你對機械的熱情吧! ";
+			next;
+			set job__mechanic,3;
+			changequest 10091,10092;
+			mes "[蔡宜辛]";
+			mes "總之, 不論你選擇什麼, 希望你能將它做到最好!";
+			close;
+		case 2:
+			mes "[蔡宜辛]";
+			mes "真是奇怪的人.";
+			mes "我還以為你是一個機械工匠呢.";
+			close;
+		}
+	}
+	if(job__mechanic == 1)
+	{
+		mes "[蔡宜辛]";
+		mes "Ok 讓我喘口氣.";
+		mes "首先, 你必須對魔法機械以及機械的世界充滿興趣";
+		mes "好了, 讓我解釋一下巴";
+		mes "";
+		mes "";
+		next;
+		mes "[蔡宜辛]";
+		mes "魔法機械是將魔法與機械做結合";
+		mes "但直到現在這兩者都還沒有真正成功的結合在一起";
+		next;
+		mes "[蔡宜辛]";
+		mes "如果你要使用魔法機械, 你必須真正熟悉機械的內部運作.";
+		next;
+		mes "[蔡宜辛]";
+		mes "它可以有效的加以利用,";
+		mes "不需要依靠這不穩定的魔法力量, 所以還有什麼能比這樣更好?";
+		next;
+		mes "[蔡宜辛]";
+		mes "發明魔法機械的是來自Schwaltzvalt共和國的學者 Franklson";
+		next;
+		mes "[蔡宜辛]";
+		mes "剛開始 Franklson 在 ^FF0000 優配擂斯 遺跡 ^000000 裡發現一台與魔法結合的古老機器";
+		next;
+		mes "[蔡宜辛]";
+		mes "所以, Franklson 很自然的將這種技術取名為魔法機械";
+		next;
+		mes "[蔡宜辛]";
+		mes "一開始魔法機械在除了朱諾之外的其他地方都不太有名, 但現在我們的研究已經有一些成果.";
+		next;
+		mes "[蔡宜辛]";
+		mes "因為我們已經研究魔法機械一段時間了";
+		mes "人們開始稱呼我們為^FF0000機械工匠^000000";
+		mes ""; //看不懂.. 意思大概是這樣吧
+		mes "";
+		mes "";
+		next;
+		mes "[蔡宜辛]";
+		mes "摁... 我想我已經解釋完什麼是魔法機械了.";
+		mes "但他似乎太過於深奧...";
+		mes "我不想讓你為此煩惱...";
+		next;
+		set job__mechanic,2;
+		changequest 10090,10091;
+		mes "[蔡宜辛]";
+		mes "如果你成為我們其中一員, 就可以解釋以及定義屬於自己的機械!";
+		close;
+	}
+	if (Class == Job_Blacksmith || Class == Job_Whitesmith)
+	{
+		if ((JobLevel > 49) && (SkillPoint == 0) && (BaseLevel > 98))
+		{
+			mes "[蔡宜辛]";
+			mes "看來你是一個非常靈活用運各種事情的人";
+			mes "你應該可以當個成功的機械工匠";
+			mes "";
+			next;
+			mes "[蔡宜辛]";
+			mes "阿! 我還沒有自我介紹呢";
+			mes "我的名子叫做 蔡宜辛.";
+			mes "我是一名機械工匠";
+			mes "痾.. 好吧其實我不是那麼有名.";
+			next;
+			mes "[蔡宜辛]";
+			mes "我想所謂的機械工匠並不是你想的那樣";
+			mes "";
+			mes "";
+			mes "";
+			mes "";
+			mes "";
+			next;
+			mes "[蔡宜辛]";
+			mes "機械工匠指的是使用或學習魔法機械的人.";
+			next;
+			mes "[蔡宜辛]";
+			mes "甚麼是魔法機械? 魔法機械用途?";
+			mes "婀.. 這並不是那麼簡單就能夠解釋的. 但我會試試看的";
+			next;
+			setquest 10090;
+			set job__mechanic,1;
+			mes "[蔡宜辛]";
+			mes "不好意思, 我剛剛說了太多了, 有點累";
+			mes "如果你對機械工匠還有興趣的話";
+			mes "等一下再來找我一次吧";
+			mes "";
+			mes "";
+			mes "";
+			close;
+		}
+		mes "[蔡宜辛]";
+		mes "你看來很喜歡設計東西的成就感";
+		next;
+		mes "[蔡宜辛]";
+		mes "將精神使用在一些簡單的事情上";
+		mes "你將感受不到真正的快樂";
+		mes "";
+		mes "";
+		next;
+		mes "[蔡宜辛]";
+		mes "嗯... 如果你想要享受設計東西真實的感覺";
+		mes "感受博大精深的道理";
+		mes "你需要的正是^FF0000魔法機械^000000!";
+		mes "";
+		mes "";
+		next;
+		mes "[蔡宜辛]";
+		mes "魔法機械在這世界並沒有多長遠的歷史";
+		mes "所以它並不是那麼的常見";
+		mes "但能夠確定的是這將和你所認識的世界完全不同";
+		next;
+		mes "[蔡宜辛]";
+		mes "是的! 那些設計魔法機械的人被稱為 ^FF0000機械工匠^000000.";
+		mes "我也是那光榮的一群人之一";
+		next;
+		mes "[蔡宜辛]";
+		mes "你好像想要成為一個好的機械工匠?";
+		mes "這裡將能夠滿足你的需求.";
+		next;
+		mes "[蔡宜辛]";
+		mes "如果你的 ^FF0000 Base level 99^000000 和 ^FF0000Job level 50^000000後,";
+		mes "我將會引導你進入機械工匠的世界.";
+		close;
+	}
+	mes "[蔡宜辛]";
+	mes "身為一個機械工匠,";
+	mes "雖然生活困難, 但我過的很開心";
+	mes "畢竟這是我想要的";
+	next;
+	mes "[蔡宜辛]";
+	mes "難道你不想成為一名機械工匠, 享受真正的幸福嗎?";
+	close;
+}
+
+jupe_cave,37,55,5	script	學者#Mechanic	883,{
+
+	if(checkweight(1201,1) == 4 || MaxWeight - Weight < 300)
+	{
+		mes "- 等等!! -";
+		mes "- 你身上的東西太多了-";
+		mes "- 請先減少你身上的物品 -";
+		mes "- 再試一次 -";
+		close;
+	}
+
+	if(job__mechanic > 10)
+	{
+		mes "[學者]";
+		mes "去過優配擂斯了嗎?";
+		mes "我還是很害怕那裏, ";
+		mes "我仍然不敢再去那個地方.";
+		close;
+	}
+
+	if(job__mechanic > 3)
+	{
+		mes "[學者]";
+		mes "^FF0000你將無法步行到達目的地.";
+		mes "^FF0000強壯的敵人將阻止你的錢進";
+		mes "待在自己家裡吧!^000000";
+		next;
+		mes "[學者]";
+		mes "雖然那裏可能很舒適,";
+		mes "但我還是沒有興趣前往.";
+		next;
+		mes "[學者]";
+		mes "好吧, 你準備好前往優配擂斯了嗎?";
+		mes "";
+		mes "";
+		next;
+		switch(select("我準備好了!:還沒"))
+		{
+		case 1:
+			mes "[學者]";
+			mes "婀... 你是如此的堅決, 讓我開始有一點點小後悔.";
+			mes "我應該去那裡嗎...? 婀... 好吧, 真是覆水難收!";
+			next;
+			mes "[學者]";
+			mes "好吧, 我送你過去";
+			mes "希望你能夠找到你要的知識";
+			mes "";
+			mes "";
+			close2;
+			warp "jupe_core2",149,288;
+			end;
+		case 2:
+			mes "[學者]";
+			mes "婀... 你猶豫了... 這很正常..";
+			next;
+			mes "[學者]";
+			mes "但是, 如果你不藉由我傳送過去, 你將不能夠到達目的地";
+			mes "請不要讓費你的力氣了.";
+			next;
+			mes "[學者]";
+			mes "當然, 不管怎樣我是不可能會去那裏的.";
+			close;
+		}
+	}
+	if(job__mechanic == 3)
+	{
+		mes "[學者]";
+		mes "我是一個學者來這裡研究 優配擂斯 遺跡.";
+		next;
+		mes "[學者]";
+		mes "但是... 事實上當我越深入了解";
+		mes "我越感到害怕與恐慌";
+		mes "我還能做什麼呢...?";
+		mes "";
+		mes "";
+		next;
+		mes "[學者]";
+		mes "我聽過一個傳聞，說人類不應該出現在這裡";
+		mes "但這個奇妙的機器應該對人類科技非常有幫助";
+		mes "";
+		next;
+		mes "[學者]";
+		mes "婀? 你也要進去 優配擂斯 得到你想要的東西嗎?";
+		mes "我已經沒有勇氣再進去了";
+		mes "只能祝你好運了";
+		mes "";
+		next;
+		mes "[學者]";
+		mes "我知道怎麼前往中途點，我也有我想要得到的東西";
+		mes "但我實在太害怕了";
+		mes "";
+		mes "";
+		next;
+		mes "[學者]";
+		mes "曾經有個老學者告訴我傳送到 優配擂斯 的方法";
+		mes "所以如果你想要, 我可以將你傳送到 優配擂斯";
+		mes "";
+		mes "";
+		next;
+		set job__mechanic,4;
+		mes "[學者]";
+		mes "這是真的，移動到 優配擂斯 很容易";
+		mes "但你不能放下你的戒心";
+		mes "無論如何, 當你準備好前往的時候, 再來找我吧";
+		mes "";
+		close;
+	}
+	mes "[學者]";
+	mes "但是... 事實上當我越深入了解";
+	mes "我越感到害怕與恐慌";
+	mes "我還能做什麼呢...?";
+	mes "";
+	mes "";
+	next;
+	mes "[學者]";
+	mes "我聽過一個傳聞，說人類不應該出現在這裡";
+	mes "但這個奇妙的機器應該對人類科技非常有幫助";
+	close;
+}
+
+jupe_core2,149,273,3	script	鬼火#1	802,{
+
+	if(job__mechanic == 11)
+	{
+		mes "[?]";
+		mes "我失去了我的身體. 現在只剩下靈魂了..";
+		mes "我將永遠生活在這裡...";
+		close;
+	}
+
+	if(job__mechanic == 10)
+	{
+		mes "[?]";
+		mes "外表... 所以? 你將會獲得知識.";
+		mes "未來是充滿可能的...";
+		mes "用一個天真小孩的態度去面對它吧";
+		mes "相信你可以做到任何事情...";
+		next;
+		mes "[?]";
+		mes "最寶貴的事是要認為自己做得到，而不是知識本身.."; //?
+		next;
+		mes "[?]";
+		mes "從現在開始不要再犯我犯過的錯誤";
+		mes "我希望你能夠找到屬於你自己的知識在將來的某一天";
+		mes "";
+		mes "";
+		next;
+		mes "[?]";
+		mes "那麼回去後, 證明魔法機械給世界的每一個人看吧"; //?
+		next;
+		mes "[?]";
+		mes "我失去了我的身體..";
+		mes "而我的靈魂也被打亂了";
+		mes "我被限制只能生活在這個地方, 優配擂斯... 我將生死與共";
+		mes "永遠...";
+		next;
+		mes "[?]";
+		mes "我的名子是....";
+		close2;
+		set job__mechanic,11;
+		changequest 10100,10101;
+		warp "yuno",157,83;
+		end;
+	}
+	if(job__mechanic > 4)
+	{
+		mes "[?]";
+		mes "我失去了我的身體. 現在只剩下靈魂了..";
+		mes "我將永遠生活在這裡...";
+		close;
+	}
+	if (job__mechanic == 3 || job__mechanic == 4)
+	{
+		mes "[?]";
+		mes "天才.";
+		mes "請確保你身邊沒有敵人";
+		mes "如果你專注於與我的對談";
+		mes "你很可能招受攻擊";
+		mes "";
+		next;
+		switch(select("摁..等我一下:放心, 我們繼續"))
+		{
+		case 1:
+			close;
+		case 2:
+			mes "[?]";
+			mes "我曾經是一個人類學者.";
+			mes "我想要知道更多的科學知識, 所以我看了很多書, 做了很多研究和搜查...";
+			next;
+			mes "[?]";
+			mes "在一次的搜索中我發現了魔法的力量.";
+			next;
+			mes "[?]";
+			mes "魔法的力量是非常不穩定且不可預測的.";
+			mes "在研究中, 我發現了一個極度不穩定的魔法包裹"; // ?
+			next;
+			mes "[?]";
+			mes "從那天起, 我所擁有的只剩下回憶";
+			mes "我只能一直困在這裡.";
+			mes "";
+			next;
+			mes "[?]";
+			mes "優配擂斯 是我的一切";
+			mes "我將會死在這裡";
+			next;
+			mes "[?]";
+			mes "我不知道你是誰...";
+			mes "我不會刻意去了解你..";
+			mes "如果你想要得到知識, 去找別人吧.";
+			mes "";
+			next;
+			changequest 10092,10094;
+			set job__mechanic,5;
+			mes "[?]";
+			mes "知識不能夠靠其他人傳授給你. 你必須自己努力.";
+			mes "找到屬於你自己的知識.";
+			close;
+		}
+	}
+}
+
+jupe_core2,53,75,3	script	鬼火#2	802,{
+
+	if(job__mechanic > 5)
+	{
+		mes "[?]";
+		mes "優配擂斯... 我...";
+		mes "優配擂斯... 我想要的一切都在這裡...";
+		mes "科學的力量.. 機械的天堂...";
+		mes "";
+		close;
+	}
+
+	if(job__mechanic == 5)
+	{
+		mes "[?]";
+		mes "天才.";
+		mes "請確保你身邊沒有敵人";
+		mes "如果你專注於與我的對談";
+		mes "你很可能招受攻擊";
+		mes "";
+		next;
+		switch(select("摁..等我一下:放心, 我們繼續"))
+		{
+		case 1:
+			close;
+		case 2:
+			mes "[?]";
+			mes "當我還擁有身體時";
+			mes "我想證明這一切都是科學";
+			mes "給那些只相信神秘儀式的人看";
+			mes "";
+			mes "";
+			next;
+			mes "[?]";
+			mes "我想利用魔法的力量..";
+			mes "我要用科學控制魔法...";
+			mes "";
+			mes "";
+			mes "";
+			mes "";
+			next;
+			mes "[?]";
+			mes "我想證明科學是一個控制魔法的好方法";
+			mes "就像神秘儀式那樣";
+			mes "我研究了許多關於魔法和科學並存的事物";
+			mes "";
+			mes "";
+			mes "";
+			next;
+			mes "[?]";
+			mes "因為研究.. 所以我來到這裡";
+			mes "在這裡, 有很多科技能刺激學者的思考..";
+			mes "";
+			mes "";
+			mes "";
+			next;
+			mes "[?]";
+			mes "我發現, 在魔法加入科學是可行的.";
+			mes "儘管他並不完美, 但這個發現能夠帶動其他學者的研究...";
+			next;
+			mes "[?]";
+			mes "最近, 這世上發生了一場混亂. 所以我的研究尚未與世界其他國家共享";
+			next;
+			set job__mechanic,6;
+			changequest 10094,10095;
+			mes "[?]";
+			mes "所以.. 我回來優配擂斯繼續我的魔法科學研究.";
+			close;
+		}
+	}
+}
+
+jupe_core2,242,62,3	script	鬼火#3	802,{
+
+	if(job__mechanic > 6)
+	{
+		mes "[?]";
+		mes "我想要了解更多的知識...";
+		mes "關於人類...";
+		mes "首先... 後來...";
+		mes "真理之門將會...";
+		close;
+	}
+
+	if(job__mechanic == 6)
+	{
+		mes "[?]";
+		mes "天才.";
+		mes "請確保你身邊沒有敵人";
+		mes "如果你專注於與我的對談";
+		mes "你很可能招受攻擊";
+		mes "";
+		next;
+		switch(select("摁..等我一下:放心, 我們繼續"))
+		{
+		case 1:
+			close;
+		case 2:
+			mes "[?]";
+			mes "由於我對自己不夠滿意, 所以我一次又一次的回來這裡.";
+			next;
+			mes "[?]";
+			mes "當我佇立在兩個機械神像之間, 我開始感到體內的能量在流逝";
+			next;
+			mes "[?]";
+			mes "但是, 我也開始獲得斬新的知識";
+			next;
+			mes "[?]";
+			mes "但他是有代價的.. 我開始失去了人性";
+			mes "我失去了我的身體..";
+			mes "現在剩下的只有靈魂了..";
+			next;
+			mes "[?]";
+			mes "我不後悔, 這就是我想要的, 為了獲得知識, 我可以犧牲我的身體";
+			next;
+			set job__mechanic,7;
+			changequest 10095,10096;
+			mes "[?]";
+			mes "在我將我的靈魂注入雕像後, 我發現我可以自由的進入不同的雕像內."
+			close;
+		}
+	}
+}
+
+jupe_core2,29,150,1	script	立足點	139,1,1,{
+
+OnTouch:
+	if(job__mechanic == 8)
+	{
+		percentheal 0,-30;
+		mes "- 我覺得我的身體有力量在流逝 -";
+		mes "- 到底發生了什麼事? -";
+		mes "";
+		next;
+		mes "- 找到真理大門 -";
+		mes "- 它是這能量的源頭 -";
+		mes "";
+		close;
+	}
+	if(job__mechanic == 7)
+	{
+		percentheal -20,0;
+		mes "- 突然, 一個未知的聲音在我腦海裡響起 -";
+		mes "- 到底是誰!? -";
+		mes "";
+		next;
+		mes "- 魔法機械似乎是透過吸收祭祀人類而產生能量的 -"; //?
+		mes "";
+		mes "";
+		mes "";
+		next;
+		set job__mechanic,8;
+		changequest 10096,10097;
+		mes "- 我開始感覺的衝動 -";
+		mes "- 前往真理之門吧 -";
+		mes "";
+		close;
+	}
+	if(job__mechanic > 2)
+	{
+		percentheal 0,-30;
+		mes "- 我覺得我的身體有力量在流逝 -";
+		mes "- 到底發生了什麼事? -";
+		mes "";
+		close;
+	}
+}
+
+jupe_core2,272,149,1	script	立足點2	139,1,1,{
+
+OnTouch:
+	if(job__mechanic == 9)
+	{
+		mes "- 我曾經有一種感覺, 能量一直在流逝 -"; //不順
+		mes "- 但現在我已經感覺不到任何能量了 -";
+		mes "";
+		mes "";
+		next;
+		mes "- 趕快前往南方的立足點吧 -";
+		mes "";
+		close;
+	}
+	if(job__mechanic == 8)
+	{
+		percentheal -20,-30;
+		mes "- 我覺得我的身體有力量在流逝 -";
+		mes "- 到底發生了什麼事? -";
+		mes "";
+		next;
+		mes "- 我感覺到我的神經回復了 -"; //?
+		mes "";
+		next;
+		donpcevent "真理之門::OnDoorOpen";
+		changequest 10097,10098;
+		mes "- 趕快前往真理之門吧 -";
+		close;
+	}
+	if(job__mechanic > 2)
+	{
+		percentheal 0,-30;
+		mes "- 我覺得我的身體有力量在流逝 -";
+		mes "- 到底發生了什麼事? -";
+		mes "";
+		close;
+	}
+}
+
+jupe_core2,288,142,3	script	真理之門	844,1,1,{
+end;
+
+OnInit:
+	disablenpc "真理之門";
+	end;
+
+OnDoorClose:
+	disablenpc "真理之門";
+	end;
+
+OnDoorOpen:
+	enablenpc "真理之門";
+	specialeffect EF_MAPPILLAR;
+	initnpctimer;
+	end;
+
+OnTimer180000:
+	donpcevent "真理之門::OnDoorClose";
+	end;
+
+OnTouch:
+	if(job__mechanic == 8)
+	{
+		mes "- 一個聲音再次傳入我的腦海 -";
+		mes "- 這次它和以往完全不同 -";
+		mes "- 它是多麼得讓人印象深刻 -";
+		mes "";
+		next;
+		mes "我知道你從遠方而來, 是為了獲得更多的知識";
+		mes "人類是軟弱的生物, 要他們做出一點犧牲是很難的決定";
+		mes "";
+		mes "";
+		next;
+		mes "你沒有足夠的能力通過這道真理之門";
+		mes "這道門遠遠超越你們人類的想像";
+		next;
+		mes "如果你擁有足夠的天賦, 它將不會對你造成任何損害";
+		next;
+		mes "站上南方的知識立足點吧!";
+		next;
+		mes "如果你是上帝所選之人, 你將不會成為祭品.";
+		mes "如果你不是, 你將失去你的身體.";
+		next;
+		mes "如果你有資格，你將能通過真理之門";
+		mes "";
+		next;
+		mes "............";
+		next;
+		mes "- 我不能聽到任何聲音 -";
+		mes "- 也有了任何感覺 -";
+		mes "";
+		next;
+		mes "- 因為我聽從鈴聲的指示 -";
+		mes "- 站上那南方的立足點 -";
+		mes "";
+		set job__mechanic,9;
+		changequest 10098,10099;
+		close2;
+		donpcevent "真理之門::OnDoorClose";
+		end;
+	}
+end;
+}
+
+jupe_core2,149,34,1	script	獲得知識	139,1,0,{
+	end;
+OnTouch:
+	if(job__mechanic == 9)
+	{
+		mes "- 那時我在警告的聲音前卻步了 -";
+		mes "- 那聲音讓人無法進行任何思考 -";
+		mes "- 然而新的知識就在這時產生了 -";
+		mes "";
+		mes "";
+		next;
+		mes "- 這瞬間,你得到了所有你需要的知識 -";
+		mes "- 機械&魔法機械這一切的知識 -";
+		mes "";
+		mes "";
+		mes "";
+		next;
+		set job__mechanic,10;
+		changequest 10099,10100;
+		specialeffect EF_POTION_CON;
+		mes "- 這些知識將帶領你前往另一個境界 -";
+		mes "";
+		mes "";
+		close;
+	}
+}
+
+jupe_core2,150,33,1	duplicate(獲得知識)	獲得知識#2	139,1,0
+	// end;
+// OnTouch:
+	// if(job__mechanic == 9)
+	// {
+		// mes "- 那時我在警告的聲音前卻步了 -";
+		// mes "- 那聲音讓人無法進行任何思考 -";
+		// mes "- 然而新的知識就在這時產生了 -";
+		// mes "";
+		// mes "";
+		// next;
+		// mes "- 這瞬間,你得到了所有你需要的知識 -";
+		// mes "- 機械&魔法機械這一切的知識 -";
+		// mes "";
+		// mes "";
+		// mes "";
+		// next;
+		// set job__mechanic,10;
+		// changequest 10099,10100;
+		// specialeffect EF_POTION_CON;
+		// mes "- 這些知識將帶領你前往另一個境界 -";
+		// mes "";
+		// mes "";
+		// close;
+	// }
+// }
+
+jupe_core2,0,0,0,0	monster	冰凍迪靡克	1669,100,0,0,0

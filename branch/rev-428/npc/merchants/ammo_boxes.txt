@@ -1,0 +1,115 @@
+//======================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// -----------------------------------------
+// - 彈藥包經銷商 腳本 -
+//======================================
+//= 版本: 1.2a [5511]
+//======================================
+
+que_ng,187,149,3	script	彈藥包經銷商 凱尼	83,{
+
+	mes "[凱尼]";	
+	mes "我是彈藥包經銷商, 凱尼!";
+	if(BaseJob != Job_Gunslinger) {
+		mes "在這裡我給每位槍手包裝他們的";
+		mes "子彈和榴彈.";
+		next;
+		mes "[凱尼]";
+		mes "可是我怎麼看, 你似乎都不像是";
+		mes "一位槍手啊. 恐怕我得在你四處";
+		mes "亂轉悠前叫你離開這裡了.";
+		close;
+	}
+	mes "如果你的彈藥攜帶起來很繁重的";
+	mes "話, 就來找我吧!";
+	next;
+	mes "[凱尼]";
+	mes "我能為你包裝子彈盒和子彈桶, ";
+	mes "從而讓你攜帶起來更輕便!";
+	mes "來! 看一看!";
+	next;
+	switch(select("子彈盒 風:子彈盒 暗:子彈盒 毒:子彈盒 水:子彈盒 火:彈藥桶:紅色彈藥桶:銀色彈藥桶:取消")) {
+	case 1: callfunc "Func_Casing",13204,12144; break;
+	case 2: callfunc "Func_Casing",13206,12145; break;
+	case 3: callfunc "Func_Casing",13205,12146; break;
+	case 4: callfunc "Func_Casing",13207,12147; break;
+	case 5: callfunc "Func_Casing",13203,12148; break;
+	case 6: callfunc "Func_Casing",13200,12149; break;
+	case 7: callfunc "Func_Casing",13202,12150; break;
+	case 8: callfunc "Func_Casing",13201,12151; break;
+	default:
+		mes "[凱尼]";
+		mes "好吧. 如果你還有什麼其它事情";
+		mes "而需要我來幫助你的話, 請要告";
+		mes "訴我.";
+		close;
+	}
+	close;
+}
+
+function	script	Func_Casing	{
+
+	mes "[凱尼]";
+	mes "請輸入你需要的數量.";
+	next;
+	mes "[凱尼]";
+	mes "包裝每包" +getitemname(getarg(1))+ " ";
+	if(getarg(0) == 13202) 
+		mes "需要500發紅色子彈";
+	else
+		mes "需要消耗500 " +getitemname(getarg(0))+ "";
+	mes "還有手續費500 Zeny.";
+	next;
+	mes "[凱尼]";
+	mes "你可以最多跟我交易50 包.";
+	mes "如果你想要取消的話請輸入0.";
+	next;
+	input .@amount;
+	mes "[凱尼]";
+	if(.@amount < 1) {
+		mes "好吧. 如果你還有什麼其它事情";
+		mes "而需要我來幫助你的話, 請要告";
+		mes "訴我.";
+		close;
+	}
+	if(.@amount > 50)	{
+		mes "你輸入的超出的限制範圍!";
+		mes "再試試吧?";
+		close;
+	}
+	//負重檢查
+	if(checkweight(getarg(1), .@amount) != 1)	{
+		mes "你超重了.";
+		mes "請清理下你的物品.";
+		close;
+	}
+	
+	//材料檢查
+	if(countitem(getarg(0)) < .@amount * 500) {
+		mes "呃......";
+		mes "你沒有足夠的材料來包裝你想要";
+		mes "的那麼多數量的物品.";
+		mes "請帶來足夠數量的物品.";
+		close;
+	}
+	
+	//金錢檢查
+	if(Zeny < .@amount * 500) {
+		mes "呃... 你沒有足夠的金錢.";
+		mes "這費用為500 Zeny";
+		mes "檢查下你的金錢再來吧.";
+		close;
+	}
+
+	mes "非常好啊!";
+	mes "確認數量!";
+	if(getarg(1) < 12149)
+		mes "我將立刻給你子彈盒.";
+	else
+		mes "我將立刻給你子彈桶.";
+	set Zeny, Zeny - .@amount * 500;
+	delitem getarg(0), .@amount * 500;
+	getitem getarg(1), .@amount;
+	close;
+}

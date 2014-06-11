@@ -1,0 +1,1177 @@
+//===== rAthena Script ======================================= 
+// Sura Job change Quest
+//===== By: ================================================== 
+//= Masao
+//= Credits: Muad_Dib, Gepard
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Any rAthena SVN
+//===== Description: ========================================= 
+//= [AEGIS Conversion]
+//= Job change Quest from Monk / Champion -> 修羅.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version.
+//============================================================
+//===== PlutoEA: =============================================
+//= D.weizhe 非官方中文化，部分名稱為官方
+//============================================================ 
+
+ve_in,237,125,0	script	克拉布#job_shu	107,{
+
+	if ((Class >= 4023) && (Class <= 4045)){
+		mes "[克拉布]";
+		// Custom Translation
+		mes "孩子, 你不應該出現在這裡";
+		mes "可怕的主人會生氣的";
+		close;
+	}
+
+	if (job_shu == 0){
+		if (Class == Job_Monk || Class == Job_Champion){
+			if ((BaseLevel > 98) && (JobLevel > 49)){
+				mes "[克拉布]";
+				mes "哈哈哈";
+				mes "那些小樓囉被我一拳解決掉了!";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "那些傲慢的傢伙, 應該嚐到教訓了.";
+				mes "一個小樓囉怎麼能攻擊你呢? ";
+				next;
+				mes "[克拉布]";
+				mes "哈哈哈哈哈哈哈!!!!";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "嘿! 過來!!! 再一杯啤酒!!!";
+				mes "你在做什麼? 我們大王的杯子已經空了! 快來!";
+				next;
+				mes "[女服務生]";
+				mes "好的, 我馬上來.";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "太慢了!!! 你以為我大王是誰?? 呵呵!?";
+				next;
+				mes "[女服務生]";
+				mes "我... 我非常對不起...";
+				next;
+				mes "[克拉布]";
+				mes "呵呵呵. 這樣就夠了.";
+				mes "這個小女孩看來很怕你!";
+				mes "嘿 女孩~ 我們不是什麼壞人~~";
+				next;
+				mes "[女服務生]";
+				mes "阿!!!!!!! 別這樣!!";
+				next;
+				mes "- 砰 -";
+				donpcevent "???#bcmd::OnEnable";
+				next;
+				mes "[???]";
+				mes "嘿, 這裡.";
+				mes "我一直在注視著你";
+				next;
+				mes "[???]";
+				mes "這裡太吵了, 我們回去講吧..";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "什麼?!";
+				mes "我不知道你是哪個喪心病狂的傢伙!";
+				mes "你想幹嘛? 難道你不知道我們大王是誰嗎?!!";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "他可是有名的克拉布!!!";
+				mes "他的拳頭可是可以摧毀整支軍隊的!!!";
+				next;
+				mes "[???]";
+				mes "你做的事情就像你的臉如此骯髒.";
+				mes "你只是一個狂妄之徒, 只滿足自己的慾望.";
+				next;
+				mes "[克拉布]";
+				mes "什麼?";
+				mes "你怎麼敢這麼說?";
+				mes "別以為你是女孩, 我就會放手.";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "呵呵! 大王真是瘋了";
+				mes "我可以用一個拳頭將你們打垮...";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "嘿! 你們怎麼能對女士使用暴力!?";
+				next;
+				mes "[???]";
+				mes "回去! 妳這小東西...";
+				next;
+				mes "[???]";
+				mes "歐, 我很高興我聽到這消息.";
+				mes "我不會先攻擊的, 我現在正在培訓中."; //?
+				next;
+				mes "[克拉布 && 汙泥蟲蟲]";
+				mes "什麼?";
+				next;
+				mes "[克拉布 && 汙泥蟲蟲]";
+				mes "婀?!";
+				next;
+				mes "[克拉布 && 汙泥蟲蟲]";
+				mes "阿!!!!!!!!!!";
+				specialeffect EF_FIRESPLASHHIT,"克拉布#job_shu";
+				specialeffect EF_FIRESPLASHHIT,"汙泥蟲蟲#job_shu";
+				next;
+				mes "- 這是什麼力量? -";
+				mes "- 我從來沒有見過這樣的能力 -";
+				mes "";
+				next;
+				mes "[???]";
+				mes "好了...";
+				next;
+				mes "[女服務生]";
+				mes "謝... 真是太謝謝你了...";
+				mes "我要怎麼報答你?";
+				next;
+				mes "[???]";
+				mes "這沒甚麼大不了的, 沒關係.";
+				next;
+				mes "[女服務生]";
+				mes "你要回你的大廳嗎?"; //?
+				mes "如果你沒事的話, 我可以做一頓飯表示我的謝意?";
+				next;
+				mes "[???]";
+				mes "噢, 你不需要這麼做";
+				mes "只要給我一塊麵包和一碗熱湯, 這樣就夠了";
+				mes "好了, 我得說再見了, 掰掰";
+				donpcevent "???#bcmd::OnDisable";
+				next;
+				mes "[女服務生]";
+				mes "掰...";
+				mes "...";
+				mes ".....";
+				mes "........(雙臉通紅)";
+				set job_shu,1;
+				setquest 11155;
+				close;
+			}
+			mes "[克拉布]";
+			mes "哈哈哈";
+			mes "那些小樓囉被我一拳解決掉了!";
+			next;
+			mes "[汙泥蟲蟲]";
+			mes "那些傲慢的傢伙, 應該嚐到教訓了.";
+			mes "一個小樓囉怎麼能攻擊你呢? ";
+			next;
+			mes "[克拉布]";
+			mes "哈哈哈哈哈哈哈!!!!";
+			mes "再來一杯啤酒!!!";
+			mes "我今天要喝到掛!!!";
+			next;
+			mes "[汙泥蟲蟲]";
+			mes "克拉布!!! 我將永世跟隨你!!";
+			close;
+		}
+	}
+	mes "[克拉布]";
+	mes "哈哈哈";
+	mes "那些小樓囉被我一拳解決掉了!";
+	next;
+	mes "[汙泥蟲蟲]";
+	mes "那些傲慢的傢伙, 應該嚐到教訓了.";
+	mes "一個小樓囉怎麼能攻擊你呢? ";
+	next;
+	mes "[克拉布]";
+	mes "哈哈哈哈哈哈哈!!!!";
+	mes "再來一杯啤酒!!!";
+	mes "我今天要喝到掛!!!";
+	next;
+	mes "[汙泥蟲蟲]";
+	mes "克拉布!!! 我將永世跟隨你!!";
+	close;
+}
+
+ve_in,241,128,4	script	汙泥蟲蟲#job_shu	110,{
+
+	if ((Class >= 4023) && (Class <= 4045)){
+		mes "[汙泥蟲蟲]";
+		// Custom Translation
+		mes "走開，孩子~";
+		mes "這不是小屁孩該來的地方";
+		close;
+	}
+
+	if (job_shu == 0){
+		if (Class == Job_Monk || Class == Job_Champion){
+			if ((BaseLevel > 98) && (JobLevel > 49)){
+				mes "[克拉布]";
+				mes "哈哈哈哈.";
+				mes "我一舉打掉了那個小菜鳥！";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "那些傲慢的傢伙，應該有一個慘痛的教訓。";
+				mes "一個小嘍囉怎麼桿頂撞您，大哥";
+				next;
+				mes "[克拉布]";
+				mes "哈哈哈!!!";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "來杯啤酒!!!";
+				mes "你在幹什麼!!!我大哥的酒杯空了!!!";
+				next;
+				mes "[女服務生]";
+				mes "是的...馬上來...";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "在搞什麼!?你當我大哥是什麼人物";
+				next;
+				mes "[女服務生]";
+				mes "真..真的..很抱歉...";
+				next;
+				mes "[克拉布]";
+				mes "哼哼哼!!夠了!!.";
+				mes "這女孩似乎很怕你!";
+				mes "別怕~小姐~我們從不害人的~~";
+				next;
+				mes "[女服務生]";
+				mes "請..請別這樣....";
+				next;
+				mes "- 碰 -";
+				donpcevent "???#bcmd::OnEnable";
+				next;
+				mes "[???]";
+				mes "嘿!在這!!";
+				mes "我一直看著你!在這邊吵吵鬧鬧以為這是你的地方嗎?";
+				next;
+				mes "[???]";
+				mes "你的跟班實在太吵了，如果還想待在這就給我安份點，不然滾!!";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "搞什麼!!";
+				mes "本大爺我不想知道你是誰!再繼續叫囂你將失去你的性命!!!";
+				mes "小子你知道他是誰嗎!?我大哥可是.....";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "他可是鼎鼎有名的克拉布!!!";
+				mes "他可是可以一拳毀滅一支軍隊的男人!!!";
+				next;
+				mes "[???]";
+				mes "你只是個跟班，出一張嘴!!";
+				mes "";
+				next;
+				mes "[克拉布]";
+				mes "什麼";
+				mes "你哪來的膽子這樣叫囂";
+				mes "不要以為你是個女孩，我就會放過你";
+				next;
+				mes "[汙泥蟲蟲]";
+				mes "呵呵! 我們大哥生氣了!";
+				mes "你們死定了...";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "嘿! 你怎麼可以對女生出手!?";
+				next;
+				mes "[???]";
+				mes "退後! 你這個小東西...";
+				next;
+				mes "[???]";
+				mes "摁...";
+				mes "我不會主動攻擊的, 因為我現在正在修行.";
+				next;
+				mes "[克拉布 && 汙泥蟲蟲]";
+				mes "什麼?";
+				next;
+				mes "[克拉布 && 汙泥蟲蟲]";
+				mes "啊?!";
+				next;
+				mes "[克拉布 && 汙泥蟲蟲]";
+				mes "啊!!!!!!!!";
+				specialeffect EF_FIRESPLASHHIT,"克拉布#job_shu";
+				specialeffect EF_FIRESPLASHHIT,"汙泥蟲蟲#job_shu";
+				next;
+				mes "- 這是什麼神奇的力量? -";
+				mes "- 我從來沒有見過這種力量... -";
+				mes "";
+				next;
+				mes "[???]";
+				mes "好了, 心情好多了...";
+				next;
+				mes "[女服務生]";
+				mes "非常... 非常謝謝你...";
+				mes "我怎樣才能報答你?";
+				next;
+				mes "[???]";
+				mes "這沒什麼, 別把它放在心上.";
+				next;
+				mes "[女服務生]";
+				mes "你要回去了嗎!?";
+				mes "如果可以的話.. 我可以請你吃頓飯嗎?";
+				next;
+				mes "[???]";
+				mes "噢, 不用了.";
+				mes "給我塊麵包和溫暖的湯吧, 這樣就夠了.";
+				mes "好了, 我得說再見了, 掰.";
+				donpcevent "???#bcmd::OnDisable";
+				next;
+				mes "[女服務生]";
+				mes "掰...";
+				mes "...";
+				mes ".....";
+				mes "........(雙頰發紅)";
+				set job_shu,1;
+				setquest 11155;
+				close;
+			}
+			mes "[克拉布]";
+			mes "哈哈哈";
+			mes "那些小樓囉被我一拳解決掉了!";
+			next;
+			mes "[汙泥蟲蟲]";
+			mes "那些傲慢的傢伙, 應該嚐到教訓了.";
+			mes "一個小樓囉怎麼能攻擊你呢? ";
+			next;
+			mes "[克拉布]";
+			mes "哈哈哈哈哈哈哈!!!!";
+			mes "再來一杯啤酒!!!";
+			mes "我今天要喝到掛!!!";
+			next;
+			mes "[汙泥蟲蟲]";
+			mes "克拉布!!! 我將永世跟隨你!!";
+			close;
+		}
+	}
+	mes "[克拉布]";
+	mes "哈哈哈";
+	mes "那些小樓囉被我一拳解決掉了!";
+	next;
+	mes "[汙泥蟲蟲]";
+	mes "那些傲慢的傢伙, 應該嚐到教訓了.";
+	mes "一個小樓囉怎麼能攻擊你呢? ";
+	next;
+	mes "[克拉布]";
+	mes "哈哈哈哈哈哈哈!!!!";
+	mes "再來一杯啤酒!!!";
+	mes "我今天要喝到掛!!!";
+	next;
+	mes "[汙泥蟲蟲]";
+	mes "克拉布!!! 我將永世跟隨你!!";
+	close;
+}
+
+ve_in,244,126,3	script	女服務生#job_shu	69,{
+
+	if (job_shu == 0){
+		mes "[女服務生]";
+		mes "不~~";
+		mes "我討厭那些吵雜和不禮貌的客人!";
+		mes "真希望有人可以幫我管管他們.";
+		close;
+	}else if (job_shu == 1){
+		if (Class == Job_Monk){
+			mes "[女服務生]";
+			mes "親愛的~ 武道家";
+			mes "我很感謝你之前出手相救";
+			next;
+		}else if (Class == Job_Champion){
+			mes "[女服務生]";
+			mes "親愛的~ 武術宗師";
+			mes "我很感謝你之前出手相救";
+			next;
+		}
+		mes "[女服務生]";
+		mes "阿, 我們以前有看過這個人嗎?";
+		mes "她一直住在這裡嗎?";
+		mes "";
+		next;
+		mes "[女服務生]";
+		mes "雖然她和我一樣是個女人, 但她實在太酷了!";
+		mes "阿~~ 好漂亮好有氣勢阿...";
+		next;
+		mes "[女服務生]";
+		mes "噢!! 我的天那!!";
+		mes "我都忘了...!";
+		mes "我需要去做飯了.. 然後我還要把他送去上面的客棧";
+		next;
+		mes "[女服務生]";
+		mes "如果你不知道要住納的話, 去上面的^f57d7d客棧^000000吧.";
+		close;
+	}
+	mes "[女服務生]";
+	mes "現在客人已經安靜多了.";
+	mes "哈, 感覺真棒!!";
+	close;
+}
+
+ve_in,240,131,0	script	???#bcmd	484,{
+	end;
+
+OnInit:
+	disablenpc "???#bcmd";
+	end;
+
+OnEnable:
+	enablenpc "???#bcmd";
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc "???#bcmd";
+	stopnpctimer;
+	end;
+
+OnTimer600000:
+	donpcevent "???#bcmd::OnDisable";
+	stopnpctimer;
+	end;
+}
+
+// Custom Translation NPC name
+ve_in,97,149,0	script	戰士	111,3,3,{
+
+OnTouch:
+	if (job_shu == 1){
+		mes "[???]";
+		mes "你是誰?!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我是前陣子在小酒館裡面的人.";
+		mes "我想問妳一些問題.";
+		next;
+		mes "[???]";
+		mes "別煩我, 走開!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "拜託, 我只是想要談談...";
+		next;
+		mes "[???]";
+		mes "...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "不要不理我, 我只是想要聊聊.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "只是一下下. 好嗎?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我並不是要傷害你.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "你怎麼可以完全不理人?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "你太過分了.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "當我看到你戰鬥...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我想你是習武之人, 所以我到這裡來見你.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "但你既然拒我於千里之外...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "你應該增強你的武術...";
+		next;
+		mes "[???]";
+		mes "你怎麼這麼固執...";
+		next;
+		mes "[???]";
+		mes "你到底想幹嘛?";
+		set job_shu,2;
+		close;
+	}
+	end;
+}
+
+ve_in,98,159,0	script	戰士#job_shu	484,{
+
+	if (job_shu < 2){
+		mes "[戰士]";
+		mes "阿.. 好累.";
+		mes "訓練真的好艱難.. 我還有一段好長的路要走!";
+		close;
+	}else if (job_shu == 2){
+		mes "["+strcharinfo(0)+"]";
+		mes "我想要知道你前陣子使用的那個技能.";
+		next;
+		mes "[???]";
+		mes "...";
+		mes "......";
+		mes ".........";
+		mes "............ 像你這樣的小嘍囉不需要知道.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "嘍囉?!";
+		mes "我一直在訓練我的武術.";
+		mes "我相信我永遠不會放棄.";
+		next;
+		mes "[???]";
+		mes "所以.. 你可以打敗我?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "不...";
+		mes "我想這太困難了...";
+		mes "說實話, 對於你我感到很訝異.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我還以為我已經夠強大, 但我看到你後.. 我意識到我太自以為是了.";
+		next;
+		mes "[???]";
+		mes "喝~ 不管你多強壯,";
+		mes "你都不可能到達極限.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我想你是我想要找的那個人";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我相信你知道要怎麼克服這種極限";
+		mes "";
+		next;
+		mes "[???]";
+		mes "停.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "什麼!?";
+		next;
+		mes "[???]";
+		mes "你是人類嗎?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "什麼?";
+		mes "當然, 我是人類.";
+		next;
+		mes "[???]";
+		mes "要變的更強, 對人類來說太艱難了.";
+		mes "如果你想變的更強, 去買更好的裝備吧.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "那.. 你是什麼?";
+		mes "你的意思是.. 你不是人嗎?";
+		next;
+		mes "[???]";
+		mes "要超越極限...";
+		mes "對一個人類來說.. 是不可能的.";
+		mes "成為鬼魂是唯一的方法...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "鬼魂?";
+		next;
+		mes "[???]";
+		mes "我放棄人類的軀殼.. 我選擇了這條路.";
+		mes "成為了一個修羅, 同時也放棄了神的庇護.";
+		next;
+		mes "[???]";
+		mes "擬將不會有任何時間可以喘息...";
+		mes "你將成為戰爭機器...";
+		next;
+		switch(select("我想知道更多.:不. 停下來.")){
+		case 1:
+			mes "[???]";
+			mes "你是白癡嗎?";
+			mes "你這麼想當鬼嗎?";
+			next;
+			mes "[???]";
+			mes "你會後悔的! 滿足你現在的生活吧!.";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "摁, 自從我看過妳後, 我的生活將不會只是這樣罷了!";
+			next;
+			mes "[???]";
+			mes "哀... 好吧...";
+			next;
+			mes "[???]";
+			mes "那麼去沙漠裡殺死 100隻^f57d7d 沙漠之狼.^000000";
+			mes "然後.. 我會再想想.";
+			set job_shu,3;
+			changequest 11155,11156;
+			close;
+		case 2:
+			mes "[???]";
+			mes "摁! 明智的選擇.";
+			mes "你不需要為自己找麻煩.";
+			close;
+		}
+	}else if (job_shu == 3){
+		if (checkquest(11156,2) == 2){
+			mes "[???]";
+			mes "挖~";
+			mes "你真的殺死所有的狼了?";
+			mes "我還以為你放棄了.";
+			next;
+			mes "[???]";
+			mes "別擔心我的承諾";
+			mes "我說話算話";
+			next;
+			mes "[???]";
+			mes "去^f57d7d朱諾東南方的爾邁斯 峽谷^000000.";
+			mes "找個叫做^f57d7d巴迪^000000的人, 他在峽谷的中心附近修行中.";
+			next;
+			mes "[布魯諾]";
+			mes "告訴他是'布魯諾'叫你去找他的.";
+			set job_shu,4;
+			changequest 11156,11157;
+			close;
+		}
+		mes "[???]";
+		mes "喝... 你真煩人.";
+		next;
+		mes "[???]";
+		mes "好吧, 去殺死100隻^f57d7d沙漠之狼.^000000";
+		mes "然後我再考慮看看..";
+		close;
+	}else if (job_shu == 4){
+		mes "[???]";
+		mes "去^f57d7d朱諾東南方的爾邁斯 峽谷^000000.";
+		mes "找個叫做^f57d7d巴迪^000000的人, 他在峽谷的中心附近修行中.";
+		next;
+		mes "[布魯諾]";
+		mes "告訴他是'布魯諾'叫你去找他的.";
+		close;
+	}else if (job_shu == 100){
+		mes "[布魯諾]";
+		mes "嘿 !";
+		mes "你在做什麼?";
+		next;
+		mes "[布魯諾]";
+		mes "你帶了什麼東西要來送我嗎?";
+		close;
+	}
+	mes "[布魯諾]";
+	mes "我建議你重新考慮成為修羅的事情.";
+	mes "成為修羅雖然很厲害也很酷, 但還有更多是你不知道的";
+	next;
+	mes "[布魯諾]";
+	mes "我嗎?";
+	mes "如果重新選擇一次, 我仍然會成為修羅.";
+	close;
+}
+
+yuno_fild07,254,176,7	script	巴迪#job_shu	483,{
+
+	if (job_shu < 4){
+		mes "[巴迪]";
+		mes "喝!!!!! 哈!!! 乎!! 喝!!!";
+		next;
+		mes "[巴迪]";
+		mes "我不知道你在這裡幹嘛, 但不要站在我後面, 除非你想死.";
+		close;
+	}else if (job_shu == 4){
+		mes "[巴迪]";
+		mes "喝!!!!! 哈!!! 乎!! 喝!!!";
+		next;
+		mes "[巴迪]";		
+		mes "我不知道你在這裡幹嘛, 但不要站在我後面, 除非你想死.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "'布魯諾'介紹我來這裡.";
+		next;
+		mes "[巴迪]";
+		mes "阿!? 她把你介紹給我!?";
+		mes "算了, 不管怎樣, 為什麼你要在這!?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我和布魯諾詢問關於力量的事情, 她向我推薦你.";
+		next;
+		mes "[巴迪]";
+		mes "這個麻煩的女孩... 不.. 沒什麼.";
+		mes "你一定是個不一樣的人, 她才會將我介紹給你.";
+		next;
+		mes "[巴迪]";
+		mes "好吧, 我不能回答你的問題, 因為我還在修練, 我把你帶進去見師父吧.";
+		next;
+		mes "[巴迪]";
+		mes "師父不喜歡太吵, 所以請安靜的在 ^f57d7d大廳.^000000等著";
+		next;
+		mes "[巴迪]";
+		mes "這樣...";
+		set job_shu,5;
+		changequest 11157,11158;
+		close2;
+		warp "sword_1-1",215,244;
+		end;
+	}else if (job_shu == 100){
+		mes "[巴迪]";
+		mes "阿 好久沒看到你了, "+strcharinfo(0)+".";
+		mes "你還找師父嗎?";
+		next;
+		switch(select("摁:不")){
+		case 1:
+			mes "[巴迪]";
+			mes "我馬上帶你去.";
+			close2;
+			warp "sword_1-1",216,168;
+			end;
+		case 2:
+			mes "[巴迪]";
+			mes "那你在這裡幹?!??";
+			mes "你不應該在這裡的?";
+			close;
+		}
+	}
+	mes "[巴迪]";
+	mes ""+strcharinfo(0)+"你沒有看到師父嗎?";
+	next;
+	mes "[巴迪]";
+	mes "師父不喜歡太吵, 所以請安靜的在 ^f57d7d大廳.^000000等著";
+	next;
+	mes "[巴迪]";
+	mes "這樣...";
+	close2;
+	warp "sword_1-1",215,244;
+	end;
+}
+
+sword_1-1,223,243,4	script	休息室	111,{
+	end;
+OnWhisperGlobal:
+OnInit:
+	hideonnpc "休息室";
+	waitingroom "休息室",20,"休息室::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+
+OnStartArena:
+	warpwaitingpc "sword_2-1",223,205;
+	donpcevent "巴迪#Sura_Salon::OnEnable";
+	disablewaitingroomevent;
+	end;
+
+OnEnable:
+	enablewaitingroomevent;
+	end;
+
+OnDisable:
+	disablewaitingroomevent;
+	end;
+}
+
+sword_1-1,223,243,4	script	巴迪#job_shu reception	483,{
+
+	mes "[巴迪]";
+	mes "師父不喜歡太吵, 所以請安靜的在 ^f57d7d大廳.^000000等著";
+	next;
+	switch(select("前往大廳.:離開.")){
+	case 1:
+		mes "[巴迪]";
+		mes "請在上方的客廳等待.";
+		close;
+	case 2:
+		mes "[巴迪]";
+		mes "摁, 再見.";
+		close2;
+		warp "yuno_fild07",255,178;
+		end;
+	}
+}
+
+sword_2-1,1,1,0	script	巴迪#Sura_Salon	66,{
+	end;
+
+OnInit:
+	disablenpc "巴迪#Sura_Salon";
+	end;
+
+OnEnable:
+	enablenpc "巴迪#Sura_Salon";
+	initnpctimer;
+	end;
+
+OnReset:
+	killmonster "sword_2-1","巴迪#Sura_Salon::OnMyMobDead";
+	end;
+
+OnDisable:
+	disablenpc "巴迪#Sura_Salon";
+	stopnpctimer;
+	end;
+
+OnMyMobDead:
+	if(.MyMobCount < 1){
+		monster "sword_2-1",219,210,"hallucination",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+		monster "sword_2-1",228,209,"hallucination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+		monster "sword_2-1",228,201,"hallucination",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+		monster "sword_2-1",219,201,"hallucination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+	}
+	end;
+
+OnTimer3000:
+	mapannounce "sword_2-1","師父正在修行中, 請在這裡等他五分鐘.",bc_map;
+	end;
+
+OnTimer4000:
+	mapannounce "sword_2-1","你可能會在大廳裡面遇到一些魔物, 請你小心.",bc_map;
+	end;
+
+OnTimer5000:
+	mapannounce "sword_2-1","這是師父的意思, 所以不要感到錯愕.",bc_map;
+	end;
+
+OnTimer33000:
+	monster "sword_2-1",219,210,"hallucination",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,210,"It can't be true",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"hallucination",1446,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"Just Imagination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"hallucination",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"Illusion",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"hallucination",1446,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"Just Imagination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+	set .MyMobCount,8;
+	end;
+
+OnTimer93000:
+	monster "sword_2-1",219,210,"hallucination",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,210,"Just Imagination",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"hallucination",1446,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"hallucination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"hallucination",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"hallucination",1446,1,"巴迪#Sura_Salon::OnMyMobDead";
+	set .MyMobCount,6;
+	end;
+
+OnTimer153000:
+	mapannounce "sword_2-1","要不要來點雜誌?",bc_map;
+	monster "sword_2-1",219,210,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,210,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"Magazine",1478,1,"巴迪#Sura_Salon::OnMyMobDead";
+	set .MyMobCount,8;
+	end;
+
+OnTimer213000:
+	monster "sword_2-1",219,210,"hallucination",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,210,"Never mind",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"hallucination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"hallucination",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"Can you see me?",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"hallucination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+	set .MyMobCount,6;
+	end;
+
+OnTimer273000:
+	monster "sword_2-1",219,210,"",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,209,"hallucination",1446,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"hallucination",1480,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",228,201,"hallucination",1479,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"hallucination",1446,1,"巴迪#Sura_Salon::OnMyMobDead";
+	monster "sword_2-1",219,201,"hallucination",1483,1,"巴迪#Sura_Salon::OnMyMobDead";
+	set .MyMobCount,6;
+	end;
+
+OnTimer300000:
+	mapannounce "sword_2-1","主人已經準備好了, 我等等待你進去.",bc_map;
+	end;
+
+OnTimer303000:
+	donpcevent "巴迪#job_shuaneh::OnEnable";
+	end;
+
+OnTimer305000:
+	donpcevent "巴迪#Sura_Salon::OnReset";
+	end;
+
+OnTimer315000:
+	mapannounce "sword_2-1","快進來.",bc_map;
+	donpcevent "巴迪#job_shuaneh::OnDisable";
+	donpcevent "Sura_garajjom::OnEnable";
+	end;
+
+OnTimer320000:
+	mapannounce "sword_2-1","我想你還沒準備好要去見師父..",bc_map;
+	donpcevent "Sura_garajjom::OnDisable";
+	donpcevent "休息室::OnEnable";
+	mapwarp "sword_2-1","yuno_fild07",255,178;
+	stopnpctimer;
+	end;
+}
+
+sword_2-1,223,205,7	script	巴迪#job_shuaneh	483,{
+
+	if (job_shu > 4){
+		mes "我會告訴你方法的...";
+		close2;
+		warp "sword_1-1",216,168;
+		donpcevent "巴迪#job_shuaneh::OnDisable";
+		end;
+	}
+	// Custom Translation
+	mes "你怎麼會在這裡?";
+	close2;
+	warp "yuno_fild07",248,179;
+	end;
+
+OnInit:
+	disablenpc "巴迪#job_shuaneh";
+	end;
+
+OnEnable:
+	enablenpc "巴迪#job_shuaneh";
+	end;
+
+OnDisable:
+	disablenpc "巴迪#job_shuaneh";
+	end;
+}
+
+sword_2-1,223,205,0	script	Sura_garajjom	111,10,10,{
+	end;
+
+OnTouch:
+	warp "sword_1-1",216,168;
+	end;
+
+OnInit:
+	disablenpc "Sura_garajjom";
+	end;
+
+OnEnable:
+	enablenpc "Sura_garajjom";
+	end;
+
+OnDisable:
+	disablenpc "Sura_garajjom";
+	end;
+}
+
+sword_1-1,222,169,5	script	布魯諾#job_shu	484,{
+
+	if (job_shu > 4){
+		mes "[布魯諾]";
+		mes "嘿~ "+strcharinfo(0)+", 怎麼了?";
+		next;
+		switch(select("讓我們聊聊.:到外面去.")){
+		case 1:
+			if (job_shu == 100){
+				mes "[布魯諾]";
+				mes "師父嗎?";
+				mes "他說他已經將世界拋之腦外, 但他好像還有一個想要完成的願望.";
+				next;
+				mes "[布魯諾]";
+				mes "好吧, 我也是個修羅, 但我還是很喜歡旅行認識新朋友~";
+				next;
+				mes "[布魯諾]";
+				mes "以前, 師傅有一個非常好的朋友..";
+				next;
+				mes "[布魯諾]";
+				mes "我聽說師傅後來寫了一封信給他, 告訴他師傅已經死了.";
+				mes "但師父總是會偷偷的回憶起這件事.";
+				next;
+				mes "[布魯諾]";
+				mes "這件事最好不要說出去, 師父不斷的在想念著他的朋友.";
+				mes "他是一個墨守成規的人";
+				next;
+				mes "[布魯諾]";
+				mes "但他真的很酷、很厲害.";
+				mes "呵呵.";
+				next;
+				mes "[布魯諾]";
+				mes "我旅遊是為了認識更多像師父人這樣的人.. 而不是為了訓練自己";
+				next;
+				mes "[布魯諾]";
+				mes "每當我看到師父再享他的朋友.. 我都替他感到很難過...";
+				mes "這... 這不是... 師父!";
+				close;
+			}
+			mes "[布魯諾]";
+			mes "哇~ 我還以為妳會被淘汰掉, 沒想到你通過了?";
+			next;
+			mes "[布魯諾]";
+			mes "不管怎樣, 現在我是你的師兄了.";
+			next;
+			mes "[布魯諾]";
+			mes "我們不管年齡的!!";
+			close;
+		case 2:
+			mes "[布魯諾]";
+			mes "每當你來到這裡~";
+			mes "我將會給你生不如死的培訓課程~";
+			close2;
+			warp "yuno_fild07",255,178;
+			end;
+		}
+	}
+	mes "[布魯諾]";
+	// Custom Translation
+	mes "哈哈哈";
+	mes "誰準你在這裡的?!";
+	mes "滾出去!!!";
+	close2;
+	warp "yuno_fild07",255,178;
+	end;
+}
+
+sword_1-1,223,167,2	script	師父#job_shu	483,{
+
+	if (job_shu > 4){
+		if (job_shu == 5){
+			mes "[師父]";
+			mes "你終於來到這裡了.";
+			next;
+			if(SkillPoint != 0){
+				mes "[師父]";
+				// Custom Translation
+				mes "請點完你所有的技能點數.";
+				close;
+			}
+			if ((Class >= 4023) && (Class <= 4045)){
+				mes "[師父]";
+				// Custom Translation
+				mes "我不會讓孩子成為修羅的.";
+				close;
+			}
+			if(checkweight(1201,1) == 0){
+				mes "[師父]";
+				// Custom Translation
+				mes "你的背包過於沉重..";
+				close;
+			}
+			if (JobLevel < 50 || BaseLevel < 99){
+				mes "[師父]";
+				// Custom Translation
+				mes "你似乎還沒達到人類的極限, 你還有一段很長的路要走.";
+				mes "加油.";
+				close;
+			}
+			if (Class == Job_Monk){
+				mes "[布魯諾]";
+				mes "當然~";
+				mes "我有敏銳的眼睛.";
+				next;
+				mes "[布魯諾]";
+				mes "師父! 這是一件狼皮大衣.";
+				mes "當你覺得冷的時候穿上它吧.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "喝! 這些狼.. 是我抓的.";
+				next;
+				mes "- 蹦 -";
+				next;
+				mes "[布魯諾]";
+				mes "哈哈哈~";
+				mes "你有話要說嗎, "+strcharinfo(0)+"?";
+				mes "等你成為我們的一員後, 我們會一起生活的~";
+				next;
+				mes "[師父]";
+				mes "摁, 我現在接受你成為我的徒弟.";
+				next;
+				mes "[師父]";
+				mes "我想你知道成為修羅後, 生活並不會這麼容易.";
+				next;
+				mes "[師父]";
+				mes "我也把自己關起來了, 如果有一天我們再次走出來, 那將會是這世界需要戰爭機器的時候.";
+				next;
+				mes "[師父]";
+				mes "我希望這天不會到來... 但我願意成為鬼神, 殺死所有的敵人.";
+				next;
+				mes "[師父]";
+				mes "你應該不斷的訓練自己, 直到那天的到來.";
+				set job_shu,100;
+				jobchange Job_Sura;
+				completequest 11158;
+				getitem 5754,1;
+				getitem 2795,1;
+				close;
+			}else if (Class == Job_Champion){
+				mes "[布魯諾]";
+				mes "當然~";
+				mes "我有敏銳的眼睛.";
+				next;
+				mes "[布魯諾]";
+				mes "師父! 這是一件狼皮大衣.";
+				mes "當你覺得冷的時候穿上它吧.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "喝! 這些狼.. 是我抓的.";
+				next;
+				mes "- 蹦 -";
+				next;
+				mes "[布魯諾]";
+				mes "哈哈哈~";
+				mes "你有話要說嗎, "+strcharinfo(0)+"?";
+				mes "等你成為我們的一員後, 我們會一起生活的~";
+				next;
+				mes "[師父]";
+				mes "摁, 我現在接受你成為我的徒弟.";
+				next;
+				mes "[師父]";
+				mes "我想你知道成為修羅後, 生活並不會這麼容易.";
+				next;
+				mes "[師父]";
+				mes "我也把自己關起來了, 如果有一天我們再次走出來, 那將會是這世界需要戰爭機器的時候.";
+				next;
+				mes "[師父]";
+				mes "我希望這天不會到來... 但我願意成為鬼神, 殺死所有的敵人.";
+				next;
+				mes "[師父]";
+				mes "你應該不斷的訓練自己, 直到那天的到來.";
+				set job_shu,100;
+				jobchange Job_Sura_T;
+				completequest 11155;
+				getitem 5754,1;
+				getitem 2795,1;
+				close;
+			}
+			mes "[師父]";;
+			// Custom Translation
+			mes "阿?";;
+			close;
+		}
+		mes "[師父]";
+		mes "當我還年輕的時候.. 我旅遊過很多地方.. 也交了很多朋友.";
+		next;
+		mes "[師父]";
+		mes "然而, 就像你, 我感覺到了極限.";
+		next;
+		mes "[師父]";
+		mes "有時候我在想'我應該為了力量而放棄一切嗎...?'";
+		next;
+		mes "[師父]";
+		mes "但我該做什麼...";
+		if (countitem(6153) > 0){
+			delitem 6153,1;
+			getitem 5754,1;
+			close;
+		}
+		close;
+	}
+	mes "[師父]";
+	mes "你不應該在這裡.";
+	mes "請你離開.";
+	close2;
+	warp "yuno_fild07",255,178;
+	end;
+}
+/*
+// Custom Translation
+sword_2-1,1,2,0	script	Sura Job Switch	66,{
+
+	switch(select("Open Arena:Close Arena:Activate 休息室:Actvate 巴迪:Activate Naigara:All Off:Cancel")){
+	case 1:
+		mes "Opening Arena";
+		donpcevent "休息室::OnEnable";
+		close;
+	case 2:
+		mes "Closing Arena";
+		donpcevent "休息室::OnDisable";
+		close;
+	case 3:
+		mes "Activating 休息室";
+		donpcevent "巴迪#Sura_Salon::OnEnable";
+		close;
+	case 4:
+		mes "Activating 巴迪";
+		donpcevent "巴迪#job_shuaneh::OnEnable";
+		close;
+	case 5:
+		mes "Activating garajjom";
+		donpcevent "Sura_garajjom::OnEnable";
+		close;
+	case 6:
+		mes "Deactivating all.";
+		donpcevent "休息室::OnDisable";
+		donpcevent "巴迪#Sura_Salon::OnReset";
+		donpcevent "巴迪#Sura_Salon::OnDisable";
+		donpcevent "巴迪#job_shuaneh::OnDisable";
+		donpcevent "Sura_garajjom::OnDisable";
+		close;
+	case 7:
+		close;
+	}
+}*/

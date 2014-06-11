@@ -1,0 +1,302 @@
+//==================================
+// [­ß] The PlutoEA Project [¤ý]
+// http://opensvn.csie.org/PlutoEA
+// ---------------------------------
+// - PVP ¸}¥» -
+//===================================
+// PvP¸Ñ»¡­û
+//===================================
+
+alberta_in,22,146,4	script	PvP¸Ñ»¡­û#alb	84,{
+	callfunc "F_PvPNarr", "alberta_in", 24, 143;
+	end;
+}
+payon_in01,173,109,3	script	PvP¸Ñ»¡­û#pay	84,{
+	callfunc "F_PvPNarr", "payon_in01", 169, 108;
+	end;
+}
+prt_in,56,140,4	script	PvP¸Ñ»¡­û#prt	84,{
+	callfunc "F_PvPNarr", "prt_in", 54, 137;
+	end;
+}
+morocc_in,144,138,4	script	PvP¸Ñ»¡­û#moc	84,{
+	callfunc "F_PvPNarr", "morocc_in", 141, 140;
+	end;
+}
+geffen_in,67,63,4	script	PvP¸Ñ»¡­û#gef	84,{
+	callfunc "F_PvPNarr", "geffen_in", 64, 60;
+	end;
+}
+
+
+function	script	F_PvPNarr	{
+	mes "[PVP¸Ñ»¡­û]";
+	mes "§A¦n!";
+	mes "§Ú¬O¾á¥ôPVP";
+	mes "¸Ñ»¡ªº";
+	mes "PVP ¸Ñ»¡­û!";
+	next;
+	switch (select("^3355ffPVP¼Ò¦¡^000000?:¤°»ò¥s°µPVP¼Ò¦¡?:PVP¼Ò¦¡ªº³W«h¬O¤°»ò?:¦sÀx²{¦b¦ì¸m:µ²§ô¹ï¸Ü")) {
+	case 1:
+		mes "[PVP¸Ñ»¡­û]";
+		mes "PVP¼Ò¦¡´N¬O";
+		mes "'Player VS Player Mode'";
+		mes "ªºÂ²¼g..";
+		mes "¤]´N¬O¤@ºØ¦b°²·Qªº¥@¬É¸Ì¡A";
+		mes "¨É¨üª±®a¶¡¤j¾Ôªº¯S§O¾Ô°«";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "Â²³æªº»¡´N¬O»P¨ä¥Lª±®a¥´°«ªº¼Ò¦¡";
+		mes "¥u­n¦V§Ú¨­Ãä³o¦ì^3355ff¦uªù¤H^000000»¡¤@Án";
+		mes "ªí¥ÜÄ@·N¹Á¸Õªº¸Ü";
+		mes "¥L«K·|";
+		mes "¤Þ¾É§A¶i¤J¬°PVP¼Ò¦¡©Ò·Ç³Æªº¥´°«³õ";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "½Ð§A¤@©w­n¤p¤ß";
+		mes "¤]½Ð¦n¦n¨É¨ü¾Ô°«ªº¼Ö½ì§a";
+		mes "­n¶i¤JPVP¼Ò¦¡";
+		mes "ª±®aµ¥¯Å­n¹F¨ì31¯Å¥H¤W";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¾Ö¦³°Ñ¥[¸ê®æ¥H«á";
+		mes "¥i¥H¥ô·N¿ï¾Ü¤U¦C¨â­Ó¼Ò¦¡¤¤ªº¨ä¤¤¤@­Ó";
+		mes "¨º´N¬O¹ÚÆL¼Ò¦¡";
+		mes "¤Î·È·ÈµU¼Ò¦¡¡C";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¦b¹ÚÆL¼Ò¦¡¤¤ªº¹CÀ¸";
+		mes "³W«h¸ò¦b¹ê¾Ô";
+		mes "¬O¤@¼Ëªº";
+		mes "¦]¦¹¹D¨ã·|¦³±¼¸¨ªº±¡ªpµo¥Í";
+		mes "¸gÅç­È¤]·|·l¥¢¡C";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "½Ð¼ôª¾³o¤@ÂI¡A";
+		mes "¥HÁ×§Kµo¥Íª§°õ¡C";
+		mes "½Ð¥J²Ó¦Ò¼{²M·¡«á¦A¶i¤J¡C";
+		close;
+	case 2:
+		mes "[PVP¸Ñ»¡­û]";
+		mes "³z¹L§Ú¨­®Ç³o¦ì ' PVP¦uªù¤H ' ";
+		mes "½Ð°O±o";
+		mes "Ãº¥æ500ª÷¹ô";
+		mes "«K¥i¥H©¹PVP¼Ò¦¡ªº¥´°«³õ";
+		mes "²¾°Ê«e©¹¡C";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¥´°«¼Ò¦¡¤À¬°";
+		mes "·È·ÈµU¼Ò¦¡©M";
+		mes "¹ÚÆL¼Ò¦¡";
+		mes "½Ð¤@©w¤p¤ß¿ï¾Ü¦Û¤vªº¼Ò¦¡";
+		mes "³o¨âºØ";
+		mes "¼Ò¦¡ªº¥´°«³õ¸Ì";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¦U¦³¼Æ¦W¸Ñ»¡­û";
+		mes "¥L­Ì·|±N31¯Å¥H¤Wªº°Ñ¥[ªÌ";
+		mes "¨C10µ¥¯Å";
+		mes "¦A°µ²Ó¤À";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¦³5­ÓPVP±M¥Î©Ð¶¡¥i¨Ñ¿ï¾Ü";
+		mes "¿ï¾Ü§A©Ò·Q¥hªº¨º­Ó©Ð¶¡";
+		mes "«K¥i²¾°Ê¨ì¨º¸Ì";
+		mes "±q¸Ñ»¡­ûÀY¤Wªºµ¡¤f";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¥i¥Hª¾¹Dµ¥¯Åªº­­¨î";
+		mes "¥H¤Î¦¹¦a¹Ï¥¿¦b¶i¦æ¥´°«ªº¤H¼Æ";
+		mes "³oÂI½Ð§A­nª`·N";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¸Ñ»¡­ûÀY¤Wªºµ¡¤f";
+		mes "·|¥X²{¡i°Ñ¥[¤H¼Æ/Á`¤H¼Æ¡j³o¼Ëªº¼Æ¾Ú";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¥t¤@ÂI½Ðª`·N";
+		mes "PVP±M¥Î¦a¹Ï";
+		mes "¬OµLªk";
+		mes "Àx¦s¦ì¸mªº";
+		mes "½Ðª`·N¥H¤W³oÂI";
+		close;
+	case 3:
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¶i¤JPVP¼Ò¦¡«á";
+		mes "µe­±¥k¤U¨¤";
+		mes "¥X²{ªº¬O";
+		mes "¸Ó¦a¹Ï";
+		mes "ª±®a¦Û¤vªº±Æ¦æ / ¦a¹Ïª±®a¤H¼Æ";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¬Û«H·|¹ï§A¦³À°§U";
+		mes "¦bPVP¼Ò¦¡¤¤ªº¸gÅç?";
+		mes "¥u¦³¦bPVP¼Ò¦¡¤¤¾A¥Î";
+		mes "³oÂI­nª`·N";
+		mes "¤@¶}©l¨C¦ìª±®aªº¸gÅç?";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "°ò¥»¤W³£¬O' 5 '";
+		mes "¦b³~¤¤­Y¬O";
+		mes "Ä¹±o³Ó§Qªº¸Ü";
+		mes "¥i¼W¥[¸gÅç 1";
+		mes "­Y¬O¥¢±Ñªº¸Ü";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "«h¸gÅç·|´î¤Ö 5";
+		mes "¦pªG¸gÅç´î¨ì0¥H¤U";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "«h·|³Q½ð¥XPVP¼Ò¦¡";
+		mes "¤£±oÄ~Äò°Ñ»P";
+		mes "¦ý¬O¦pªG¸gÅç¤j©ó0";
+		mes "«o³Q±þ¦ºªº¸Ü";
+		mes "¥i¥HÂÇ¥Ñ¦P¦ñ";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¦^´_Åé¤O¡AÄ~Äò°Ñ»P¹CÀ¸";
+		mes "³o¼Ë§AÀ´¤F§a";
+		next;
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¥´°«ªº³W«h";
+		mes "»P¥~­±¾Ô°«ªº³W«h";
+		mes "¬O¤@¼Ëªº";
+		close;
+	case 4:
+		savepoint getarg(0),getarg(1),getarg(2);
+		mes "[PVP¸Ñ»¡­û]";
+		mes "¤w¸g¦¨¥\¦sÀx¦ì¸m";
+		mes "«D±`·PÁÂ±zªº¨Ï¥Î";
+		close;
+	case 5:
+		mes "[PVP¸Ñ»¡­û]";
+		mes "³o¬O¤@­ÓÄÝ©óª±®a»Pª±®a¶¡ªº¤j¾Ô";
+		mes "¤]¬O¤@­Ó";
+		mes "¯àÅýª±®a­Ì¦b¾Ô°«¤¤§ä¨ì¼Ö½ìªº";
+		mes "PVP¼Ò¦¡!";
+		mes "´Á«Ý¦U¦ì";
+		mes "«i©ó«e¨Ó¬D¾Ô !";
+		close;
+	}
+}
+
+//===================================
+// PvP¦uªù¤H
+//===================================
+-	script	¦uªù¤H::PvPdoor	-1,{
+	mes "[¦uªù¤H]";
+	mes "«Ü°ª¿³¬°§AªA°È";
+	mes "§Ú¬O¬°±z¥´¶}PVP¥´°«³õ¤§ªù";
+	mes "' PVP ¦uªù¤H";
+	mes "¦³ÃöPVP¼Ò¦¡ªº»¡©ú";
+	mes "½Ð§A¥h¦V®ÇÃä¨º¦ì¸Ñ»¡­û";
+	mes "¸ß°Ý!";
+	next;
+	switch ( select("«e©¹^ff3355PVP ¹ÚÆL¼Ò¦¡^000000 ¥´°«³õ:«e©¹^3355FFPVP ·È·ÈµU¼Ò¦¡^000000 ¥´°«³õ:«e©¹^3355FFPVP ª§ÅQ¼Ò¦¡^000000 ¥´°«³õ:µ²§ô¹ï¸Ü")) {
+	case 1:
+		mes "[¦uªù¤H]";
+		mes "¥Ø«e¤w°±¤î¨Ï¥Î ";
+		mes "PVP¹ÚÆL¼Ò¦¡¤F.";
+		mes "±zÄ@·NPVPªº¸Ü ";
+		mes "½Ð§Q¥Î·È·ÈµU¼Ò¦¡§a.";
+		close;
+
+	case 2:
+		mes "[¦uªù¤H]";
+		mes "°Ñ¥[¶O¬O500 Zeny ±z­n²¾°Ê¨ì";
+		mes "·È·ÈµU¼Ò¦¡";
+		mes "²¾°Ê¨ìPVP¥´°«³õ¶Ü?";
+		next;
+		switch( select("²¾°Ê:¨ú®ø")) {
+		case 1:
+			if(Zeny<500 || BaseLevel<31) {
+			mes "[¦uªù¤H]";
+			mes "¹ï¤£°_!";
+			mes "±zªº Zeny ¤£°÷ ¡A©ÎªÌ";
+			mes "±zªºµ¥¯Å¤£¨ì31¯Å";
+			close;
+			}
+			set Zeny,Zeny-500;
+			warp "pvp_y_room",51,23;
+			end;
+		case 2:
+		break;
+		}
+	case 3:
+		mes "[¦uªù¤H]";
+		mes "Åwªï¥úÁ{¡ã";
+		mes "§A¦b½T»{¤@¤U";
+		mes "§A¦³¨S¦³°ÑÁÉ¨é©ÎªÌÆ[½à¨é¦n¶Ü¡H";
+		next;
+		mes "[¦uªù¤H]";
+		mes "..... §c? ¨S¦³¶Ü¡H";
+		mes "«Ü©êºp¡A³o­ÓÄv§Þ³õ¬O";
+		mes "¥u¦³±a¨Ó°ÑÁÉ¨é©ÎªÌÆ[½à¨éªº¤H";
+		mes "¤~¯à¶i¨Óªº¡C";
+	close;
+
+	case 4:
+		mes "[¦uªù¤H]";
+		mes "³o¬O¤@­ÓÄÝ©óª±®a»Pª±®a¶¡ªº¤j¾Ô";
+		mes "¤]¬O¤@­Ó";
+		mes "¯àÅýª±®a­Ì¦b¾Ô°«¤¤§ä¨ì¼Ö½ìªº";
+		mes "PVP¼Ò¦¡!";
+		mes "´Á«Ý¦U¦ì";
+		mes "«i©ó«e¨Ó¬D¾Ô !";
+		close;
+	}
+}
+
+alberta_in,26,146,4	duplicate(PvPdoor)	¦uªù¤H#alb	83
+geffen_in,63,63,4	duplicate(PvPdoor)	¦uªù¤H#gef	83
+morocc_in,144,142,4	duplicate(PvPdoor)	¦uªù¤H#moc	83
+payon_in01,140,53,4	duplicate(PvPdoor)	¦uªù¤H#pay	83
+prt_in,52,140,4	duplicate(PvPdoor)	¦uªù¤H#prt	83
+
+//===================================
+// PvP±µ«Ý­û
+//===================================
+// ·È·ÈµU¼Ò¦¡ µLµ¥¯Å­­¨î
+pvp_y_room,86,85,4	script	¥´°«³õ±µ«Ý­û#1	105,{
+	callfunc "F_PvPRoom", "y_8",0,255;
+OnInit:
+	waitingroom "µL­­¨î", 0;
+	end;
+}
+
+// ¹ÚÆL¼Ò¦¡ µLµ¥¯Å­­¨î
+pvp_n_room,86,85,4	script	¥´°«³õ±µ«Ý­û	105,{
+	callfunc "F_PvPRoom", "n_8",0,255;
+OnInit:
+	waitingroom "µL­­¨î", 0;
+	end;
+}
+
+function	script	F_PvPRoom	{
+
+	if(BaseLevel < 31) {
+		mes "[¥´°«³õ±µ«Ý­û]";
+		mes "¦Ü¤Ö­nLV31¥H¤W¤~¥i¶i¤J";
+	}
+	set @menu,select(	"´¶¶©¼w©Ô@[" +getmapusers("pvp_y_8-1")+ " / 128]",
+				"¨Ì´µ¾|±o@[" +getmapusers("pvp_y_8-2")+ " / 128]",
+				"´´´­@[" +getmapusers("pvp_y_8-3")+ " / 128]",
+				"¦ãº¸¨©¶ð@[" +getmapusers("pvp_y_8-4")+ " / 128]",
+				"¹ÚÃ¹§J@[" 	+getmapusers("pvp_y_8-5")+ " / 128]",
+				"¨ú®ø");
+	if(@menu==6) {
+		close;
+	}
+
+	if(getmapusers("pvp_y_8-"+@menu+"") >= 128) {
+		mes "[¥´°«³õ±µ«Ý­û]";
+		mes "¤H¼Æ¨ì¹F·¥­­";
+		return;
+	}
+	warp "pvp_y_8-"+@menu+"",0,0;	end;
+	close;
+
+OnInit:
+	waitingroom "µL­­¨î",0;
+	end;
+}

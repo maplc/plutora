@@ -1,0 +1,96 @@
+//==========================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ------------------------------------------
+// - 艾音貝赫 導遊 腳本 -
+// ------------------------------------------
+// 版本 1.4a
+//==========================
+
+einbech,67,37,4	script	導遊#einbech	852,{
+	cutin "ein_soldier",2;
+	mes "[艾音貝赫導遊]";
+	mes "歡迎您來到礦山村落艾音貝赫,";
+	mes "我們提供艾音貝赫的旅客們導引解說的服務,歡迎您隨時洽詢我們服務人員,如果你是首次向我們洽詢的話,請您選擇'聽取注意事項'的選單";
+	next;
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市:刪掉微型地圖上全部的記號:聽取注意事項:取消")) {
+		case 1:
+			if(@compass&0x100 == 0) {
+				mes "[艾音貝赫導遊]";
+				mes "請你選擇想知道的選單?";
+				mes "要在微型的圖上留下記號嗎?";
+				next;
+				if(select("要:不要")==1)
+					set @compass,@compass|0x100;
+			}
+			while(1) {
+				next;
+				switch (select("火車站:酒店:道具商店:劍士公會:礦山:取消")) {
+				case 1:
+					mes "[艾音貝赫導遊]";
+					mes "'火車站'位於'艾音貝赫'的西北邊和東北邊,負責運送貨物和乘客,在火車站有直達艾音布羅克的列車,請多加利用";
+					if(@compass&0x100)
+						viewpoint 1,43,214,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[艾音貝赫導遊]";
+					mes "'酒店'位於'艾音貝赫'的南邊,不但可以用餐,更是下班後最佳休閒場所";
+					if(@compass&0x100)
+						viewpoint 1,145,112,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[艾音貝赫導遊]";
+					mes "'道具店'位於'艾音貝赫'的中心位置,販賣著各種的道具";
+					if(@compass&0x100)
+						viewpoint 1,177,136,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[艾音貝赫導遊]";
+					mes "'劍士公會'位於'艾音貝赫'東邊的外側,由於目前正在內部裝修當中,所以不接受轉職申請";
+					if(@compass&0x100)
+						viewpoint 1,257,109,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[艾音貝赫導遊]";
+					mes "'礦山'位於'艾音貝赫'德北邊,目前正在如火如荼的進行採礦當中,這裡也生產屬於艾音貝赫產品的礦物,偶爾也會出現一些魔物來阻礙作業的進行";
+					if(@compass&0x100)
+						viewpoint 1,138,252,5,0x00FF00;
+					continue;
+				case 6:
+					mes "[艾音貝赫導遊]";
+					mes "如果要刪除標記請選擇'刪除微型地圖上全部的記號'";
+				}
+				break;
+			}
+			continue;
+		case 2:
+			mes "[艾音貝赫導遊]";
+			mes "標記已經刪除";
+			viewpoint 2,43,214,1,0xFF0000;
+			viewpoint 2,145,112,2,0xFF00FF;
+			viewpoint 2,177,136,3,0xFF00FF;
+			viewpoint 2,257,109,4,0xFF00FF;
+			viewpoint 2,138,252,5,0x00FF00;
+			set @compass,@compass&~0x100;
+			continue;
+		case 3:
+			mes "[艾音貝赫導遊]";
+			mes "擺脫過去功能欠缺的既有類比引導方式,改成今天把想知道的地方標記在微型的圖上,是一種利用廣域定位系統的最數尖端位化的引導系統方式了,完全排除由秀發茲發德共和國所新發明的魔法力量,純粹是靠自己的技術創造出的廣域定位系統,請您親身體驗它的性能";
+			next;
+			mes "[艾音貝赫導遊]";
+			mes "在介紹它之前,請各位務必參考屏幕右上的微型地圖,如果看不見微型地圖的話,請按'ctrl+tab'鍵,或選取基本情報視窗的點入'map'鍵即可,若有看到微型地圖的話,請多點幾次'-'按鍵,直到設定完全的村落都能看到為止";
+			next;
+			continue;
+		case 4:
+			mes "[艾音貝赫導遊]";
+			mes "祝您旅途愉快";
+			close2;
+			cutin "ein_soldier",255;
+			end;
+		}
+	}
+}
+
+einbech,48,214,4	duplicate(導遊#einbech)	導遊#einbechdummy	852

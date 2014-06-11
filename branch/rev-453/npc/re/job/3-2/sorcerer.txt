@@ -1,0 +1,629 @@
+//===== rAthena Script ======================================= 
+// Sorcerer Job change Quest
+//===== By: ================================================== 
+//= Masao
+//= Credits: Muad_Dib
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Any rAthena SVN
+//===== Description: ========================================= 
+//= [AEGIS Conversion]
+//= Job change Quest from Sage / Professor -> Sorcerer.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version.
+//============================================================
+//===== PlutoEA: =============================================
+//= D.weizhe 非官方中文化，部分名稱為官方
+//============================================================ 
+
+gef_tower,102,34,5	script	瑪莉	742,{
+
+	if(checkweight(1201,1) == 0){
+		mes "你背包裡面有太多的東西了，請清空一些在來找我!";
+		close;
+	}
+	if ((Class >= 4023) && (Class <= 4045)){
+		mes "[瑪莉]";
+		mes "你好阿，你叫啥名子阿?";
+		close;
+	}
+	if (Class == Job_Sorcerer || Class == Job_Sorcerer_T){
+		mes "[瑪莉]";
+		mes "你好像不應該來找我唷...";
+		close;
+	}
+	if (JobLevel < 50 || SkillPoint != 0 || BaseLevel < 99){
+		mes "[瑪莉]";
+		mes "年輕的冒險家阿...我真羨慕你!";
+		close;
+	}
+	if ((Class != Job_Sage) && (Class != Job_Professor)){
+		mes "[瑪莉]";
+		mes "年輕的冒險家阿...我真羨慕你!";
+		close;
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc < 1)){
+		mes "[瑪莉]";
+		mes "你好阿，有什麼我能幫忙的嗎?";
+		next;
+		menu "你知道什麼是巫術嗎?",-;
+		mes "[瑪莉]";
+		mes "你這樣像學者一般的求學真好阿，我就告訴你吧!:巫術者是很忙碌於精神交流的，他們可沒有空看書阿!";
+		next;
+		mes "[瑪莉]";
+		mes "你為什麼想要問有關巫術的問題呢?";
+		next;
+		switch(select("火的靈魂帶領我來此:水的靈魂帶領我來此:地的靈魂帶領我來此:肉的靈魂帶領我來此")){
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			mes "[瑪莉]";
+			mes "屙...大哥...沒有這種東西唷...";
+			close;
+		}
+		mes "[瑪莉]";
+		mes "喔!我知道";
+		mes "你一定是出生就有自然靈力讓你可以看到靈魂的交流，不然你就是個大騙子!";
+		next;
+		mes "[瑪莉]";
+		mes "嗯...首先，你可以先把你的名子寫在這清單上嗎?";
+		next;
+		switch(select("寫下名子:我就是不想哩")){
+		case 1:
+			break;
+		case 2:
+			mes "[瑪莉]";
+			mes "好的，等你想要的時候再來";
+			close;
+		}
+		mes "[瑪莉]";
+		mes "所以你叫... ["+strcharinfo(0)+"] !";
+		next;
+		mes "[瑪莉]";
+		mes "給我幾秒中記錄你的名子...";
+		mes "等等再來找我...";
+		set job_soc,1;
+		close;
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc == 1)){
+		mes "[瑪莉]";
+		mes "好的，給我幾秒鐘解釋什麼是'巫術者'";
+		next;
+		mes "[瑪莉]";
+		mes "["+strcharinfo(0)+"],你可以很熟練的使用魔法嗎?";
+		next;
+		switch(select("當然阿，小事一樁:不能...我是手殘...")){
+		case 1:
+			break;
+		case 2:
+			mes "[瑪莉]";
+			mes "三小!??你不會用魔法?";
+			mes "那你來這邊幹嘛?還不快滾!";
+			close;
+		}
+		mes "[瑪莉]";
+		mes "嗯，這很明顯";
+		mes "'巫術者'當然也要使用魔法.但是你懂'巫術者'和其他職業的不同嗎?";
+		next;
+		switch(select("他們知道怎麼詠倡?:他們都很老?:他們可以和靈魂交流?")){
+		case 1:
+			mes "[瑪莉]";
+			mes "屙...或許吧...但這不是主要差別!";
+			close;
+		case 2:
+			mes "[瑪莉]";
+			mes "三小?";
+			close;
+		case 3:
+			break;
+		}
+		mes "[瑪莉]";
+		mes "是的.這就是最大的不同之處，你說對了!";
+		next;
+		mes "[瑪莉]";
+		mes "所以通常想成為巫術者的人，我們第一步都會先確認他們是否可以和靈魂交流";
+		next;
+		mes "[瑪莉]";
+		mes "所以你必須證明你可以和靈魂交流，我們才會承認你也是巫術者";
+		next;
+		mes "[瑪莉]";
+		mes "我都解釋完了，那你明白了嗎?";
+		next;
+		switch(select("我已經準備好接受考驗了:我還是回家種田好了...")){
+		case 1:
+			mes "[瑪莉]";
+			mes "好的!";
+			mes "那你去4樓找卡利卡. 他會帶領你完成試驗的.";
+			set job_soc,2;
+			setquest 12096;
+			close;
+		case 2:
+			mes "[瑪莉]";
+			mes "...";
+			close;
+		}
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc > 1)){
+		mes "[瑪莉]";
+		mes "試驗完成了嗎?卡利卡他是不是很懶阿!?應該讓你很困擾吧，哈哈.";
+		close;
+	}
+}
+
+gef_tower,113,161,5	script	卡利卡	754,{
+
+	if(checkweight(1201,1) == 0){
+		mes "你背包裡面有太多垃圾，請清空一點再來找我";
+		close;
+	}
+	if ((Class >= 4023) && (Class <= 4045)){
+		mes "[卡利卡]";
+		mes "孩子，你叫什麼名子阿?";
+		close;
+	}
+	if (Class == Job_Sorcerer || Class == Job_Sorcerer_T){
+		mes "[卡利卡]";
+		mes "你看起來很快樂，有個好職業對吧!?";
+		close;
+	}
+	if (JobLevel < 50 || SkillPoint != 0 || BaseLevel < 99){
+		mes "[卡利卡]";
+		mes "你看起來不需要我的幫助!";
+		close;
+	}
+	if (Class != Job_Sage && Class != Job_Professor){
+		mes "[卡利卡]";
+		mes "你看起來不需要我的幫助!";
+		close;
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc < 2)){
+		mes "[卡利卡]";
+		mes "你看起來不需要我的幫助!";
+		close;
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc == 2)){
+		mes "[卡利卡]";
+		mes "....";
+		next;
+		menu "Ah... excuse me~",-;
+		mes "[卡利卡]";
+		mes "... (Z z z~)";
+		next;
+		menu "ㄟ!!!~",-;
+		mes "[卡利卡]";
+		mes "蛤!!? ";
+		mes "別突然大叫阿，嚇死我了... ";
+		next;
+		mes "[卡利卡]";
+		mes "你是誰阿?來這幹麻?";
+		next;
+		menu "瑪莉 叫我來這邊找你u.",-;
+		mes "[卡利卡]";
+		mes "喔 你等我一下.";
+		mes "清單上似乎有紀錄...你要來這.";
+		next;
+		mes "[卡利卡]";
+		mes "所以你是 ["+strcharinfo(0)+"]... 對吧?";
+		next;
+		switch(select("當然，不然這名子是誰?:他是誰?你搞錯了!")){
+		case 1:
+			break;
+		case 2:
+			mes "[卡利卡]";
+			mes "那一定是我搞錯了，你等等再來!";
+			close;
+		}
+		mes "[卡利卡]";
+		mes "在你試驗之前我要先告訴你一些資訊.";
+		next;
+		mes "[卡利卡]";
+		mes "要成為巫術者其實是一件簡單的事. 你只需要可以和世間的靈魂交流即可, 然後轉換他們的能量到自己的身上!";
+		next;
+		mes "[卡利卡]";
+		mes "聽起來很簡單對吧!";
+		next;
+		menu "嗯...聽起來很簡單，但是做起來呢?",-;
+		mes "[卡利卡]";
+		mes "你要自己去與靈魂交流是不可能的!你必須要努力的訓練，讓自己可以清楚的看出靈魂的型態.";
+		next;
+		mes "[卡利卡]";
+		mes "所以我們通常都會通過一個儀式來讓你感受到靈魂的存在.";
+		next;
+		mes "[卡利卡]";
+		mes "讓我來告訴你該怎麼做，你可要聽清楚了!";
+		next;
+		mes "[卡利卡]";
+		mes "通常我們無法透過眼睛看見靈魂，但是靈魂是確實可以穿過你的身體的.";
+		next;
+		mes "[卡利卡]";
+		mes "舉例來說,你有一個靈魂用風的型態存在著，那你可以放大這個靈魂.";
+		next;
+		menu "所以這樣可以和靈魂交流...",-;
+		mes "[卡利卡]";
+		mes "沒錯";
+		mes "這個職業基本上就是在使用靈魂的力量..";
+		next;
+		mes "[卡利卡]";
+		mes "但是...這可能對你們這些只會看書的人來說有點困難了...";
+		next;
+		mes "[卡利卡]";
+		mes "首先，這個試煉必須要用到一些東西";
+		next;
+		mes "[卡利卡]";
+		mes "風靈礦石*3.";
+		mes "火靈礦石*2.";
+		mes "地靈礦石*3.";
+		mes "水靈礦石*3.";
+		next;
+		mes "[卡利卡]";
+		mes "等你把這些東西帶來我們就可以進行下一步.";
+		set job_soc,3;
+		changequest 12096,12097;
+		close;
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc == 3)){
+		if ((countitem(992) > 2) && (countitem(991) > 2) && (countitem(990) > 2) && (countitem(993) > 2)){
+			mes "[卡利卡]";
+			mes "你終於來了，等你好久了";
+			next;
+			menu "所以我下一步該做什麼?",-;
+			mes "[卡利卡]";
+			mes "首先，我要告訴你一個可以完成試煉的地方，你最好記下來.";
+			next;
+			mes "[卡利卡]";
+			mes "1. 1樓的冰雪洞窟";
+			mes "2. 1樓的火焰地牢";
+			mes "3. 3樓的死亡坑洞";
+			mes "4. 2樓的崑崙地牢";
+			next;
+			mes "[卡利卡]";
+			mes "你必須要設置偵查點在這4個位置，這樣正常人也可以和靈魂交流了.";
+			next;
+			mes "[卡利卡]";
+			mes "當你擁有一些特定石頭時，這些偵查點才會被啟動.";
+			next;
+			mes "[卡利卡]";
+			mes "你必須最少準備3顆以上的特定小石頭. 舉例來說，你要啟動風屬性偵測點必須要擁有3顆'風靈礦石'，並非'風靈原石'.";
+			next;
+			menu "所以我必須要準備這些石頭?...",-;
+			mes "[卡利卡]";
+			mes "是的，快去吧!";
+			next;
+			mes "[卡利卡]";
+			mes "第一步你先拿石頭去那邊，然後把它們放到機器裡面之後偵測點就會啟動，然後你就可以看到靈魂了";
+			next;
+			mes "[卡利卡]";
+			mes "如果成功了，你就可以提煉出靈魂試劑:但是如果失敗了石頭就會消失";
+			next;
+			mes "[卡利卡]";
+			mes "當然，如果你夠幸運就算失敗了礦石也可以變成原石... 但那是不一樣的情況，如果這樣就離開那邊.";
+			next;
+			menu "那如果我提煉出石頭之後呢?",-;
+			mes "[卡利卡]";
+			mes "嗯...如果你提煉出了特定石頭，理所當然的就可以拿到更多.";
+			next;
+			mes "[卡利卡]";
+			mes "所以人們通常在開始之前就會準備好一大堆的石頭. 所以我剛叫你要帶過來的數量是最少需要的數量.";
+			next;
+			mes "[卡利卡]";
+			mes "如果你想要快點完成任務，你最好多帶一些需要的物品. 但是需要用的石頭種類還是要符合要求.";
+			next;
+			menu "所以試劑是...?",-;
+			mes "[卡利卡]";
+			mes "我們不知道哪些試劑是由你些靈魂提煉出來的. 這是整個任務最困難的地方.";
+			next;
+			mes "[卡利卡]";
+			mes "當你成功的提煉出三種不一樣的試劑之後你就可以來找我了.";
+			next;
+			mes "[卡利卡]";
+			mes "一種靈魂做出來的試劑不會超過兩種，所以如果你要製作三種試劑的話，我建議你多去幾個地點.";
+			next;
+			mes "[卡利卡]";
+			mes "我該說的都說完了，你有任何問題嗎??";
+			next;
+			switch(select("應該沒有!:能再解釋一次嗎?")){
+			case 1:
+				break;
+			case 2:
+				mes "[卡利卡]";
+				mes "屙...可以讓我喝個水休息一下嗎?你等等再來找我.";
+				next;
+				break;
+			}
+			mes "[卡利卡]";
+			mes "那我要記下你的進度，等你回來的時候可以會報，請稍等...";
+			next;
+			mes "^000099你拿到一張紙上面記錄著有關靈魂的事情，如果有任何問題請打開你的視窗^000000.";
+			set job_soc,4;
+			changequest 12097,12098;
+			close;
+		}
+		mes "[卡利卡]";
+		mes "在我讓你瞭解進度方法之前，你必須要帶一些我要求的東西過來.";
+		next;
+		mes "[卡利卡]";
+		mes "風靈礦石*3.";
+		mes "火靈礦石*2.";
+		mes "地靈礦石*3.";
+		mes "水靈礦石*3.";
+		next;
+		mes "[卡利卡]";
+		mes "等你帶來的時候我會告訴你下一步該做什麼.";
+		close;
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc == 4)){
+		if ((countitem(6276) > 0) && (countitem(6278) > 0) && (countitem(6277) > 0)){
+			mes "[卡利卡]";
+			mes "哇!你的技術真不錯.";
+			mes "我想你應該很快速的與靈魂接觸了吧，但你還沒有拿到藥水!";
+			next;
+			menu "這是我最後要做的嗎?",-;
+			mes "[卡利卡]";
+			mes "是的! 首先我要先混何一些藥水，所以請等一下...";
+			delitem 6276,1;
+			delitem 6278,1;
+			delitem 6277,1;
+			set job_soc,5;
+			completequest 12098;
+			close;
+		}
+		mes "[卡利卡]";
+		mes "獲得與靈魂交流的能力是一件不簡單的事.";
+		next;
+		mes "[卡利卡]";
+		mes "別放棄，再試一次吧!";
+		close;
+	}
+	if (Class == Job_Sage || Class == Job_Professor && (job_soc == 5)){
+		mes "[卡利卡]";
+		mes "原本我老師必須要確認巫術者的職業，但自從她出去尋找靈魂以後我就沒有見到他了，所以就換我來確認.";
+		next;
+		mes "[卡利卡]";
+		mes "勇者 ["+strcharinfo(0)+"],";
+		mes "你依照了我的要求去附近打開了所有的門.";
+		next;
+		mes "[卡利卡]";
+		mes "當然，這只是個開始，我們不知道靈魂們何去何從，也不知道他們會用著什麼型態出現...";
+		next;
+		mes "[卡利卡]";
+		mes "但以你現在的表現，我相信你之後能夠有更偉大的成就. 勇者 ["+strcharinfo(0)+"]";
+		next;
+		mes "[卡利卡]";
+		mes "另外，我答應你的拜師，你已經完成了我的考驗，也證明了你自己.";
+		next;
+		mes "[卡利卡]";
+		mes "恭喜你阿, ["+strcharinfo(0)+"]";
+		if (Class == Job_Sage){
+			jobchange Job_Sorcerer;
+		}else if (Class == Job_Professor){
+			jobchange Job_Sorcerer_T;
+		}
+		getitem 5756,1;
+		getitem 2795,1;
+		next;
+		mes "[卡利卡]";
+		mes "我期許你以後對這世界會有更偉大的貢獻!";
+		close;
+	}
+}
+
+thor_v01,64,252,0	script	靈魂偵測#1	836,{
+
+	if ((job_soc == 4) && (countitem(990) > 2)){
+		progressbar "ffff00",5;
+		set .@rand,rand(1,70);
+		if (.@rand < 10){
+			if ((job_soc == 4) && (countitem(990) > 2) && (countitem(6276) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 990,3;
+				getitem 6276,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(990) > 2) && (countitem(6276) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 990,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if ((.@rand > 9) && (.@rand < 16)){
+			if ((job_soc == 4) && (countitem(990) > 2) && (countitem(6278) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 990,3;
+				getitem 6278,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(990) > 2) && (countitem(6278) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 990,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if (.@rand == 56){
+			if ((job_soc == 4) && (countitem(990) > 2)){
+				mes "靈魂們組了屬性石使他們變成了更大的石頭.";
+				delitem 990,3;
+				getitem 994,1;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}
+		mes "你使用了屬性石與靈魂交流，但你似乎失敗了....";
+		delitem 990,3;
+		close;
+	}else if ((job_soc == 4) && (countitem(990) < 3)){
+		mes "你可以感覺到靈魂但似乎缺少了一些東西讓你可以和他們交流.";
+		next;
+		mes "如果你有足夠的屬性石，你或許就可以和他們交流了.";
+		close;
+	}
+	mes "我可以感受到靈魂的存在!";
+	close;
+}
+
+ice_dun01,274,274,0	script	靈魂偵測#2	836,{
+
+	if ((job_soc == 4) && (countitem(991) > 2)){
+		progressbar "ffff00",5;
+		set .@rand,rand(1,70);
+		if (.@rand < 10){
+			if ((job_soc == 4) && (countitem(991) > 2) && (countitem(6278) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 991,3;
+				getitem 6278,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(991) > 2) && (countitem(6278) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 991,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if ((.@rand > 9) && (.@rand < 16)){
+			if ((job_soc == 4) && (countitem(991) > 2) && (countitem(6276) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 991,3;
+				getitem 6276,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(991) > 2) && (countitem(6276) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 991,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if (.@rand == 56){
+			if ((job_soc == 4) && (countitem(991) > 2)){
+				mes "靈魂們組了屬性石使他們變成了更大的石頭.";
+				delitem 991,3;
+				getitem 995,1;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}
+		mes "你使用了屬性石與靈魂交流，但你似乎失敗了....";
+		delitem 991,3;
+		close;
+	}else if ((job_soc == 4) && (countitem(991) < 3)){
+		mes "你可以感覺到靈魂但似乎缺少了一些東西讓你可以和他們交流.";
+		next;
+		mes "如果你有足夠的屬性石，你或許就可以和他們交流了.";
+		close;
+	}
+	mes "我可以感受到靈魂的存在!";
+	close;
+}
+
+mjo_dun03,200,141,0	script	靈魂偵測#3	836,{
+
+	if ((job_soc == 4) && (countitem(993) > 2)){
+		progressbar "ffff00",5;
+		set .@rand,rand(1,70);
+		if (.@rand < 10){
+			if ((job_soc == 4) && (countitem(993) > 2) && (countitem(6277) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 993,3;
+				getitem 6277,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(993) > 2) && (countitem(6277) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 993,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if ((.@rand > 9) && (.@rand < 16)){
+			if ((job_soc == 4) && (countitem(993) > 2) && (countitem(6276) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 993,3;
+				getitem 6276,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(993) > 2) && (countitem(6276) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 993,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if (.@rand == 56){
+			if ((job_soc == 4) && (countitem(993) > 2)){
+				mes "靈魂們組了屬性石使他們變成了更大的石頭.";
+				delitem 993,3;
+				getitem 997,1;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}
+		mes "你使用了屬性石與靈魂交流，但你似乎失敗了....";
+		delitem 993,3;
+		close;
+	}else if ((job_soc == 4) && (countitem(993) < 3)){
+		mes "你可以感覺到靈魂但似乎缺少了一些東西讓你可以和他們交流.";
+		next;
+		mes "如果你有足夠的屬性石，你或許就可以和他們交流了.";
+		close;
+	}
+	mes "我可以感受到靈魂的存在!";
+	close;
+}
+
+gon_dun02,195,190,0	script	靈魂偵測#4	836,{
+
+	if ((job_soc == 4) && (countitem(992) > 2)){
+		progressbar "ffff00",5;
+		set .@rand,rand(1,70);
+		if (.@rand < 10){
+			if ((job_soc == 4) && (countitem(992) > 2) && (countitem(6277) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 992,3;
+				getitem 6277,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(992) > 2) && (countitem(6277) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 992,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if ((.@rand > 9) && (.@rand < 16)){
+			if ((job_soc == 4) && (countitem(992) > 2) && (countitem(6278) < 1)){
+				mes "你與靈魂交流，從靈魂身上得到了一個試劑.";
+				delitem 992,3;
+				getitem 6278,1;
+				close;
+			}else if ((job_soc == 4) && (countitem(992) > 2) && (countitem(6278) > 0)){
+				mes "你與靈魂交流了，但似乎沒有得到任何東西....";
+				delitem 992,3;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}else if (.@rand == 56){
+			if ((job_soc == 4) && (countitem(992) > 2)){
+				mes "靈魂們組了屬性石使他們變成了更大的石頭.";
+				delitem 992,3;
+				getitem 996,1;
+				close;
+			}
+			mes "靈魂生氣了!";
+			close;
+		}
+		mes "你使用了屬性石與靈魂交流，但你似乎失敗了....";
+		delitem 992,3;
+		close;
+	}else if ((job_soc == 4) && (countitem(992) < 3)){
+		mes "你可以感覺到靈魂但似乎缺少了一些東西讓你可以和他們交流.";
+		next;
+		mes "如果你有足夠的屬性石，你或許就可以和他們交流了.";
+		close;
+	}
+	mes "我可以感受到靈魂的存在!";
+	close;
+}

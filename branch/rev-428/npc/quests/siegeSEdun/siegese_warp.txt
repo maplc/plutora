@@ -1,0 +1,9 @@
+//---------------------------
+// 二期公會地窟任務
+// (Siege SE Dungeon Quests)
+// Aegis->Eathena
+// By 5511
+//---------------------------
+
+arug_dun01,199,10,0	warp	schg_d01-c01	1,1,aru_gld,208,34
+schg_dun01,199,133,0	warp	schg_d01-c02	1,1,sch_gld,327,81

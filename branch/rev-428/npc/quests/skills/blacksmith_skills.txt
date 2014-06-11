@@ -1,0 +1,127 @@
+//===== eAthena Script ======================================= 
+//= Blacksmith Skills Quests
+//===== By: ================================================== 
+//= Lupus, Reddozen
+//===== Current Version: ===================================== 
+//= 1.3a
+//===== Compatible With: ===================================== 
+//= eAthena Revision 3800+
+//===== Description: ========================================= 
+//= Temp quests for new skills for 2nd classes
+//===== Additional Comments: ================================= 
+//= 1.0 for fully working skills only [Lupus]
+//= 1.1 Added more new skill quests for more classes [Lupus]
+//= Somehow eA engine doesn't let you keep learn't skill V_V'
+//= 1.2 Added to correct locations, correct NPC's, fixed
+//= some of the items required and made them into real
+//= quests. [Reddozen] 
+//= 1.3 Fixed bugs and minor typos. Optimized [Lupus]
+//= 1.3a fixed an item ID typo, thx 2Spiritual Kid
+//= 1.3b Splitted into different files [DracoRPG]
+//= 1.3c Inverted the weight check for Greed [DracoRPG]
+//============================================================
+
+
+//============================================================
+// 鐵匠技能 - 貪婪 + 詭計的商術
+//============================================================
+//== GOODDAY - GREED SKILL ===================================
+geffen,172,52,7	script	固特伊	826,{
+	mes "[固特伊]";
+	if(BaseJob!=Job_Blacksmith) goto L_nosmith;
+	if(getskilllv(1013)) goto L_alreadyhave;
+	if(Weight < MaxWeight-5000) goto L_notstrong; // You must carry so much that you cannot add 500 more (weight is x10!)
+
+
+	mes "你看起來非常強壯啊！";
+	mes "我想我能教你個技能~";
+	mes "就像巫師移動東西不用手一樣";
+	skill 1013,1,0;
+	close;
+
+L_notstrong:
+	mes "等你再強壯些回來找我吧";
+	mes "當你的負重超過500";
+	close;
+
+L_nosmith:
+	mes "吉芬是個不錯的城市啊.";
+	mes "難道你不這樣認為嗎?";
+	next;
+	emotion e_omg;
+	mes "[固特伊]";
+	mes "什麼？";
+	mes "你不這樣想？!";
+	close;
+
+L_alreadyhave:
+	mes "我已經把我知道的傳授給你了";
+	mes "所以你不必再回來找我了";
+	close;
+}
+
+//== AKI - 詭計的商術 ==================================
+geffen,178,72,7	script	亞齊	726,{
+	mes "[亞齊]";
+	if(BaseJob!=Job_Blacksmith) goto L_nosmith;
+	if(getskilllv(1012)) goto L_alreadyhave;
+	if(getskilllv(1013)<1) goto L_nogreed;
+	if(JobLevel<30) goto L_nojob;
+	mes "我們需要點東西";
+	mes "幫我帶來我就教你:";
+	mes "2 鋼鐵";
+	mes "8 煤礦";
+	mes "2 鋼鐵錘子";
+	mes "1 帝特立米藥水";
+	mes "500 Zeny";
+	next;
+	
+	mes "[亞齊]";
+	mes "讓我檢查下你的物品.";
+	next;
+	
+	if(countitem(999)<2 || countitem(1003)<8 || countitem(613)<2 || countitem(971)<1 || zeny<500) goto L_noitems;//Items: Steel, Coal, Iron_Hammer, Detrimindexta,
+	delitem 999, 2;//Items: Steel,
+	delitem 1003, 8;//Items: Coal,
+	delitem 613, 2;//Items: Iron_Hammer,
+	delitem 971, 1;//Items: Detrimindexta,
+	set zeny, zeny-500;
+	
+	mes "[亞齊]";
+	mes "很好，你把東西都帶來了";
+	mes "我們開始學習吧~";
+	skill 1012,1,0;
+	next;
+	
+	specialeffect 183;
+	mes "哇！你學的真快！";
+	mes "好好使用你的新技能!";
+	close;
+
+L_noitems:
+	mes "[亞齊]";
+	mes "你沒有足夠的東西哦.";
+	mes "等你有了再來找我吧";
+	close;
+	
+L_nosmith:
+	mes "不要整天呆在這無聊的地方.";
+	mes "但是~他卻喜歡這個無聊的地方~";
+	emotion e_laugh;
+	close;
+
+L_nogreed:
+	mes "如果你還想學點什麼";
+	mes "那你就站在這跟天氣說話吧~";
+	close;
+
+L_alreadyhave:
+	mes "我想你已經學過了";
+	mes "吉芬那你也許還能再學會個技能~";
+	close;
+	
+L_nojob:
+	mes "等你成為名鐵匠再來吧";
+	mes "最起碼30級的鐵匠啊！";
+	close;
+}

@@ -1,0 +1,251 @@
+//===========================================
+// [冥] The PlutoEA Project [王]
+// http://plutoea.googlecode.com/svn/
+// -----------------------------------------
+// - 德瓦他 城鎮腳本 -
+//===========================================
+// 版本：1.0 Twro
+//===== By: =================================
+//= 哲小莫 (自行台版取材)
+//===========================================
+
+dewata,202,106,3	script	德瓦他導遊#dewata	537,{
+	mes "[德瓦他導遊]";
+	mes "歡迎蒞臨擁有";
+	mes "美麗海灘的日景與";
+	mes "夕照的^8C4210德瓦他^000000嗎，";
+	mes "我負責導覽村落，";
+	mes "隨時為您服務喔!";
+	next;
+	switch(select("[   卡普拉職員   ]:[   武器商人    ]:[   防具商人   ]:[   道具商人    ]:[   餐廳老闆    ]:[   喀拉喀托火山  ]:[   艾爾貝塔方向船員  ]:刪除小地圖標誌:取消")) {
+	case 1:
+		mes "[德瓦他導遊]";
+		mes "^0000FF卡普拉職員^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,202,184,2,0x0A82FF;
+		}
+		else {
+			viewpoint 0,202,184,2,0x0A82FF;
+		}
+		break;
+	case 2:
+		mes "[德瓦他導遊]";
+		mes "^008484武器商人^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,218,164,3,0x008080;
+		}
+		else {
+			viewpoint 0,218,164,3,0x008080;
+		}
+		break;
+	case 3:
+		mes "[德瓦他導遊]";
+		mes "^008484防具商人^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,158,182,4,0x8B4513;
+		}
+		else {
+			viewpoint 0,158,182,4,0x8B4513;
+		}
+		break;
+	case 4:
+		mes "[德瓦他導遊]";
+		mes "^FF1094道具商人^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,182,164,5,0xFF1493;
+		}
+		else {
+			viewpoint 0,182,164,5,0xFF1493;
+		}
+		break;
+	case 5:
+		mes "[德瓦他導遊]";
+		mes "^FF1094餐廳老闆^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,146,109,6,0x006400;
+		}
+		else {
+			viewpoint 0,146,109,6,0x006400;
+		}
+		break;
+	case 6:
+		mes "[德瓦他導遊]";
+		mes "^8C29E7喀拉喀托火山^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,235,56,7,0x8A2BE2;
+		}
+		else {
+			viewpoint 0,235,56,7,0x8A2BE2;
+		}
+		break;
+	case 7:
+		mes "[德瓦他導遊]";
+		mes "^00BDFF艾爾貝塔方向船員^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,195,235,8,0xBFFFFF;
+		}
+		else {
+			viewpoint 0,195,235,8,0xBFFFFF;
+		}
+		break;
+	case 8:
+			viewpoint 2,202,184,2,0x0A82FF;
+			viewpoint 2,218,164,3,0x008080;
+			viewpoint 2,158,182,4,0x8B4513;
+			viewpoint 2,182,164,5,0xFF1493;
+			viewpoint 2,146,109,6,0x006400;
+			viewpoint 2,235,56,7,0x8A2BE2;
+			viewpoint 2,195,235,8,0xBFFFFF;
+		set .@compass_check,0;
+		mes "[德瓦他導遊]";
+		mes "已刪除小地圖上的標誌了，";
+		mes "還需要其它服務嗎?";
+		break;
+	case 9:
+		mes "[德瓦他導遊]";
+		mes "祝你旅途愉快！";
+		close;
+	}
+}
+
+
+dewata,197,184,3	script	德瓦他導遊#dewata2	537,{
+	mes "[德瓦他導遊]";
+	mes "歡迎蒞臨擁有";
+	mes "美麗海灘的日景與";
+	mes "夕照的^8C4210德瓦他^000000嗎，";
+	mes "我負責導覽村落，";
+	mes "隨時為您服務喔!";
+	next;
+	switch(select("[   卡普拉職員   ]:[   武器商人    ]:[   防具商人   ]:[   道具商人    ]:[   餐廳老闆    ]:[   喀拉喀托火山  ]:[   艾爾貝塔方向船員  ]:刪除小地圖標誌:取消")) {
+	case 1:
+		mes "[德瓦他導遊]";
+		mes "^0000FF卡普拉職員^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,202,184,2,0x0A82FF;
+		}
+		else {
+			viewpoint 0,202,184,2,0x0A82FF;
+		}
+		break;
+	case 2:
+		mes "[德瓦他導遊]";
+		mes "^008484武器商人^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,218,164,3,0x008080;
+		}
+		else {
+			viewpoint 0,218,164,3,0x008080;
+		}
+		break;
+	case 3:
+		mes "[德瓦他導遊]";
+		mes "^008484防具商人^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,158,182,4,0x8B4513;
+		}
+		else {
+			viewpoint 0,158,182,4,0x8B4513;
+		}
+		break;
+	case 4:
+		mes "[德瓦他導遊]";
+		mes "^FF1094道具商人^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,182,164,5,0xFF1493;
+		}
+		else {
+			viewpoint 0,182,164,5,0xFF1493;
+		}
+		break;
+	case 5:
+		mes "[德瓦他導遊]";
+		mes "^FF1094餐廳老闆^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,146,109,6,0x006400;
+		}
+		else {
+			viewpoint 0,146,109,6,0x006400;
+		}
+		break;
+	case 6:
+		mes "[德瓦他導遊]";
+		mes "^8C29E7喀拉喀托火山^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,235,56,7,0x8A2BE2;
+		}
+		else {
+			viewpoint 0,235,56,7,0x8A2BE2;
+		}
+		break;
+	case 7:
+		mes "[德瓦他導遊]";
+		mes "^00BDFF艾爾貝塔方向船員^000000的";
+		mes "位置已經標示於";
+		mes "小地圖上了，";
+		mes "還需要其它服務嗎?";
+		if (.@compass_check == 1) {
+			viewpoint 1,195,235,8,0xBFFFFF;
+		}
+		else {
+			viewpoint 0,195,235,8,0xBFFFFF;
+		}
+		break;
+	case 8:
+			viewpoint 2,202,184,2,0x0A82FF;
+			viewpoint 2,218,164,3,0x008080;
+			viewpoint 2,158,182,4,0x8B4513;
+			viewpoint 2,182,164,5,0xFF1493;
+			viewpoint 2,146,109,6,0x006400;
+			viewpoint 2,235,56,7,0x8A2BE2;
+			viewpoint 2,195,235,8,0xBFFFFF;
+		set .@compass_check,0;
+		mes "[德瓦他導遊]";
+		mes "已刪除小地圖上的標誌了，";
+		mes "還需要其它服務嗎?";
+		break;
+	case 9:
+		mes "[德瓦他導遊]";
+		mes "祝你旅途愉快！";
+		close;
+	}
+}

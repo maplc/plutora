@@ -1,0 +1,245 @@
+//===== eAthena Script =======================================
+//= iRO Repeatable EXP Quests.
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= [Aegis Conversion]
+//= Added Monster Killing quests.
+//= Repeatable EXP Quest (Anolian Skins)
+//===== Additional Comments: =================================
+//= 1.0 First version.
+//============================================================
+
+cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
+	if (checkquest(60119) != -1) {
+		if (checkquest(60119,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "你已經獵殺50隻鱷魚人了嗎?";
+			next;
+			switch(select("是的:還沒:我不幹了")) {
+			case 1:
+				mes "[Cuir]";
+				mes "恩... 我不認為你已經獵殺了50隻鱷魚人...";
+				close;
+			case 2:
+				mes "[Cuir]";
+				mes "記住，我需要幫忙獵殺隻鱷魚人！";
+				mes "所以快去殺50隻吧。";
+				close;
+			case 3:
+				mes "[Cuir]";
+				mes "你確定你要結束嗎？";
+				mes "到目前為止的努力全部都會白費喔";
+				next;
+				switch(select("確定:還是算了")) {
+				case 1:
+					mes "[Cuir]";
+					mes "好的， 等你改變心意再來找我吧！";
+					erasequest 60119;
+					close;
+				case 2:
+					mes "[Cuir]";
+					mes "那就請你去獵殺50隻鱷魚人吧";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "太神奇了，你完成的好快！";
+			getexp 68950,43300;
+			erasequest 60119;
+			close;
+		}
+	}
+	if (checkquest(60120) != -1) {
+		if (checkquest(60120,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "你已經獵殺100隻鱷魚人了嗎?";
+			next;
+			switch(select("是的:還沒:我不幹了")) {
+			case 1:
+				mes "[Cuir]";
+				mes "恩... 我不認為你已經獵殺了100隻鱷魚人...";
+				close;
+			case 2:
+				mes "[Cuir]";
+				mes "記住，我需要幫忙獵殺隻鱷魚人！";
+				mes "所以快去殺100隻吧。";
+				close;
+			case 3:
+				mes "[Cuir]";
+				mes "你確定你要結束嗎？";
+				mes "到目前為止的努力全部都會白費喔";
+				next;
+				switch(select("確定:還是算了")) {
+				case 1:
+					mes "[Cuir]";
+					mes "好的， 等你改變心意再來找我吧！";
+					erasequest 60120;
+					close;
+				case 2:
+					mes "[Cuir]";
+					mes "那就請你去獵殺100隻鱷魚人吧";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "太神奇了，你完成的好快！";
+			getexp 68950,43300;
+			getexp 68950,43300;
+			erasequest 60120;
+			close;
+		}
+	}
+	if (checkquest(60121) != -1) {
+		if (checkquest(60121,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "你已經獵殺150隻鱷魚人了嗎?";
+			next;
+			switch(select("是的:還沒:我不幹了")) {
+			case 1:
+				mes "[Cuir]";
+				mes "恩... 我不認為你已經獵殺了150隻鱷魚人...";
+				close;
+			case 2:
+				mes "[Cuir]";
+				mes "記住，我需要幫忙獵殺隻鱷魚人！";
+				mes "所以快去殺150隻吧。";
+				close;
+				close;
+			case 3:
+				mes "[Cuir]";
+				mes "你確定你要結束嗎？";
+				mes "到目前為止的努力全部都會白費喔";
+				next;
+				switch(select("確定:還是算了")) {
+				case 1:
+					mes "[Cuir]";
+					mes "好的， 等你改變心意再來找我吧！";
+					erasequest 60121;
+					close;
+				case 2:
+					mes "[Cuir]";
+					mes "那就請你去獵殺150隻鱷魚人吧";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "太神奇了，你完成的好快！";
+			getexp 68950,43300;
+			getexp 68950,43300;
+			getexp 68950,43300;
+			erasequest 60121;
+			close;
+		}
+	}
+	//for minimum level
+	if (BaseLevel > 44) {
+		//for maximum level
+		if (BaseLevel < 81) {
+			mes "[Cuir]";
+			mes "你看起來像個勇猛的冒險者!";
+			next;
+			mes "[Cuir]";
+			mes "我被派來這是為了減少鱷魚人的數量，";
+			mes "但是我一個人執行這個任務實在不可能...";
+			mes "你可以幫我嗎?";
+			next;
+			switch(select("當然:我沒空")) {
+			case 1:
+				mes "[Cuir]";
+				mes "你可以從蒐集物品、獵殺鱷魚人來幫我";
+				mes "你想做哪一項?";
+				next;
+				switch(select("蒐集物品:獵殺鱷魚人:離開")) {
+				case 1:
+					// Item turn in
+					mes "[Cuir]";
+					mes "如果你幫我帶回 ^00CC0020個 虎蜥皮^000000. 我可以幫你變得更強.";
+					next;
+					switch(select("我有虎蜥皮:鱷魚咬我!")) {
+					case 1:
+						/*
+						if (checkweight(503,10) == 0) {
+							mes "[Cuir]";
+							mes "Hey, 這看起來太重囉";
+							mes "這可是會壓扁你的.";
+							mes "等你有更大個空間再回來找我.";
+							close;
+						}
+						*/
+						if (countitem(7003) > 19) {
+							mes "[Cuir]";
+							mes "謝謝你的 ^00CE0020個 虎蜥皮^000000!";
+							mes "我希望你能繼續幫我蒐集這些東西.";
+							mes "世界上的軍隊都搶著要它呢.";
+							delitem 7003,20; //虎蜥皮
+							getexp 68950,43300;
+							//getitem 503,10; //黃色藥水
+							close;
+						}
+						else {
+							mes "[Cuir]";
+							mes "當我看見虎蜥皮時我就知道他長怎樣,";
+							mes "但是我沒看見^00CE0020個 虎蜥皮^000000.";
+							close;
+						}
+					case 2:
+						mes "[Cuir]";
+						mes "我需要 ^00CE0020個 虎蜥皮^000000.";
+						close;
+					}
+				case 2:
+					// Kill Count Quest
+					mes "[Cuir]";
+					mes "額... 我想你可以幫我獵殺鱷魚人";
+					mes "那你可以幫我獵殺幾隻呢?";
+					next;
+					switch(select("50隻 鱷魚人:100隻 鱷魚人:150隻 鱷魚人")) {
+					case 1:
+						setquest 60119;
+						break;
+					case 2:
+						setquest 60120;
+						break;
+					case 3:
+						setquest 60121;
+						break;
+					}
+					mes "[Cuir]";
+					mes "當你完成的任務之後,請回來找我,我會給你應有的獎賞.";
+					close;
+				case 3:
+					mes "[Cuir]";
+					mes "如果你改變心意,記得回來找我.";
+					close;
+				}
+			case 2:
+				mes "[Cuir]";
+				mes "如果你改變心意,記得回來找我..";
+				close;
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "你對這任務來說太強了,我需要完整的物品,不是被分解的!";
+			next;
+			close;
+		}
+	}
+	else {
+		mes "[Cuir]";
+		mes "你很勇敢是真的,但是這勇敢可能會要了你的命,";
+		mes "你大概在強一點我就能給你任務.";
+		close;
+	}
+}

@@ -1,0 +1,169 @@
+//===========================================
+// [冥] The PlutoEA Project [王]
+// http://plutoea.googlecode.com/svn/
+// -----------------------------------------
+// - 巴西 城鎮腳本 -
+//===========================================
+// 版本：1.0 Twro
+//		 1.1 台譯部分內容
+//===== By: =================================
+//= 哲小莫 (1.1 修改於台版)
+//===========================================
+
+//alberta,247,115,3	script	布蘭妮號 船員#bra1	100,{
+alberta,246,82,3	script	布蘭妮號 船員#bra1	100,{
+	mes "[布蘭妮號 船員]";
+	mes "你有聽過巴西這地方嗎?";
+	mes "那理有點像沙漠都市夢羅克般炎熱，又如";
+	mes "斐揚一樣是個茂密的神祕國度";
+	next;
+	mes "[布蘭妮號 船員]";
+	mes "我們買到地圖正要駛往巴西，你只要付船";
+	mes "費就能一起去了，";
+	mes "來回10000zeny! 如何?";
+	next;
+	switch (select("去巴西!:不去")) {
+	case 1:
+		if (Zeny > 9999) {
+			mes "[布蘭妮號 船員]";
+			mes "OK! 走吧!";
+			close2;
+			set Zeny,Zeny-10000;
+			warp "brasilis",314,60;
+			end;
+		}
+		else {
+			mes "[布蘭妮號 船員]";
+			mes "錢不夠喔!";
+			close;
+		}
+	case 2:
+		mes "[布蘭妮號 船員]";
+		mes "巴西可能不吸引你吧!";
+		close;
+	}
+}
+
+brasilis,316,57,3	script	布蘭妮號 船員#bra2	100,{
+	mes "[布蘭妮號 船員]";
+	mes "我們的船要駛回艾爾貝塔，你要搭船嗎?";
+	next;
+	switch (select("搭船:不搭船")) {
+	case 1:
+		mes "[布蘭妮號 船員]";
+		mes "當然還是自己的家最好!";
+		close2;
+		warp "alberta",245,87;
+		//warp "alberta",244,115;	//舊版地圖
+		end;
+	case 2:
+		mes "[布蘭妮號 船員]";
+		mes "你還不想回去喔!";
+		close;
+	}
+}
+
+brasilis,155,165,3	script	告示牌#bra1	858,{
+	mes ":: 美術博物館 ::";
+	close;
+}
+
+brasilis,195,231,3	script	告示牌#bra2	858,{
+	mes ":: 韋拉斯紀念碑 ::";
+	close;
+}
+
+brasilis,240,247,3	script	告示牌#bra3	858,{
+	mes ":: 五金行 ::";
+	close;
+}
+
+brasilis,303,309,3	script	告示牌#bra4	858,{
+	mes ":: 叢林纜車 ::";
+	mes "- 心臟弱的玩家禁入 -";
+	close;
+}
+
+brasilis,278,137,3	script	告示牌#bra5	858,{
+	mes ":: 大飯店 ::";
+	close;
+}
+
+brasilis,137,77,5	script	霜淇淋寶貝	85,{
+	mes "[冰品店]";
+	mes "天氣炎熱時的";
+	mes "最佳消暑良伴";
+	mes "^3355FF100 Zeny^000000的寶貝";
+	mes "霜淇淋來了!";
+	next;
+	switch(select("給我霜淇淋!:關於說麒麟:取消交易")) {
+	case 1:
+		mes "[冰品店]";
+		mes "清涼美味的霜淇淋";
+		mes "由於太受歡迎，";
+		mes "所以每人只能..";
+		mes "限購 5個-";
+		next;
+		while(1) {
+			input .@input; //,1,5;
+			if (.@input == 0) {
+				mes "[冰品店]";
+				mes "為了下一位排隊購買霜淇淋的人，";
+				mes "請讓位好嗎?";
+				close;
+			}
+			else if ((.@input < 0) || (.@input > 5)) {
+				mes "[冰品店]";
+				mes "喔喔!";
+				mes "你有點貪心喔";
+				mes "客人，吃超過5個的話，";
+				mes "到了晚上你的腸胃，";
+				mes "就會跟你作對吧?";
+				next;
+			}
+			else
+				break;
+		}
+		set .@icecream_hap,.@input*100;
+		if (Zeny < .@icecream_hap) {
+			mes "[冰品店]";
+			mes "您的金幣似乎不足，";
+			mes "每個是 ^3355FF100 Zeny^000000";
+			close;
+		}
+		if (!checkweight(536,.@input)) {
+			close;
+		}
+		set zeny,zeny-.@icecream_hap;
+		getitem 536,.@input; //霜淇淋
+		close;
+	case 2:
+		mes "[冰品店]";
+		mes "所謂'霜淇淋'";
+		mes "就是..";
+		mes "在牛奶或";
+		mes "飽和脂肪上加入";
+		mes "砂糖+雞蛋+安定劑";
+		next;
+		mes "[冰品店]";
+		mes "再加上香料、色素等";
+		mes "攪拌均勻後";
+		mes "冷凍的冰品，";
+		mes "因熱量高營養豐富，";
+		mes "適當的吃才有益健康";
+		next;
+		mes "[冰品店]";
+		mes "只是..";
+		mes "若吃到過量..";
+		mes "導致拉肚子的話，";
+		mes "我可不負責喔!";
+		close;
+	case 3:
+		mes "[冰品店]";
+		mes "若錯誤這次好機會，";
+		mes "就要等到明年";
+		mes "才有機會品嚐";
+		mes "美味的冰淇淋喔!";
+		close;
+	}
+}

@@ -1,0 +1,73 @@
+//===== eAthena Script ======================================= 
+//= Assassin Skills Quests
+//===== By: ================================================== 
+//= Lupus, Reddozen
+//===== Current Version: ===================================== 
+//= 1.3a
+//===== Compatible With: ===================================== 
+//= eAthena Revision 3800+
+//===== Description: ========================================= 
+//= Temp quests for new skills for 2nd classes
+//===== Additional Comments: ================================= 
+//= 1.0 for fully working skills only [Lupus]
+//= 1.1 Added more new skill quests for more classes [Lupus]
+//= Somehow eA engine doesn't let you keep learn't skill V_V'
+//= 1.2 Added to correct locations, correct NPC's, fixed
+//= some of the items required and made them into real
+//= quests. [Reddozen] 
+//= 1.3 Fixed bugs and minor typos. Optimized [Lupus]
+//= 1.3a fixed an item ID typo, thx 2Spiritual Kid
+//= 1.3b Splitted into different files [DracoRPG]
+//============================================================
+
+
+//============================================================
+// 刺客 - 超音速投擲 + 毒刃
+//============================================================
+in_moc_16,23,27,5	script	伊絲米兒	885,{
+	mes "[伊絲米兒]";
+	mes "…………";
+	close;
+}
+
+in_moc_16,14,27,5	script	齊亭	884,{
+	mes "[齊亭]";
+	if(BaseJob!=Job_Assassin) goto L_nosin;
+	if(getskilllv(1003) && getskilllv(1004)) goto L_alreadyhave;
+
+	mes "給我點物品我能教你的新技能！";
+	mes "3 藍寶石";
+	mes "1 紅寶石";
+	next;
+	
+	mes "[齊亭]";
+	mes "讓我檢查下你的東西帶全沒.";
+	next;
+	
+	if(countitem(726)<3 || countitem(723)<1) goto L_noitems;//Items: Sapphire, Ruby,
+	delitem 726, 3;//Items: Sapphire,
+	delitem 723, 1;//Items: Ruby,
+
+	mes "[齊亭]";
+	mes "I see you have what you need,";
+	mes "so I'll teach you my talent.";
+	skill 1003,1,0;
+	skill 1004,1,0;
+	close;
+	
+L_noitems:
+	mes "[齊亭]";
+	mes "你沒帶足物品.";
+	mes "等你帶足了再來找我吧";
+	close;
+		
+L_nosin:
+	mes "對不起，你不是刺客.";
+	emotion e_gasp;
+	close;
+
+L_alreadyhave:
+	mes "我已經教過你啦~！";
+	close;
+}
+

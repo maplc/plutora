@@ -1,0 +1,169 @@
+//===== eAthena Script ======================================= 
+//= Wizard Skills Quests
+//===== By: ================================================== 
+//= Lupus, Reddozen
+//=                 2007-02-25  黑色小貓  中文化
+//===== Current Version: ===================================== 
+//= 1.3c
+//===== Compatible With: ===================================== 
+//= eAthena Revision 3800+
+//===== Description: ========================================= 
+//= Temp quests for new skills for 2nd classes
+//===== Additional Comments: ================================= 
+//= 1.0 for fully working skills only [Lupus]
+//= 1.1 Added more new skill quests for more classes [Lupus]
+//= Somehow eA engine doesn't let you keep learn't skill V_V'
+//= 1.2 Added to correct locations, correct NPC's, fixed
+//= some of the items required and made them into real
+//= quests. [Reddozen] 
+//= 1.3 Fixed bugs and minor typos. Optimized [Lupus]
+//= 1.3a fixed an item ID typo, thx 2Spiritual Kid
+//= 1.3b Splitted into different files [DracoRPG]
+//= 1.3c Removed duplicates [Toms]
+//============================================================
+
+
+//============================================================
+// 巫師 - 火狩芽
+//============================================================
+gef_tower,115,36,1	script	喵喵#2	876,{
+	set @npcname$,"[喵喵]";
+	if(HELLIONQ == 22)goto L_remember;
+	if(HELLIONQ == 21)goto L_joke;
+	if(HELLIONQ == 20)goto L_take;
+	if(BaseJob!=Job_Wizard) goto L_nowiz;
+	if(getskilllv(1006)) goto L_alreadyhave;
+
+	mes @npcname$;
+	mes "給我這點東西我將教你個新技能:";
+	mes "10 火靈礦石";
+	mes "10 水靈礦石";
+	mes "10 風靈礦石";
+	mes "10 地靈礦石";
+	next;
+	
+	mes @npcname$;
+	mes "我來檢查下你的東西哦~";
+	next;
+	
+	if(countitem(990)<10 || countitem(991)<10 || countitem(992)<10 || countitem(993)<10) goto L_noitems;//Items: Red_Blood, Crystal_Blue, Wind_of_Verdure, Green_Live,
+	delitem 990, 10;//Items: Red_Blood,
+	delitem 991, 10;//Items: Crystal_Blue,
+	delitem 992, 10;//Items: Wind_of_Verdure,
+	delitem 993, 10;//Items: Green_Live,
+	
+	mes @npcname$;
+	mes "你帶來了足夠的東西~";
+	mes "現在我開始教你新技能~.";
+	skill 1006,1,0;
+	close;
+
+L_take:
+	mes @npcname$;
+	mes "快成功了... 快成功了...!";
+	mes "那個東西到哪去了?!";
+	mes "嘿, 可以幫我拿一下那邊的東西嗎?";
+	mes "咦... 等等... 你是誰??";
+	next;
+	menu "繡恩叫我來跟你拿書",L_sent,"才不要! 你自己拿!",-;
+
+	mes @npcname$;
+	mes "自己拿? 書就在你旁邊而已啊!";
+	mes "幫個忙都不行嗎?";
+	mes "算了... 走開!";
+	mes "你在這裡只會妨礙我的研究而已!!";
+	close;
+
+L_sent:
+	mes @npcname$;
+	mes "我的老師? 繡恩?";
+	mes "嗯... 確實有份報告我還沒給他!";
+	mes "那份報告叫什麼來著...?";
+	next;
+	input @tempstr$;
+	if(@tempstr$ != "吉芬地區魔物生態的研究")goto L_wrongstr;
+
+	mes @npcname$;
+	mes "吉芬地區魔物生態的研究?";
+	mes "可是老師三天前已經拿走了啊!";
+	mes "難道他忘記了嗎?";
+	next;
+	mes @npcname$;
+	mes "奇怪!";
+	mes "為什麼老師還在找那份報告?";
+	mes "我三天前確實已經交給他了!!";
+	set HELLIONQ,21;
+	close;
+
+L_joke:
+	mes @npcname$;
+	mes "我想老師八成在開玩笑...!";
+	mes "算了... 我看你再拿一份給他好了...";
+	mes "該死! 我把備份的報告放到哪去了??";
+	close;
+
+L_wrongstr:
+	mes @npcname$;
+	mes @tempstr$ + "?";
+	mes "我沒有做過這個研究啊!";
+	mes "還是我以前做過呢...?";
+	mes "總之! 我需要那份報告正確的名稱才行!";
+	close;
+
+L_remember:
+	mes @npcname$;
+	mes "喔! 嗨! 又是你啊!";
+	mes "我的老師又要你來跟我拿報告了嗎?";
+	next;
+	mes "^3151FF你把繡恩要你轉交的書拿給愛奴智";
+	next;
+	mes @npcname$;
+	mes "喔! 太好了!";
+	mes "這本書我之前不小心弄丟了!";
+	mes "真是太感謝你了!";
+	mes "這下我終於可以完成這個研究了!";
+	next;
+	mes @npcname$;
+	mes "等等! 最重要的那一頁呢? 怎麼不見了!";
+	mes "有一張老師給我的紙條... 嗯...";
+	mes " ";
+	mes "^111111愛奴智，你想找回這一頁嗎?";
+	mes "拿一瓶蘋果汁來跟我交換吧!";
+	mes "                        繡恩^000000";
+	next;
+	mes @npcname$;
+	mes "不~~~!!";
+	mes "又來了~~~!!";
+	mes "為什麼他老愛開這種玩笑?!";
+	mes "蘋果汁!!";
+	mes "我需要蘋果汁!!";
+	next;
+	mes "看來現在可以去找一顆";
+	mes "^3151FF藍色魔力礦石^000000";
+	mes "回去交給繡恩了!";
+	set HELLIONQ,23;
+	close;
+		
+L_noitems:
+	mes @npcname$;
+	mes "你還沒帶足道具.";
+	mes "等你收集完了再來找我吧";
+	close;
+	
+L_nowiz:
+	mes @npcname$;
+	mes "你一定要有魔力才行啊~呵呵.";
+	emotion e_gasp;
+	close;
+
+L_alreadyhave:
+	mes @npcname$;
+	mes "我已經教過你啦~！";
+	close;
+}
+
+prt_in,82,98,2	script	賽爾門美亞斯	46,{
+	mes "[賽爾門美亞斯]";
+	mes "??????????????！";
+	close;
+}

@@ -1,0 +1,88 @@
+//===== eAthena 腳本 =======================================
+//= 初學者攻城戰守衛腳本
+//===== 製作: ==================================================
+//= kobra_k88
+//===== 當前版本: =====================================
+//= 1.0
+//===== 相容: =====================================
+//= eAthena 0.1+; RO Episode 4+
+//===== 描述: =========================================
+//= 當伺服器啟動時如果購買了守衛則重生守衛，當守衛死亡時發布通告
+//===== 附加注釋: =================================
+//= 基於現有公會腳本製作.  并不知道是否完全正確[kobra_k88]
+//============================================================
+
+
+//------------------------------------------------------------------------------
+nguild_alde,216,24,0	script	Guardian_N01	-1,{
+OnAgitInit:
+	if (GetCastleData("nguild_alde",10) == 1) guardian "nguild_alde",18,219,"士兵 守衛",1287,"Guardian_N01::OnGuardianDied",0;
+	if (GetCastleData("nguild_alde",11) == 1) guardian "nguild_alde",117,42,"士兵 守衛",1287,"Guardian_N01::OnGuardianDied",1;
+	if (GetCastleData("nguild_alde",12) == 1) guardian "nguild_alde",207,153,"士兵 守衛",1287,"Guardian_N01::OnGuardianDied",2;
+	if (GetCastleData("nguild_alde",13) == 1) guardian "nguild_alde",68,70,"弓箭手 守衛",1285,"Guardian_N01::OnGuardianDied",3;
+	if (GetCastleData("nguild_alde",14) == 1) guardian "nguild_alde",187,140,"弓箭手 守衛",1285,"Guardian_N01::OnGuardianDied",4;
+	if (GetCastleData("nguild_alde",15) == 1) guardian "nguild_alde",62,204,"騎士 守衛",1286,"Guardian_N01::OnGuardianDied",5;
+	if (GetCastleData("nguild_alde",16) == 1) guardian "nguild_alde",113,100,"騎士 守衛",1286,"Guardian_N01::OnGuardianDied",6;
+	if (GetCastleData("nguild_alde",17) == 1) guardian "nguild_alde",211,174,"騎士 守衛",1286,"Guardian_N01::OnGuardianDied",7;
+	end;
+
+OnGuardianDied:
+	// Event when Guardian dies
+	MapAnnounce "nguild_alde","有一名守衛被擊潰了",17;
+	end;
+}
+
+//------------------------------------------------------------------------------
+nguild_gef,198,182,0	script	Guardian_N02	-1,{
+OnAgitInit:
+	if (GetCastleData("nguild_gef",10) == 1) guardian "nguild_gef",30,178,"士兵 守衛",1287,"Guardian_N02::OnGuardianDied",0;
+	if (GetCastleData("nguild_gef",11) == 1) guardian "nguild_gef",64,180,"士兵 守衛",1287,"Guardian_N02::OnGuardianDied",1;
+	if (GetCastleData("nguild_gef",12) == 1) guardian "nguild_gef",61,25,"士兵 守衛",1287,"Guardian_N02::OnGuardianDied",2;
+	if (GetCastleData("nguild_gef",13) == 1) guardian "nguild_gef",61,44,"弓箭手 守衛",1285,"Guardian_N02::OnGuardianDied",3;
+	if (GetCastleData("nguild_gef",14) == 1) guardian "nguild_gef",189,43,"弓箭手 守衛",1285,"Guardian_N02::OnGuardianDied",4;
+	if (GetCastleData("nguild_gef",15) == 1) guardian "nguild_gef",51,192,"騎士 守衛",1286,"Guardian_N02::OnGuardianDied",5;
+	if (GetCastleData("nguild_gef",16) == 1) guardian "nguild_gef",49,67,"騎士 守衛",1286,"Guardian_N02::OnGuardianDied",6;
+	if (GetCastleData("nguild_gef",17) == 1) guardian "nguild_gef",181,14,"騎士 守衛",1286,"Guardian_N02::OnGuardianDied",7;
+	end;
+
+OnGuardianDied:
+	// Event when Guardian dies
+	MapAnnounce "nguild_gef","有一名守衛被擊潰了",17;
+	end;
+}
+//------------------------------------------------------------------------------
+nguild_pay,139,139,0	script	Guardian_N03	-1,{
+OnAgitInit:
+	if (GetCastleData("nguild_pay",10) == 1) guardian "nguild_pay",210,120,"士兵 守衛",1287,"Guardian_N03::OnGuardianDied",0;
+	if (GetCastleData("nguild_pay",11) == 1) guardian "nguild_pay",69,26,"士兵 守衛",1287,"Guardian_N03::OnGuardianDied",1; 
+	if (GetCastleData("nguild_pay",12) == 1) guardian "nguild_pay",23,141,"士兵 守衛",1287,"Guardian_N03::OnGuardianDied",2;
+	if (GetCastleData("nguild_pay",13) == 1) guardian "nguild_pay",224,87,"弓箭手 守衛",1285,"Guardian_N03::OnGuardianDied",3;
+	if (GetCastleData("nguild_pay",14) == 1) guardian "nguild_pay",81,45,"弓箭手 守衛",1285,"Guardian_N03::OnGuardianDied",4;
+	if (GetCastleData("nguild_pay",15) == 1) guardian "nguild_pay",214,53,"騎士 守衛",1286,"Guardian_N03::OnGuardianDied",5;
+	if (GetCastleData("nguild_pay",16) == 1) guardian "nguild_pay",69,26,"騎士 守衛",1286,"Guardian_N03::OnGuardianDied",6;
+	if (GetCastleData("nguild_pay",17) == 1) guardian "nguild_pay",23,141,"騎士 守衛",1286,"Guardian_N03::OnGuardianDied",7;
+	end;
+
+OnGuardianDied:
+	// Event when Guardian dies
+	MapAnnounce "nguild_pay","有一名守衛被擊潰了",17;
+	end;
+}
+//------------------------------------------------------------------------------
+nguild_prt,197,197,0	script	Guardian_N04	-1,{
+OnAgitInit:
+	if (GetCastleData("nguild_prt",10) == 1) guardian "nguild_prt",196,92,"士兵 守衛",1287,"Guardian_N04::OnGuardianDied",0;
+	if (GetCastleData("nguild_prt",11) == 1) guardian "nguild_prt",113,200,"士兵 守衛",1287,"Guardian_N04::OnGuardianDied",1;
+	if (GetCastleData("nguild_prt",12) == 1) guardian "nguild_prt",111,186,"士兵 守衛",1287,"Guardian_N04::OnGuardianDied",2;
+	if (GetCastleData("nguild_prt",13) == 1) guardian "nguild_prt",76,202,"弓箭手 守衛",1285,"Guardian_N04::OnGuardianDied",3;
+	if (GetCastleData("nguild_prt",14) == 1) guardian "nguild_prt",90,26,"弓箭手 守衛",1285,"Guardian_N04::OnGuardianDied",4;
+	if (GetCastleData("nguild_prt",15) == 1) guardian "nguild_prt",58,59,"騎士 守衛",1286,"Guardian_N04::OnGuardianDied",5;
+	if (GetCastleData("nguild_prt",16) == 1) guardian "nguild_prt",112,200,"騎士 守衛",1286,"Guardian_N04::OnGuardianDied",6;
+	if (GetCastleData("nguild_prt",17) == 1) guardian "nguild_prt",101,194,"騎士 守衛",1286,"Guardian_N04::OnGuardianDied",7;
+	end;
+
+OnGuardianDied:
+	// Event when Guardian dies
+	MapAnnounce "nguild_prt","有一名守衛被擊潰了",17;
+	end;
+}

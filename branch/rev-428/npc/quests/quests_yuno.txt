@@ -1,0 +1,1286 @@
+//===== eAthena Script ======================================= 
+//= Quest NPCs related to Juno
+//===== By: ================================================== 
+//= eAthena Dev Team; L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 2.0a
+//===== Compatible With: ===================================== 
+//= eAthena SVN
+//===== Description: ========================================= 
+//= [Aegis Conversion]
+//= Metto Quest:
+//= - Not really sure exaclty what it's for. :P
+//= - Variable in use: metto_q (max 9)
+//= Alchemist Brothers:
+//= - Used in part of the Alchemist job quest.
+//= - Variable in use: bros_q (max 1)
+//= Doomed Swords Part 2:
+//= - Continuation of the Comodo Quest
+//= - Part 1: Found in Quests_Comodo.txt
+//= - Part 3: Found in Doomed_Swords.txt
+//= - Variable in use dmdswrd_Q (Max 45)
+//===== Additional Comments: ================================= 
+//= v1.1 Re-did the text and re-organized the script.  Corrected some items. [kobra_k88]
+//= v1.2 Added part to Bro's for alchemist quest [Darkchild]
+//= 1.3 fixed that part of Alch Job Quest. [Lupus]
+//= 1.4 Fixed exploit [Lupus]
+//= 1.5 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//=	Merged metto_quest.txt into Juno quest file.
+//=	Added the Juno portion of the Doomed Swords quest.
+//= 1.6 Fixed various errors in the Bajin NPC. [L0ne_W0lf]
+//= 1.7 Changed ALCH_Q check and set to corrispond to new alchemist job quest. [L0ne_W0lf]
+//= 1.8 Fixed metto_q never reaching 2. Made some names more unique. [L0ne_W0lf]
+//= 1.9 Fixed Missing Variables in Metto quest. (bugreport:473) [Samuray22]
+//= 2.0 Added missing checkweights. [L0ne_W0lf]
+//= 2.0a Fixed several typos (bugreport:1786) [akrus]
+//= 2.0c ÁcÅé¤¤¤å¤Æ-ªý¤îºÆ¨g¬ì¾Ç®a [¤ò~^^]
+//============================================================ 
+
+// Metto Quest
+
+yuno_in03,26,39,3	script	³Á¤æ#juno	709,{
+	mes "[³Á¤æ]";
+	if (metto_q == 0) {
+		mes "¤µ¤Ñ¬ã¨s¡A©ú¤Ñ¤]¬ã¨s¡A«á¤ÑÁÙ¬O";
+		mes "¬ã¨s...«y«y«y¡A§Ú§â§Ú©Ò¦³ªº¤H¥Í";
+		mes "§ë¤J¦b»s§@·sªºJuno¤W";
+		mes "§Ú­n»s§@¤@­Ó§Ú¦Û¤vªº°ê®a¡A";
+		mes "­º¥ý©O¥ýÁA¸Ñ";
+		mes "³o¶ô¤j¦a¬°¦óº}¯B¦bªÅ¤¤ªº­ì²z";
+		mes "¥u­n§Q¥Î³o­Ó­ì²z¡A­n³Ð§@§Úªº°ê®a";
+		mes "¨Ã¤£¬O¹Ú·Q°Ú!";
+		next;
+		mes "[³Á¤æ]";
+		mes "^FF0000¬n®Ú^000000³o³Ã¥ë";
+		mes "»¡§Úªº¬ã¨s®Ú¥»¬O¤£¥i¯àªº";
+		mes "¨ü¯«¥[Å@ªº§Ú";
+		mes "§Ú¤~¤£¬Û«H³o¤@®M!";
+		close;
+	}
+	else if (metto_q == 1) {
+		set metto_q,2;
+		mes "§Ú·Q¥h§ä§Úªº¥ë¦ñ¬ì¾Ç®a";
+		mes " ^FF0000´µ¶í»Å^000000";
+		mes "·Q§â§Ú²{¦b¶i¦æªº¬ã¨s";
+		mes "¸ò¥L»¡©ú¤@¤U¡A°²¦p...";
+		mes "¦³§AÀ°§Úªº¸Ü¡A³o¬ã¨s°¨¤W´Nµ²§ô¤F";
+		mes "°²¦p§A¤]·Q¬Ý¨ì";
+		mes "§Úªº¬ã¨sµ²ªGªº¸Ü";
+		mes "¹ï¯«¬èÃ«§a!";
+		close;
+	}
+	else if (metto_q == 3) {
+		set metto_q,4;
+		mes "«y°Ú°Ú°Ú! ´µ¶í»Å³o³Ã¥ë";
+		mes "¬ðµM¤£·Q©M§Ú¶}·|";
+		mes "¤]¤£·Q¸ò§Ú¨£­±!";
+		mes "³o¼Ë¤l¹ï§Úªº¬ã¨s¨s³y¦¨";
+		mes "¼vÅT...«y°Ú ! ¨ì©³«ç»ò¦^¨Æ°Ú!";
+		next;
+		mes "[³Á¤æ]";
+		mes "ÁÙ¦n¼y©¯ªº";
+		mes "§Ú¦³§ë«O¡A±q¥ë¦ñ¬ì¾Ç®a";
+		mes " ^FF0000¥d¯S^000000¨º¸Ì";
+		mes "§â¬ã¨s©Ò»Ý­nªºµL¼ÄÅKª÷¿ûz";
+		mes "¯S®í¦Xª÷¦¬¤Uªº¸Ü";
+		mes "§Úªº¬ã¨s´N¥i¥H¶¶§Q¶i¦æ!";
+		mes "°²¦p¯à¸ò...´µ¶í»Å¥ý¥Í°Q½×ªº¸Ü";
+		mes "¥i¥H°µ¨ì§ó§¹¬üªº¬ã¨s";
+		mes "¯u¬O¥i±¤°Ú";
+		next;
+		mes "[³Á¤æ]";
+		mes "§A¤]¥i¥H¸ÕµÛ´Á«Ý°Ú!";
+		mes "«y«¢«¢«¢«¢";
+		close;
+	}
+	else if (metto_q == 5) {
+		set metto_q,6;
+		mes "¨ì©³³o¬O«ç»ò¦^¨Æ°Ú!";
+		mes "§Ú¤°»ò®É­Ô¥s§A¡A§â§Ú¬ã¨s¨s©Ò»Ý­nªº";
+		mes "µL¼ÄÅKª÷¿ûz¯}Ãa¤F©O!!";
+		mes "¨ì©³¬°¤°»ò­n¯}Ãa! «y°Ú°Ú";
+		mes "¬°¤°»ò¯«¤£À°§Ú©O?!";
+		next;
+		mes "[³Á¤æ]";
+		mes "¤£¬O°Ú...§Úªº¹B®ðÁÙ¨S¦³¥Î§¹°Ú!";
+		mes "ÁöµM·|¼vÅT§Úªº¬ã¨s¶i«×";
+		mes "§Q¥Î ^FF0000¹ê¹ê^000000³Õ¤hªº";
+		mes "»´¤ÞÀº²z½×ªº¸Ü";
+		mes "Á`¬O¥i¥Hªº...!! ¨þ¨þ¨þ¨þ";
+		next;
+		mes "[³Á¤æ]";
+		mes "§ÚÁÙ³Ñ¤U¤Ñ¹B°Ú";
+		mes "«y... «y... «y...";
+		close;
+	}
+	else if (metto_q == 7) {
+		set metto_q,8;
+		mes ".......................";
+		next;
+		mes "[³Á¤æ]";
+		mes ".......................";
+		mes "³oºØ¨Æ±¡¤w¸g³sÄòµo¥Í";
+		mes "3¦¸¥H¤W¤F¡A¬Ý¼Ë¤l¯«­n©ß±ó";
+		mes "§Ú¤F... ­üËç¡A";
+		mes "¨ì©³¬O«ç»ò¦^¨Æ°Ú! ¤@½ú¤l©^Ämªº¬ã¨s";
+		mes "­n·Ç³Æ¦¬§À¤F¶Ü...";
+		next;
+		mes "[³Á¤æ]";
+		mes "´Á«Ý§Ú¬ã¨sµ²ªGªº§A¡A«Ü¤£¦n·N«ä";
+		mes "§â³o­Óµ¹§Ñ¤F§a";
+		mes "¤Ñ¹B¤]¤£À°§Ú¤F... ¨ì©³¤°»òªF¦è";
+		mes "§â§ÚÅÜ¦¨³o¼Ë¤F©O¡A§Ú¯u·Qª¾¹D";
+		next;
+		mes "[³Á¤æ]";
+		mes "§Ú¦³ÂI²Ö¤F... ²{¦b·Q";
+		mes "¥ð®§¡A½Ð§A§ÖÂIÂ÷¶}§a";
+		mes "§Ú¥H«á¦A¤]¤£·Q°µ¬ã¨s¤§Ãþªº¨Æ¤F";
+		mes "½Ð¤£­n¦A´Á«Ý¤F...";
+		close;
+	}
+	else if (metto_q == 8) {
+		mes "§Ú¤]·Q¤F¤@°}¤l¡A";
+		mes "§Ú¤]¤£·QÄ~Äò¯d¦b³o¦æ·~";
+		mes "Áåª÷³N®v©ÎªZ¹D®aÀ³¸Ó¤]¤£¿ù§a";
+		mes "³Ìªñ³o¨ÇÂ¾·~¸û¨üÅwªï";
+		mes "ªº¼Ë¤l.. ¤Ï¥¿¤£ºÞ«ç»ò¼Ë";
+		mes "´N¬O¤£­n°µ¬ì¾Ç®a";
+		close;
+	}
+	else {
+		mes "§Ú­n¥X¥h¶}©l¤u§@¤F";
+		mes "§AÁÙ¯d¦b³o¸Ì";
+		mes "·F¶Ü? §ÚÁÙ¦³¨ÇªF¦è°µ·Ç³Æ";
+		mes "­n±ß¤@ÂI¥X¥h¡A";
+		mes "§A¥ý¥X¥h§a";
+		close;
+	}
+}
+
+yuno_in01,17,30,5	script	¬n®Ú#juno	85,{
+	mes "[¬n®Ú]";
+	if (metto_q == 0) {
+		mes "§A¤]ª¾¹D§Ú­Ì§ø¸¨¬O";
+		mes "§Q¥Î°ª«×µo®iªº¬ì§Þ";
+		mes "¨Ó½k¤fªº§ø¸¨¡A¥Ø«e³o¨ÇºaÄ£";
+		mes "³£¬O³o¨Ç¤H";
+		mes "§V¤O¬ã¨sªºµ²ªG";
+		next;
+		mes "[¬n®Ú]";
+		mes "©Ò¥H¹ï³o¨Ç§V¤Oªº¬ì¾Ç®a";
+		mes "§ø¸¨¤è­±·|µ¹¤©¥L­Ì";
+		mes "À°§U©M¼úÀyµ¥µ¥...";
+		mes "´N¬O¦]¬°¦³¨Ç¤H¤Ó¹L¥÷¤F";
+		mes "¯uªºÅý¤H¨ü¤£¤F¡A§V¤O¬ã¨s¬O¤£¿ù°Õ";
+		mes "¤£¹L¹ï©P³òªº¥Á®`";
+		mes "ÁÙ¯u¤£¤Ö°Ú¡A´«¥y¸Ü»¡ºÆ¤l¬ì¾Ç®a";
+		mes "ºÆ¨g ¬ì¾Ç®a¤Ó¦h¤F";
+		next;
+		mes "[¬n®Ú]";
+		mes "¨ä¤¤ ^FF0000³Á¤æ^000000³o³Ã¥ë³ÌÀYµh";
+		mes "¥L¥H¥L°µ¬ã¨sªº¦W¥Ø";
+		mes " §â¤½¦@³]¬I¯}Ãa¡A»s³y¾¸­µ¤½®`";
+		mes "»s³y¤£´r§Ö·Pµ¥µ¥";
+		mes "¤°»ò´c©Ê³£°µªº¤H...";
+		mes "¯u¬OÀYµhªº³Ã¥ë¡A";
+		mes "§O¤H¦A«ç»ò¬ã¨s";
+		mes "¤]¤£·|³y¦¨³o»òÄY­«ªº°ÝÃD...";
+		mes "¨ì©³­n«ç»ò¼ËÅý¥L°±¤î";
+		mes "¯u¬O¦³ÂIÀª§¼°Ú.";
+		next;
+		if (select("¥æµ¹§Ú³B²z§a:¯¬ºÖ³o§ø¸¨¦³¤Ñ¹B¬Û§U") == 1) {
+			if (Class == Job_Novice) {
+				mes "[¬n®Ú]";
+				mes "Hmm...";
+				mes "Thanks for the offer, but I don't think this is something that you could do...";
+				next;
+				mes "[¬n®Ú]";
+				mes "I think we need someone a bit harsher to help us out. I think it would be a little too much for a Novice.";
+				next;
+				mes "[¬n®Ú]";
+				mes "Please don't be";
+				mes "offended by this.";
+				close;
+			}
+			set metto_q,1;
+			mes "[¬n®Ú]";
+			mes "¾¾! §A­nÀ°§Ú³B²z¶Ü?!";
+			mes "ÁÂÁÂ§Aªº¦n¤ß¡A§A¦³·Q¦n";
+			mes "³B²zªº¤èªk¶Ü?";
+			mes "¹ï²Ä¤@¦¸¨£¨ìªº¥~¦a¤H¨Ó»¡";
+			mes "¬O¸ûÃø³B²zªº¨Æ±¡..";
+			next;
+			if (select("·íµMÅo:¤£¡A§Ú²{¦b¤~­n·Q·Q¬Ý") == 1) {
+				mes "[¬n®Ú]";
+				mes "¶â... ¦n¦³«H¥ô·P! ¦]¬°§A¬O¬Û«H";
+				mes "¤Ñ¹Bªº¤H¡A¦n¦n§Q¥Î³o¹B¶Õªº¸Ü";
+				mes "¤]³\¤]·|¦³¨ä¥¦ªº¿ìªk§a";
+				mes "¬Ý¨ì¦Û«Hº¡º¡ªº§A";
+				mes "¤£»Ý­n¹ï§A»¡¥ô¦ó«Ø¨¥!";
+				mes "¯¬§A«H¹B¡A§Æ±æ§A¯àÀ°§Ú¸Ñ¨M°ÝÃD";
+				close;
+			}
+			mes "[¬n®Ú]";
+			mes "¶â... ¦³ÅQ®ð¬O¤£¿ù°Õ¡A";
+			mes "¤°»ò³£¤£À´´N¦æ°Ê¡A¬O¦³ÂI¤£§´¡A";
+			mes "¶â...";
+			mes "¦]¬°³Á¤æ¬Û«H©R¹B";
+			mes "¥Î¥L¤£ª¾¹Dªº¤è¦¡¦b­I«áªýÂZ";
+			mes "·í¥L¨ü¨ì«Ü¦hªýÂZ®É";
+			mes "¥L·|»{¬°¤Ñ¹B¤£À°¥L";
+			mes "¨ì®É­Ô·|¤£·|¦³©ñ±óªº·Qªk©O?";
+			mes "¥t¥~¥L¦³¤@ÂIÅo¶Ûªº­Ó©Ê";
+			mes "¸I¨ì²Ä¤@¦¸¨£­±ªº¤H";
+			mes "¤]·|¸ò¥L¤@ª½«¢°Õ";
+			mes "§Q¥Î³oºØ­Ó©Ê¡AÀ³¸Ó¥i¥H¸Ñ¨M°ÝÃD§a?";
+			mes "¯¬§A©¯¹B";
+			close;
+		}
+		mes "[¬n®Ú]";
+		mes "¹ï°Ú¡A¬èÃ«¯à¾Ö¦³¤Ñ¹B";
+		mes "¤£¹L¬Ý¨Ó³Á¤æ¬O¤@­Ó";
+		mes "¯S§O¬Û«H¤Ñ¹Bªº¨k¤H";
+		mes "§Q¥Î³o¤èªk";
+		mes "¤]³\·|¦³¿ìªk¸Ñ¨M§a¡A­üËç...";
+		close;
+	}
+	else if (metto_q == 8) {
+		mes "ÁÂÁÂ§A¡A°U§AªººÖ";
+		mes "§â§Ú­Ì§ø¸¨ªºÀY¯k¤Hª«³Á¤æ";
+		mes "­«·sÅý¥L­«¥Í¤F";
+		mes "¥H«á§Ú­Ìªº§ø¸¨";
+		mes "ÅÜ±oµy·L¦n¹L¤@ÂI...";
+		mes "³o¬O©M§A¦u¬ùªº¡Aµ¹§Aªº³ø¹S";
+		next;
+		mes "[¬n®Ú]";
+		if (Class == Job_Sage) {
+			set .@now_weight,maxweight - weight;
+			if (.@now_weight < 300) {
+				mes "Oh no, it seems that you are carrying too much stuff! Would you make some room?";
+				close;
+			}
+			set metto_q,9;
+			mes "¯¬§A¥¼¨Óªº«e³~";
+			mes "»P©¯¹B¦P¦b";
+			getitem 715,10; //Yellow_Gemstone
+			close;
+		}
+		set .@now_weight,maxweight - weight;
+		if (.@now_weight < 150) {
+			mes "Oh no, it seems that you are carrying too much! Would you make some room?";
+			close;
+		}
+		set metto_q,9;
+		mes "¯¬§A¥¼¨Óªº«e³~";
+		mes "»P©¯¹B¦P¦b";
+		getitem 715,10; //Blue_Gemstone
+		close;
+	}
+	else if (metto_q == 9) {
+		mes "¯¬§Aªº¥¼¨Ó»P©¯¹B¦P¦b!";
+		close;
+	}
+	else {
+		mes "Åý³Á¤æ­«¥Íªº­pµe";
+		mes "ÁÙ¶¶§Q¶Ü? ¹ï§A³o¼Ë¤@­Ó¥~¦a¤H";
+		mes "­n¨D°µ³oºØ¨Æ¡A¯u¤£¦n·N«ä";
+		close;
+	}
+}
+
+yuno_in01,17,95,5	script	´µ¶í»Å#juno	99,{
+	mes "[´µ¶í»Å]";
+	if (metto_q == 2) {
+		mes "¨Ó³o¸Ì¦³¤°»ò¨Æ¶Ü?";
+		mes "µ¥¤@¤U¹w­p§Úªº¥ë¦ñ³Á¤æ¡A";
+		mes "·|¨Ó³oÃä¶}·|¡A½Ð§A¿ì§¹¨Æ§ÖÂIÂ÷¶}§a";
+		mes "ÁÙ¦³¨Æ¶Ü?";
+		next;
+		if (select("¥´ÂZ¥L­Ìªº¬ã¨s:¨S¨Æ°Ú") == 1) {
+			set metto_q,3;
+			mes "[´µ¶í»Å]";
+			mes "...............................";
+			next;
+			mes "[´µ¶í»Å]";
+			mes "...............................";
+			next;
+			mes "[´µ¶í»Å]";
+			mes "...............................";
+			next;
+			mes "[´µ¶í»Å]";
+			mes "¨º¬O¯uªº¶Ü?";
+			mes "¹ê»Ú¤W³Á¤æ¤£§â§Ú·í¥ë¦ñ¬Ý";
+			mes "¥u§â§Ú·í¬ã¨sªº¹D¨ã¬Ý«Ý";
+			mes "µ¥¨ì¬ã¨sµ²ªG¥XÄl®É¡A";
+			mes "¥L·|§â¬ã¨sµ²ªG¦û¬°¤v¦³¡A³o¬O¯uªº¶Ü?";
+			mes "¥ð¶ã...";
+			mes "¦³¤@ÂI­I«q·P°Ú";
+			mes "³oºÆ¨g¬ì¾Ç®a³Ã¥ë";
+			next;
+			mes "[´µ¶í»Å]";
+			mes "¨ì©³³B²z¨Æ±¡¤£ª¾¹D¾A¥i¦Ó¤î";
+			mes "¨C¦¸§â¨Æ±¡³B²zªºÃzº¡";
+			mes "¨ì©³¥L»{¬°¥L¦Û¤v¬O¤£¬O¤H°Ú";
+			mes "°²¦p¥L¯uªº§â§Ú³o¼Ë¬Ý«Ý";
+			mes "§Ú¯uªº¦³¤@ÂI­I«q·P°Ú...";
+			mes "¶}¤°»ò·|°Ú¡A";
+			mes "§Ú³s³o³Ã¥ëªº­±¤Õ³£¤£·Q¨£";
+			next;
+			mes "[´µ¶í»Å]";
+			mes "¦n§Úª¾¹D¤F... ½Ð§A¨«§a...";
+			close;
+		}
+		mes "[´µ¶í»Å]";
+		mes "¯u¬O¤@­ÓµL²áªº³Ã¥ë";
+		mes "¨S¨Æªº¸Ü´N§ÖÂI¥X¥h§a";
+		close;
+	}
+	else if (metto_q == 0) {
+		mes "§Ú¬O³o§ø¸¨¬ì¾Ç®a¤¤ªº¤@¦ì";
+		mes "§Ú¥s¡A´µ¶í»Å";
+		mes "¯à§â§Úªº¦W¤l°O¦í";
+		mes "¥H«á·|¹ï§A¦³¦n³Bªº";
+		close;
+	}
+	else if (metto_q == 1) {
+		mes "§Ú¬O³o§ø¸¨¬ì¾Ç®a¤¤ªº¤@¦ì";
+		mes "§Ú¥s¡A´µ¶í»Å";
+		mes "¯à§â§Úªº¦W¤l°O¦í";
+		mes "¥H«á·|¹ï§A¦³¦n³Bªº";
+		close;
+	}
+	else {
+		mes "²{¦b©M³Á¤æ³o¼ËÃz¨¬ªº¡A";
+		mes "ºÆ¨g¬ì¾Ç®aÂç²MÃö«Y";
+		mes "¥H«á¨M©w­n¦¨¬°¤£·|µ¹©P³ò©~¥Á";
+		mes "±a¨Ó¥Á®`ªº¬ì¾Ç®a";
+		close;
+	}
+}
+
+yuno_in01,19,183,5	script	¥d¯S#juno	55,{
+	mes "[¥d¯S]";
+	if (metto_q == 4) {
+		mes "§Ú¬Ý°_¨Ó¹³¤@¦ì¾÷±ñ¤HµL±¡ªº¨k¤l";
+		mes "¤£¹L¥u¦³¸£³U¬O¡A¾Ö¦³«Ü¦h³Ð³yÆF»î";
+		mes "¼öÄËÄË¦b¹BÂàªº¬ì¾Ç®a¡A¤£¹L";
+		mes "§ä§Ú¦³¤°»ò¨Æ¶Ü?";
+		next;
+		if (select("¥´ÂZ§Aªº¬ã¨s:¥u¸ò§A¥´©Û©I") == 1) {
+			set metto_q,5;
+			mes "[¥d¯S]";
+			mes "¶â? §ÚªºµL¼ÄÅKª÷¿ûz";
+			mes "¤ñ´µ¶í»Åªº¬ã¨sÁÙ¤£¦p¶Ü?";
+			mes "¬O³Á¤æ³o¼Ë¤lÁ¿ªº¶Ü? ºÆ¤l¬ì¾Ç®a";
+			mes "³o³Ã¥ë..¤Ï¥¿§Ú­Ì¨â­Ó³£¨S¦³ªíºA";
+			mes "¹ê»Ú¤WÅ¥¨ì§A³o¥y¸Ü";
+			mes "§Ú¬O¦³ÂI¤£°ª¿³¡A¥»¨Ó­nµ¹";
+			mes "³Á¤æ©Ò»s§@ªºµL¼ÄÅKª÷¿ûz";
+			mes "§Ú­n§â¥¦·´±¼!";
+			next;
+			mes "[¥d¯S]";
+			mes "«ÜÃø±oÅ¥¨ìªº¸Ü¡AÅý§A¶]¤@½ë";
+			mes "¶Çµ¹§Ú¡A¯u¬OÁÂÁÂ§A";
+			close;
+		}
+		mes "[¥d¯S]";
+		mes ".........................";
+		mes "¯u¬O¤@­ÓµL²áªº³Ã¥ë";
+		close;
+	}
+	else if (metto_q == 6 || metto_q == 7 || metto_q == 8 || metto_q == 9) {
+		mes "§Ú²{¦b·Q¿W¦Û³Ð³y¤@­Ó";
+		mes "¥i¥HÅý¤H­Ì·f­¼ªº";
+		mes "¤H«¬¾÷¾¹";
+		mes "ÁöµM¦³ÂIÃø¡A¥u­n¦³³o";
+		mes "¯S®í¦Xª÷ªº¸Ü¡AÁ`¦³¤@¤Ñ";
+		mes "¥i¥H¹F¦¨§Úªº¥Ø¼Ðªº";
+		next;
+		mes "[¥d¯S]";
+		mes "¤£¹LÁ`¦³¤@¤Ñ¦b¨qµo¯÷";
+		mes "¬Ý¨ì³o¼Ë¥¨¤jªºªF¦è®É";
+		mes "´N§â¥¦·Q¦¨¨º¬O§Ú°µªºªF¦è";
+		close;
+	}
+	else {
+		mes "§Ú¬O¥d¯S¡A±Mªù°µ¾÷±ñªº³Õ¤h";
+		mes "¥Ø«e¨S¦³°µ¤°˜l";
+		mes "¯S§Oªº¬ã¨s¬¡°Ê...§Ú©Ò°µªº";
+		mes "µL¼ÄÅKª÷¿ûz¯S®í¦Xª÷¬O";
+		mes "¦W«~¤¤ªº¦W«~";
+		close;
+	}
+}
+
+yuno_in03,178,43,0	script	¹ê¹ê#juno	121,{
+	if (metto_q == 6) {
+		mes "[¹ê¹ê]";
+		mes "§Úªº¦W¤l¥s ¹ê¹ê¡A¬O³o§ø¸¨ 3¤j";
+		mes "ÀY¸£¤¤ªº¤@¦W! ÁöµM³o§ø¸¨";
+		mes "¬ì¾Ç®a¨Ã¤£¦h¡A¤£¹L";
+		mes "¥i¥H¶i¤J¨ì3¤jÀY¸£¤¤ªº¤@¦Wªº¸Ü";
+		mes "ºâ¤£Â²³æ°Ú! «y³Ü!";
+		next;
+		mes "[¹ê¹ê]";
+		mes "¦Û¸Øªº¸ÜÁ¿¨ì³oÃä... ¤°»ò¨Æ°Ú?";
+		next;
+		switch(select("¥´ÂZ§Aªº¬ã¨s:¥u¸ò§A¥´©Û©I")) {
+		case 1:
+			set metto_q,7;
+			mes "[¹ê¹ê]";
+			mes "...¶â? ³Á¤æ³o³Ã¥ë¾Ú»¡»Ý­n§Úªº";
+			mes "»´¤ÞÀº²z½×? ...­ó...";
+			mes "¦Û¶Æªº³Ã¥ë¡A§Ú¯uªº·Q§â¥L";
+			mes "§ì°_¨ÓµM«á¦A¸j°_¨Ó¡A";
+			mes "·Q±Ð¨|¥L§Úªº¬ã¨sªº°¶¤j©Ê";
+			mes "¤£¹L¯à«oÅÜ¦¨";
+			mes "§Ú³oÃä¥ý­n¦V¥L»¡¹Dºpªº¦a¨B¤F...";
+			mes "«y«¢«¢«¢«¢¡A¤£¹L³o¤@¦¸»´¤ÞÀº²z½×";
+			mes "¦]¬°§÷®Æªº¤£¨¬¡A«o§¹¥þ¥¢±Ñ¤F";
+			mes "§Y¨Ï³Á¤æ¨S¦³³o¼ËÁ¿";
+			mes "¤]¬O¥¢±Ñªº~";
+			next;
+			mes "[¹ê¹ê]";
+			mes "¤w¸gª¾¹D³Á¤æªº¥»¤ß¤§«á";
+			mes "§Y¨Ï¦A¬ã¨s¨Ï¬ã¨s¦¨¥\¡A";
+			mes "§Ú¤]¤£·Q©M¥L¦@¨É¬ã¨sµ²ªG";
+			mes "ÁÂÁÂ§AÂà§iµ¹¥L";
+			close;
+			break;
+		case 2:
+			mes "[¹ê¹ê]";
+			mes "¯u¬O¤@­ÓµL²áªº³Ã¥ë¡A";
+			mes "­è¦n´eªº¤£­@·Ð¡A";
+			mes "§A¤S¶]¹L¨Ó·Ð§Ú";
+			break;
+		}
+	}
+	else if (metto_q < 6) {
+		mes "[¹ê¹ê]";
+		mes "§Úªº¦W¤l¥s ¹ê¹ê¡A¬O³o§ø¸¨ 3¤j";
+		mes "ÀY¸£¤¤ªº¤@¦W! ÁöµM³o§ø¸¨";
+		mes "¬ì¾Ç®a¨Ã¤£¦h¡A¤£¹L";
+		mes "¥i¥H¶i¤J¨ì3¤jÀY¸£¤¤ªº¤@¦Wªº¸Ü";
+		mes "ºâ¤£Â²³æ°Ú! «y³Ü!";
+		close;
+	}
+	else {
+		mes "[¹ê¹ê]";
+		mes "­ó¶â... §A§â»´¤ÞÀº²z½×";
+		mes "µ¹¥L­«·s©w¸q¬O¤£¿ùªº";
+		mes "¦]¬°§÷®Æ¤£¨¬ÁÙ¯u¶Ë¸£µ¬°Ú...¤j±ø°Ú";
+		mes "©M³Á¤æ³o³Ã¥ë¨S¦³¥ô¦ó¥æ¬y";
+		mes "³o®É­ÔÁÙ¯u²Ö°Ú";
+		close;
+	}
+}
+
+// Áåª÷³N®v¥S§Ì
+yuno_in01,103,157,3	script	µo¤¯#juno	98,{
+
+	if (countitem(974) > 0 && countitem(612) > 4 && countitem(1003) > 4 && countitem(7068) > 4 && countitem(7043) > 4 && countitem(757) > 2 && countitem(756) > 2 && Zeny > 2000) {
+		if (ALCH_Q == 23) set ALCH_Q,24;
+		set .@kyulkwa,rand(1,10);
+		mes "[µo¤¯]";
+		mes "¾¾¾¾¡A§â©Ò»Ý­nªº§÷®Æ¥þ¦¬¶°¦n¤F¶Ü?";
+		mes "¯uªºÁÂÁÂ!";
+		mes "¦n¡A¨º»ò´N¶}©l¦X¦¨§a!";
+		mes "½Ðµy·Lµ¥«Ý¤@¤U!";
+		next;
+		mes "-ÅL Ãò Ãò Ãò-";
+		next;
+		mes "-ôø ôø ôø ôø Ãô Ãô-";
+		next;
+		mes "-³Ü ¹Ç ³Ü ¹Ç ¸I!-";
+		next;
+		if (.@kyulkwa < 4 || .@kyulkwa > 8)
+			callsub S_DelItems,1002,5,1;
+		if (.@kyulkwa == 5 || .@kyulkwa == 6 || .@kyulkwa == 8)
+			callsub S_DelItems,723,5,1;
+		else if (.@kyulkwa == 7)
+			callsub S_DelItems,969,2,0;
+	}
+	if (bros_q == 1) {
+		mes "[µo¤¯]";
+		mes "§Ú©È§A¬ðµM·|§Ñ°O§÷®Æ¡A";
+		mes "§â¥D­nªº§÷®Æ¦A©À¤@¹Mµ¹§A¡A";
+		mes "¶¶«K°µ°O¿ý§â¥¦­I¤U¨Ó§a";
+		next;
+		mes "[µo¤¯]";
+		mes "^FF0000²V¦X¾¯^000000 1¤ä";
+		mes "^FF0000Äâ±a¥Îº²ÄqÄl^000000 5­Ó";
+		mes "^FF0000¿U¿N¤@¥bªº¤ì§÷^000000 5­Ó";
+		mes "^FF0000·ÑÄq^000000 5­Ó";
+		mes "^FF0000¶À´¹¨F^000000 5­Ó";
+		next;
+		mes "[µo¤¯]";
+		mes "^FF0000¾T­ì¥Û^000000 3­Ó";
+		mes "^FF0000¯«¤§ª÷ÄÝ­ì¥Û^000000 3­Ó";
+		next;
+		mes "[µo¤¯]";
+		mes "ÁÙ»Ý­n©ñ¤J2000Zeny¡A­n¤@°_ÅÍ©Õ";
+		mes "¨º´N«ô°U§A°Õ";
+		close;
+	}
+	if (bros_q == 0) {
+		mes "[µo¤¯]";
+		mes "§Ú©MÁåª÷³N®vµo¤¯§Ì§Ì¤@°_¡A¥¿¦b§V¤Oªº¬ã¨s¡A¦Û¤w·|Á¿¸Ü¦Û¤w·|«ä¦Òªº¦Û°Ê¤H«¬";
+		mes "¹L¥h¡A¥H¬P¬P©R¦W³Q¦ÛµM¬É¿ï¨úªºª«½è©Mª÷ÄÝ¡A°µ¦¨¦Û¤v·|¦Û°ÊÁ¿¸Ü·|«ä¦Òªº¦Û°Ê¤H«¬";
+		mes "¹L¥h¤åÄm¤W¦³³o¼Ëªº°O¸ü¡A¥H«e¦³³o¼Ëªº¤H";
+		mes "§Ú¬Û«H§Ú­Ì¤]·|¿ì¨ìªº";
+		next;
+		mes "[µo¤¯]";
+		mes "¥i¬O²{¦b¦]§÷®Æªº¤£¨¬¡A¬ã¨sªº¶i«×¨S¦³©¹«eÁÚ¶i";
+		mes "¨ì©³¨ä¥LÁåª÷³N®v­Ì«ç»ò¼Ë·j¶°§÷®Æªº?";
+		mes "¿ú¤]¬O¤@­Ó°ÝÃD¡A§â¨ä¥¦Å]ª«±þ±¼¡A©Ò±o¨ìªºÄ_ª«¤]À³¸Ó«Ü¦h°Ú";
+		mes "­üËç....»Ý­n«Ü¦hºØ§÷®Æ°Ú¡A°ÝÃD¤j°Õ....";
+		next;
+		if (select("§Ú¨ÓÀ°§A´M§ä:§A¥[ªo§a") == 1) {
+			set bros_q,1;
+			mes "[µo¤¯]";
+			mes "¾¾...¾¾...°¶¤jªº¥~¦a¤H°Ú!";
+			mes "¬O§AÅý§Ú­Ìªº¬ã¨s¼ö«×Ä~Äòªº©µÄò¤U¥h¤F¡A¨º§Ú´N§i¶D§A§Ú­Ì©Ò»Ý­nªºªF¦è¤F!";
+			next;
+			mes "[µo¤¯]";
+			mes "^ff0000²V¦X¾¯^000000 1¤ä";
+			mes "^ff0000Äâ±a¥Îº²ÄqÄl^000000 5­Ó";
+			mes "^ff0000¿U¿N¤@¥bªº¤ì§÷^000000 5­Ó";
+			mes "^ff0000·ÑÄq^000000 5­Ó";
+			mes "^ff0000¶À´¹¨F^000000 5­Ó";
+			next;
+			mes "[µo¤¯]";
+			mes "^ff0000¾T­ì¥Û^000000 3­Ó";
+			mes "^ff0000¯«¤§ª÷ÄÝ­ì¥Û^000000 3­Ó";
+			next;
+			mes "[µo¤¯]";
+			mes "¥t¥~ÁÙ»Ý­n2000Zeny";
+			mes "·í§âª«½è²V¦Xªº®É­Ô¡A¾A·íªº©ñ¤Jª÷¹ôªº¸Ü¡A®ÄªG·|¦n¤@ÂI";
+			mes "¨º´N....«ô°U§A°Õ";
+			close;
+		}
+		mes "[µo¤¯]";
+		mes "§Ú¯uªº¸r¼}§A¡A¹³§A³o¼Ë±j§§ªº®È¦æªÌ....";
+		close;
+	}
+
+S_DelItems:
+	delitem 974,1; //Mixture
+	delitem 612,5; //Portable_Furnace
+	delitem 1003,5; //Coal
+	delitem 7068,5; //Burn_Tree
+	delitem 7043,5; //Fine_Sand
+	delitem 757,3; //Elunium_Stone
+	delitem 756,3; //Oridecon_Stone
+	set zeny,zeny-2000;
+	getitem getarg(0),getarg(1); //Gold
+	mes "[µo¤¯]";
+	mes "¨þ!¨þ!¨þ!";
+	mes "¦X¦¨µ²§ô¤F";
+	if (getarg(2) == 1) {
+		mes "¤£ª¾¹D¬°¤°»ò¦X¦¨¤F"+getarg(1)+"­Ó";
+	}
+	else {
+		mes "¤£ª¾¹D¬°¤°»ò¦X¦¨¤F";
+	}
+	mes "^FF0000"+getitemname(getarg(0))+"^000000 !";
+	next;
+	mes "[µo¤¯]";
+	mes "¦]¬°ª¾¹D³o­Óµ²ªG¡A";
+	mes "©Ò¥H³oªF¦è¤£»Ý­n¤F!";
+	next;
+	mes "[µo¤¯]";
+	mes "ÁÂÁÂ§Aªº°t¦X";
+	mes "¨º»ò¯¬§A®È³~´r§Ö~";
+	close;
+}
+	
+yuno_in01,100,153,7	script	µoÂí	47,0,0,{
+
+	if (countitem(974) > 0 && countitem(612) > 4 && countitem(1003) > 4 && countitem(7068) > 4 && countitem(7043) > 4 && countitem(757) > 2 && countitem(756) > 2 && Zeny > 2000) {
+		if (ALCH_Q == 23) set ALCH_Q,24;
+		set .@kyulkwa,rand(1,10);
+		mes "[µoÂí]";
+		mes "¾¾¾¾¡A§â©Ò»Ý­nªº§÷®Æ¥þ¦¬¶°¦n¤F¶Ü?";
+		mes "¯uªºÁÂÁÂ!";
+		mes "¦n¡A¨º»ò´N¶}©l¦X¦¨§a!";
+		mes "½Ðµy·Lµ¥«Ý¤@¤U!";
+		next;
+		mes "-ÅL Ãò Ãò Ãò-";
+		next;
+		mes "-ôø ôø ôø ôø Ãô Ãô-";
+		next;
+		mes "-³Ü ¹Ç ³Ü ¹Ç ¸I!-";
+		next;
+
+		if (.@kyulkwa < 4 || .@kyulkwa > 8)
+			callsub S_DelItems,1002,5,1;
+		if (.@kyulkwa == 5 || .@kyulkwa == 6 || .@kyulkwa == 8)
+			callsub S_DelItems,723,5,1;
+		else if (.@kyulkwa == 7)
+			callsub S_DelItems,984,3,1;
+	}
+	if (bros_q == 1) {
+		mes "[µoÂí]";
+		mes "¶â?§A§Ñ°O§÷®Æ¤F¶Ü?";
+		mes "§Ú¦A©À¤@¹Mµ¹§A¡A¦n¦n°O¦í°Ú";
+		next;
+		mes "[µoÂí]";
+		mes "^ff0000²V¦X¾¯^000000 1¤ä";
+		mes "^ff0000Äâ±a¥Îº²ÄqÄl^000000 5­Ó";
+		mes "^ff0000¿U¿N¤@¥bªº¤ì§÷^000000 5­Ó";
+		mes "^ff0000·ÑÄq^000000 5­Ó";
+		mes "^ff0000¶À´¹¨F^000000 5­Ó";
+		next;
+		mes "[µoÂí]";
+		mes "^ff0000¾T­ì¥Û^000000 3­Ó";
+		mes "^ff0000¯«¤§ª÷ÄÝ­ì¥Û^000000 3­Ó";
+		next;
+		mes "[µoÂí]";
+		mes "ÁÙ»Ý­n©ñ¤J2000Zeny¤@°_ÅÍ©Õ";
+		mes "§Úª¾¹D³o«Ü¬°Ãø§A";
+		mes "¨º´N«ô°U§A°Õ";
+		close;
+	}
+	if (bros_q == 0) {
+		mes "[µoÂí]";
+		mes "§Ú¬OÁåª÷³N®vµoÂí¡A§Ú©M­ô­ô¤@°_°µ¬ã¨s¡A¤£¹L...";
+		mes "ÁöµM§Ú­Ìªº¹Ú·Q¬O»s§@¦Û°Ê¤H«¬¡A§ÚÁÙ¬O³ßÅw©M­ô­ô°µ¬ã¨s";
+		mes "¤£ºÞ°µ¤°»ò¨Æ¡A³£«Ü³ßÅw©M¥L¤@°_¡A§V¤Oªº§â¨Æ±¡§¹¦¨";
+		next;
+		mes "[µoÂí]";
+		mes "¥i¬O²{¦b¦]¬°§÷®Æ¤£¨¬ªºÃö¨t¡A";
+		mes "¬ã¨sªº¶i«×¨S¦³©¹«eÁÚ¶i";
+		mes "§Ú­Ì¤w¸g³o»ò½æ¤O¤F¡A";
+		mes "¹B¤]¤£¦n....¥ð¶ã";
+		next;
+		if (select("§Ú¨ÓÀ°§A´M§ä:¥´°_ºë¯«¨Ó") == 1) {
+			set bros_q,1;
+			mes "[µoÂí]";
+			mes "¾¾...¾¾...°¶¤jªº¥~¦a¤H°Ú!";
+			mes "¬O§AÅý§Ú­Ìªº¬ã¨s¼ö«×Ä~Äòªº©µÄò¤U¥h¤F¡A¨º§Ú´N§i¶D§A¡A§Ú­Ì©Ò»Ý­nªºªF¦è¤F!";
+			next;
+			mes "[µoÂí]";
+			mes "^FF0000²V¦X¾¯^000000 1¤ä";
+			mes "^FF0000Äâ±a¥Îº²ÄqÄl^000000 5­Ó";
+			mes "^FF0000¿U¿N¤@¥bªº¤ì§÷^000000 5­Ó";
+			mes "^FF0000·ÑÄq^000000 5­Ó";
+			mes "^FF0000¶À´¹¨F^000000 5­Ó";
+			next;
+			mes "[µoÂí]";
+			mes "^FF0000¾T­ì¥Û^000000 3­Ó";
+			mes "^FF0000¯«¤§ª÷ÄÝ­ì¥Û^000000 3­Ó";
+			next;
+			mes "[µoÂí]";
+			mes "¥t¥~ÁÙ»Ý­n2000Zeny";
+			mes "·í§âª«½è²V¦Xªº®É­Ô¡A¾A·íªº©ñ¤Jª÷¹ôªº¸Ü¡A®ÄªG·|¦n¤@ÂI";
+			mes "¨º´N....«ô°U§A°Õ";
+			close;
+		}
+		close;
+	}
+
+S_DelItems:
+	delitem 974,1; //Mixture
+	delitem 612,5; //Portable_Furnace
+	delitem 1003,5; //Coal
+	delitem 7068,5; //Burn_Tree
+	delitem 7043,5; //Fine_Sand
+	delitem 757,3; //Elunium_Stone
+	delitem 756,3; //Oridecon_Stone
+	set zeny,zeny-2000;
+	getitem getarg(0),getarg(1); //Gold
+	mes "[µoÂí]";
+	mes "¦X¦¨µ²§ô¤F!";
+	if (getarg(2) == 1) {
+		mes "¤£ª¾¹D¬°¤°»ò¦X¦¨¤F"+getarg(1)+"­Ó";
+	}
+	else {
+		mes "¤£ª¾¹D¬°¤°»ò¦X¦¨¤F";
+	}
+	mes "^FF0000"+getitemname(getarg(0))+"^000000 !";
+	next;
+	mes "[µoÂí]";
+	mes "¦]¬°ª¾¹D³o­Óµ²ªG¡A";
+	mes "©Ò¥H³oªF¦è¤£»Ý­n¤F!";
+	mes "­YÁÙ·Q«ùÄò¬ã¨sªº¸Ü¡A";
+	mes "¥u­n§÷®Æ»ô¥þªº¸ÜÅwªï¦A¨Ó!";
+	close;
+}
+
+// Doomed Swords - Juno Portion
+//============================================================ 
+yuno,157,87,4	script	A Citizen of Juno#juno	102,{
+	mes "[Shalima]";
+	mes "When you go north from Al De Baran, you will arrive at 'Elmeth Plateau,' a place covered with molten rock.";
+	next;
+	mes "[Shalima]";
+	mes "On the top of a mountain connected to the plateau, you can find a bridge which leads you to this place!, ^3355FFJuno,^000000 the city of Sages.";
+	next;
+	if (dmdswrd_Q == 23) {
+		mes "[Shalima]";
+		mes "Oh...?";
+		mes "what is that shining object you're carrying with you? Isn't that...?";
+		next;
+		mes "[Shalima]";
+		mes "The ^3355FFStamp of Muriniel^000000? What a surprise!";
+		next;
+		mes "[Shalima]";
+		mes "When you go East from the entrance of Juno, you will find the Street of Book Stores. If you have some time, please visit ^3355FFSir Yklah^000000 who is one of 3 well-known sages in Juno.";
+		next;
+		mes "[Shalima]";
+		mes "I believe he may take some special interest in the Stamp you are carrying.";
+		close;
+	}
+	else {
+		mes "[Shalima]";
+		mes "In Juno, you can visit places such as the 'Juphero Plaza,' 'Juno Conference Hall,' 'Schweicherbil Magic Academy', or the 'Monster Museum.' These places are famous around the world!";
+		next;
+		mes "[Shalima]";
+		mes "You may also wish to drop by the 'Sage Castle,' where people can change their jobs into 'Sage,' one of the more unique classes.";
+		next;
+		mes "[Shalima]";
+		mes "If you're interested in the Sage class, why don't you go look around the castle?";
+		close;
+	}
+}
+
+yuno,261,99,4	script	Sage Yklah#juno	735,{
+	if (dmdswrd_Q == 23 || dmdswrd_Q == 24 || dmdswrd_Q == 25) {
+		switch(dmdswrd_Q) {
+		case 23:
+			mes "[Yklah]";
+			mes "- ! ! ! -";
+			next;
+			mes "[Yklah]";
+			mes "That item...";
+			mes "That shining item you're carrying, isn't that...? ^3355FFStamp of Muriniel^000000?! Oh! What a surprise!";
+			next;
+			mes "[Yklah]";
+			mes "I've heard that it's from a hot and dry land, but I never dreamed I'd be able to see it with my own eyes!";
+			next;
+			mes "[Yklah]";
+			mes "Who are you...? Who are you carrying this legendary item for?";
+			next;
+			switch(select("(Show him the slate):I'm a genius!:I'm a GM!")) {
+			case 1:
+				mes "[Yklah]";
+				mes "...I can't believe my eyes! Only a chosen few can possess the Stamp of Muriniel...";
+				next;
+				mes "[Yklah]";
+				mes "Oh yes. That's right, that's right. As far as I can tell, you don't seem to understand how to use this item...";
+				next;
+				mes "[Yklah]";
+				mes "There is one old song in Juno, about ^3355FF'The Doomed Sword'^000000 that you may have been looking for.";
+				next;
+				mes "[Yklah]";
+				mes "'Even if you're running toward a light on the other side of the mist, you can't reach it.'";
+				next;
+				mes "[Yklah]";
+				mes "'The chime of the bell from across the valley cannot be held in your hand.'";
+				next;
+				mes "[Yklah]";
+				mes "Yes, it's sort of a difficult song to understand, but it's supposed to express how Sages in ancient times feel about obtaining the doomed swords.";
+				//mes "that's how exactly sages in ancient ages felt about obtaining the doomed sword.";
+				next;
+				mes "[Yklah]";
+				mes "If you're still set on the idea of obtaining the doomed sword, come and talk to me sometime.";
+				next;
+				mes "[Yklah]";
+				mes "As you already possess the Stamp of Muriniel, I am more than willing to help you.";
+				set dmdswrd_Q,24;
+				close;
+			case 2:
+				mes "[Yklah]";
+				mes "Hmm?";
+				mes "A genius you say? How can you say that in a city full of wise men? That's nothing special.";
+				next;
+				mes "[Yklah]";
+				mes "Plus, if you're a colleague, I think I would remember you. I don't tend to forget people that I've met at least once.";
+				close;
+			case 3:
+				mes "[Yklah]";
+				mes "A...";
+				mes "GM?";
+				next;
+				mes "[Yklah]";
+				mes "I don't understand what you're talking about. But there's an ancient Juno song about this GM you speak of...";
+				next;
+				mes "[Yklah]";
+				mes "'^FF3355Impersonating GMs is punishable with a permanent account block^000000.' But what could it possibly mean?";
+				next;
+				mes "^3355FFHow depressing!^000000";
+				close;
+			}
+		case 24:
+			if (countitem(7030) > 2 && countitem(913) > 9 && countitem(7032) > 0) {
+				mes "[Yklah]";
+				mes "Hmm! Good job, you brought all of the items. Try inserting them in the grooves.";
+				next;
+				mes "[Yklah]";
+				mes "To be honest, I thought about it before, but this is the first time that I'll actually try this experiment. Go ahead, I want to see what happens!";
+				next;
+				mes "^3355FFYou inserted items";
+				mes "in the grooves .^000000";
+				delitem 7030,3; //Claw_Of_Desert_Wolf
+				delitem 913,10; //Tooth_Of_Bat
+				delitem 7032,1; //Piece_Of_Egg_Shell
+				next;
+				mes "^3355FF*Crank Crank*^000000";
+				mes "^3355FFYou hear a strange sound come from inside the statue.^000000";
+				next;
+				mes "^3355FF*Click*";
+				mes "*Click Click*^000000";
+				next;
+				mes "^3355FFA small hole opened near the foot of the statue, and a ^9999FF Stamp of Muriniel^3355FF came out of the hole.^000000";
+				next;
+				mes "^3355FFYou got ^9999FFA piece from the Stamp of Muriniel^3355FF.^000000";
+				next;
+				mes "[Yklah]";
+				mes "Huh?! That piece seems to fit to the stamp you have. Why don't you try joining them together?";
+				next;
+				mes "^3355FFYou join the two stamps together.^000000";
+				next;
+				mes "^3355FFYou got the";
+				mes "True Stamp of Muriniel.^000000";
+				set dmdswrd_Q,25;
+				next;
+				mes "[Yklah]";
+				mes "Oh? This pattern is...!! Ah, now I see how it works. Now, please listen...";
+				next;
+				mes "[Yklah]";
+				mes "I'd like you to bring the slate to Snotora, the island of knowledge, that is a part of Juno. You will find a Statue of the Goddess Snotora somewhere on the island.";
+				next;
+				mes "[Yklah]";
+				mes "Near the statue, you will find ^3355FFSyklah^000000, one of well-known 3 sages in Juno. Speak to him, he will tell you something about the pattern on the slate.";
+				next;
+				mes "[Yklah]";
+				mes "May God";
+				mes "light your way...";
+				close;
+			}
+			else {
+				mes "[Yklah]";
+				mes "Let me tell you everything I know about the doomed sword. There's an old song about the legendary doomed sword...";
+				next;
+				mes "[Yklah]";
+				mes "^3355FFYou, the one with sincere faith, who humbly accepts the prosperity of Mineta, the knowledge of Snotora and the honor of Solomon...^000000";
+				next;
+				mes "[Yklah]";
+				mes "^3355FFI hereby grant you this column of light. The Three Sages of Juno will be your guide^000000.";
+				next;
+				mes "[Yklah]";
+				mes "Well, if you already know a little bit about Juno, you'd know that Juno consists of 3 islands that represent propsperity, knowledge and honor.";
+				next;
+				mes "[Yklah]";
+				mes "The 3 sages described in the song represent each island. By now, you've probably guessed that I am one of them.";
+				next;
+				mes "[Yklah]";
+				mes "There is a Juno tradition in which the three best Sages are chosen to represent each of Juno's islands.";
+				next;
+				mes "[Yklah]";
+				mes "As one of the three, I will serve as one of your guides in this part of your journey for the doomed sword.";
+				next;
+				mes "^3355FFYklah pointed at a pole of the statue with his finger, and you see that there is a strange pattern engraved on the pole.^000000";
+				next;
+				mes "[Yklah]";
+				mes "Now, look at this. This statue was erected to pay tribute to one of the first 3 sages. When you look into the bottom of the pole, you will see several small grooves.";
+				next;
+				mes "[Yklah]";
+				mes "If you insert some items in the grooves, we may get some more clues relating to the doomed sword.";
+				next;
+				mes "[Yklah]";
+				mes "From the stories that I've been told by great Sages, I've figured exactly which items you'll need to place into those grooves.";
+				next;
+				mes "[Yklah]";
+				mes "You will need...";
+				mes "^3355FF3 Claw of Desert Wolf^000000";
+				mes "^3355FF10 Tooth of Bat^000000";
+				mes "^3355FF1 Piece of Egg Shell^000000.";
+				next;
+				mes "[Yklah]";
+				mes "Return once you have obtained those items, and we will speak of the doomed sword again.";
+				next;
+				mes "[Yklah]";
+				mes "For your information, you can obtain the claw of desert wolf from the Morroc desert, and the tooth of bat can be found in most caves around the world.";
+				next;
+				mes "[Yklah]";
+				mes "Lastly, the piece of egg shell can be found from solid egg monsters in the Payon cave.";
+				close;
+			}
+		case 25:
+			mes "[Yklah]";
+			mes "From the stories that I've been told by great Sages, I've figured exactly which items you'll need to place into those grooves.";
+			next;
+			mes "[Yklah]";
+			mes "You will need...";
+			mes "^3355FF3 Claw of Desert Wolf^000000";
+			mes "^3355FF10 Tooth of Bat^000000";
+			mes "^3355FF1 Piece of Egg Shell^000000.";
+			next;
+			mes "[Yklah]";
+			mes "Return once you have obtained those items, and we will speak of the doomed sword again.";
+			next;
+			mes "[Yklah]";
+			mes "For your information, you can obtain the claw of desert wolf from the Morroc desert, and the tooth of bat can be found in most caves around the world.";
+			next;
+			mes "[Yklah]";
+			mes "Lastly, the piece of egg shell can be found from solid egg monsters in the Payon cave.";
+			close;
+		}
+	}
+	else {
+		mes "[Yklah]";
+		mes "^3355FFJuphero^000000...";
+		mes "That was the name of the city that once existed in ancient times.";
+		next;
+		mes "[Yklah]";
+		mes "The most intelligent and talented people of that time lived there, harnessing the pieces of Ymir's heart to power their civilization.";
+		next;
+		mes "[Yklah]";
+		mes "Unfortunately, they happened to abuse that great power and somehow destroyed themselves.";
+		next;
+		mes "[Yklah]";
+		mes "If you long to acquire God's knowledge, you must first be humble. Otherwise...";
+		close;
+	}
+}
+	
+yuno,305,207,4	script	Sage Syklah#juno	735,{
+	if (dmdswrd_Q == 25 || dmdswrd_Q == 26 || dmdswrd_Q == 27) {
+		switch(dmdswrd_Q) {
+		case 25:
+			mes "[Syklah]";
+			mes "What's that?!";
+			mes "Can it be the Stamp of Muriniel?";
+			next;
+			mes "[Syklah]";
+			mes "Now, we shall battle to the death to see if you are worthy of possessing this item. Prepare yourself!";
+			next;
+			mes "[Syklah]";
+			mes "...";
+			mes "Muhahahahaha!!! Don't worry, I was only messing with you. Yklah told me that you might be coming.";
+			next;
+			mes "[Syklah]";
+			mes "It is said that The Stamp of Muriniel chooses its owner by its own will, and will not appear otherwise.";
+			next;
+			mes "[Syklah]";
+			mes "Even though I am one of the three great Sages of Juno, I've never even seen this item before.";
+			next;
+			mes "[Syklah]";
+			mes "Yklah gave me an idea about the Stamp of Muriniel you've brought, so we'll try it out as well.";
+			next;
+			mes "[Syklah]";
+			mes "The pattern engraved on the Stamp of Muriniel has shapes that are similar to the pattern engraved on this^3355FFStatue of the Goddess Snotora^000000.";
+			next;
+			mes "^3355FFYou see for yourself that, indeed, the pattern on the statue of the Goddess Snotora matches that on the Stamp of Muriniel.^000000";
+			next;
+			mes "[Syklah]";
+			mes "When I was young, I learned about a legendary stamp ink related to this statue. But at the time, it made no sense to me. Just how legendary can stamp ink be?";
+			next;
+			mes "[Syklah]";
+			mes "But now I believe that this stamping ink can be used with this Stamp of Muriniel.";
+			next;
+			mes "[Syklah]";
+			mes "But even though I've learned how to make this special stamping ink, it is too difficult for me to collect the materials that are necessary to create it.";
+			next;
+			mes "[Syklah]";
+			mes "Okay, if you're ready, please bring me the following items. I feel like making legendary red ink, so bring me...";
+			next;
+			mes "[Syklah]";
+			mes "^3355FF20 Red Herb^000000,";
+			mes "^3355FF5 Stone^000000 and";
+			mes "^3355FF1 Stone Heart^000000.";
+			mes "The Stone Heart will be used as a bottle to hold this special ink.";
+			next;
+			mes "[Syklah]";
+			mes "I think that's all I need. Anyway, I believe that gathering these items shouldn't be a difficult task for you. Good luck to you.";
+			set dmdswrd_Q,26;
+			close;
+		case 26:
+			if (countitem(7049) > 4 && countitem(953) > 0 && countitem(507) > 19) {
+				mes "[Syklah]";
+				mes "Hahaha...!";
+				mes "So you've already gathered the items I've asked for. Good, good. Let's get started...";
+				delitem 7049,5; //Stone
+				delitem 953,1; //Stone_Heart
+				delitem 507,20; //Red_Herb
+				next;
+				mes "^3355FFSage Syklah grinded the stones and stone heart and molded them into a strange shape.^000000";
+				next;
+				mes "^3355FFHe then ground the red herbs and placed them into the stone mold.^000000";
+				next;
+				mes "^3355FFAfterwards, he then took a strangely shaped capsule from his pocket, sprinkled some liquid from it, and began to chant a spell...^000000";
+				next;
+				mes "[Syklah]";
+				mes "Haooooh...";
+				mes "Doo de doo de~ Dah dah dah Dan dan dan Dah dah dah! Nu ha nu ha nu hahaha... Moo hee moo hee moo hee~";
+				mes "- Pah ahhhh !! -";
+				next;
+				mes "^3355FFThe Stamping Ink of Muriniel has been created, and has been given to you by the sage Syklah.^000000";
+				set dmdswrd_Q,27;
+				next;
+				mes "[Syklah]";
+				mes "Now, with this stamping ink, you are able to use the Stamp of Muriniel.";
+				next;
+				mes "[Syklah]";
+				mes "Now, I don't think you can use the stamp just anywhere. After all, it is a legendary item.";
+				next;
+				mes "[Syklah]";
+				mes "Please visit the Third Sage ^3355FFEsklah^000000 who stays on Solomon, the island of prosperity, here in Juno.";
+				next;
+				mes "[Syklah]";
+				mes "He will be able to tell you more about where to use this stamp. However, be careful. He is the most fastidious sage among all of us.";
+				close;
+			}
+			else {
+				mes "[Syklah]";
+				mes "I hope you will bring me what I need to make the 'Stamp of Muriniel' ink soon.";
+				next;
+				mes "[Syklah]";
+				mes "I will need...";
+				mes "^3355FF20 Red Herb^000000,";
+				mes "^3355FF5 Stone^000000 and";
+				mes "^3355FF1 Stone Heart^000000.";
+				close;
+			}
+		case 27:
+			mes "[Syklah]";
+			mes "Please visit ^3355FFEsklah^000000 on the island of prosperity, Solomon. But be careful. He is the most exacting Sage out of all of us.";
+			close;
+		}
+	}
+	else {
+		mes "[Syklah]";
+		mes "The people here keep talking of some suspicious man living in Juno.";
+		next;
+		mes "[Syklah]";
+		mes "Supposedly, he's pretty dangerous, and is always immersing himself in some kind of research.";
+		next;
+		mes "[Syklah]";
+		mes "People already consider him a 'Mad Scientist,' wasting his time studying impractical things beyond the understanding of normal people.";
+		next;
+		mes "[Syklah]";
+		mes "It's rumored that this scientist is responsible for creating 'Blazer,' a monster made of magic flame.";
+		next;
+		mes "[Syklah]";
+		mes "It's a dangerous and fearsome monster that casts spells like Fire Bolt and Fire Ball that lives outside of Juno.";
+		close;
+	}
+}
+	
+yuno,213,298,4	script	Sage Esklah#juno	735,{
+	if (dmdswrd_Q == 27 || dmdswrd_Q == 28 || dmdswrd_Q == 29 || dmdswrd_Q == 30) {
+		switch(dmdswrd_Q) {
+		case 27:
+			mes "[Esklah]";
+			mes "Hm...?";
+			mes "You must be the one who holds the Stamp of Muriniel...";
+			next;
+			mes "[Esklah]";
+			mes "Heh, you don't look like much. But even though you're ordinary looking, you possess the legendary item!";
+			next;
+			mes "[Esklah]";
+			mes "Only a few people in Rune-Midgard's history have been chosen to use the ^3355FFStamp of Muriniel.^000000";
+			next;
+			mes "[Esklah]";
+			mes "However, it's my job to test whether or not you are truly qualified to possess it.";
+			next;
+			mes "[Esklah]";
+			mes "Let me tell you about the stamp craftman ^3355FFMuriniel^000000.";
+			next;
+			mes "[Esklah]";
+			mes "This man lived long ago, somewhere in Mt. Mjornir. He was eager in his studies, and wanted to recreate every pattern that existed in the world.";
+			next;
+			mes "[Esklah]";
+			mes "Believing that people were obstacles to his study of patterns, he lived in seclusion, studying alone.";
+			next;
+			mes "[Esklah]";
+			mes "While studying patterns one day, he happened to find a magic circle that connected this world to another world.";
+			next;
+			mes "[Esklah]";
+			mes "That circle was totally different from ones used by Mages, Wizards or sages. This pattern had the power to summon an evil creature from the other world.";
+			next;
+			mes "[Esklah]";
+			mes "In order to summon the creature, the pattern must be created in the perfect location. Muriniel began to explore various places and finally found the spot he was looking for.";
+			next;
+			mes "[Esklah]";
+			mes "The place he found is now ^3355FFMuriniel's Cottage^000000. But to see that place, you will first need the ^3355FFCompass of Muriniel^000000.";
+			next;
+			mes "[Esklah]";
+			mes "Heh heh. That's right, making the Compass of Muriniel will be my test for you.";
+			next;
+			mes "[Esklah]";
+			mes "Now listen carefully, I won't tell you more than once. I will need you to collect some items to make the ^3355FFCompass of Muriniel^000000.";
+			next;
+			mes "[Esklah]";
+			mes "Bring me...";
+			mes "^3355FF2 Iron Ore^000000,";
+			mes "^3355FF10 Acorn^000000 and";
+			mes "^3355FF5 Decayed Nail^000000.";
+			next;
+			mes "[Esklah]";
+			mes "For someone seeking the doomed sword, this should be a relatively simple task. Now go, and bring me what I have asked."			;
+			set dmdswrd_Q,28;
+			close;
+		case 28:
+			if (countitem(1002) > 1 && countitem(1026) > 9 && countitem(957) > 4) {
+				mes "[Esklah]";
+				mes "Let's see.";
+				mes "2 Iron Ore...";
+				mes "10 Acorn...";
+				mes "5 Decayed Nail...";
+				mes "Good, that's everything!";
+				delitem 1002,2; //Iron_Ore
+				delitem 1026,10; //Acorn
+				delitem 957,5; //Decayed_Nail
+				next;
+				mes "[Esklah]";
+				mes "Good work. Now, while I make the body of the compass, you can go and bring me the rest of the items I'll need.";
+				next;
+				mes "[Esklah]";
+				mes "Muhahahaha! What's with that look? You know how this kind of business gets done!";
+				next;
+				mes "[Esklah]";
+				mes "Now stop whining";
+				mes "and go bring...";
+				mes "^3355FF2 Brigan^000000 and";
+				mes "^3355FF1 Phracon^000000.";
+				mes "Now isn't that simple?";
+				mes "Muhahahaha!!";
+				set dmdswrd_Q,29;
+				close;
+			}
+			mes "[Esklah]";
+			mes "Now listen carefully. I won't tell you more than once. I need some items to create the ^3355FFCompass of Muriniel^000000.";
+			next;
+			mes "[Esklah]";
+			mes "Bring me...";
+			mes "^3355FF2 Iron Ore^000000,";
+			mes "^3355FF10 Acorn^000000, and";
+			mes "^3355FF5 Decayed Nail^000000.";
+			close;
+		case 29:
+			if (countitem(7054) > 1 && countitem(1010) > 0) {
+				mes "[Esklah]";
+				mes "Now...";
+				mes "Show me";
+				mes "what you brought.";
+				mes "That's 2 Brigan and...";
+				mes "1 Phracon. Hmm. Very good.";
+				mes "Now let me get to work.";
+				delitem 7054,2; //Brigan
+				delitem 1010,1; //Phracon
+				next;
+				mes "[Esklah]";
+				mes "Hmm...";
+				mes "Let's see...";
+				mes "There, it's finished.";
+				next;
+				mes "^3355FFSage Esklah handed you the ^3355FFCompass of Muriniel^000000.";
+				next;
+				mes "^3355FFIn the direction the compass is pointing, some words are engraved...^000000";
+				next;
+				mes "^3355FF- Mountain Mjornir -^000000";
+				mes "^3355FF- mjolnir_02 . 170 193 -^000000";
+				next;
+				mes "[Esklah]";
+				mes "Look at the middle of compass carefully to find the place you must use the stamp. I wish you the best of luck in your journey.";
+				set dmdswrd_Q,30;
+				close;
+			}
+			mes "[Esklah]";
+			mes "Listen carefully!";
+			mes "I want you to bring...";
+			mes "^3355FF2 Brigan^000000 and";
+			mes "^3355FF1 Phracon^000000";
+			mes "Isn't that simple and easy?";
+			mes "Muhahaha! Now, get a move on!";
+			close;
+		case 30:
+			mes "^3355FFYou look into the compass of Muriniel and take note of the engraving...^000000";
+			next;
+			mes "^3355FF- Mountain Mjornir -^000000";
+			mes "^3355FF- mjolnir_02 . 170 193 -^000000";
+			close;
+		}
+	}
+	else {
+		mes "[Esklah]";
+		mes "I remember watching a harmless";
+		mes "piece of paper floating";
+		mes "through the air...";
+		next;
+		mes "[Esklah]";
+		mes "As I was thinking of how wonderfully poetic that image was, that paper suddenly attacked me! Me, one of Juno's greatest Sages!";
+		next;
+		mes "[Esklah]";
+		mes "I tried defending myself with my trusty sword, but being paper-thin, that monster managed to dodge all of my blows. I had to cast magic in order to destroy it.";
+		next;
+		mes "[Esklah]";
+		mes "Later, I learned that monster is known as ^3355FFThe Paper^000000.";
+		next;
+		mes "[Esklah]";
+		mes "It used to be a part of an old book that contained a lot of ancient knowledge about Juno, but somehow, became a monster. Isn't that peculiar?";
+		close;
+	}
+}
+	
+mjolnir_02,170,193,4	script	Muriniel's Cottage#juno	111,{
+	if (dmdswrd_Q == 30 || dmdswrd_Q == 31) {
+		switch(dmdswrd_Q) {
+		case 30:
+			mes "^3355FFMuriniel's pattern is carved into the wooden floor.^000000";
+			next;
+			mes "^3355FFUsing the ^9999FFStamp of Muriniel^3355FF and the ^9999FFStamping Ink of Muriniel^3355FF, you fit the stamp into the pattern on the floor.^000000";
+			next;
+			mes "^3355FF*Woon Woon*^000000";
+			next;
+			mes "^3355FFYou can faintly hear someone's voice softly in the distance.^000000";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "You, who are in the future, let me introduce myself.";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "My name is Muriniel, the stamp craftman living in your past. I appreciate that you have overcome many obstacles to reach this place.";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "However, you must first prove that you are qualified to wield the great power of the doomed sword.";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "The great Sages in Juno have helped me to install this magical system in my cottage to leave my message to you, adventurer in the future.";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "I know that you seek more power by obtaining a doomed sword. But not just anyone can handle the might of a doomed sword.";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "And I shudder to think what would happen if such power were to fall into evil hands. The test I have prepared cannot begin until Autumn follows a hot summer.";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "I shall give you an item that promises you of the quest I will give you in the future. Return to this place when the trees begin to shed their leaves...";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "Until that time comes, prepare yourself. And stay alive.";
+			next;
+			mes "^3355FF*Bzzzt!*";
+			mes "*Bzzzzzzt--*^000000";
+			next;
+			mes "^3355FFSuddenly, the Stamp of Muriniel and the Compass of Muriniel break open to reveal a small, shining object.^000000";
+			next;
+			mes "^3355FFYou have received the ^9999FFDignity of Muriniel^000000.";
+			set dmdswrd_Q,31;
+			close;
+		case 31:
+			mes "^3355FFYou can faintly hear someone's voice coming from somewhere...^000000";
+			next;
+			mes "[Muriniel's Recording]";
+			mes "Please remember to return to this place when the trees begin to shed their leaves. Until then, prepare yourself and stay alive.";
+			close;
+		}
+	}
+	else {
+		mes "'Muriniel's Cottage'";
+		next;
+		mes "^3355FFFor some reason, that message is written in this place. But what could be so significant about a cottage like this?^000000";
+		close;
+	}
+}

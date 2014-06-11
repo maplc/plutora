@@ -1,0 +1,270 @@
+//==========================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// -----------------------------------------
+// - 隱藏打洞 (附魔系統)
+//==========================================
+// 版本: 1.0 [L0ne_W0lf]
+//==========================================
+
+prontera,165,60,2	script	實習打洞師	73,{
+	if (Zeny > 399999) {
+		mes "[實習打洞師]";
+		mes "長期以來我一直在研究如何改造盔甲，使盔甲的能力極大化";
+		next;
+		mes "[實習打洞師]";
+		mes "所謂鑽洞，是指在盔甲內隱藏的插槽裡注入神秘力量的跨時代技術";
+		next;
+		mes "[實習打洞師]";
+		mes "當然要注意，同樣的盔甲如果擁有兩件以上，會按照物品在裝備視窗中的順序進行鑽洞";
+		next;
+		mes "[實習打洞師]";
+		mes "在這種情況下，有可能會對不想鑽洞的盔甲鑽洞，因此請只攜帶^5555ff1個^000000需要鑽洞的盔甲過來即可";
+		next;
+		mes "[實習打洞師]";
+		mes "如果帶著兩件以上的盔甲過來，結果出了意外，我是不負任何責任喔!";
+		next;
+		switch(select("無洞盔甲:1洞盔甲:高級盔甲:下次再說")) {
+		case 1:
+			switch(select("大衣:長大衣:鋼鐵鎖子甲:鋼鐵鎧甲:絲質外袍:聖職之衣:天衣月舞:木製鎧甲:緊身便衣:秘銀之衣:魔法外套:盜賊之衣:秘銀金屬鎧甲:火鱗鎧甲:水鱗鎧甲:風鱗鎧甲:地鱗鎧甲:忍服血櫻:變色龍鎧甲:華麗的勇士紫光外套:精良的的勇士紫光外套:勇士紫光外套")) {
+			case 1:
+				callsub S_EnchantArmor,2307,50;
+			case 2:
+				callsub S_EnchantArmor,2309,50;
+			case 3:
+				callsub S_EnchantArmor,2314,50;
+			case 4:
+				callsub S_EnchantArmor,2316,50;
+			case 5:
+				callsub S_EnchantArmor,2321,50;
+			case 6:
+				callsub S_EnchantArmor,2325,50;
+			case 7:
+				callsub S_EnchantArmor,2327,50;
+			case 8:
+				callsub S_EnchantArmor,2328,50;
+			case 9:
+				callsub S_EnchantArmor,2330,50;
+			case 10:
+				callsub S_EnchantArmor,2332,50;
+			case 11:
+				callsub S_EnchantArmor,2334,50;
+			case 12:
+				callsub S_EnchantArmor,2335,50;
+			case 13:
+				callsub S_EnchantArmor,2341,50;
+			case 14:
+				callsub S_EnchantArmor,2344,50;
+			case 15:
+				callsub S_EnchantArmor,2346,50;
+			case 16:
+				callsub S_EnchantArmor,2348,50;
+			case 17:
+				callsub S_EnchantArmor,2350,50;
+			case 18:
+				callsub S_EnchantArmor,2337,50;
+			case 19:
+				callsub S_EnchantArmor,2386,50;
+			case 20:
+				callsub S_EnchantArmor,2394,50;
+			case 21:
+				callsub S_EnchantArmor,2395,50;
+			case 22:
+				callsub S_EnchantArmor,2396,50;
+			}
+		case 2:
+			switch(select("毛皮大衣:秘衣 美德:秘衣 惡德:西裝外套:大衣:長大衣:鋼鐵鎖子甲:鋼鐵鎧甲:絲質外袍:聖職之袍:聖職之衣:緊身便衣:秘銀之衣:盜賊之衣:秘銀金屬鎧甲:火鱗鎧甲:水鱗鎧甲:風鱗鎧甲:地鱗鎧甲")) {
+			case 1:
+				callsub S_EnchantArmor,2311,55;
+			case 2:
+				callsub S_EnchantArmor,2318,55;
+			case 3:
+				callsub S_EnchantArmor,2319,55;
+			case 4:
+				callsub S_EnchantArmor,2320,55;
+			case 5:
+				callsub S_EnchantArmor,2308,55;
+			case 6:
+				callsub S_EnchantArmor,2310,55;
+			case 7:
+				callsub S_EnchantArmor,2315,55;
+			case 8:
+				callsub S_EnchantArmor,2317,55;
+			case 9:
+				callsub S_EnchantArmor,2322,55;
+			case 10:
+				callsub S_EnchantArmor,2324,55;
+			case 11:
+				callsub S_EnchantArmor,2326,55;
+			case 12:
+				callsub S_EnchantArmor,2331,55;
+			case 13:
+				callsub S_EnchantArmor,2333,55;
+			case 14:
+				callsub S_EnchantArmor,2336,55;
+			case 15:
+				callsub S_EnchantArmor,2342,55;
+			case 16:
+				callsub S_EnchantArmor,2345,55;
+			case 17:
+				callsub S_EnchantArmor,2347,55;
+			case 18:
+				callsub S_EnchantArmor,2349,55;
+			case 19:
+				callsub S_EnchantArmor,2351,55;
+			}
+		case 3:
+			switch(select("隕石鋼鐵鎧甲:歐羅萊昂的制服:生命鍊結:魔王的外袍:魔王的鎧甲:突襲隊長的鋼鐵鎧甲:精銳工兵的鎧甲:刺客的外袍:魔法師的戰鬥外袍:醫護兵的外袍:精銳弓兵外套:精銳射手的外套:急速衝刺鎧甲:中東衣:那迦鱗片鎧甲:改良型緊身衣")) {
+			case 1:
+				callsub S_EnchantArmor,2364,60;
+			case 2:
+				callsub S_EnchantArmor,2365,60;
+			case 3:
+				callsub S_EnchantArmor,2391,60;
+			case 4:
+				callsub S_EnchantArmor,2374,60;
+			case 5:
+				callsub S_EnchantArmor,2375,60;
+			case 6:
+				callsub S_EnchantArmor,2376,60;
+			case 7:
+				callsub S_EnchantArmor,2377,60;
+			case 8:
+				callsub S_EnchantArmor,2378,60;
+			case 9:
+				callsub S_EnchantArmor,2379,60;
+			case 10:
+				callsub S_EnchantArmor,2380,60;
+			case 11:
+				callsub S_EnchantArmor,2381,60;
+			case 12:
+				callsub S_EnchantArmor,2382,60;
+			case 13:
+				callsub S_EnchantArmor,2387,60;
+			case 14:
+				callsub S_EnchantArmor,2388,60;
+			case 15:
+				callsub S_EnchantArmor,2389,60;
+			case 16:
+				callsub S_EnchantArmor,2390,60;
+			}
+		case 4:
+			mes "[實習打洞師]";
+			mes "以後如果有興趣的話，請務必再來找我";
+			close;
+		}
+	}
+	else {
+		mes "[實習打洞師]";
+		mes "我負責盔甲的鑽洞工作，也就是說我是專";
+		mes "門研究如何提高既有盔甲力量的人";
+		next;
+		mes "[實習打洞師]";
+		mes "如果你有興趣的話，請帶著40萬金幣和需";
+		mes "要鑽洞的盔甲過來找我吧!";
+		close;
+	}
+
+S_EnchantArmor:
+	set .@itemid,getarg(0);
+	set .@failrate,getarg(1);
+	if ((countitem(.@itemid) > 0) && (countitem(.@itemid) < 2)) {
+		mes "[實習打洞師]";
+		mes "插槽鑽洞需要40萬金幣，而且鑽洞效果是隨機的，當然裝備有一定機率會損壞";
+		next;
+		mes "[實習打洞師]";
+		mes "最重要的是，";
+		mes "^ff5555既有的精煉值和原來裝備的";
+		mes "卡片會全部消失^000000，";
+		mes "你確定要鑽洞嗎?";
+		next;
+		switch(select("再考慮一下:已經決定了，請幫我鑽洞")) {
+		case 1:
+			mes "[實習打洞師]";
+			mes "安全第一，祝你旅途愉快!";
+			close;
+		case 2:
+			mes "[實習打洞師]";
+			mes "看來你很喜歡冒險，那我們開始吧";
+			close2;
+			specialeffect2 EF_MAPPILLAR;
+			if (Zeny < 400000) {
+				mes "[實習打洞師]";
+				mes "抱歉，你身上的錢不夠";
+				close;
+			}
+			progressbar "ffff00",7;
+			set .@enc_ran,rand(1,.@failrate);
+			set zeny,zeny-400000;
+			delitem .@itemid,1;
+			if (.@enc_ran == 1) {
+				set .@addpart,4702;
+			}
+			else if (.@enc_ran == 2) {
+				set .@addpart,4712;
+			}
+			else if (.@enc_ran == 3) {
+				set .@addpart,4722;
+			}
+			else if (.@enc_ran == 4) {
+				set .@addpart,4732;
+			}
+			else if (.@enc_ran == 5) {
+				set .@addpart,4742;
+			}
+			else if (.@enc_ran == 6) {
+				set .@addpart,4752;
+			}
+			else if ((.@enc_ran > 6) && (.@enc_ran < 9)) {
+				set .@addpart,4701;
+			}
+			else if ((.@enc_ran > 8) && (.@enc_ran < 11)) {
+				set .@addpart,4711;
+			}
+			else if ((.@enc_ran > 10) && (.@enc_ran < 13)) {
+				set .@addpart,4721;
+			}
+			else if ((.@enc_ran > 12) && (.@enc_ran < 15)) {
+				set .@addpart,4731;
+			}
+			else if ((.@enc_ran > 14) && (.@enc_ran < 17)) {
+				set .@addpart,4741;
+			}
+			else if ((.@enc_ran > 16) && (.@enc_ran < 19)) {
+				set .@addpart,4751;
+			}
+			else if ((.@enc_ran > 18) && (.@enc_ran < 22)) {
+				set .@addpart,4700;
+			}
+			else if ((.@enc_ran > 21) && (.@enc_ran < 25)) {
+				set .@addpart,4710;
+			}
+			else if ((.@enc_ran > 24) && (.@enc_ran < 28)) {
+				set .@addpart,4720;
+			}
+			else if ((.@enc_ran > 27) && (.@enc_ran < 31)) {
+				set .@addpart,4730;
+			}
+			else if ((.@enc_ran > 30) && (.@enc_ran < 34)) {
+				set .@addpart,4740;
+			}
+			else if ((.@enc_ran > 33) && (.@enc_ran < 37)) {
+				set .@addpart,4750;
+			}
+			else {
+				specialeffect2 EF_PHARMACY_FAIL;
+				mes "[實習打洞師]";
+				mes "真是糟糕!";
+				mes "打洞失敗了";
+				close;
+			}
+			getitem2 .@itemid, 1, 1, 0, 0, 0, 0, 0, .@addpart;
+		}
+	}
+	else {
+		mes "[實習打洞師]";
+		mes "嗯? 好像什麼都沒有啊?";
+		mes "請帶著1個要鑽洞的裝備再來找我吧!";
+		close;
+	}
+}

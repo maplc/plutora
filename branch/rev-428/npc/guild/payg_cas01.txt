@@ -1,0 +1,137 @@
+//===== eAthena Script =======================================
+//= 攻城戰 (斐揚 明亭)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.2+(c)
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Payon Guild Castle 1
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Corrected flag-in spawn point. [L0ne_W0lf]
+//= 1.2 Removed dialog from interior flags. [L0ne_W0lf]
+//=     Fixed position of Guild dungeon switch.
+//= +(c) 繁體中文化 [笨冰]
+//============================================================
+
+// Guild Flag (Town)
+//============================================================
+payon,166,161,3	script	明亭#f1-1::BrightArbor	722,{
+	end;
+
+OnRecvCastlePy01:
+	FlagEmblem GetCastleData("payg_cas01",1);
+	end;
+}
+
+payon,90,322,4	duplicate(BrightArbor)	明亭#f1-2	722
+
+// Guild Flag (Outside Castle)
+//============================================================
+pay_gld,125,236,4	script	明亭#f1-3::BrightArbor2	722,{
+	set .@GID, GetCastleData("payg_cas01",1);
+	if (.@GID == 0) {
+		mes "　　 [ 普隆德拉王國 公告令 ]";
+		mes " ";
+		mes "1. 根據這裡的，普隆德拉王國令";
+		mes "　　把這裡認定為";
+		mes "　　沒有正式所有權的秘密基地";
+		mes " ";
+		mes "2. 戰勝守在這裡，可怕的考驗後，";
+		mes "　　給破壞華麗金屬的人，";
+		mes " ";
+		mes "國王會賜予經國王認證的，秘密基地所有權";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ 響亮的嗓音 ]";
+			mes "勇敢的人們...";
+			mes "要回到您的名譽之地嗎?";
+			next;
+			if (select("回到秘密基地.:放棄") == 1) {
+				if (getcharid(2) == GetCastleData("payg_cas01",1)) {
+					warp "payg_cas01",212,108;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ 普隆德拉王國 公告令 ]";
+		mes " ";
+		mes "1. 根據這裡的，普隆德拉王國令";
+		mes "　　這裡被認定為 ^ff0000" + GetGuildName(.@GID) + "^000000工會的";
+		mes "　　私有物";
+		mes " ";
+		mes "2. ^ff0000"+ GetGuildName(.@GID) + "^000000 工會的主人是";
+		mes "　　^ff0000" + GetGuildMaster(.@GID) + "^000000 ， 無論是誰";
+		mes "　　對這件事情有意見者";
+		mes " ";
+		mes "請你舉起您的劍，提高自己的名譽吧";
+	}
+	close;
+
+OnRecvCastlePy01:
+	FlagEmblem GetCastleData("payg_cas01",1);
+	end;
+}
+
+pay_gld,110,233,4	duplicate(BrightArbor2)	明亭#f1-4	722
+pay_gld,116,233,4	duplicate(BrightArbor2)	明亭#f1-5	722
+pay_gld,91,239,2	duplicate(BrightArbor2)	明亭#f1-6	722
+
+// Guild Flag (Inside Castle)
+//============================================================
+payg_cas01,238,67,4	script	明亭#f1-7::BrightArbor3	722,{
+	end;
+
+OnRecvCastlePy01:
+	FlagEmblem GetCastleData("payg_cas01",1);
+	end;
+}
+
+payg_cas01,233,67,4	duplicate(BrightArbor3)	明亭#f1-8	722
+payg_cas01,221,123,4	duplicate(BrightArbor3)	明亭#f1-9	722
+payg_cas01,221,116,4	duplicate(BrightArbor3)	明亭#f1-10	722
+payg_cas01,206,108,4	duplicate(BrightArbor3)	明亭#f1-11	722
+payg_cas01,212,108,4	duplicate(BrightArbor3)	明亭#f1-12	722
+
+// AGIT Manager
+//============================================================
+payg_cas01,139,139,0	duplicate(Gld_Agit_Manager)	Agit#payg_cas01	-1
+
+// Steward
+//============================================================
+payg_cas01,120,58,4	duplicate(Gld_Mngr_Template)	克盧納帝#payg_cas01	55
+
+// Guardians
+//============================================================
+payg_cas01,120,58,4	duplicate(Gld_Guard_Template)	Guardian#payg_cas01	-1
+
+// Kafra Staff
+//============================================================
+payg_cas01,128,58,3	duplicate(Gld_Kafra_Template)	卡普拉 職員#payg_cas01	117
+
+// Master's Room Exit
+//============================================================
+payg_cas01,295,8,0	script	#switch_Py01	111,{
+	mes " ";
+	mes "有個某種小的裝置 ，請問你要操作嗎?";
+	next;
+	if(select("操作:結束") == 2) close;
+	warp "payg_cas01",120,59;
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+payg_cas01,291,8,0	duplicate(Gld_Trea_Protect)	ban_warp#payg_cas01	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+payg_cas01,291,8,0	duplicate(Gld_Trea_Spawn)	Treasure#payg_cas01	-1
+
+// Guild Dungeon Switch
+//============================================================
+payg_cas01,101,25,0	duplicate(Gld_Dun_Template)	#payg_cas01	111

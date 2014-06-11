@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<clientinfo>
+	<desc>Ragnarok Client Information - Taiwan Free Server</desc>
+	<servicetype>taiwan</servicetype>
+	<servertype>primary</servertype>
+	<extendedslot></extendedslot>
+
+	<connection>
+		<display>rAthena</display>
+		<desc>None</desc>
+		<address>127.0.0.1</address>
+		<port>6900</port>
+		<version>45</version>
+		<langtype>4</langtype>
+		<registrationweb></registrationweb>
+		<aid>		
+			<admin></admin>
+		</aid>
+	</connection>
+
+</clientinfo>

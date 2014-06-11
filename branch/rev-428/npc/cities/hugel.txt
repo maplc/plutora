@@ -1,0 +1,227 @@
+//===========================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// -----------------------------------------
+// - 毀葛 城鎮腳本 -
+//===========================================
+//= 版本：1.3
+//===========================================
+
+//-------------------------------------------
+// 室外
+//-------------------------------------------
+hugel,189,143,5	script	純樸的 青年	898,{
+	mes "[純樸的 青年]";
+	mes "噢! 那個龐大的空氣袋子，";
+	mes "就是可以升空的東西嗎?";
+	mes "我也試試把肚裡注滿空氣後，";
+	mes "在空中飄搖看看吧?";
+	close;
+}
+
+hugel,126,151,3	script	艾蜜莉	90,{
+	mes "[艾蜜莉]";
+	mes "雖說這裡是鄉下，";
+	mes "卻是個很平和的地方，";
+	mes "左鄰右舍都很好";
+	mes "相處";
+	next;
+	mes "[艾蜜莉]";
+	mes "可是我姐姐一天到晚";
+	mes "只想離開這裡，";
+	mes "她說愈往愈覺得";
+	mes "恐懼和害怕，";
+	mes "好奇怪喔?";
+	close;
+}
+
+hugel,85,93,5	script	吳迪	866,{
+	mes "[吳迪]";
+	mes "我們村落裡的各地";
+	mes "還是那個 魔物賽跑啊";
+	next;
+	mes "[吳迪]";
+	mes "因為太鄉下了也沒什麼好玩的遊戲，";
+	mes "有一天無聊的村落居民";
+	mes "看到小孩子們帶著寵物";
+	mes "玩競賽時，就啟發了";
+	mes "魔物賽跑的點子";
+	next;
+	mes "[吳迪]";
+	mes "魔物賽跑 競賽場";
+	mes "在7點鐘的方向";
+	mes "跟著住宅的道路走的話，";
+	mes "會有一個圍起來的山丘";
+	mes "就在那山丘外面啊，";
+	mes "可以詢問在附近的愛卡樂兄弟的話";
+	mes "他們會讓你進場的";
+	next;
+	mes "[吳迪]";
+	mes "剛開始時做為一個單純的遊戲";
+	mes "讓村落居民們玩的一個競賽，";
+	mes "不過現在卻為了寵物和競賽場的營運";
+	mes "開始收取入場費呢";
+	next;
+	mes "[吳迪]";
+	mes "若你覺得很無聊的話 要不要去一趟呢?";
+	close;
+}
+
+hugel,86,164,5	script	村落 少年	896,{
+	mes "[村落 少年]";
+	mes "我好想要那個紅色桶子，";
+	mes "我也要叫媽媽買給我";
+	mes "那個紅色桶子呀?";
+	close;
+}
+
+hugel,71,197,3	script	麗莎	90,{
+	mes "[麗莎]";
+	mes "毀葛村落這地方實在太小，";
+	mes "每天有誰發生了什麼事情，";
+	mes "很快就會傳開來";
+	next;
+	mes "[麗莎]";
+	mes "我好討厭這種";
+	mes "鄉下村落，";
+	mes "很想早日搬至";
+	mes "大村落生活";
+	close;
+}
+
+hugel,169,112,5	script	村落 祖母	892,{
+	mes "[村落 祖母]";
+	mes "哼哼哼~ 我們的村民";
+	mes "有很多人長得都很像啊~";
+	mes "大概是大家在同村落生活";
+	mes "很久的關係，越來越像啊~";
+	close;
+}
+
+hugel,175,115,5	script	村落 老伯	897,{
+	mes "[村落 老伯]";
+	mes "我即使高齡了，仍無法";
+	mes "控制源源不絕的體力，";
+	mes "我們村民代代皆長壽，";
+	mes "我也還算是活耀的年記啊，";
+	mes "如何? 要跟我比腕力嗎?";
+	close;
+}
+
+//-------------------------------------------
+// 室內
+//-------------------------------------------
+hu_in01,111,386,3	script	克里斯	86,{
+	mes "[克里斯]";
+	mes "老實說在本村落裡，";
+	mes "與其說用武器來殺敵，";
+	mes "倒不如買來狩獵或採集時，";
+	mes "以做為自衛的情形";
+	mes "反而比較常見";
+	next;
+	mes "[克里斯]";
+	mes "想要高檔一點的話，";
+	mes "要到大城市去";
+	close;
+}
+
+hu_in01,365,170,3	script	村落 少女	793,{
+	mes "[村落 少女]";
+	mes "暖爐又溫暖太好了~";
+	mes "啊啊，可是太溫暖了有點想睡覺......呼";
+	mes "....";
+	close;
+}
+
+hu_in01,23,311,5	script	慶典用品 商人	898,{
+	mes "[慶典用品 商人]";
+	mes "歡迎光臨!";
+	mes "請問要不要跟朋友們一起玩漂亮的鞭炮遊";
+	mes "戲呢?";
+	mes "只收500金幣以5個為一綑，給你的";
+	next;
+	if(select("購買:不購買")==2) {
+		mes "[慶典用品 商人]";
+		mes "在寧靜的夜晚飛翔著鞭炮的情景...嘻!";
+		close;
+	}
+	if (Zeny < 500) {
+		mes "[慶典用品 商人]";
+		mes "客人~ 好像你的金幣不夠啊";
+		close;
+	}
+	set Zeny,Zeny-500;
+	getitem 12018,5;
+	mes "[慶典用品 商人]";
+	mes "真的謝謝你!";
+	mes "祝你有一些美好的回憶";
+	close;
+}
+
+hu_in01,18,94,3	script	工讀生#1	49,{
+	mes "[盧達]";
+	mes "歡迎光臨，";
+	mes "這裡是神殿 挖掘團的辦公室...";
+	mes "我是工讀生，";
+	mes "我負責整理辦公室，";
+	mes "只是如此的亂七八遭，";
+	mes "實在很難收拾";
+	next;
+	mes "[盧達]";
+	mes "村內算是整理達人的我，";
+	mes "特別到此服務，";
+	mes "哦哼";
+	next;
+	mes "[盧達]";
+	mes "這上方是我們秀發茲發德，";
+	mes "下方是由 盧恩--米德加茲派遣的";
+	mes "挖掘團團員們各自分別";
+	mes "駐紮在此，";
+	mes "他們的關係不太好";
+	next;
+	mes "[盧達]";
+	mes "所以我的工作量，";
+	mes "相對的增加了";
+	next;
+	mes "[盧達]";
+	mes "冒險家你要不要";
+	mes "找個打工呢?";
+	mes "酬勞雖不優渥，";
+	mes "但算是有意義的工作";
+	close;
+}
+
+hu_in01,26,77,3	script	工讀生#2	50,{
+	mes "一專心忙著整理書籍 --";
+	close;
+}
+
+//Should be moved later on to Bulletin Boards.txt
+//hugel,91,152,4	script	Bulletin Board	837,{end;}
+
+
+//= New Npcs
+//hugel,71,137,5	script	Jamira	879,{end;}
+//hugel,191,172,4	script	Yanhe	895,{end;}
+//hugel,196,164,3	script	Amnot	50,{end;}
+//hugel,168,183,5	script	Thief	118,{end;}
+//hugel,126,151,4	script	Tanyee	90,{end;}
+//hugel,88,168,4	script	Zondaman	874,{end;}
+//hugel,71,198,3	script	Kampia	90,{end;}
+//= End of new npcs
+
+//hugel,100,102,3	script	Grandpa Hohi	866,{end;}
+//hugel,85,93,3	script	Grandpa Hiho	866,{end;}
+//hugel,85,165,5	script	Cudy	896,{end;}
+//hugel,107,67,3	script	Kiddy the Kid	706,{end;}
+
+//hugel,71,83,4	script	Hon Kiki	900,{end;}
+//hugel,169,112,5	script	Sani	892,{end;}
+//hu_in01,16,20,4	script	Jamie	70,{end;}
+//hu_in01,14,11,4	script	Jana	49,{end;}
+//hu_in01,19,161,2	script	Matilda	803,{end;}
+//hu_in01,18,167,4	script	Gin	86,{end;}
+//hu_in01,381,304,5	script	Soldier	105,{end;}
+//hu_in01,111,386,4	script	Jino	86,{end;}
+//hu_in01,246,107,2	script	Receptionist	53,{end;}
+//hu_in01,256,40,2	script	Garud	897,{end;}

@@ -1,0 +1,99 @@
+//==========================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ------------------------------------------
+// - 夢羅克 導遊 腳本 -
+// ------------------------------------------
+// 版本 1.3
+//==========================
+
+morocc,153,286,6	script	導遊#1::Mor_Guide	707,{
+	cutin "moc_soldier",2;
+	mes "[夢羅克導遊]";
+	mes "歡迎光臨  邊境之成都  夢羅克.";
+	mes "我們為了來到夢羅克的旅客";
+	mes "安排了導遊為您們介紹這個城市.";
+	mes "當您們有問題的時候，";
+	mes "隨時可以詢問他們.";
+	mes "第一次來到這裡的旅客";
+	mes "先按選單 '選擇注意事項' 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市.:刪掉微型地圖上全部的記號.:聽取注意事項.: 取消.")) {
+		case 1:
+			if(@compass&0x40 == 0) {
+				mes "[夢羅克導遊]";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要:不要")==1)
+					set @compass,@compass|0x40;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000盜賊公會^000000:武器商店:旅館:酒店:傭兵公會:取消")) {
+				case 1:
+					mes "[夢羅克導遊]";
+					mes "專門辦理盜賊轉職業務的盜賊協會在金字塔內...";
+					if(@compass&0x40)
+						viewpoint 1,24,297,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[夢羅克導遊]";
+					mes "武器商店位在以微型地圖為中心的東南方.";
+					if(@compass&0x40)
+						viewpoint 1,253,56,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[夢羅克導遊]";
+					mes "旅館位在以微型地圖為中心的東北方和南方各有一間.";
+					if(@compass&0x40)
+						viewpoint 1,197,66,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[夢羅克導遊]";
+					mes "酒店位在以微型地圖為中心的西北方.";
+					if(@compass&0x40)
+						viewpoint 1,52,259,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[夢羅克導遊]";
+					mes "傭兵公會位在以微型地圖為中心的東方.";
+					if(@compass&0x40)
+						viewpoint 1,284,171,5,0x00FF00;
+					continue;
+				case 6:
+					mes "[夢羅克導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;
+			}
+			continue;
+		case 2:
+			viewpoint 2,24,297,1,0xFF0000;
+			viewpoint 2,253,56,2,0xFF00FF;
+			viewpoint 2,197,66,3,0xFF00FF;
+			viewpoint 2,52,259,4,0xFF00FF;
+			viewpoint 2,284,171,5,0x00FF00;
+			set @compass,@compass&~0x40;
+			continue;
+		case 3:
+			mes "[夢羅克導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[夢羅克導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[夢羅克導遊]";
+			mes "祝您旅遊快樂.";
+			close2;
+			cutin "moc_soldier",255;
+			end;
+		}
+	}
+}
+
+morocc,54,97,6	duplicate(Mor_Guide)	導遊#mor2	707

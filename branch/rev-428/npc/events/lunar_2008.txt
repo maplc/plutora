@@ -1,0 +1,205 @@
+//==================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ---------------------------------
+// - 2008 鼠來獻寶慶新年 -
+//===================================
+// 版本：1.0 [笨冰]
+//===================================
+// *官方實際物品消耗量 米袋2個 --兌換-> 糯米1個
+//   但是身上只有一個米袋時，依舊不會觸發兌換失敗的部分
+//   只有不能兌換成功而已
+// *甜米糕(554)販賣關閉，官方使用的是商城系統(1P-1個)
+// *活動開放時，請至mob_db2.txt裡面開放任務魔物
+//====================================
+
+payon_in01,193,30,0	script	糕餅 奶奶#rat	78,{
+	mes "[糕餅 奶奶]";
+	if (!lunar_rat) {
+		mes "唉喲.. 唉喲...";
+		mes "這要怎麼辦才好呢...";
+		next;
+		mes "[糕餅 奶奶]";
+		mes "咳嗽! 咳嗽!";
+		next;
+		mes "[糕餅 奶奶]";
+		mes "你們這些壞傢伙們...";
+		next;
+		select("奶奶請問有什麼心事嗎?");
+		mes "[糕餅 奶奶]";
+		mes "年輕人聽一聽我說的話吧，";
+		mes "為了這一次的過年所準備的糕餅材料";
+		mes "全部被這些壞老鼠們給偷走了..";
+		next;
+		mes "[糕餅 奶奶]";
+		mes "咳嗽! 咳嗽!";
+		next;
+		mes "[糕餅 奶奶]";
+		mes "沒有材料的話是做不出糕餅的";
+		mes "這要怎麼辦才好呢..";
+		next;
+		select("請問材料是什麼啊?");
+		mes "[糕餅 奶奶]";
+		mes "那個就是..";
+		mes "裝滿了米的米袋啊..";
+		mes "我兒子要用米 輾米才行的，";
+		mes "若沒有米的話 不能做出任何東西啊..";
+		mes "不知年輕人可否能幫我啊?";
+		next;
+		if (select("當然啊:我不想啊") == 1) {
+			set lunar_rat,1;
+			mes "[" + strcharinfo(0)+"]";
+			mes "奶奶請問我要怎麼幫你才可以呢?";
+			next;
+			mes "[糕餅 奶奶]";
+			mes "謝謝您 年輕人，";
+			mes "偷走我米袋的傢伙們";
+			mes "應該是白鼠和藍鼠";
+			mes "還有土撥鼠準沒錯的，";
+			mes "抓到那些傢伙把他們偷走的米袋";
+			mes "拿來的話就可以啦";
+			next;
+			select("請不要擔心");
+			mes "[" + strcharinfo(0)+"]";
+			mes "奶奶 請不要擔心，";
+			mes "若找到的話 我就馬上把它帶回來的";
+			next;
+			mes "[糕餅 奶奶]";
+			mes "麻煩你啊....";
+			mes "就麻煩你啦 年輕人";
+			close;
+		}
+		mes "[糕餅 奶奶]";
+		mes "唉喲喲喲喲";
+		mes "真是一個壞傢伙啊";
+		close;
+	}
+	else if ((lunar_rat >= 1 && lunar_rat <= 2) || lunar_rat == 4) {
+		if (countitem(7770) >= 1 && lunar_rat == 2) {
+			mes "那個是我兒子所做的糯米啊，";
+			mes "拿過來給我看看吧，";
+			mes "我就為了你製作出糕餅吧，";
+			mes "請你稍後一下";
+			delitem 7770,1; //糯米
+			set lunar_rat,3;
+			close;
+		}
+		else if (lunar_rat == 4) {
+			if (countitem(7770) >= 1) {
+				mes "那個是我兒子所做的糯米啊，";
+				mes "拿過來給我看看吧，";
+				mes "我就為了你製作出糕餅吧，";
+				mes "請你稍後一下";
+				delitem 7770,1; //糯米
+				set lunar_rat,5;
+				close;
+			}
+			mes "到目前為止米袋還是缺很多啊，";
+			mes "若想要製作出糕餅的話";
+			mes "需要更多的米袋的";
+			next;
+			mes "[糕餅 奶奶]";
+			mes "咳嗽! 咳嗽!";
+			close;
+		}
+		else if (countitem(7869) < 1 && lunar_rat <= 2) {
+			mes "那個可以從白鼠和藍鼠";
+			mes "還有土撥鼠身上可以找到的";
+			close;
+		}
+		mes "唉唷! 年輕人!";
+		mes "你把我的米袋給找回來了，";
+		mes "因為我的腰不太好的關係";
+		mes "可否請你把那個米袋送到我兒子那裡呢";
+		set lunar_rat,2;
+		close;
+	}
+	else if (lunar_rat == 3 || lunar_rat == 5) {
+		set .@reward,rand(1,100);
+		if (.@reward <= 5) {
+			if (lunar_rat == 3) {
+				getitem 9038,1; //新年娃娃魔物蛋
+				set lunar_rat,4;
+			}
+			else if (lunar_rat == 5) {
+				getitem 668,1; //紅包
+			}
+		}
+		else if (.@reward >= 6 && .@reward <= 10) getitem 12198,2; //幸運的糕餅
+		else if (.@reward >= 11 && .@reward <= 30) getitem 12195,3; //純味的糕餅
+		else if (.@reward >= 31 && .@reward <= 40) getitem 12196,2; //飽足感的糕餅
+		else if (.@reward >= 41 && .@reward <= 55) getitem 12123,2; //油果
+		else if (.@reward >= 56 && .@reward <= 70) getitem 12122,2; //茶食
+		else if (.@reward >= 71 && .@reward <= 80) getitem 12124,2; //彩色糕餅
+		else if (.@reward >= 81 && .@reward <= 90) getitem 12198,2; //幸運的糕餅
+		else if (.@reward >= 91 && .@reward <= 100) getitem 12197,3; //鹹鹹的糕餅
+		//領取到新年娃娃魔物蛋之後，兌換時將有機率領到紅包
+		if (rand(1,20) <= 5 && lunar_rat == 4) getitem 668,1; //紅包
+		//設定任務變數，方便重新兌換
+		if (lunar_rat == 3) set lunar_rat,2;
+		else if (lunar_rat == 5) set lunar_rat,4;
+		mes "這是為了你剛剛才做好的糕餅，";
+		mes "做為答謝你是有點太簡單了點";
+		mes "不過是我的心意請收下吧";
+		next;
+		mes "[糕餅 奶奶]";
+		mes "真的謝謝你啊..";
+		mes "若你能帶來更多的糯米的話";
+		mes "我會更答謝你的";
+		close;
+	}
+}
+
+payon_in01,7,87,0	script	輾米廠 叔叔#rat	54,{
+	mes "[輾米廠 叔叔]";
+	if (!lunar_rat) {
+		mes "唉喲 這些壞鼠輩們..";
+		mes "把母親辛辛苦苦所準備的米";
+		mes "都給偷走了...";
+		mes "唉喲.. 只要我一想到母親的話";
+		mes "就會更心痛的..";
+		close;
+	}
+	else if (lunar_rat == 1) {
+		mes "聽說你要幫助我們啊";
+		mes "那是真的嗎?";
+		mes "我對你抱著非常感激的心啊，";
+		mes "當你找到米袋的同時";
+		mes "就拿去給我母親看吧";
+		close;
+	}
+	else if (lunar_rat >= 2) {
+		if (countitem(7869) < 1) {
+			mes "你帶多少米袋來";
+			mes "我就幫你製作出多少糯米吧";
+			close;
+		}
+		mes "你是從鼠輩那裡找回米袋的嗎?";
+		mes "拿過來給我看看，";
+		mes "現在為了母親能製做出糕餅";
+		mes "就馬上製作吧";
+		next;
+		mes "[輾米廠 叔叔]";
+		mes "由於我熟練的技巧";
+		mes "在幾秒鐘之內就可以製作完成的，";
+		mes "請你稍後一下";
+		next;
+		mes "[輾米廠 叔叔]";
+		mes "用力!";
+		next;
+		mes "[輾米廠 叔叔]";
+		mes "用力! 用力!";
+		next;
+		mes "[輾米廠 叔叔]";
+		mes "用力! 用力!";
+		mes "用力啦 用力!";
+		next;
+		mes "[輾米廠 叔叔]";
+		mes "都做好了，";
+		mes "為了能讓母親做糕餅";
+		mes "請快一點把糯米送給她吧";
+		delitem 7869,2; //米袋
+		getitem 7770,1; //糯米
+		close;
+	}
+}

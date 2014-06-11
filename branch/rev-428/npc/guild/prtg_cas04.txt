@@ -1,0 +1,138 @@
+//===== eAthena Script =======================================
+//= 攻城戰 (普隆德拉 司葵古)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.2+(c)
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Prontera Guild Castle 4
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Corrected flag-in spawn point. [L0ne_W0lf]
+//= 1.2 Removed dialog from interior flags. [L0ne_W0lf]
+//= +(c) 繁體中文化 [笨冰]
+//============================================================
+
+// Guild Flag (Town)
+//============================================================
+prontera,167,203,6	script	司葵古#p4-1::Skoegul	722,{
+	end;
+
+OnRecvCastlePt04:
+	FlagEmblem GetCastleData("prtg_cas04",1);
+	end;
+}
+
+// Guild Flag (Outside Castle)
+//============================================================
+prt_gld,120,243,6	script	司葵古#p4-2::Skoegul2	722,{
+	set .@GID, GetCastleData("prtg_cas04",1);
+	if (.@GID == 0) {
+		mes "　　 [ 普隆德拉王國 公告令 ]";
+		mes " ";
+		mes "1. 根據這裡的，普隆德拉王國令";
+		mes "　　把這裡認定為";
+		mes "　　沒有正式所有權的秘密基地";
+		mes " ";
+		mes "2. 戰勝守在這裡，可怕的考驗後，";
+		mes "　　給破壞華麗金屬的人，";
+		mes " ";
+		mes "國王會賜予經國王認證的，秘密基地所有權";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ 響亮的嗓音 ]";
+			mes "勇敢的人們...";
+			mes "要回到您的名譽之地嗎?";
+			next;
+			if (select("回到秘密基地.:放棄") == 1) {
+				if (getcharid(2) == GetCastleData("prtg_cas04",1)) {
+					warp "prtg_cas04",258,247;
+				end;
+				}
+			}
+			close;
+		}
+		mes "[ 普隆德拉王國 公告令 ]";
+		mes " ";
+		mes "1. 根據這裡的，普隆德拉王國令";
+		mes "　　這裡被認定為 ^ff0000" + GetGuildName(.@GID) + "^000000工會的";
+		mes "　　私有物";
+		mes " ";
+		mes "2. ^ff0000"+ GetGuildName(.@GID) + "^000000 工會的主人是";
+		mes "　　^ff0000" + GetGuildMaster(.@GID) + "^000000 ， 無論是誰";
+		mes "　　對這件事情有意見者";
+		mes " ";
+		mes "請你舉起您的劍，提高自己的名譽吧";
+	}
+	close;
+
+OnRecvCastlePt04:
+	FlagEmblem GetCastleData("prtg_cas04",1);
+	end;
+}
+
+prt_gld,120,236,6	duplicate(Skoegul2)	司葵古#p4-3	722
+prt_gld,122,243,6	duplicate(Skoegul2)	司葵古#p4-4	722
+prt_gld,122,236,6	duplicate(Skoegul2)	司葵古#p4-5	722
+
+// Guild Flag (Inside Castle)
+//============================================================
+prtg_cas04,82,29,4	script	司葵古#p4-6::Skoegul3	722,{
+	end;
+
+OnRecvCastlePt04:
+	FlagEmblem GetCastleData("prtg_cas04",1);
+	end;
+}
+
+prtg_cas04,75,29,4	duplicate(Skoegul3)	司葵古#p4-7	722
+prtg_cas04,75,27,4	duplicate(Skoegul3)	司葵古#p4-8	722
+prtg_cas04,82,27,4	duplicate(Skoegul3)	司葵古#p4-9	722
+prtg_cas04,59,29,4	duplicate(Skoegul3)	司葵古#p4-10	722
+prtg_cas04,67,29,4	duplicate(Skoegul3)	司葵古#p4-11	722
+prtg_cas04,258,25,4	duplicate(Skoegul3)	司葵古#p4-12	722
+prtg_cas04,258,20,4	duplicate(Skoegul3)	司葵古#p4-13	722
+prtg_cas04,263,20,4	duplicate(Skoegul3)	司葵古#p4-14	722
+prtg_cas04,263,27,4	duplicate(Skoegul3)	司葵古#p4-15	722
+
+// AGIT Manager
+//============================================================
+prtg_cas04,292,14,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas04	-1
+
+// Steward
+//============================================================
+prtg_cas04,259,265,4	duplicate(Gld_Mngr_Template)	斑得磊的#prtg_cas04	55
+
+// Guardians
+//============================================================
+prtg_cas04,259,265,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas04	-1
+
+// Kafra Staff
+//============================================================
+prtg_cas04,258,247,4	duplicate(Gld_Kafra_Template)	卡普拉 職員#prtg_cas04	117
+
+// Master's Room Exit
+//============================================================
+prtg_cas04,275,160,0	script	#switch_Pt04	111,{
+	mes " ";
+	mes "有個某種小的裝置 ，請問你要操作嗎?";
+	next;
+	if(select("操作:結束") == 2) close;
+	warp "prtg_cas04",259,265;
+	end;
+}
+
+// Guild Treasure Protection
+//============================================================
+prtg_cas04,271,162,0	duplicate(Gld_Trea_Protect)	ban_warp#prtg_cas04	-1,6,6
+
+// Guild Treasure Spawns
+//============================================================
+prtg_cas04,271,162,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas04	-1
+
+// Guild Dungeon Switch
+//============================================================
+prtg_cas04,56,283,0	duplicate(Gld_Dun_Template)	#prtg_cas04	111

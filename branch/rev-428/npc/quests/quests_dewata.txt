@@ -1,0 +1,180 @@
+//===== eAthena Script =======================================
+//= Dewata Quests Script
+//===== By: ==================================================
+//= Chilly
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Description: =========================================
+//= Official quests for Dewata
+//===== Additional Comments: =================================
+//= 1.0 First Release
+//============================================================
+
+dew_in01,15,49,5	script	Chief of Dewata	540,{
+	if (checkweight(1101,2) == 0) {
+		mes "^3355FFWait a second!";
+		mes "Right now, you're carrying";
+		mes "too many things with you.";
+		mes "Please come back after";
+		mes "using the Kafra Service";
+		mes "to store some of your items.^000000";
+		close;
+	}
+	if (dewdungeon < 1) {
+		mes "[Chief of Dewata]";
+		mes "Hello stranger, have you come to see the volcanic island of Krakatoa?";
+		next;
+		switch(select("Yes.:Nope.")) {
+		case 1:
+			mes "[Chief of Dewata]";
+			mes "First you must do something for me.";
+			next;
+			set dewdungeon,1;
+			mes "[Chief of Dewata]";
+			mes "Bring me ^0000FF15 Cendrawasih Feathers^000000, we need them to make hats for our tribe.";
+			close;
+		case 2:
+			mes "[Chief of Dewata]";
+			mes "Then you must leave, foreigners bring trouble.";
+			close;
+		}
+	}
+	else if ((dewdungeon == 1) && (countitem(6405) >= 15)) {		//天堂鳥羽毛
+		mes "[Chief of Dewata]";
+		mes "You make the chief proud, you may now travel to the volcanic island of Krakatoa.";
+		next;
+		mes "[Chief of Dewata]";
+		mes "Please keep this ^0000FFShining Cendrawasih Feather^000000 with you as proof that you are part of our tribe.";
+		next;
+		delitem 6405,15;
+		getitem 6406,1; // Shining Cendrawasih Feather
+		getitem 18520,1; // Jati Crown
+		set dewdungeon,2;
+		mes "[Chief of Dewata]";
+		mes "You may also take one of these hats with you for your fight against the plant monsters outside our village.";
+		close;
+	}
+	else if ((dewdungeon == 1) && (countitem(6405) < 15)) {		//天堂鳥羽毛
+		mes "[Chief of Dewata]";
+		mes "Where are the ^0000FF15 Cendrawasih Feathers^000000 i asked for?";
+		close;
+	}
+	else if (dewdungeon >= 2) {
+		mes "[Chief of Dewata]";
+		mes "You may now travel to the volcanic island of Krakatoa.";
+		next;
+		mes "[Chief of Dewata]";
+		mes "Talk to the blacksmith on the field, he may have a weapon for you too.";
+		close;
+	}
+}
+
+dew_fild01,127,240,4	script	卡提#dew01	813,{
+	if (checkweight(13067,1) == 0) {
+		mes "^3355FFWait a second!";
+		mes "Right now, you're carrying";
+		mes "too many things with you.";
+		mes "Please come back after";
+		mes "using the Kafra Service";
+		mes "to store some of your items.^000000";
+		close;
+	}
+	if (dewdungeon < 2) {
+		mes "[卡提]";
+		mes "Nice weather we are having today.";
+		next;
+		mes "[卡提]";
+		mes "Don't worry about me, these monsters are no match as long as I have this dagger!";
+		close;
+	}
+	else if (dewdungeon == 2) {
+		mes "[卡提]";
+		mes "Oh, you want this dagger too?";
+		next;
+		mes "[卡提]";
+		mes "It's annoying for me to make, but i'll do it.";
+		next;
+		set dewdungeon,3;
+		mes "[卡提]";
+		mes "Go to the volcanic island and get ^0000FF100 Comodo Leathers^000000 for me, I need to make the Hilt before anything else.";
+		close;
+	}
+	else if ((dewdungeon == 3) && (countitem(6403) >= 100)) {
+		mes "[卡提]";
+		mes "Wow, you got 100 already.  Let me forge this together for you.";
+		next;
+		delitem 6403,100;
+		getitem 6404,1; // Kris_Hilt
+		set dewdungeon,4;
+		mes "[卡提]";
+		mes "All done!  Now to make the rest of the dagger i'll need ^0000FF100 more Comodo Leathers^000000.  Don't keep me waiting!";
+		close;
+	}
+	else if ((dewdungeon == 3 || dewdungeon == 4) && (countitem(6403) < 100)) {
+		mes "[卡提]";
+		mes "Where are the ^0000FF100 Comodo Leathers^000000 i asked for?";
+		close;
+	}
+	else if ((dewdungeon == 4) && (countitem(6403) >= 100)) {
+		mes "[卡提]";
+		mes "Alright, another 100!  I'll have the dagger ready for you in a second.";
+		next;
+		delitem 6403,100;
+		delitem 6404,1;
+		getitem 13067,1; // Kris
+		set dewdungeon,5;
+		mes "[卡提]";
+		mes "There you go!  This dagger will heal some of your health when you attack, put it to good use my friend!";
+		close;
+	}
+	else if (dewdungeon >= 5) {
+		mes "[卡提]";
+		mes "Having fun with my dagger?";
+		close;
+	}
+}
+
+dewata,234,64,4	script	Sailor#dew01	540,{
+	if (dewdungeon < 2) {
+		mes "[Sailor]";
+		mes "You no can go to island, need chief permission.";
+		close;
+	}
+	else if (dewdungeon >= 2) {
+		mes "[Sailor]";
+		mes "Chief say you can go to island, you come?";
+		next;
+		switch(select("Yes.:Nope.")) {
+		case 1:
+			mes "[Sailor]";
+			mes "Ok, you come.";
+			close2;
+			warp "dew_dun01",291,160;
+			end;
+		case 2:
+			mes "[Sailor]";
+			mes "Ok, you swim to island.";
+			close;
+		}
+	}
+}
+
+dew_dun01,291,164,4	script	Sailor#dew02	540,{
+	mes "[Sailor]";
+	mes "You go back?";
+	next;
+	switch(select("Yes.:Nope.")) {
+	case 1:
+		mes "[Sailor]";
+		mes "Ok, you go back.";
+		close2;
+		warp "dewata",234,60;
+		end;
+	case 2:
+		mes "[Sailor]";
+		mes "Ok, you swim to town.";
+		close;
+	}
+}

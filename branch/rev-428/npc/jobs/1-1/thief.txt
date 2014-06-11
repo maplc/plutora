@@ -1,0 +1,561 @@
+//==================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ---------------------------------
+// - 盜賊 轉職腳本 - 
+//===================================
+// 版本：1.7
+//===================================
+
+moc_prydb1,39,129,2	script	盜賊工會 相關人員	69,{
+	if (Upper == 1) {
+		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {
+			if (Class == Job_Novice_High) {
+				mes "[盜賊工會 相關人員]";
+				mes "那讓我來看看是什麼名字吧";
+				mes "嗯，是什麼名字呢?";
+				mes strcharinfo(0)+ "" +strcharinfo(0)+ " 嗎...?";
+				next;
+				if (getskilllv(1) < 9) {
+					mes "[盜賊工會 相關人員]";
+					mes "要明白想成為盜賊不能只單靠意志，";
+					mes "單憑意志是無法生存下來的";
+					mes "最低至少初學者技能必需達到９以上才行";
+					close;
+				}
+				mes "[盜賊工會 相關人員]";
+				mes "看來你已經經歷許多磨練了，";
+				mes "我就直接轉成盜賊吧!";
+				next;
+				skill 143,0,0;
+				jobchange Job_Thief_High;
+				skill 149,1,0;
+				skill 150,1,0;
+				skill 151,1,0;
+				skill 152,1,0;
+				mes "[盜賊工會 相關人員]";
+				mes "轉職了，恭喜你!";
+				mes "今後請為工會的復興而多作努力吧!";
+				close;
+			}
+			else {
+				mes "[盜賊工會 相關人員]";
+				mes "你是不是腦子進水了?";
+				mes "你轉生前的一轉職業不是盜賊啊";
+				close;
+			}
+		}
+		else {
+			mes "[盜賊工會 相關人員]";
+			if (sex)
+				mes "嘿嘿...看起來好像是那一個有錢人家的公子哥";
+			else
+				mes "嘿嘿...看起來好像是那一個有錢人家的大小姐";
+			mes "怎麼會來到我們這個骯臟的地方來呢?";
+			close;
+		}
+	}
+	if (BaseJob == Job_Thief) {
+		mes "[盜賊工會 相關人員]";
+		mes "有什麼問題嗎!?";
+		mes "有問題就隨時說說看吧嗯?";
+		close;
+	}
+	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+		mes "[盜賊工會 相關人員]";
+		mes "看看這是誰啊....?";
+		switch(Class) {
+		case 1:
+			mes "哦，拿著大劍亂揮舞的白痴";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "這不是那無知的劍士嗎!";
+			break;
+		case 2:
+			mes "這不是馬戲團的魔法師嗎!";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "別把我們的工會給燒掉啦!";
+			break;
+		case 3:
+			mes "這不是那笨蛋弓箭手嗎!";
+			mes "不待在森林裡面打獵，";
+			mes "以為我們這裡會有野豬嗎?";
+			break;
+		case 4:
+			mes "我才不信什麼天神上帝呢!";
+			mes "別拿著聖經想來教化我，服事!";
+			break;
+		case 5:
+			mes "想賣東西給我們嗎?!";
+			mes "只可惜我們什麼都不缺";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "我們用騙術就可以偷到很多東西了";
+			mes "別自以為是啦，商人";
+			break;
+		case 8:
+			mes "我的老天爺啊?";
+			mes "我已經死了嗎?";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "怎麼會有祭司跑到這裡來呢?";
+			close;
+		}
+		next;
+		mes "[盜賊工會 相關人員]";
+		mes "喂! 那邊那個人!";
+	   	mes "來這裡幹什麼?快滾回去!";
+		close;
+	}
+	if (job_thief_q == 3 && countitem(1069) > 0 || countitem(1070) > 0) {
+		mes "[盜賊工會 相關人員]";
+		mes "啊!我的天，我只是隨便說說而已，";
+		mes "你還真的把香菇摘來了呀?";
+		mes "你這個笨蛋?你被騙了，知不知道呀?";
+		next;
+		mes "[盜賊工會 相關人員]";
+		mes "好了，不跟你開玩笑了";
+		mes "這個地方是接受想要成為盜賊申請的地方";
+		mes "想要轉職的話去隔壁的櫃檯看看";
+		close;
+	}
+	else if (job_thief_q == 3) {
+		mes "[盜賊工會 相關人員]";
+		mes "啊!我的天，我只是隨便說說而已，";
+		mes "你還真的把香菇摘來了呀?";
+		mes "你這個笨蛋?你被騙了，知不知道呀?";
+		next;
+		mes "[盜賊工會服務人員]";
+		mes "好了，不跟你開玩笑了";
+		mes "這個地方是接受想要成為盜賊申請的地方";
+		mes "想要轉職的話去隔壁的櫃檯看看";
+		close;
+	}
+	if (job_thief_q == 2) {
+		mes "[盜賊工會 相關人員]";
+		mes "你還在這幹什麼?";
+		mes "還不去摘香菇嗎?";
+		mes "還是你不清楚轉職條件?";
+		mes "要我再講一遍嗎?";
+		next;
+		if  (select("是的:不用了") == 1) {
+			mes "[盜賊工會 相關人員]";
+			mes "好好記住了";
+			mes "如果平時只有你一個人的怎麼辦";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "這次的轉職考試是要你要到夢羅克，";
+			mes "到一個惡質商人'西布'所經營的香菇農場裡偷取香菇!";
+			mes "要偷取的香菇是^0000ff毒香菇^000000和^0000ff惡臭香菇^000000２種";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "在香菇農場裡好多的怪物";
+			mes "所以偷取得不會很輕鬆";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "到那裡去摘香菇後，再回到這裡評分";
+			mes "'毒香菇'1個是３分，";
+			mes "'惡臭香菇'1個是１分";
+			mes "全部加起來超過２５分的話就算合格了";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "你從這裡出去，向金字塔原野東邊一直走去，";
+			mes "應該在兩個大柱子的中間可以看得到我們的同伴";
+			mes "照那些傢伙的話，他們應該會要你通過小洞到達香菇農場後方";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "正確的坐標好像是...^ff0000141. 125^000000'吧?";
+			mes "想知道當前坐標的話，可以打'/where'顯示";
+			close;
+		}
+		mes "[盜賊工會 相關人員]";
+		mes "哦，是嗎?";
+		mes "我看你一副切確需要幫助的樣子呢";
+		close;
+	}
+	mes "[盜賊工會 相關人員]";
+	if (job_thief_q == 0) {
+		mes "怎麼會來到我們這個骯臟的地方來呢?";
+	}
+	else {
+		mes "你真那麼想成為盜賊是嗎?";
+	}
+	next;
+	if (select("想成為盜賊:放棄，算了吧") == 1) {
+		if (job_thief_q == 0) {
+			mes "[盜賊工會 相關人員]";
+			mes "了不起，真是了不起！理直氣狀地說要成為盜賊，還一點都不猶豫";
+			mes "當盜賊就是要低調，免得你以後做事不方便，了不了?";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "真的想成為盜賊嗎?";
+			next;
+			switch(select("嗯!:不是:那，你呢?")) {
+			case 1:
+				mes "[盜賊工會 相關人員]";
+				mes "是嗎...? 哼... 真奇怪的人.";
+				mes "還是你要是在現實的世界說要成為盜賊的話，是絕對不可以的!";
+				break;
+			case 2:
+				mes "[盜賊工會 相關人員]";
+				mes "那, 是什麼...? 你喜歡的人加入這工會嗎?看起來盜賊有前途嗎?";
+				mes "還是你要是在現實的世界說要成為盜賊的話，是絕對不可以的!";
+				break;
+			case 3:
+				mes "[盜賊工會 相關人員]";
+				mes "嗯..? 我? 我啊…";
+				mes "我啊... 我的性格就是那樣子嘛..... 我不管了那些小心的.";
+				mes "還是你要是在現實的世界說要成為盜賊的話，是絕對不可以的！";
+				break;
+			}
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "考慮好，在現實世界";
+			mes "成為盜賊的話是不能反悔的!";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "真的..";
+			mes "真的想成為盜賊嗎?";
+			next;
+			switch(select("嗯!:還是不要")) {
+			case 1:
+				mes "[盜賊工會 相關人員]";
+				mes "那樣的話請說你的名字";
+				mes "嗯?什麼?";
+				mes strcharinfo(0)+ "." +strcharinfo(0)+ " 是嗎..?";
+				set job_thief_q,1;
+				next;
+				mes "[盜賊工會 相關人員]";
+				mes "這申請書沒有什麼問題，我先收下了.";
+				mes "等你具備所有轉職條件再來找我，我會馬上為你安排面試。";
+				mes "你有沒有那個本事啊！要不要試試?";
+				next;
+				switch(select("嗯!好的:不，不需要")) {
+				case 1:
+					break;
+				case 2:
+					mes "[盜賊工會 相關人員]";
+					mes "隨你高興，滾吧~";
+					close;
+				}
+				break;
+			case 2:
+				mes "[盜賊工會 相關人員]";
+				mes "什麼呀!不想轉職..";
+				mes "真不知來做什麼的?";
+				mes "還在考慮什麼嗎..?";
+				close;
+			}
+		}
+		else {
+			mes "[盜賊工會 相關人員]";
+			mes "來，那樣的話來確認一下吧?";
+			next;
+		}
+		mes "[盜賊工會 相關人員]";
+		mes "名字是.. " + strcharinfo(0) + "是嗎..";
+	        mes "等我一下~";
+		mes "啊!有了，在這你叫 " + strcharinfo(0) + "";
+		next;
+		mes "[盜賊工會 相關人員]";
+		if (getskilllv(1) < 9) {
+			mes "恩..我看的出來你很努力...";
+			mes "但是我們不能讓一個小寶寶當上盜賊";
+			mes "這職業是很危險的..";
+			mes "去把'基本技能'提升到9等之後再來吧";
+			close;
+		}
+		mes "嗯..從你的資料來看有一些不錯的戰果";
+		mes "也算是具有一些基本的能力";
+		mes "好!";
+		mes "名字 " + strcharinfo(0) + "";
+		mes "盜賊轉職面試合格!";
+		next;
+		mes "[盜賊工會 相關人員]";
+		mes "來，這次確認你";
+		mes "有沒有成為盜賊的素質";
+		mes "有關考試的內容清楚嗎?";
+		next;
+		switch(select("當然知道!輕而易舉:不清楚")) {
+		case 1:
+			mes "[盜賊工會 相關人員]";
+			mes "是嗎?太好了!";
+			break;
+		case 2:
+			mes "[盜賊工會 相關人員]";
+			mes "不知道?沒辦法囉!";
+			mes "清意聽了!";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "到夢羅克一個惡質商人'西布'";
+			mes "經營的香菇農場裡偷取香菇";
+			mes "盜取^0000ff惡臭香菇^000000和^0000ff毒香菇^000000 這2種";
+			mes "這就是轉職考試!";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "盜取香菇後回來";
+			mes "依據採集的點數..";
+			mes "'惡臭香菇'1個是3點、";
+			mes "'毒香菇'1個是1點";
+			mes "全部合計25點以上";
+			mes "就算合格了";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "去的路是..向金字塔原野東邊一直走去，";
+			mes "應該在兩個大柱子的中間";
+			mes "可以看得到我們的同伴";
+			mes "與那傢伙說話，";
+			mes "會送你通過小洞到達香菇農場";
+			next;
+			mes "[盜賊工會 相關人員]";
+			mes "正確的位置在..^ff0000141 125^000000'";
+			mes "知道了嗎?";
+			mes "想知道你現在的位置打入指令</where>";
+			mes "就可得知做為參考";
+		}
+		next;
+		set job_thief_q,2;
+		setquest 1013;
+		mes "[盜賊工會 相關人員]";
+		mes "去前先給個忠告";
+		next;
+		mes "[盜賊工會 相關人員]";
+		mes "在香菇農場有魔物";
+		mes "知道了嗎?別以遊戲的心情去";
+		mes "那可就大錯特錯了，";
+		mes "所以最好小心一點";
+		next;
+		mes "[盜賊工會 相關人員]";
+		mes "依你的判斷做適當決擇打倒魔物、逃跑等";
+		next;
+		mes "[盜賊工會 相關人員]";
+		mes "雖然我們的轉職考試是要你去摘香菇，";
+		mes "你今日做的事情是犯罪!";
+		mes "而為了轉職做的事情並不算";
+		mes "這是為了成為盜賊的資格知道了嗎?";
+		mes "瞧、這就清楚的區別";
+		next;
+		mes "[盜賊工會 相關人員]";
+		mes "我就言盡於此";
+		mes "那出發吧!";
+		close;
+	}
+	close;
+}
+
+moc_prydb1,42,133,2	script	布雷依德	118,{
+	if (BaseJob == Job_Thief) {
+		mes "[布雷依德]";
+		mes "現在沒有什麼特別的活動，";
+		mes "我還有其他的事情，";
+		mes "有消息的話我會盡快趕來的";
+		close;
+	}
+	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+		mes "[布雷依德]";
+		mes "喂喂，那裡從事其他職業的傢伙!";
+		mes "你在這裡幹什麼?";
+		mes "這裡可不是你家，";
+		mes "快離開";
+		close;
+	}
+	if (job_thief_q == 0 || job_thief_q == 1) {
+		mes "[布雷依德]";
+		mes "我的天，初學者來這做什麼啊?";
+		mes "如果你想轉職成為盜賊的話，";
+		mes "到旁邊去問那位姊姊吧!";
+		mes "她會把詳細內容告訴你的";
+		close;
+	}
+	else if (job_thief_q == 2) {
+		mes "[布雷依德]";
+		mes "嘿，面試的情況還好吧?";
+		mes "這樣子的話，";
+		mes "接下來應該是要接受摘香菇的考試囉!";
+		mes "加油喔!";
+		close;
+	}
+	else if (job_thief_q == 3) {
+		mes "[布雷依德]";
+		mes "嗯...?你回來了啊?";
+		mes "來，來，看看你到底偷了多少香菇";
+		if (countitem(1069) == 0 && countitem(1070) == 0) {
+			next;
+			mes "[布雷依德]";
+			mes "你身上怎麼都沒半個呢...";
+			mes "這麼消極的態度怎麼當盜賊啊?";
+			close;
+		}
+		next;
+		set .@thief_item1,countitem(1069) * 3;
+		set .@thief_item2,countitem(1070);
+		set .@total_thief,.@thief_item1 + .@thief_item2;
+		set .@money_thief,((.@thief_item1 * 5) + (.@thief_item2 * 2)) + 200;
+		mes "[布雷依德]";
+		if (countitem(1069) != 0) {
+			mes "毒香菇 " + countitem(1069) + "個";
+		}
+		if (countitem(1070) != 0)
+			mes "惡臭香菇 " + countitem(1070) + "個";
+		next;
+		mes "[布雷依德]";
+		mes "嗯嗯...那麼總共加起來是....";
+		next;
+		mes "[布雷依德]";
+		mes "一共是..." + .@total_thief + "分";
+		next;
+		mes "[布雷依德]";
+		if (.@total_thief > 25) {
+			mes "很好，合格了!";
+			mes "現在就開始轉職儀式吧!";
+		}
+		else if (.@total_thief == 25) {
+			mes "很好，合格了!";
+			mes "現在就開始轉職儀式吧!";
+		}
+		else {
+			mes "還差得遠呢!來多點吧!";
+			close;
+		}
+		next;
+		mes "[布雷依德]";
+		mes strcharinfo(0) + "...";
+		mes "通過了轉職考試，正式轉職成為盜賊";
+		mes "同時獲許成為盜賊工會的一員";
+		if (countitem(1069) != 0) delitem 1069,countitem(1069); //Mushroom_Of_Thief_1
+		if (countitem(1070) != 0) delitem 1070,countitem(1070); //Mushroom_Of_Thief_2
+		callfunc "Job_Change",Job_Thief;
+		callfunc "F_ClearJobVar";
+		completequest 1013;
+		next;
+		mes "[布雷依德]";
+		mes "恭喜你轉職成為盜賊";
+		mes "往後可別因為成為盜賊工會的一份子而自滿，";
+		mes "要遵守工會的秩序與規定才行";
+		next;
+		mes "[布雷依德]";
+		mes "萬一你在外面的行動對盜賊工會造成損害的話，";
+		mes "就會被盜賊工會除名，";
+		mes "希望不要發生這樣的事情，";
+		mes "你好自為之";
+		mes "不管如何，期待你有一番成績";
+		mes "就這樣吧";
+		next;
+		mes "[布雷依德]";
+		mes "恭喜你入團!同學";
+		mes "我的名字叫做<布雷依德>，";
+		mes "在盜賊工會中負責轉職與會員管理的職務";
+		mes "現在怎麼樣我是不清楚，";
+		mes "不過說不定以後我們會常見面喔!";
+		next;
+		mes "[布雷依德]";
+		mes "那，這個請收下";
+		mes "這是給新加入的會員應急用的補助金和偷蘑菇的錢";
+		mes "雖然不多，但還請好好利用";
+		set zeny,zeny+.@money_thief;
+		next;
+		mes "[布雷依德]";
+		mes "可以為你做的我都做了，接下來就要靠你自已囉!";
+		mes "我還有很多事情要忙呢!";
+		mes "那麼，下次見吧!";
+		close;
+	}
+}
+
+moc_ruins,141,125,3	script	行跡可疑的人	83,{
+	if (BaseJob == Job_Thief) {
+		mes "[行跡可疑的人]";
+		mes "你成為盜賊囉~";
+		mes "雖然如此，你不可以進入此地喔!";
+		mes "你應該清楚，這裡是想成為盜賊的初學者所使用的轉職考試場";
+		mes "你現在應該要離開這個小地方，飛向更寬廣的世界去看看才是!";
+		close;
+	}
+	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+		mes "[行跡可疑的人]";
+		switch(rand(4)) {
+		case 1:
+			mes "你好今天天氣真是不錯";
+			mes "像今天這樣有著和煦的陽光照耀的午後，";
+			mes "真想在金字塔附近找塊蔭涼的地方和同伴一起吃午餐呢!";
+			close;
+		case 2:
+			mes "'有家可歸是幸福的開始'";
+			mes "這可是我最喜歡的一段話呢!";
+			close;
+		case 3:
+			mes "...........";
+			close;
+		case 4:
+			mes "喔~我~不是行.跡.可.疑~的~人";
+			mes "不要.用.那種眼神~看.我";
+			close;
+		default:
+			mes "....你再怎麼問我，";
+			mes "我都沒有任何可以告訴你的，";
+			mes "快去你該去的地方吧";
+			close;
+		}
+	}
+	if (job_thief_q == 3) {
+		mes "[行跡可疑的人]";
+		mes "哈哈哈，什麼啊，你還沒合格!";
+		mes "真是笨蛋!哈哈哈哈!!";
+		mes "啊，對喔!!盜賊工會本來就是那些笨蛋才會來的地方!!哈哈哈!!";
+		mes "很好!再送你去試看看!";
+		close2;
+		switch(rand(5)) {
+		case 1: warp "job_thief1",228,106; end;
+		case 2: warp "job_thief1",38,50; end;
+		case 3: warp "job_thief1",66,331; end;
+		case 4: warp "job_thief1",196,331; end;
+		default: warp "job_thief1",309,234; end;
+		}
+	}
+	else if (job_thief_q == 2) {
+		mes "[行跡可疑的人]";
+		mes "你這臭小子原來是為了轉職考試來的!";
+		mes "你叫" +strcharinfo(0)+ "吧....";
+		mes "很好!我就送你去!";
+		mes "不過你會不會合格我就不知道了!!";
+		close2;
+		set job_thief_q,3;
+		switch(rand(5)) {
+		case 1: warp "job_thief1",228,106; end;
+		case 2: warp "job_thief1",38,50; end;
+		case 3: warp "job_thief1",66,331; end;
+		case 4: warp "job_thief1",196,331; end;
+		default: warp "job_thief1",309,234; end;
+		}
+	}
+	mes "[行跡可疑的人]";
+	mes "那裡的初學者!";
+	mes "想過更好的人生嗎?";
+	mes "想渡過更輕鬆的生活嗎?";
+	mes "那麼成為盜賊，並且加入盜賊工會吧!";
+	next;
+	mes "[行跡可疑的人]";
+	mes "盜賊工會永遠歡迎你們!";
+	mes "馬上加入的話還附點數卡片(開玩笑)";
+	mes "下來金字塔洞窟1層中央的樓梯，";
+	mes "是左邊，還是右邊也說不定!";
+	mes "如果直直的去是不行的!";
+	close;
+}
+
+// Monsters
+//============================================================
+job_thief1,0,0,0,0	monster	盜蘑菇	1182,180,0,0,0
+job_thief1,0,0,0,0	monster	綠棉蟲	1184,50,0,0,0
+job_thief1,0,0,0,0	monster	蒼蠅	1183,50,0,0,0
+job_thief1,0,0,0,0	monster	魔菇	1014,30,0,0,0
+
+//============================================================
+// mapflag
+//============================================================
+job_thief1	mapflag	nomemo
+job_thief1	mapflag	noteleport
+job_thief1	mapflag	nosave	SavePoint
+job_thief1	mapflag	nopenalty
+job_thief1	mapflag	nobranch

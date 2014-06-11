@@ -1,0 +1,110 @@
+//===== eAthena Script ======================================= 
+//= Official Skill Resetter Event in Yuno (kRO & idRO)
+//===== By: ================================================== 
+//= $ephiroth
+//===== Current Version: ===================================== 
+//= 1.02
+//===== Compatible With: ===================================== 
+//= eAthena 1.0
+//===== Description: ========================================= 
+//= 2006 - Edition Skill Reset NPC
+//= 2006/11/16: 1.0 Release and fully working. [$ephiroth]
+//= 1.01 Checked, fixed typos, now uses MISC_QUEST var [Lupus]
+//= 1.02 Added missing message,comment,etc. [$ephiroth]
+//===== Additional Comments: =================================
+//= Skill Reset with payment, minimum BaseLv.60 to reset skill.
+//= Each 1 BaseLv need 20.000 Zeny, so be careful to use skill.
+//= Translated By  45°向上傾斜
+//============================================================
+yuno,138,187,4	script	催眠術師	124,{
+	set @npcname$,"[^D5A500催眠術師^000000]";
+	mes @npcname$;
+
+	if(MISC_QUEST & 1024){
+		mes "我已經告訴過你, 你只能完成這活動一次.";
+		close;
+	}
+	if(BaseLevel < 60) {
+		mes "當你基本等級到 60 級或以上後再回來吧.";
+		close;
+	}
+	if(SkillPoint != 0) {
+		mes "如果你想繼續的話, 你需要使用完你的技能點.";
+		mes "請一會兒再來吧!";
+		close;
+	}
+	if(Weight || checkfalcon() || checkcart() || checkriding()) {
+		mes "你想要重置技能嗎?";
+		mes "我很抱歉, 不過...";
+		next;
+		mes @npcname$;
+		if(Weight) {
+			mes "你不能重置技能";
+			mes "當你身上有東西";
+			mes "的時候.";
+		} else if(checkcart())
+			mes "請, 扔掉你的手推車後我們再繼續.";
+		else if(checkfalcon())
+			mes "請, 放生你的獵鷹後我們再繼續.";
+		else if(checkriding())
+			mes "請, 放掉你的坐騎後我們再繼續.";
+		next;
+		mes @npcname$;
+		mes "一會兒再來吧!";
+		close;
+	}
+	mes "你好, 我是催眠術師.";
+	mes "你的名字是 ^0080FF"+strcharinfo(0)+"^000000.";
+	mes "我能為你做點什麼?";
+	next;
+	menu "-^009500關於重置技能的信息.^000000",L_Info,"-^00B6FF重置技能.^000000",L_Reset,"-^000088沒事拉^000000",-;
+
+	mes @npcname$;
+	mes "你知道哪裡找我,";
+	mes "如果你想要重置技能!!"; 
+	close;
+
+L_Info:	
+	mes @npcname$;
+	mes "這個技能重置服務不是免費的!!";
+	mes "技能重置的費用為 ^D5A50020000 Zeny x 你的基本等級^000000.";
+	mes "是的 ...每級都需要 20000 Zeny 來重置技能.";
+	next;
+	mes @npcname$;
+	mes "哦對, 還有一件事!";
+	mes "你有手推車, 獵鷹或者大嘴鳥的話,";
+	mes "若你想重置技能請先把它們移除.";
+	next;
+	mes @npcname$;
+	mes "技能的學習只能後悔這一次";
+	mes "謹慎使用你的技能點.";
+	close;
+	
+L_Reset:
+	mes @npcname$;
+	mes "在技能重置前.";
+	mes "你首先要告訴我你多少級."; 
+	next;
+	mes "^D5A500[" + strcharinfo(0) + "]^000000";
+	mes "我的基本等級為 ^AA00AALevel " + BaseLevel + " 級.^000000"; 
+	next;
+	set @zeny,BaseLevel*20000;
+	mes @npcname$;
+	mes "技能重置服務的費用總共為 ^529DFF" + @zeny + "Zeny^000000.";
+	next;
+	if(Zeny < @zeny) {
+		mes @npcname$;
+		mes "看起來你似乎沒有足夠的金錢.";
+		mes "我會等你的.";
+		emotion e_hmm;
+		close;
+	}
+	set Zeny, Zeny-@zeny;
+	set MISC_QUEST,MISC_QUEST | 1024;
+	resetskill;
+	mes @npcname$;
+	mes "謝謝你.";
+	emotion e_thx;
+	logmes "技能重置活動";
+	close;
+}

@@ -1,0 +1,2301 @@
+//==================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ---------------------------------
+// - 騎士 轉職腳本 - 
+//===================================
+// 版本：2.9
+//===================================
+
+prt_in,88,101,4	script	普隆德拉 騎士團長#knt	56,{
+	cutin "job_knight_herman2",2;
+	if (Upper == 1) {
+		mes "[騎士團長 海陸曼]";
+		mes "什麼事，有一點不尋常氣息的傢伙...!";
+		mes "對我活過這麼長騎士生活的人來說";
+		mes "也很難接近你的";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "願你在你的精神和肉體上有光榮存在...";
+		mes "不管在什麼樣的威脅下都不要認輸，";
+		mes "希望你把這精神傳給";
+		mes "所有應該要得到傳播的人";
+		close2;
+		cutin "",255;
+		end;
+	}
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "[騎士團長 海陸曼]";
+			mes "哦，騎士團員啊...";
+			mes "我曾經說過的話你還記得嗎?";
+			mes "我們騎士團員，就算面臨死亡也不能動搖自己的信念";
+			close2;
+			cutin "",255;
+			end;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "[騎士團長 海陸曼]";
+			mes "這裡是普隆德拉騎士團";
+			mes "有什麼事嗎?";
+			next;
+			switch(select("轉職為劍士:轉職為騎士:我只是來參觀的")) {
+			case 1:
+				mes "[騎士團長 海陸曼]";
+				mes "哈哈哈!原來如此...";
+				mes "你來錯地方了呢~";
+				next;
+				mes "[騎士團長 海陸曼]";
+				mes "這裡不是劍士工會，是騎士團";
+				mes "如果想成為劍士的話，";
+				mes "請去依斯魯德島的劍士工會";
+				break;
+			case 2:
+				mes "[騎士團長 海陸曼]";
+				mes "嗯，心懷遠大的夢想是件好事";
+				mes "但是，如果想成為騎士的話，";
+				mes "必須先成為劍士才行";
+				next;
+				mes "[騎士團長 海陸曼]";
+				mes "首先，你必須要先去伊斯魯得島的劍士工會";
+				mes "如果你成為了一個優秀的劍士的話，";
+				mes "到那時候再來這裡吧";
+				break;
+			case 3:
+				mes "[騎士團長 海陸曼]";
+				mes "這樣啊，來參觀固然不錯，";
+				mes "但是如果你這麼有空的話就去打倒怪物吧，哪怕一個也好";
+			}
+			next;
+			mes "[騎士團長 海陸曼]";
+			mes "那麼再見了，如果以後有需要的話，";
+			mes "歡迎再來找我";
+			close2;
+			cutin "",255;
+			end;
+		}
+		else {
+			mes "[騎士團長 海陸曼]";
+			mes "歡迎你來到普隆德拉騎士團";
+			mes "請慢慢參觀吧";
+			close2;
+			cutin "",255;
+			end;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "[騎士團長 海陸曼]";
+		mes "這裡是普隆德拉騎士團";
+		mes "有什麼事嗎?";
+		next;
+		if (select("我想轉職為騎士:我只是來參觀的") == 1) {
+			mes "[騎士團長 海陸曼]";
+			mes "喔，想成為騎士的年輕人啊!";
+			mes "我們普隆德拉的騎士正注視著你";
+			next;
+			mes "[騎士團長 海陸曼]";
+			mes "這裡是普隆德拉騎士團，";
+			mes "我是這裡的團長";
+			mes " '海陸曼 菲奧 艾貝索斯'";
+			mes "每次看到衝勁十足的年輕人的時候我也會跟著心跳加速";
+			next;
+			mes "[騎士團長 海陸曼]";
+			mes "我們普隆德拉騎士團，";
+			mes "只接受職業等級40或以上的劍士進行轉職考試";
+			mes "再怎麼說我們總不能收留尚未成熟的劍士吧!";
+			next;
+			mes "[騎士團長 海陸曼]";
+			mes "接受申請後請立刻開始轉職為騎士，";
+			mes "你要申請轉職為騎士嗎?";
+			next;
+			if (select("是，我要申請:讓我再考慮一下") == 1) {
+				if (JobLevel < 40) {
+					mes "[騎士團長 海陸曼]";
+					mes "哈哈，你想成為騎士的話還早著呢";
+					mes "我剛才不是說了嗎?";
+					mes "職業等級要達到40才可以轉職成騎士的啊!";
+					next;
+					mes "[騎士團長 海陸曼]";
+					mes "當然我知道你興致勃勃，";
+					mes "但是一切尚未成熟，";
+					mes "等你多打一些魔物後再來找我吧，";
+					mes "我一定會等你的";
+					close2;
+					cutin "",255;
+					end;
+				}
+				if (SkillPoint) {
+					mes "[騎士團長 海陸曼]";
+					mes "沒有加完技能點不能進行轉職的";
+					mes "把技能點全部加完再來吧";
+					close2;
+					cutin "",255;
+					end;
+				}
+				set KNIGHT_Q,1;
+				setquest 9000;
+				mes "[騎士團長 海陸曼]";
+				mes "嗯，好，申請我已經收到了";
+				mes "歡迎你來申請考試";
+				mes "名字是 " +strcharinfo(0)+ "對吧";
+				next;
+				mes "[騎士團長 海陸曼]";
+				mes "那麼現在由我說明一下有關騎士轉職的說明吧";
+				mes "只要和我們騎士團的人一個一個單獨對話，";
+				mes "讓他們認定你考試及格就行了";
+				next;
+				mes "[騎士團長 海陸曼]";
+				mes "當所有考試結束後，";
+				mes "騎士團的全體人員匯報合格判定的時候，";
+				mes "就能讓你進行騎士轉職了";
+				mes "必須所有人都一致!";
+				mes "如果有一個人反對你騎士轉職的話，";
+				mes "也需要你重新進行考試";
+				next;
+				mes "[騎士團長 海陸曼]";
+				mes "但是，只要你端正態度把你的決心表現出來，";
+				mes "應該不會有人反對你的";
+				close2;
+				cutin "",255;
+				end;
+			}
+			mes "[騎士團長 海陸曼]";
+			mes "哈哈哈!我好像說的太匆促了吧?";
+			mes "那麼請你深思熟慮後再來吧";
+			next;
+			mes "[騎士團長 海陸曼]";
+			mes "你先準備好轉職的事情後再來找我吧，我一定會等你的";
+			close2;
+			cutin "",255;
+			end;
+		}
+		mes "[騎士團長 海陸曼]";
+		mes "啊，你不是劍士嗎?";
+		mes "看來你到目前為止好像已經經歷過不少戰鬥...";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "身為劍士也可以考慮當騎士啊";
+		mes "這也是不錯的想法喔";
+		mes "如果你想當騎士再來找我吧";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "接下來請隨意參觀吧";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 1) {
+		mes "[騎士團長 海陸曼]";
+		mes "咦?" +strcharinfo(0)+ "，有什麼事嗎?";
+		mes "喔...你不曉得要找誰嗎?";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "這些傢伙們，真是不好伺候呢，";
+		mes "他們好像自己就排好他們自己的順序似的";
+		mes "嗯，這樣子做才能正確的應付考試啊";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "首先，你先去找安德魯 夏伊隆";
+		mes "雖然是第一次考試，希望你們不要太緊張喔";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 2 || KNIGHT_Q == 3 || KNIGHT_Q == 5) {
+		mes "[騎士團長 海陸曼]";
+		mes "咦?" +strcharinfo(0)+ "，考試考得怎麼樣?";
+		mes "過程也許會有點難，不過盡你的力量去做就對了! 加油!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 4) {
+		mes "[騎士團長 海陸曼]";
+		mes "咦?" +strcharinfo(0)+ "，考試考得怎麼樣?";
+		mes "嗯?你不曉得要找誰嗎?";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "好像已經考完一個考試";
+		mes "再來不曉得要見誰?";
+		mes "喂，夏伊隆! 下一個要會見的是誰?";
+		next;
+		mes "[騎士 安德魯]";
+		mes "我已經傳達了，是詹姆士!";
+		mes "記憶力這麼差，怎麼當騎士呢?";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "你聽到了嗎?";
+		mes "去找騎士 詹姆士 喜拉吉斯吧";
+		mes "希望你不要把會見的人的順序搞混比較好";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 6) {
+		mes "[騎士團長 海陸曼]";
+		mes "咦?" +strcharinfo(0)+ "，考試考得怎麼樣?";
+		mes "嗯?你不知道要找誰嗎?";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "好像已經結束第二次的考試了";
+		mes "下一回合考試要找誰呢?";
+		mes "喂，喜拉吉斯!下一個要見誰?";
+		next;
+		mes "[騎士 詹姆士]";
+		mes "啊!我已經告訴他去找文強了!";
+		mes "我很清楚的告訴過他了，他自己忘記是他自己的錯啊!";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "聽見了嗎?";
+		mes "去找騎士文強派內迪特的考試吧";
+		mes "希望不要把要會見的人的順序搞混比較好";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 8) {
+		mes "[騎士團長 海陸曼]";
+		mes "咦?" +strcharinfo(0)+ "，考試考得怎麼樣?";
+		mes "嗯?不曉得應該要找誰嗎?";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "好像已考完了三個回合的考試";
+		mes "下一回合的考試要找誰?";
+		mes "喂，班內提特!下一個要見的是誰?";
+		next;
+		mes "[騎士 文強]";
+		mes "...佩亞特麗絲!";
+		mes "...那個笨蛋劍士!";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "聽見了嗎?";
+		mes "你去找艾咪佩亞特莉絲考試";
+		mes "請你也切記要會面的人的順序";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 9 || KNIGHT_Q == 7 || KNIGHT_Q == 11) {
+		mes "[騎士團長 海陸曼]";
+		mes "嗯，" +strcharinfo(0)+ "";
+		mes "對你來說考試也許會比較難，";
+		mes "不要放棄，加油吧";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 10) {
+		mes "[騎士團長 海陸曼]";
+		mes "咦?" +strcharinfo(0)+ "，考試考得怎麼樣?";
+		mes "嗯?你不知道要去找誰嗎?";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "已經考完了四回合的考試了";
+		mes "下一個要去見的是誰?";
+		mes "喂，佩亞特莉絲!下一個要會見的是誰啊?";
+		next;
+		mes "[騎士 艾咪]";
+		mes "真是的...都已經講過了是愛德蒙登還不知道啊!";
+		mes "像他這樣子的人每次都會被魔物追趕，";
+		mes "就算被教訓過也是會忘記...";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "聽到了嗎?";
+		mes "你要去考騎士愛德蒙登克魯斯多的考試";
+		mes "請你也切記即將要去會見的人的順序";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 12) {
+		mes "[騎士團長 海陸曼]";
+		mes "咦?" +strcharinfo(0)+ "，考試考得如何了呢?";
+		mes "嗯?你不曉得要找誰嗎?";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "現在好像只剩下一個人了吧...";
+		mes "你去考騎士克萊兒克萊斯佩兒的試就行了";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes ".......";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "是我自己看錯了人嗎?";
+		mes "真是感到有一點失望";
+		mes "不過這也是種什麼因得什麼果，到時候轉職的時間一到就會決定一切...";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "這是最後一個回合的考試了，希望你能集中精神作答";
+		mes "另外，身為騎士，依賴別人是不道德的觀念";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "那麼，先去參加考試後再來吧";
+		mes "然後，再來聽聽大家的意見";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 13) {
+		mes "[騎士團長 海陸曼]";
+		mes "先去考完最後一個回合的考試後再來吧";
+		mes "現在還沒有完全的結束";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (KNIGHT_Q == 14) {
+		if (SkillPoint) {
+			mes "[騎士團長 海陸曼]";
+			mes "有剩餘技能點的話不能進行轉職哦";
+			mes "等加完技能點後再來吧";
+			close2;
+			cutin "",255;
+			end;
+		}
+		mes "[騎士團長 海陸曼]";
+		mes "喔，騎士的考試已經全部完成了吧";
+		mes "但是，考完試的劍士們也不是一定能當上騎士";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "重點是要看考試的過程當中是否表現出誠實，名譽，強悍...";
+		mes "還有是否有遵守到禮儀，是否懂得謙虛是很重要的";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "在考試的過程中我們都看到了";
+		mes "然後騎士是由我們7人的評價之中所做出的決定";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "接下來，我們來聽聽大家的意見";
+		mes "他是不是有資格成為騎士?";
+		mes "安德魯你是怎麼認為的?";
+		next;
+		if (JobLevel == 50) {
+			mes "[騎士 安德魯]";
+			mes "我還能說些什麼呢?當然是贊成啊!";
+			mes "到目前為止，光只是他當上劍士這個理由就很充分了";
+		}
+		else {
+			mes "[騎士 安德魯]";
+			mes "如此難以到手的東西意然被我給得到了贊成!";
+			mes "我相信他當上騎士後也會好好地腳踏實地過日子的";
+		}
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "嗯，評價相當高喔";
+		mes "詹姆士，你覺得怎麼樣呢?";
+		next;
+		mes "[騎士 詹姆士]";
+		mes "還行吧";
+		mes "我覺得還是差強人意，但是他以後進步的空間會更大";
+		mes "但如果成為騎士的話一定能提高自己的名聲吧";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "嗯...";
+		mes "文強，你認為如何呢?";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[騎士 文強]";
+		mes ".....贊成";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "看來現在沒有人對你不滿意呢";
+		mes "那麼艾咪，讓我們聽聽你的意見吧";
+		next;
+		mes "[騎士 艾咪]";
+		if (sex) {
+			mes "他非常的有禮貌";
+			mes "雖然現在看起來像個小男孩似的，";
+			mes "不過當上了騎士之後應該會更有男人味吧";
+			mes "嘻嘻...";
+		}
+		else {
+			mes "她非常的有禮貌";
+			mes "看在她很可愛的份上再多給幾分...";
+			mes "對哦，這種事是不應該說出來的哦?";
+		}
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "雖然你們評分的方式有點奇怪，不過我就認為大家都贊成羅";
+		mes "克萊斯特，你也說幾句吧 ";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "雖然歷練還不夠，沒有足夠的智慧，但其實每個人都有他自己的潛力的";
+		mes "他也是遲早有一天會將內在的潛力給發揮出來的";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "最後呢，我想聽聽愛德蒙登的想法";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "該講的你們都已經說過了，我已經沒什麼話好說了";
+		mes "年輕的劍士非常勇敢，";
+		mes "單單是那想成為騎士的強烈決心就已經足夠了";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "都沒有人反對，這麼說大家都贊成囉";
+		mes "那麼，最後我就來發表我的看法吧";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "我的看法是....";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "贊成!";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "嚴格來說，在每一個回合的考試中並不能說都是滿分...";
+		mes "但是我們的總評價是對於一名騎士來說已經充分的擁有騎士的資質";
+		next;
+		completequest 9012;
+		callfunc "Job_Change",Job_Knight;
+		callfunc "F_ClearJobVar";
+		mes "[騎士團長 海陸曼]";
+		mes "那我們就決定你已經成為我們騎士團的一員羅";
+		mes "希望你能鋤強扶弱，以正騎士的名聲";
+		next;
+		getitem 656,7; //Awakening_Potion
+		mes "[騎士團長 海陸曼]";
+		mes "這是我們大家為了慶祝你的加入所準備的小禮物";
+		next;
+		mes "[騎士團長 海陸曼]";
+		mes "現在請走吧!";
+		mes "未來的你將會為騎士團帶來光輝!";
+		close2;
+		cutin "",255;
+		end;
+	}
+}
+
+prt_in,75,107,4	script	忠實的 騎士#knt	65,{
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "[騎士 安德魯]";
+			mes "你是騎士團的一員啊，最近過得怎麼樣啊?";
+			next;
+			mes "[騎士 安德魯]";
+			mes "整備完裝備，為了準備食物，";
+			mes "勤勞的習慣是很重要的";
+			mes "每天戰鬥所得到的物品哪怕是一點點，";
+			mes "也不要浪費，好好的收集";
+			next;
+			mes "[騎士 安德魯]";
+			mes "但是，再怎麼說貪得無厭是不行的";
+			mes "我們畢竟是個騎士";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "[騎士 安德魯]";
+			mes "是初學者啊";
+			mes "歡迎來到普隆德拉騎士團";
+			next;
+			mes "[騎士 安德魯]";
+			mes "雖然目前你會覺得自己很弱，";
+			mes "但是終有一天你會變得很強的";
+			next;
+			mes "[騎士 安德魯]";
+			mes "心懷遠大的理想，踏上自己決定的道路，";
+			mes "默默的一路向前吧";
+			close;
+		}
+		else {
+			mes "[騎士 安德魯]";
+			mes "我們普隆得拉騎士團，";
+			mes "為了這片土地的和平而奮鬥著";
+			next;
+			mes "[騎士 安德魯]";
+			mes "為了我們光明的未來，";
+			mes "我們每天不停忙碌地戰鬥";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "[騎士 安德魯]";
+		mes "我們普隆得拉騎士團，";
+		mes "為了這片土地的和平而奮鬥著";
+		next;
+		mes "[騎士 安德魯]";
+		mes "為了我們光明的未來，";
+		mes "我們每天不停忙碌地戰鬥";
+		close;
+	}
+	else if (KNIGHT_Q == 1) {
+		mes "[騎士 安德魯]";
+		mes "你好，請問有什麼事情嗎?";
+		next;
+		if(select("騎士轉職考試:沒什麼")==1) {
+			mes "[騎士 安德魯]";
+			mes "啊, 你是想轉職為騎士的那一位嘛.";
+			mes "姓名是 " + strcharinfo(0) + " 是嗎?";
+			next;
+			mes "[騎士 安德魯]";
+			mes "我是普隆得拉騎士團的騎士 ,名叫安德魯 沙隆.";
+			mes "我是負責閣下轉職的第一回合考試.";
+			next;
+			mes "[騎士 安德魯]";
+			mes "你也知道我是很誠實的人吧";
+			mes "這是騎士必須有的品德之一";
+			mes "這次我的考試是收集物品";
+			next;
+			if (JobLevel == 50) {
+				mes "[騎士 安德魯]";
+				mes "嗯...? 請你稍微等一下.";
+				mes "身為騎士 你已經被訓練到成為高手的程度?";
+				next;
+				mes "[騎士 安德魯]";
+				mes "真是令人驚訝. 如此一來... 你已經不需要參加考試了.";
+				next;
+				mes "[騎士 安德魯]";
+				mes "那麼, 請你先去找我的同事 騎士 詹姆士 喜拉吉斯.";
+				mes "接下來 剩下的考試也是希望你能當作是生活的一部分, 踏踏實實地應付.";
+				set KNIGHT_Q,4;
+				changequest 9000,9003;
+				close;
+			}
+			mes "[騎士 安德魯]";
+			mes "那麼，要馬上開始嗎?";
+			next;
+			mes "[騎士 安德魯]";
+			mes "請收集以下物品";
+			next;
+			mes "[騎士 安德魯]";
+			switch(rand(1,2)) {
+				case 1: setarray .@items[0], 1040,5, 7006,5, 931,5, 1057,5, 903,5, 1028,5, 2; break;
+				case 2: setarray .@items[0], 1042,5, 950,5, 1032,5, 966,5, 7031,5, 946,5, 3; break;
+			}
+			set KNIGHT_Q,.@items[12];
+			if(KNIGHT_Q == 2) {
+				changequest 9000,9001;
+			}else{
+				changequest 9000,9002;
+			}
+			mes "^236B8E"+.@items[1]+"個"+getitemname(.@items[0])+"^000000,";
+			mes "^236B8E"+.@items[3]+"個"+getitemname(.@items[2])+"^000000,";
+			mes "^236B8E"+.@items[5]+"個"+getitemname(.@items[4])+"^000000,";
+			mes "^236B8E"+.@items[7]+"個"+getitemname(.@items[6])+"^000000,";
+			mes "^236B8E"+.@items[9]+"個"+getitemname(.@items[8])+"^000000，以及";
+			mes "^236B8E"+.@items[11]+"個"+getitemname(.@items[10])+"^000000,";
+			next;
+			mes "[騎士 安德魯]";
+			mes "就是這些";
+			mes "請好好收集吧";
+			close;
+		}
+		else {
+			mes "[騎士 安德魯]";
+			mes "恩? 祝你有個美好的一天";
+			close;
+		}
+	}
+	else if (KNIGHT_Q == 2 || KNIGHT_Q == 3) {
+		mes "[騎士 安德魯]";
+		mes "你回來了啊";
+		mes "物品收集得如何了?";
+		mes "讓我來看看";
+		next;
+		switch(KNIGHT_Q) {
+		case 2: setarray .@items[0], 1040,5, 7006,5, 931,5, 1057,5, 903,5, 1028,5, 0; break;
+		case 3: setarray .@items[0], 1042,5, 950,5, 1032,5, 966,5, 7031,5, 946,5, 0; break;
+		}
+		if (countitem(.@items[0]) >= .@items[1] && countitem(.@items[2]) >= .@items[3] && countitem(.@items[4]) >= .@items[5] && countitem(.@items[6]) >= .@items[7] && countitem(.@items[8]) >= .@items[9] && countitem(.@items[10]) >= .@items[11]) {
+			mes "[騎士 安德魯]";
+			mes "非常正確. 這一路上真是辛苦你了.";
+			mes "這些物品將會對我們騎士團有所幫助的.";
+			next;
+			delitem .@items[0],.@items[1];
+			delitem .@items[2],.@items[3];
+			delitem .@items[4],.@items[5];
+			delitem .@items[6],.@items[7];
+			delitem .@items[8],.@items[9];
+			delitem .@items[10],.@items[11];
+			if(KNIGHT_Q == 2) {
+				changequest 9001,9003;
+			}else{
+				changequest 9002,9003;
+			}
+			set KNIGHT_Q,4;
+			mes "[騎士 安德魯]";
+			mes "那麼, 你就去找我的同士 騎士詹姆士 喜拉吉斯.";
+			mes "接下來剩下的考試, 也是希望你能當成是生活的一部分踏踏實實地應付.";
+			close;
+		}
+		mes "[騎士 安德魯]";
+		mes "等一下";
+		mes "這還沒收集全呢";
+		next;
+		mes "[騎士 安德魯]";
+		mes "你這樣什麼準備都沒有的人就想成為騎士嗎?";
+		mes "如果你忘記了要找什麼的話，那我就再告訴你一次";
+		next;
+		mes "[騎士 安德魯]";
+		mes "^236B8E"+.@items[1]+"個"+getitemname(.@items[0])+"^000000,";
+		mes "^236B8E"+.@items[3]+"個"+getitemname(.@items[2])+"^000000,";
+		mes "^236B8E"+.@items[5]+"個"+getitemname(.@items[4])+"^000000,";
+		mes "^236B8E"+.@items[7]+"個"+getitemname(.@items[6])+"^000000,";
+		mes "^236B8E"+.@items[9]+"個"+getitemname(.@items[8])+"^000000，以及";
+		mes "^236B8E"+.@items[11]+"個"+getitemname(.@items[10])+"^000000,";
+		next;
+		mes "[騎士 安德魯]";
+		mes "再給你一次機會吧，";
+		mes "請認真的對待考試";
+		mes "那麼請繼續吧";
+		close;
+	}
+	else if (KNIGHT_Q == 4) {
+		mes "[騎士 安德魯]";
+		mes "我的考試已經結束了";
+		mes "騎士詹姆士正在等你呢";
+		mes "快去吧";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "[騎士 安德魯]";
+		mes "考試全部都結束了呢真是辛苦你了呢";
+		mes "那麼接下來，你就去找我們的騎士團長聽聽大家的評價吧";
+		close;
+	}
+	else {
+		mes "[騎士 安德魯]";
+		mes "你還有什麼話要說的嗎?";
+		mes "如果你這麼空的話就去接受下一個考試吧";
+		mes "再說一次，請認真的對待考試";
+		close;
+	}
+}
+
+prt_in,71,91,0	script	名譽的 騎士#knt	65,{
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "[騎士 詹姆士]";
+			mes "嗯! 你的近況如何啊? 我們騎士團也是一如往常.";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "我們也有持續在收留騎士團員... 總覺得不太對勁.";
+			mes "不曉得有沒有害群之馬在外面做有害騎士團名聲的惡行...";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "如果你有看到那種傢伙, 那你就代替我教訓他.";
+			close;
+		}
+		else if (Baseclass == Job_Novice) {
+			mes "[騎士 詹姆士]";
+			mes "咦，初學者怎麼會來這裡呢?";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "也許你對騎士有興趣，";
+			mes "但是直接從初學者轉職成騎士是不可能的";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "成為劍士並磨練過自己以後再來這裡吧";
+			close;
+		}
+		else {
+			mes "[騎士 詹姆士]";
+			mes "攻擊...和守備...難道不能同一個時間進行嗎. 如果雙手都有武器的話";
+			mes "雙手同時使用武器時 就會變成不能顧及守備... 如果有能同時克服這兩點的武器就好了.";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "假如能製造出這種武的話 就能對騎士們有所幫助了... 哎";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "[騎士 詹姆士]";
+		mes "攻擊和防禦、無法同時顧及到";
+		mes "如果使用雙手劍的話，就必須放棄裝備盾，";
+		mes "防御就會變弱，這是個缺點";
+		mes "但是好像還沒有能夠克服這個缺點的武器";
+		next;
+		mes "[騎士 詹姆士]";
+		mes "假如能製造出這種武的話，";
+		mes "就能對騎士們有所幫助了";
+		close;
+	}
+	else if (KNIGHT_Q == 1) {
+		mes "[騎士 詹姆士]";
+		mes "嗯?找我有什麼事嗎?";
+		next;
+		if (select("我要參加騎士轉職考試:沒事") == 1) {
+			mes "[騎士 詹姆士]";
+			mes "是來進行騎士轉職考試的吧...";
+			mes "這麼說來，是提交了申請的傢伙吧";
+			mes "名字是 " +strcharinfo(0)+ " 吧...";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "但是，來見我之前先去見我的其他同事";
+			mes "你好像還沒有參加第一個考試吧?";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "先去參加了他的考試再來吧";
+			close;
+		}
+		mes "[騎士 詹姆士]";
+		mes "沒事的話快回去吧!";
+		close;
+	}
+	else if (KNIGHT_Q == 2 || KNIGHT_Q == 3) {
+		mes "[騎士 詹姆士]";
+		mes "嗯?找我有什麼事嗎?";
+		next;
+		if (select("我要參加騎士轉職考試:沒事") == 1) {
+			mes "[騎士 詹姆士]";
+			mes "哈哈，真是...";
+			mes "你應該還在接受安德魯的考試吧";
+			mes "還沒通過就直接到我這裡來...";
+			mes "快回去吧!";
+			close;
+		}
+		mes "[騎士 詹姆士]";
+		mes "沒事的話快回去吧!";
+		close;
+	}
+	else if (KNIGHT_Q == 4 || KNIGHT_Q == 5) {
+		mes "[騎士 詹姆士]";
+		mes "嗯?找我有什麼事嗎?";
+		next;
+		if (select("我要參加騎士轉職考試:沒事") == 1) {
+			mes "[騎士 詹姆士]";
+			mes "嗯... 好, 第一回合的考試還算是勉強通過.";
+			mes "好吧, 那我就為了你挪一些時間出來吧.";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "那首先我先自我介紹好了, 我的名字是 詹姆士 喜拉吉斯.";
+			mes "我當然也是附屬於普隆得拉的騎士.";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "你要考的試題是, 你對騎士的瞭解有多少?";
+			mes "還有 我想瞭解關於你對騎士名譽的看法...";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "請你不要緊張, 我也不會問你太多問題的啦.";
+			mes "我只會問一些簡單的問題而已啦. 因為後面還有很多人也要等著考試啊?";
+			next;
+L_AskQuestions:
+			mes "[騎士 詹姆士]";
+			mes "騎士是有相當大的物理攻擊力和防禦力";
+			mes "擁有攻擊速度及雙手劍技能的職業";
+			mes "那麼最具代表性的雙手劍技能，不被雙手劍攻擊速度增加";
+			mes "起作何作用的武器是?";
+			next;
+			if (select("武士刀:雙手劍:雙手重劍:水紋之劍") != 4) {
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "答錯了! 那是雙手劍啊! 可以使用!";
+				mes "身為想要轉職為騎士的人 竟然連騎士的一些基本常識都不知道 你要怎麼當騎士啊?";
+				next;
+				mes "[騎士 詹姆士]";
+				mes "如果你不知道, 你就去村莊裡隨便找一位騎士來問問...";
+				mes "你先試著去瞭解一些閞於騎士的基本常識後再來找我吧!";
+				close;
+			}
+			mes "[騎士 詹姆士]";
+			mes "好吧，那我就問一些，有關技能方面的問題囉";
+			mes "為了學習怪物互擊，不是必備的技能是";
+			next;
+			if (select("雙手劍使用熟練度 Lv.5:怒爆 Lv.3:挑釁 Lv.10:狂擊 Lv.10") != 3) {
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "答錯了! 如果你連這些都不知道 那你就永遠都不會瞭解怪物互擊!";
+				mes "身為想要轉職為騎士的人 竟然連騎士的一些基本常識都不知道 你要怎麼當騎士啊?";
+				next;
+				mes "[騎士 詹姆士]";
+				mes "如果你不知道, 你就去村莊裡隨便找一位騎士來問問...";
+				mes "你先試著去瞭解一些關於騎士的基本常識後再來找我吧!";
+				close;
+			}
+			mes "[騎士 詹姆士]";
+			mes "另外 騎士這份職業和別的職業有所不同的, 那就是可以使用槍 也可以用槍來使用技術.";
+			mes "以下哪種技術,不是為了練習 騎乘攻擊所必需具備的技能的是 ?";
+			next;
+			if (select("連刺攻擊 Lv.5:長矛刺擊 Lv.3:投擲長矛攻擊 Lv.3:騎乘術 Lv.1") != 3) {
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "答錯了!如果你連這些都不知道，";
+				mes "永遠都別想學會騎乘攻擊!";
+				mes "搞什麼，想做騎士的話怎麼可以連騎士的技能都不知道呢!";
+				next;
+				mes "[騎士 詹姆士]";
+				mes "如果你不知道，你就去城裡隨便找一位騎士來問問";
+				mes "你先試著去了解一些關於騎士的基本常識後再來找我吧";
+				close;
+			}
+			mes "[騎士 詹姆士]";
+			mes "另外，騎士這職業和別的職業有所不同的是，可以使用槍，還有用槍的技能噢";
+			mes "那麼在槍技能中，跟學習騎乘攻擊的過程中，無關的是?";
+			next;
+			if (select("風靈之矛:騎士之矛:修爾特長矛:死神之鐮") != 1) {
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "答錯了! 那種槍對它來說一點實際的作用都起不了";
+				mes "身為想要轉職為騎士的人 竟然連騎士的一些基本常識都不知道 你要怎麼當騎士啊?";
+				next;
+				mes "[騎士 詹姆士]";
+				mes "如果你不知道, 你就去村莊裡隨便找一位騎士來問問...";
+				mes "你先試著去瞭解一些關於騎士的基本常識後再來找我吧!";
+				close;
+			}
+			mes "[騎士 詹姆士]";
+			mes "另外當上騎士後，就可以騎乘大嘴鳥，不過攻擊速度會減慢...";
+			mes "修練完騎兵修練後，就可以提升攻擊速度 ";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "那麼, 接下來是Lv.3時攻擊的速度是多少";
+			next;
+			if (select("平常的 70%:平常的 80%:平常的 90%:平常的 100%") != 2) {
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "答錯 你連對 騎兵修練   都不瞭解  那你就別想騎大嘴鳥";
+				mes "想當騎士的這傢伙怎麼連這都不懂  你要怎樣當騎士阿?";
+				next;
+				mes "[騎士 詹姆士]";
+				mes "你不知道的話就去村莊隨便問一個騎士...";
+				mes "再多瞭解一些關於騎士之後再來吧!";
+				close;
+			}
+			mes "[騎士 詹姆士]";
+			mes "好吧，能瞭解到這個地步的話，對騎士已經很瞭解了";
+			mes "那麼有關騎士，我可以再問一下我個人的問題嗎?";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "在村落遇到了初學者，他請求你幫忙時，你要怎麼處置?";
+			next;
+			switch(select("告訴初學者適當的訓練場所:幫他們引怪自己頂:送給他一些金錢和物品")) {
+			case 1:
+				mes "[騎士 詹姆士]";
+				mes "對啊，就算是初學者也是需要自立的";
+				mes "你不可能永遠的跟著他們";
+				mes "他們需要用自己的力量成長，";
+				mes "為他們指引道路，讓他們變強是非常重要的";
+				next;
+				break;
+			case 2:
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "嗯，這樣的話也許對方會很高興，";
+				mes "但是這樣反而會害了他們";
+				mes "會讓他們變的總想依賴他人";
+				mes "行了，你走吧!";
+				close;
+			case 3:
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "你好像搞錯了什麼吧";
+				mes "你以為這樣是幫助了別人嗎?";
+				mes "授人以魚，一飯之需，教人以漁，終生受用!";
+				mes "你可以走了，回去好好想想吧!";
+				close;
+			}
+			mes "[騎士 詹姆士]";
+			mes "那麼，如果你和人一起組隊的話，";
+			mes "你會怎麼行動呢?";
+			next;
+			switch(select("站在隊伍的最前方保護隊員:拖一堆怪再使用範圍攻擊:只要撿東西就行了")) {
+			case 1:
+				mes "[騎士 詹姆士]";
+				mes "對嘛  我們騎士很強的體力和戰鬥力是在夥伴合作中很重要性的關鍵";
+				mes "我們騎士們也都要有這種想法來幫助人家才可以";
+				next;
+				break;
+			case 2:
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "...什麼?你沒有想錯什麼吧 你做這種事會害到別人的  你懂嗎? ";
+				mes "你這….給我滾   給我回到村莊去  還有剩下的錢你就去買地瓜吃吧";
+				close;
+			case 3:
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "你以為這種方式得來的東西  人家會高興嗎 那就等於給人家毒藥";
+				mes "這根本不是幫人家而是害人家阿  快給我滾";
+				mes "Get lost!";
+				close;
+			}
+			mes "[騎士 詹姆士]";
+			mes "最後的問題  身為騎士第一個想到的價值觀是什麼? ";
+			next;
+			switch(select("名譽:金錢:地位")) {
+			case 1:
+				mes "[騎士 詹姆士]";
+				mes "對  騎士就是需要名譽  身為騎士的我們一生只需要名譽";
+				mes "你要一直將這種想法記在心上";
+				next;
+				break;
+			case 2:
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "你這壞孩子身為想當騎士的人只顧著金錢";
+				mes "給我滾  我們騎士團根本不需要你這種人";
+				close;
+			case 3:
+				set KNIGHT_Q,5;
+				mes "[騎士 詹姆士]";
+				mes "你在想什麼?你是為了功成名就而來騎士團的嗎";
+				mes "給我滾  我們騎士團根本不需要你這種人";
+				close;
+			}
+			set KNIGHT_Q,6;
+			changequest 9003,9004;
+			mes "[騎士 詹姆士]";
+			mes "好了，我這裡的考試已經結束了";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "騎士 文強正在等你呢";
+			mes "他很沉默寡言，你和他交流的時候稍微注意些";
+			close;
+		}
+		mes "[騎士 詹姆士]";
+		mes "恩...? 沒事的話就請回吧";
+		close;
+	}
+	else if (KNIGHT_Q == 5) {
+		mes "[騎士 詹姆士]";
+		mes "又是你啊? 有什麼事嗎?";
+		next;
+		if (select("我要轉職為騎士:沒事") == 1) {
+			mes "[騎士 詹姆士]";
+			mes "確定嗎? 你有準備好嗎?";
+			next;
+			mes "[騎士 詹姆士]";
+			mes "那就開始問題吧";
+			next;
+			goto L_AskQuestions;
+		}
+		mes "[騎士 詹姆士]";
+		mes "恩...? 沒事的話就請回吧";
+		close;
+	}
+	else if (KNIGHT_Q == 6) {
+		mes "[騎士 詹姆士]";
+		mes "請問你找我有什麼事嗎?";
+		next;
+		if (select("我要轉職為騎士:沒事") == 1) {
+			mes "[騎士 詹姆士]";
+			mes "騎士文強正在等你呢";
+			mes "他很沉默寡言，你和他交流的時候稍微注意些";
+			close;
+		}
+		mes "[騎士 詹姆士]";
+		mes "恩...? 沒事的話就請回吧";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "[騎士 詹姆士]";
+		mes "喔，其他同事們的考試全都結束了吧";
+		next;
+		mes "[騎士 詹姆士]";
+		mes "那麼就去聽聽騎士團長的意見吧";
+		mes "我們也會去的";
+		close;
+	}
+	else {
+		mes "[騎士 詹姆士]";
+		mes "嘿，又是你呀";
+		mes "有需要任何幫忙嗎?";
+		mes "不過不好意思，我現在很忙，沒有時間幫你";
+		close;
+	}
+}
+
+prt_in,79,94,4	script	武藝的 騎士#knt	733,{
+	mes "[騎士 文強]";
+	mes "...";
+	next;
+	mes "[騎士 文強]";
+	mes "...";
+	mes "......";
+	next;
+	mes "[騎士 文強]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "保護..";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "...要玩的話...";
+			mes "請滾出去外面吧...";
+			close;
+		}
+		else {
+			mes "...噢..";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "...什麼?";
+		close;
+	}
+	else if (KNIGHT_Q >= 1 && KNIGHT_Q <= 5) {
+		mes ".....有事情嗎?";
+		next;
+		if (select("為了轉職考試:...沒事") == 1) {
+			mes "[騎士 文強]";
+			mes "...";
+			next;
+			mes "[騎士 文強]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[騎士 文強]";
+			mes "...你找錯人了..";
+			close;
+		}
+		mes "[騎士 文強]";
+		mes "...";
+		close;
+	}
+	else if (KNIGHT_Q == 6 || KNIGHT_Q == 7) {
+		if (KNIGHT_Q == 6) {
+			set .@mes$,"騎士 詹姆士 叫我來找你:沒事.";
+			mes ".....恩?";
+			next;
+		}
+		else 
+			set .@mes$,"我還要再試一次!:...";
+		if (select(.@mes$) == 1) {
+			mes "[騎士 文強]";
+			mes "...";
+			next;
+			set KNIGHT_Q,7;
+			changequest 9004,9005;
+			mes "[騎士 文強]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[騎士 文強]";
+			if (KNIGHT_Q == 6) 
+				mes "...跟我來...";
+			else {
+				mes "...很好.";
+				next;
+				mes "[騎士 文強]";
+				mes "...就是這樣..";
+			}
+			close2;
+			if(checkquest(9006) == -1) {
+				changequest 9005,9006;
+			}
+			warp "job_knt",89,101;
+			end;
+		}
+		mes "[騎士 文強]";
+		mes "...";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "...去找團長吧..";
+		close;
+	}
+	else {
+		mes "....我的考試..已經通過了..";
+		close;
+	}
+}
+
+// Test 2 part 1
+//==========================================================
+job_knt,89,106,4	script	騎士 文強#knt2	733,{
+	mes "[騎士 文強]";
+	mes "...";
+	next;
+	mes "[騎士 文強]";
+	mes "...";
+	mes "......";
+	next;
+	mes "[騎士 文強]";
+	mes "...有問題嗎?";
+	next;
+	switch(select("這次測驗是..?:我要如何參加考試?:我要離開這裡:沒事")) {
+	case 1:
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[騎士 文強]";
+		mes "....你要打敗魔物..";
+		next;
+		mes "[騎士 文強]";
+		mes "...全部殺死...";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "....總過有三個關卡..";
+		next;
+		mes "[騎士 文強]";
+		mes "......每一場都是三分鐘..";
+		next;
+		mes "[騎士 文強]";
+		mes "..........";
+		close;
+	case 2:
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[騎士 文強]";
+		mes "...進入聊天室...";
+		next;
+		mes "[騎士 文強]";
+		mes "...就開始了...";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "...有其他人的話..你要等一下...";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		close;
+	case 3:
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "...";
+		mes "......";
+		close2;
+		warp "prt_in",80,100;
+		end;
+	case 4:
+		mes "[騎士 文強]";
+		mes "...";
+		close;
+	}
+}
+
+job_knt,89,106,4	script	騎士 文強#knt	733,{
+OnInit:
+	disablenpc "騎士 文強#knt";
+	waitingroom "轉職考試等待室",20,"騎士 文強#knt::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+
+OnStartArena:
+	killmonster "job_knt", "Knight1::OnMyMobDead";
+	killmonster "job_knt", "Knight2::OnMyMobDead";
+	killmonster "job_knt", "Knight3::OnMyMobDead";
+	warpwaitingpc "job_knt",43,146;
+	donpcevent "Knight1::OnEnable";
+	disablewaitingroomevent;
+	end;
+
+OnStart:
+	enablewaitingroomevent;
+	end;
+}
+
+-	script	Knight1	-1,{
+OnInit:
+	disablenpc "Knight1";
+	end;
+
+OnEnable:
+	enablenpc "Knight1";
+	set .MyMobs,12;
+	monster "job_knt",39,150,"獵蠅",1114,1,"Knight1::OnMyMobDead";
+	monster "job_knt",47,150,"獵蠅",1114,1,"Knight1::OnMyMobDead";
+	monster "job_knt",39,142,"獵蠅",1114,1,"Knight1::OnMyMobDead";
+	monster "job_knt",47,142,"獵蠅",1114,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,137,"工蟻",1160,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,137,"白蟻",1095,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,137,"兵蟻",1105,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"工蟻",1160,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"白蟻",1095,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"兵蟻",1105,1,"Knight1::OnMyMobDead";
+	monster "job_knt",35,146,"艾斯蜘蛛",1100,1,"Knight1::OnMyMobDead";
+	monster "job_knt",52,146,"艾斯蜘蛛",1100,1,"Knight1::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Knight1::OnMyMobDead";
+	disablenpc "Knight1";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "...到下一關...";
+		close2;
+		warp "job_knt",43,52;
+		donpcevent "Knight1::OnDisable";
+		donpcevent "Knight2::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Knight1::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 24, 126, 63, 165, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Knight1::OnDisable";
+	donpcevent "騎士 文強#knt::OnStart";
+	end;
+}
+
+// Test 2 part 2
+//==========================================================
+-	script	Knight2	-1,{
+OnInit:
+	disablenpc "Knight2";
+	end;
+
+OnEnable:
+	enablenpc "Knight2";
+	set .MyMobs,12;
+	monster "job_knt",53,52,"傘蜥",1119,1,"Knight2::OnMyMobDead";
+	monster "job_knt",34,52,"傘蜥",1119,1,"Knight2::OnMyMobDead";
+	monster "job_knt",43,42,"沙漠之狼",1106,1,"Knight2::OnMyMobDead";
+	monster "job_knt",43,62,"沙漠之狼",1106,1,"Knight2::OnMyMobDead";
+	monster "job_knt",58,52,"紅蝙蝠",1111,1,"Knight2::OnMyMobDead";
+	monster "job_knt",58,52,"紅蝙蝠",1111,1,"Knight2::OnMyMobDead";
+	monster "job_knt",29,52,"紅蝙蝠",1111,1,"Knight2::OnMyMobDead";
+	monster "job_knt",29,52,"紅蝙蝠",1111,1,"Knight2::OnMyMobDead";
+	monster "job_knt",60,68,"毒蛇",1030,1,"Knight2::OnMyMobDead";
+	monster "job_knt",27,68,"毒蛇",1030,1,"Knight2::OnMyMobDead";
+	monster "job_knt",60,35,"毒蛇",1030,1,"Knight2::OnMyMobDead";
+	monster "job_knt",27,35,"毒蛇",1030,1,"Knight2::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Knight2::OnMyMobDead";
+	disablenpc "Knight2";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mes "[騎士 文強]";
+		mes "..恩..";
+		next;
+		mes "[騎士 文強]";
+		mes "...剩最後一關...";
+		close2;
+		warp "job_knt",143,152;
+		donpcevent "Knight2::OnDisable";
+		donpcevent "Knight3::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Knight2::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 24, 32, 63, 71, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Knight2::OnDisable";
+	donpcevent "騎士 文強#knt::OnStart";
+	end;
+}
+
+// Test 2 part 3
+//==========================================================
+-	script	Knight3	-1,{
+OnInit:
+	disablenpc "Knight3";
+	end;
+
+OnEnable:
+	enablenpc "Knight3";
+	set .MyMobs,7;
+	monster "job_knt",136,152,"刺刀哥布靈",1122,1,"Knight3::OnMyMobDead";
+	monster "job_knt",150,152,"鏈錘哥布靈",1123,1,"Knight3::OnMyMobDead";
+	monster "job_knt",143,145,"大斧哥布靈",1124,1,"Knight3::OnMyMobDead";
+	monster "job_knt",143,167,"榔頭哥布靈",1125,1,"Knight3::OnMyMobDead";
+	monster "job_knt",139,167,"刺錘哥布靈",1126,1,"Knight3::OnMyMobDead";
+	monster "job_knt",147,167,"弓箭哥布靈",1258,1,"Knight3::OnMyMobDead";
+	monster "job_knt",136,158,"噴射哥布靈",1280,1,"Knight3::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Knight3::OnMyMobDead";
+	disablenpc "Knight3";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mes "[騎士 文強]";
+		mes "...";
+		next;
+		mes "[騎士 文強]";
+		mes "...很好....";
+		next;
+		mes "[騎士 文強]";
+		mes "...去找艾咪吧...";
+		close2;
+		set KNIGHT_Q,8;
+		if(checkquest(9007) == -1) {
+			changequest 9006,9007;
+		}
+		warp "prt_in",80,100;
+		donpcevent "Knight3::OnDisable";
+		donpcevent "騎士 文強#knt::OnStart";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Knight3::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 124, 132, 163, 171, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Knight3::OnDisable";
+	donpcevent "騎士 文強#knt::OnStart";
+	end;
+}
+
+// Test 3 (Manners)
+//==========================================================
+prt_in,69,107,6	script	有禮貌的 騎士#knt	728,{
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "[騎士 艾咪]";
+			mes "啊?特地來找我有什麼事嗎?";
+			next;
+			mes "[騎士 艾咪]";
+			mes "騎士生活有什麼問題嗎?";
+			mes "應該沒有的吧";
+			mes "艾咪從出生就一直相信騎士是不會有什麼問題的";
+			next;
+			mes "[騎士 艾咪]";
+			mes "那麼再見了!";
+			mes "你是我們普隆德拉優秀的騎士團員啊!";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "[騎士 艾咪]";
+			mes "哎阿~~好可愛的初學者~~ 好可愛喔";
+			next;
+			mes "[騎士 艾咪]";
+			mes "哈哈..你將來也想不想當騎士阿?如果你將來當騎士一定會很帥喔";
+			next;
+			mes "[騎士 艾咪]";
+			mes "我會記住你的喔 你將來一定要當騎士喔我們約好喔";
+			close;
+		}
+		else {
+			mes "[騎士 艾咪]";
+			mes "歡迎來到普隆德拉騎士團!";
+			next;
+			mes "[騎士 艾咪]";
+			mes "雖然這裡只有騎士，";
+			mes "但還是請隨意的參觀吧~";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "[騎士 艾咪]";
+		mes "哎呀，你不是劍士嗎";
+		mes "想轉職成為騎士嗎?";
+		next;
+		mes "[騎士 艾咪]";
+		mes "想成為騎士的話先去那裡，";
+		mes "騎士團長在那裡，";
+		mes "先去和他說說吧";
+		close;
+	}
+	else if (KNIGHT_Q >= 1 && KNIGHT_Q <= 7) {
+		mes "[騎士 艾咪]";
+		mes "嗯? 找艾咪有什麼事嗎?";
+		next;
+		if (select("我想參加轉職為騎士考試.:沒事.") == 1) {
+			mes "[騎士 艾咪]";
+			mes "嗯 你已經申請了轉職為騎士阿!很好你要維持那決心一定要成為騎士喔";
+			next;
+			mes "[騎士 艾咪]";
+			mes "不過…你要找艾依米之前你要去找其他的騎士們喔";
+			next;
+			mes "[騎士 艾咪]";
+			mes "我也想先幫你考試,不過這樣是不行的,  嘻嘻";
+			close;
+		}
+		mes "[騎士 艾咪]";
+		mes "唉呀  好無聊喔";
+		close;
+	}
+	else if (KNIGHT_Q) == 8 {
+		mes "[騎士 艾咪]";
+		mes "嗯? 找艾咪有什麼事嗎?";
+		next;
+		if (select("騎士文強叫我來...:沒事.") == 1) {
+			if(checkquest(9008) == -1) {
+				changequest 9007,9008;
+			}
+			mes "[騎士 艾咪]";
+			mes "嘿，來這裡來這裡!";
+			mes "這次輪到艾咪的考試了嘻嘻";
+			next;
+			mes "[騎士 艾咪]";
+			mes "我的名字是";
+			mes "'艾咪 佩亞特莉絲'";
+			mes "萬綠叢中的一點紅喔";
+			next;
+			mes "[騎士 艾咪]";
+			mes "艾咪的考試呢，";
+			mes "是對於騎士來說十分重要的禮儀方面的問題";
+			mes "想看看你是怎麼回答的";
+			next;
+			mes "[騎士 艾咪]";
+			mes "我提出問題以後，";
+			mes "請你好好的回答，";
+			mes "然後我會根據你的回答給出相應的評價";
+			next;
+			mes "[騎士 艾咪]";
+			mes "所以呢，聽好了，";
+			mes "告訴我你覺得作為騎士怎麼做才是正確的就行了";
+			mes "明白了嗎?";
+			next;
+			mes "[騎士 艾咪]";
+			mes "那麼就開始了";
+			next;
+L_AskQuestions:
+			mes "[騎士 艾咪]";
+			mes "身為騎士的你，在夢羅克街上尋找組隊，請問怎麼組隊較好呢?";
+			next;
+			switch(select("大聲喧擾尋找夥伴:製作聊天室等待機會:尋找需要騎士夥伴的人")) {
+			case 2:
+			case 3:
+				set .@knight_t,.@knight_t+10;
+			default:
+				break;
+			}
+			mes "[騎士 艾咪]";
+			mes "你和幾個等級差不多的人組隊了，";
+			mes "有祭司、巫師、獵人、刺客、鐵匠";
+			next;
+			mes "[騎士 艾咪]";
+			mes "然後你們６個人決定要去金字塔";
+			next;
+			mes "[騎士 艾咪]";
+			mes "到達了金字塔的第４層";
+			mes "現在，你準備怎麼做呢?";
+			next;
+			switch(select("先注意四周圍再想辦法:為了隊伍去拖怪:站在前鋒慢慢的前進")) {
+			case 1:
+			case 3:
+				set .@knight_t,.@knight_t+10;
+			default:
+				break;
+			}
+			mes "[騎士 艾咪]";
+			mes "可是有一個壞人，把魔物集中起來後，突然消失了!這時候如何處置?";
+			next;
+			if (select("幫其他人頂怪:邊戰邊退:利用大嘴鳥的速度逃走") == 2)
+				set .@knight_t,.@knight_t+10;
+			mes "[騎士 艾咪]";
+			mes "幸好組隊員們都脫離了險境，可是繼續的往前走";
+			mes "竟然發現非組隊員，昏倒在地上";
+			mes "那個人很誠懇的向你求救，該如何處置?";
+			next;
+			if (select("去找隊伍裡的祭司來:跟他要錢，並且給了錢才會救他:從他身上踩過去") == 1)
+				set .@knight_t,.@knight_t+10;
+			mes "[騎士 艾咪]";
+			mes "現在為了要去別的地方，不得不和組隊員要分離";
+			mes "可是在剛才的戰鬥中，得到了貴重物品，你要怎麼樣處置?";
+			next;
+			switch(select("給功勞最大的人:裝傻獨吞:和其他人商量以後決定")) {
+			case 1:
+			case 3:
+				set .@knight_t,.@knight_t+10;
+			default:
+				break;
+			}
+			mes "[騎士 艾咪]";
+			mes "和剛才組隊的人們分開以後，";
+			mes "你為了把值錢的東西賣掉，";
+			mes "來到了普隆德拉";
+			mes "在路上有很多人開著露天商店，";
+			mes "還有很多人開著聊天室";
+			next;
+			mes "[騎士 艾咪]";
+			mes "那麼這時候，";
+			mes "你準備用什麼方法吸引別人買你的東西呢?";
+			next;
+			if (select("為了讓大家知道並且通知大家.:在聊天室等待需要買的人.:尋找看看是否有人需要") == 3)
+				set .@knight_t,.@knight_t+10;
+			mes "[騎士 艾咪]";
+			mes "在等待別人時，有人跟你乞討";
+			mes "你該怎麼處理";
+			next;
+			if (select("分給他一些錢及物品:不理會他:告訴他適合他戰鬥的地方") == 3)
+				set .@knight_t,.@knight_t+10;
+			mes "[騎士 艾咪]";
+			mes "這次你打算自己一人去迷宮森林";
+			mes "抱著很愉快的心情騎著大嘴鳥去了";
+			next;
+			mes "[騎士 艾咪]";
+			mes "在路上遇到迷路的人";
+			mes "該怎麼辦才好呢? ";
+			next;
+			switch(select("告訴他出去的路.:送他到出口.:送他一個蝴蝶的翅膀.")) {
+			case 1:
+			case 2:
+				set .@knight_t,.@knight_t+10;
+			default:
+				break;
+			}
+			mes "[騎士 艾咪]";
+			mes "在森林中很專心和魔物打鬥，才發現回復物品都用完了";
+			mes "體力已顯示紅燈  是個很危險的情況";
+			next;
+			mes "[騎士 艾咪]";
+			mes "剛好有祭司經過";
+			mes "應該怎樣求救好呢? ";
+			next;
+			if (select("能幫我補血嗎?:用HELP表情:++") == 1)
+				set .@knight_t,.@knight_t+10;
+			mes "[騎士 艾咪]";
+			mes "你已經很累了";
+			mes "準備回城去了";
+			next;
+			mes "[騎士 艾咪]";
+			mes "在回去的路上，看到地上有個值錢的東西";
+			mes "你會怎麼做?";
+			next;
+			switch(select("占為己有:找找看是誰掉的:不關我事")) {
+			case 2:
+			case 3:
+				set .@knight_t,.@knight_t+10;
+			default:
+				break;
+			}
+			mes "[騎士 艾咪]";
+			mes "好了，到此為止我的考試也結束了!";
+			next;
+			if (.@knight_t == 100) {
+				set KNIGHT_Q,10;
+				changequest 9008,9009;
+				mes "[騎士 艾咪]";
+				mes "真不錯!只要你有這樣的精神，";
+				mes "就已經是一個合格的騎士了!";
+				mes "接下來的考試...應該是...";
+				mes "愛德蒙登先生的吧";
+				next;
+				mes "[騎士 艾咪]";
+				mes "有空的話去聽聽騎士前輩們的話吧，";
+				mes "接下來的考試也要加油喔!";
+				close;
+			}
+			else if (.@knight_t == 90) {
+				set KNIGHT_Q,10;
+				changequest 9008,9009;
+				mes "[騎士 艾咪]";
+				mes "雖然有些部分不太滿意  不過就留到最後再決定吧";
+				mes "你去考下一回合得考試吧 愛德蒙登騎士在旁等著你呢";
+				close;
+			}
+			set KNIGHT_Q,9;
+			mes "[騎士 艾咪]";
+			mes "啊...我考慮了一下覺得不行啊";
+			mes "如果你真的是這麼做事的話，";
+			mes "外面的人會說我們這裡的騎士都是一些野蠻人的";
+			next;
+			mes "[騎士 艾咪]";
+			mes "我的那些問題到底應該怎麼回答，";
+			mes "你再考慮考慮吧";
+			mes "不要放棄，重新再考一次吧";
+			close;
+		}
+		mes "[騎士 艾咪]";
+		mes "哦，好吧";
+		close;
+	}
+	else if (KNIGHT_Q == 9) {
+		mes "[騎士 艾咪]";
+		mes "好了，這次是關於禮儀的問題，";
+		mes "你好好的學習過了嗎?";
+		next;
+		mes "[騎士 艾咪]";
+		mes "在這裡失敗的話，";
+		mes "艾咪是會生氣的喲!";
+		next;
+		mes "[騎士 艾咪]";
+		mes "而且，我會去和騎士團長說，";
+		mes "讓他不同意你當騎士";
+		next;
+		mes "[騎士 艾咪]";
+		mes "所以呢，仔細聽問題，作為騎士應該怎麼回答，";
+		mes "好好的想明白才行!";
+		next;
+		mes "[騎士 艾咪]";
+		mes "好了，再試試看吧!";
+		next;
+		goto L_AskQuestions;
+	}
+	else if (KNIGHT_Q == 10) {
+		mes "[騎士 艾咪]";
+		mes "到愛德蒙登先生那裡去吧";
+		mes "艾咪的考試已經結束了";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "[騎士 艾咪]";
+		mes "啊，好像大家都已經有結果了!";
+		next;
+		mes "[騎士 艾咪]";
+		mes "去聽聽團長的話吧";
+		mes "別太緊張，放輕鬆";
+		close;
+	}
+	else {
+		mes "[騎士 艾咪]";
+		mes "還要到別的騎士那裡考試啊!";
+		mes "快點去吧!";
+		close;
+	}
+}
+
+// Test 4 (patience)
+//==========================================================
+prt_in,70,99,6	script	虔誠的騎士#knt	734,{
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "[騎士 愛德蒙登]";
+			mes "你把自己的心當成了正在流的河流.";
+			next;
+			mes "[騎士 愛德蒙登]";
+			mes "河流會避開障礙物會流到該去的路...";
+			next;
+			mes "[騎士 愛德蒙登]";
+			mes "身為騎士不管任何時候都要和河流一樣靜靜地走自己的路.";
+			close;
+		}
+		else if (BaseClass == Job_NOvice) {
+			mes "[騎士 愛德蒙登]";
+			mes "根深的樹是不會被風動搖的.";
+			next;
+			mes "[騎士 愛德蒙登]";
+			mes "如果能重基礎開始打好  終有一天會發出他的光芒...";
+			next;
+			mes "[騎士 愛德蒙登]";
+			mes "你的未來可說成是決定這一刻...";
+			close;
+		}
+		else {
+			mes "[騎士 愛德蒙登]";
+			mes "這世界很多都是為了調節而活著的.";
+			next;
+			mes "[騎士 愛德蒙登]";
+			mes "不會擾亂自己的位置而生存 這才是人生...";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "[騎士 愛德蒙登]";
+		mes "想法黑暗的人只會做黑暗的夢";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "每天只會做黑暗夢的人,連夢都會破滅...";
+		close;
+	}
+	else if (KNIGHT_Q >= 1 && KNIGHT_Q <= 9) {
+		mes "[騎士 愛德蒙登]";
+		mes "有什麼事嗎... 無所適從的劍士啊.";
+		next;
+		if (select("關於騎士轉職的考試:沒事.") == 1) {
+			mes "[騎士 愛德蒙登]";
+			mes "花... 是要從發芽之後開始成長, 長出花苞之後才綻放...";
+			next;
+			mes "[騎士 愛德蒙登]";
+			mes "如果沒有經過這樣的過程就沒辦法完全綻放.";
+			next;
+			mes "[騎士 愛德蒙登]";
+			mes "你先去見過其他人再來吧,希望你能找出屬於自己的路 ...";
+			close;
+		}
+		mes "[騎士 愛德蒙登]";
+		mes "你所期望的人生,很快就會在你眼前實現...";
+		close;
+	}
+	else if (KNIGHT_Q == 10) {
+		mes "[騎士 愛德蒙登]";
+		mes "輪到接受我的考試了嗎...";
+		mes "就像之前的考試一樣，";
+		mes "做出正確的判斷吧";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "我名叫愛德蒙登·克萊斯特";
+		mes "普隆德拉騎士團所屬的騎士";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "騎士是世人的楷模，";
+		mes "必須擁有虔誠的心去守護世界的秩序，";
+		mes "騎士必須是這樣的人才行";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "憑著自己的興趣輕率的行動，";
+		mes "作為一個騎士是絕對不允許的";
+		mes "有時候我們需要像水那樣的慈悲之心，";
+		mes "有時候我們也需要像岩石那樣的堅決之心";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "不能為了滿足自己的殺戮欲望而毫無理由的去殺害怪物";
+		mes "請冷靜的思考吧整理一下自己的思緒";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "現在考試開始了";
+		mes "希望你能夠保持虔誠的心";
+		close2;
+		set KNIGHT_Q,11;
+		changequest 9009,9010;
+		warp "job_knt",143,57;
+		end;
+	}
+	else if (KNIGHT_Q == 11) {
+		mes "[騎士 愛德蒙登]";
+		mes "上次你做了輕率的行動";
+		mes "騎士是保護弱者的職業...";
+		mes "不是欺凌弱小的職業...";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "世間萬物相互依存，";
+		mes "但人類卻時常的去破壞這個平衡...";
+		mes "這並不是單單的考試";
+		mes "這是和世界的對話...";
+		next;
+		mes "[騎士 愛德蒙登]";
+		mes "那麼請再一次的";
+		mes "靜下自己的心吧";
+		close2;
+		warp "job_knt",143,57;
+		end;
+	}
+	else if (KNIGHT_Q == 12 || KNIGHT_Q == 13) {
+		mes "[騎士 愛德蒙登]";
+		mes "我已經看到了你的內心";
+		mes "去騎士克萊兒那裡吧，";
+		mes "去接受最後的考驗吧...";
+		close;
+	}
+	else {
+		mes "[騎士 愛德蒙登]";
+		mes "去聽聽騎士團長的意見吧...";
+		mes "他應該已經聽到了大家的意見了...";
+		close;
+	}
+}
+
+job_knt,1,1,1	script	Timer#knt	107,{
+OnTimer300000:
+	enablenpc "Warp#knt";
+	end;
+
+OnTimer300500:
+	donpcevent "Timer#knt::OnDisable";
+	disablenpc "Warp#knt";
+	end;
+
+OnTimer301500:
+	stopnpctimer;
+	donpcevent "Timer#knt::OnEnable";
+	end;
+
+OnInit:
+OnEnable:
+	enablenpc "Timer#knt";
+	monster "job_knt",141,57,"波利",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",145,57,"波利",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,55,"波利",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,59,"波利",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",141,55,"瘋兔",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",141,59,"瘋兔",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",145,55,"瘋兔",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",145,59,"瘋兔",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",139,57,"蒼蠅",1011,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",147,57,"蒼蠅",1011,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,53,"蒼蠅",1011,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,61,"蒼蠅",1011,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",165,54,"魔菇",1182,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",165,57,"魔菇",1182,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",122,54,"魔菇",1182,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",122,57,"魔菇",1182,1,"Timer#knt::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt","Timer#knt::OnMyMobDead";
+	disablenpc "Timer#knt";
+	disablenpc "Warp#knt";
+	end;
+
+OnMyMobDead:
+	warp "prt_fild05",353,251;
+	end;
+}
+
+job_knt,145,57,1	script	Warp#knt	107,22,22,{
+OnInit:
+	disablenpc "Warp#knt";
+	end;
+OnTouch:
+	set KNIGHT_Q,12;
+	changequest 9010,9011;
+	warp "prt_in",80,100;
+	end;
+}
+
+// 第五個考試、十字巨劍製作
+//==========================================================
+prt_in,87,92,4	script	謙讓的騎士#knt	119,{
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "[克萊兒 騎士]";
+			mes "那種無法用語言來形容的美麗的刀刃...";
+			mes "談起騎士們所用的武器自然就會想到它!";
+			mes "沒錯，那就是 ^3355FF'十字巨劍'^000000 !!";
+			mes "是騎士的話沒有一把這樣的劍可不行啊";
+			next;
+			switch (select("^3355FF關於'十字巨劍'^000000:購買十字巨劍:結束對話")) {
+			case 1:
+				mes "[克萊兒 騎士]";
+				mes "盧恩 米德加爾特王國的首都普隆德拉，";
+				mes "這裡可以買到各種各樣的名劍";
+				mes "但其中最優秀的當屬十字巨劍!!";
+				mes "對於騎士來說是必不可少的裝備";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "有著這樣高評價的十字巨劍，";
+				mes "在我們騎士團裡你只要出^3355FF74,000^000000Zeny，";
+				mes "我們就可以幫你製造一把";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "但是，為了打造出那堅硬而鋒利的刀刃";
+				mes "需要用到珍貴的 ^3355FF'鋼鐵'^000000 一塊";
+				mes "如果你能找到它，並和製作費用一起帶來的話";
+				mes "我們馬上就可以為你製造出來，我以騎士團的名譽擔保";
+				close;
+			case 2:
+				set .@now_weight,MaxWeight-Weight;
+				if (.@now_weight < 1800) {
+					mes "[克萊兒 騎士]";
+					mes "啊, 你的私人物品好像太多了喔, 這樣你哪有力氣拿 十字巨劍.";
+					mes "建議你先整理一下物品.";
+					close;
+				}
+				else {
+					if (Zeny > 73999 && countitem(999) > 0 && BaseJob == Job_Knight) {
+						mes "[克萊兒 騎士]";
+						mes "很好! 你已經準備好了嘛! 看來你是真正瞭解十字巨劍價值的帥氣青年啊!";
+						mes "現在我就馬上做給你吧!!";
+						next;
+						mes "[克萊兒 騎士]";
+						mes "十字巨劍..";
+						mes "把鋼鐵混合 !";
+						mes "混合再混合 . . . . .";
+						next;
+						mes "^3355FF-用力  用力 -^000000";
+						next;
+						mes "[克萊兒 騎士]";
+						mes "你看完成了! 十字巨劍可是騎士團員的驕傲啊";
+						mes "你得到了不錯的東西. 今後的旅途上它會是你的好幫手.";
+						delitem 999,1;
+						set zeny,zeny-74000;
+						getitem 1163,1;
+						close;
+					}
+					mes "[克萊兒 騎士]";
+					mes "我很瞭解你想得到十字巨劍,不過沒有材料的話無法完成.";
+					mes "^3355FF74000 Zeny! 鋼鐵 一個!^000000.";
+					next;
+					mes "[克萊兒 騎士]";
+					mes "等你把材料準備好之後再來找我吧.";
+					mes "我隨時都會在這等你...";
+					close;
+				}
+			case 3:
+				mes "[克萊兒 騎士]";
+				mes "能像自己的手腳一樣靈活自如使用十字巨劍";
+				mes "能做到這點才是出色的騎士";
+				mes "我期待著你下次的到來";
+				close;
+			}
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "[克萊兒 騎士]";
+			mes "見到你讓我想起了我當初初學者的時代了";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "當時也沒有想過要當騎士，";
+			mes "只是單純的想變強而已";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "不知不覺中我就當上了一名騎士，哈哈";
+			close;
+		}
+		mes "[克萊兒 騎士]";
+		mes "年輕人, 你要珍惜自己寶貴的時間.";
+		next;
+		mes "[克萊兒 騎士]";
+		mes "一旦時光流逝之後, 就算後悔所做的事也已經來不及了.";
+		close;
+	}
+	if (KNIGHT_Q == 0) {
+		mes "[克萊兒 騎士]";
+		mes "年輕人，要學會珍惜你的每一秒鐘";
+		next;
+		mes "[克萊兒 騎士]";
+		mes "明日復明日，明日何其多";
+		mes "如果一直虛度年華，";
+		mes "日後你一定會追悔莫及";
+		close;
+	}
+	else if (KNIGHT_Q == 12) {
+		mes "[克萊兒 騎士]";
+		mes "年輕的劍士，有什麼事嗎?";
+		next;
+		if (select("關於騎士轉職的考試:沒事.") == 1) {
+			mes "[克萊兒 騎士]";
+			mes "哦，這樣啊";
+			mes "你好像已經接受過之前的那些同事們的考試了";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "那麼我的考試就要開始了";
+			mes "哈，不過這似乎稱不上是什麼考試";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "隨便聊聊就行了";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "首先...";
+			mes "是什麼讓你下定了決心想成為一個騎士的呢?";
+			next;
+L_AskQuestions:
+			switch(select("為了要變得更強:想為我的工會貢獻自己的力量:我不想滿足於現狀")) {
+			case 1:
+				mes "[克萊兒 騎士]";
+				mes "想變得更強嗎...?";
+				mes "的確騎士可以說是相當強悍";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "但是，你追求力量是為了什麼?";
+				mes "是想擁有向人們炫耀的資本?";
+				mes "還是為了成名?";
+				mes "或者是什麼其他的目的?";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "對於騎士來說'力量'是為了什麼而存在的?";
+				next;
+				switch(select("為了得到戰績和名聲:為了能夠保護自己:為了能夠守護其他的人")) {
+				case 1:
+					set .@knight_t,.@knight_t+10;
+					mes "[克萊兒 騎士]";
+					mes "雖然賺錢和揚名的確不是什麼壞事";
+					mes "但我們騎士團的騎士們奮鬥至今，";
+					mes "並不僅僅是為了這些東西";
+					break;
+				case 2:
+					mes "[克萊兒 騎士]";
+					mes "很好的想法，要先學會保護自己之後才懂得去保護其他人...";
+					mes "為了那個目標，你平時不能有任何的懈怠";
+					break;
+				case 3:
+					mes "[克萊兒 騎士]";
+					mes "很不錯的想法，騎士之所以強悍就是為了要濟弱扶傾以及伸張正義";
+					mes "雖然也有一些年輕人破壞了騎士精神，污蔑了騎士的名號...";
+					break;
+				}
+				break;
+			case 2:
+				mes "[克萊兒 騎士]";
+				mes "工會...是很多同伴在一起的組織啊";
+				mes "我們的國王特力斯坦三世也經常說起";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "就算在和平的日子裡，威脅也仍然伴隨著我們";
+				mes "為了應付不可預知的危機，";
+				mes "我們必須隨時都做好戰鬥的準備";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "那麼，為了你的工會";
+				mes "你想怎麼使用你的力量呢?";
+				next;
+				switch(select("工會需要我的力量:為了工會的資金收入:為了保護工會的同伴")) {
+				case 1:
+					mes "[克萊兒 騎士]";
+					mes "不管世界哪個角落，任何人都會想住在自己所希望的地方";
+					mes "即使不是工會的任何人向你求救，你都必須要伸出援手";
+					break;
+				case 2:
+					set .@knight_t,.@knight_t+10;
+					mes "[克萊兒 騎士]";
+					mes "雖然賺錢和揚名的確不是什麼壞事";
+					mes "但我們騎士團的騎士們奮鬥至今，";
+					mes "並不僅僅是為了這些東西";
+					break;
+				case 3:
+					mes "[克萊兒 騎士]";
+					mes "很不錯的想法，騎士之所以強悍就是為了要濟弱扶傾以及伸張正義";
+					mes "雖然也有一些年輕人破壞了騎士精神，污蔑了騎士的名號...";
+					break;
+				}
+				break;
+			case 3:
+				set .@knight_t,.@knight_t+5;
+				mes "[克萊兒 騎士]";
+				mes "不滿足啊...";
+				mes "你已經是一個相當優秀的劍士...";
+				mes "你是基於什麼理由必須要當騎士呢?";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "我不曉得劍士的規矩...";
+				mes "但是騎士這項職業是不容許有任何放縱的行為";
+				mes "有些年輕人卻沈溺於追求無限力量的欲望，造成無法控制自己的狀況";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "目前你對於哪一方面感到不滿足呢?";
+				next;
+				switch(select("對技術:對目標:對心態方面")) {
+				case 1:
+					set .@knight_t,.@knight_t+5;
+					mes "[克萊兒 騎士]";
+					mes "技術對於騎士來說其實只是附帶的...";
+					mes "不能說那是騎士的最高價值，";
+					mes "就算當上騎士可能對這一方面也無法完全滿足";
+					break;
+				case 2:
+					set .@knight_t,.@knight_t-5;
+					mes "[克萊兒 騎士]";
+					mes "是啊...胸懷遠大目標是很重要的事";
+					mes "雖然你現在滿腦子就是想當個騎士，不過也許有一天你的想法會有所改變啊";
+					break;
+				case 3:
+					set .@knight_t,.@knight_t+5;
+					mes "[克萊兒 騎士]";
+					mes "這...表面上所看到的並不一定是衡量價值的尺度";
+					mes "劍士也有可能比騎士來的更強，";
+					mes "即使是騎士也不例外，";
+					mes "如果鬆懈修練的話也會變弱";
+					break;
+				}
+				break;
+			}
+			next;
+			mes "[克萊兒 騎士]";
+			mes "看來你也是經過很多考慮的";
+			mes "不像有些人什麼沒有考慮過就跑來說要當騎士...";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "那樣的問題青年，";
+			mes "遲早會為騎士團蒙羞的";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "你說的這些我知道了...";
+			mes "但是一旦成為了騎士，你就無法再變回以前的劍士了";
+			mes "希望你不要忘記作為一個騎士應該承擔的責任";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "如果，你現在已經是騎士了，";
+			mes "你打算做什麼呢?";
+			next;
+			switch(select("馬上要去戰鬥:有人正在等我:學習一些關於騎士的知識")) {
+			case 1:
+				mes "[克萊兒 騎士]";
+				mes "嗯，然後呢?";
+				next;
+				switch(select("在最短的時間內變得加倍強悍:想試試成為騎士的我有什麼新技能:我要去劍士所不能到的地方")) {
+				case 1:
+					set .@knight_t,.@knight_t+10;
+					mes "[克萊兒 騎士]";
+					mes "不要急功近利才好";
+					mes "成功的路沒有捷徑可走，";
+					mes "腳踏實地，一步一個腳印才行";
+					break;
+				case 2:
+					mes "[克萊兒 騎士]";
+					mes "自己試探自己也是一件好事";
+					mes "對自己的能力進展而感到高興是理所當然，不過可要時時切記騎士之心啊";
+					break;
+				case 3:
+					mes "[克萊兒 騎士]";
+					mes "雖然當上騎士，不過一個人的本質是不能改變的";
+					mes "可不要太過勉強自己，一步步慢慢來";
+					break;
+				}
+				break;
+			case 2:
+				mes "[克萊兒 騎士]";
+				mes "有誰在等你呢?";
+				next;
+				switch(select("朋友:工會的伙伴:我的另一半")) {
+				case 1:
+					mes "[克萊兒 騎士]";
+					mes "對哦，他們也會像是自己的事情一樣高興...";
+					mes "身為騎士，你要長存保護他人之心";
+					break;
+				case 2:
+					mes "[克萊兒 騎士]";
+					mes "生死與共的同伴嗎...";
+					mes "一定是對你來說非常重要的，用你的力量去守護他們吧";
+					break;
+				case 3:
+					mes "[克萊兒 騎士]";
+					mes "青春啊!你是為了心愛的人才來當騎士的嗎!";
+					mes "希望你不管何時何地都能夠保護" + (sex)?"她":"他" + "...";
+					mes "即使犧牲自己的生命也在所不惜!";
+					next;
+					mes "[克萊兒 騎士]";
+					mes "希望你永遠都能像現在一樣...永遠的愛她吧人的一生也只有一次青春啊";
+					break;
+				}
+				break;
+			case 3:
+				mes "[克萊兒 騎士]";
+				mes "是個好榜樣啊你想要打聽些什麼呢?";
+				next;
+				switch(select("對騎士來說方便行走的地方...:對騎士來說可以變強的地方...:對騎士來說可以賺更多錢的方法...")) {
+				case 1:
+					set .@knight_t,.@knight_t+5;
+					mes "[克萊兒 騎士]";
+					mes "在這個世界上，怎麼會有所謂方便或不方便的地方呢?";
+					mes "所謂的騎士不管在任何地方都要能生存下去";
+					break;
+				case 2:
+					mes "[克萊兒 騎士]";
+					mes "你去外面看看，外面有很多像你一樣的騎士";
+					mes "把他們當作前輩，也可以向他們問很多問題";
+					break;
+				case 3:
+					set .@knight_t,.@knight_t+15;
+					mes "[克萊兒 騎士]";
+					mes "這...難道你身為騎士....";
+					mes "是把金錢放在價值觀的第一位嗎?";
+					mes "騎士可不是那樣的職業，待會請你好好考慮...";
+					break;
+				}
+				break;
+			}
+			next;
+			if (.@knight_t == 0) {
+				set KNIGHT_Q,14;
+				mes "[克萊兒 騎士]";
+				mes "我很高興能跟你聊天，托你的福讓我回想起年輕時代的回憶";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "那麼，我就去跟騎士團長討論關於你轉職的事情吧?";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "不用太擔心，我會提到你的話的...你快去吧!";
+				close;
+			}
+			else if (.@knight_t == 5) {
+				set KNIGHT_Q,14;
+				mes "[克萊兒 騎士]";
+				mes "我很高興能跟你聊天，等你成為騎士之後應該想法會更加遼闊";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "那麼，我就去跟騎士團長討論關於你轉職的事情吧?";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "不要太擔心，目前的你可以勝任騎士這個職責!你快去吧!";
+				close;
+			}
+			else if (.@knight_t == 10) {
+				set KNIGHT_Q,14;
+				changequest 9011,9012;
+				mes "[克萊兒 騎士]";
+				mes "我很高興能跟你聊天，雖然也有擔心之處...";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "那麼，我就去跟騎士團長討論關於你轉職的事情吧?";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "不用太擔心，既然你有資格參加我的考試就表示你已經得到其他騎士的認同...你快去吧!";
+				close;
+			}
+			else {
+				set KNIGHT_Q,13;
+				mes "[克萊兒 騎士]";
+				mes "啊...聊著聊著不知不覺已經過了這麼多時間了";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "和你聊天還真是無聊";
+				mes "看來你現在成為騎士還早了些";
+				next;
+				mes "[克萊兒 騎士]";
+				mes "你作為劍士還有很多東西要學";
+				mes "多學習一些比較好吧";
+				mes "如果你真的想成為一名騎士的話";
+				mes "你必須要改變現在的自己才行";
+				close;
+			}
+		}
+		mes "[克萊兒 騎士]";
+		mes "請保重身體";
+		mes "身體是革命的本錢";
+		close;
+	}
+	else if (KNIGHT_Q == 13) {
+		mes "[克萊兒 騎士]";
+		mes "這樣啊...看來你似乎是有備而來的";
+		next;
+		mes "[克萊兒 騎士]";
+		mes "那麼，讓我先聽聽你想說什麼吧";
+		next;
+		mes "[克萊兒 騎士]";
+		mes "首先...";
+		mes "是什麼讓你下定了決心想成為一個騎士的呢?";
+		next;
+		goto L_AskQuestions;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "[克萊兒 騎士]";
+		mes "去聽聽騎士團長的說話吧";
+		next;
+		mes "[克萊兒 騎士]";
+		mes "其他人可能也想去找團長";
+		mes "早點去比較好";
+		close;
+	}
+	else {
+		mes "[克萊兒 騎士]";
+		mes "年輕的劍士，有什麼事嗎?";
+		next;
+		if (select("關於騎士轉職的考試:沒事.") == 1) {
+			mes "[克萊兒 騎士]";
+			mes "哈哈，這裡還有一些比我年輕很多的騎士呢";
+			mes "你可以先和他們聊聊再來找我";
+			next;
+			mes "[克萊兒 騎士]";
+			mes "你和他們聊完了的話再來找我聊天吧";
+			close;
+		}
+		mes "[克萊兒 騎士]";
+		mes "請保重身體";
+		mes "身體是革命的本錢";
+		close;
+	}
+}

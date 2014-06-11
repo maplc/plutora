@@ -1,0 +1,767 @@
+//===== rAthena Script ======================================= 
+// Eden Group Quests - Common NPCs
+//伊甸園常用NPC
+//===== By: ================================================== 
+//= L0ne_W0lf
+//= XD人(PlutoeA)
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= [AEGIS Conversion]
+//===== Additional Comments: ================================= 
+//= 1.0 First Version.
+//= 1.1 Removed showevent use, and use of duplicates.
+//=     Commented out warps that should not be active.
+//============================================================
+
+moc_para01,27,35,5	script	秘書萊茵 伊貝努勒#1	952,{
+	if (checkweight(1201,1) == 0) {
+		mes "- 請在這裡暫停一下 !! -";
+		mes "- 您所攜帶的物品太多了 -";
+		mes "- 所以不能獲得物品 -";
+		mes "- 請減輕重量之後 -";
+		mes "- 再來挑戰吧 -";
+		close;
+	}
+	mes "[萊茵 伊貝努勒]";
+	mes "追逐夢想與浪漫的人類喔!你們的樂園就在這伊甸園裡，";
+	mes "你好，您需要什麼服務呢?";
+	next;
+	while(1) {
+		switch(select("何謂伊甸園?:報名伊甸園:申請委託:查詢委託:結束對話")) {
+		case 1:
+			mes "[萊茵 伊貝努勒]";
+			mes "伊甸園受理來自米德加爾特各地有困難人的請託，並協助解決問題的工作";
+			next;
+			mes "[萊茵 伊貝努勒]";
+			mes "當受理委託人的問題後，我們就會將相關委託內容公佈並告知伊甸園團員們";
+			next;
+			mes "[萊茵 伊貝努勒]";
+			mes "而伊甸園團員會從中挑選符合自己條件的問題後去處理解決，";
+			mes "當然還能獲得委託人所給的一些酬勞";
+			next;
+			mes "[萊茵 伊貝努勒]";
+			mes "伊甸園透過處理委託案件，可讓新手熟習陌生又遼闊的世界，";
+			mes "中級以上玩家則是透過旅行世界而邂逅緣分，當然還能累積不少名聲和財富吧!";
+			next;
+			break;
+		case 2:
+			if (countitem(6219) < 1) {
+				mes "[萊茵 伊貝努勒]";
+				mes "透過簡便的申請手續，任何人皆成為伊甸園的成員，";
+				mes "你願意加入伊甸園嗎?";
+				next;
+				switch(select("願意:不願意")) {
+				case 1:
+					mes "[萊茵 伊貝努勒]";
+					mes "你，請你在這簽名";
+					input .@input$;
+					next;
+					mes "[萊茵 伊貝努勒]";
+					mes "簽完名字了嗎?";
+					mes "我來看一下";
+					next;
+					mes "[萊茵 伊貝努勒]";
+					mes "大名是^3131FF寶"+.@input$+"貝^000000..? 對嗎?";
+					mes "呃? 錯了嗎?";
+					next;
+					emotion 4,"秘書萊茵 伊貝努勒#eden";
+					mes "[萊茵 伊貝努勒]";
+					mes "不過這裡簽的大名是..";
+					mes "嗯，的確是難懂的字";
+					next;
+					mes "[萊茵 伊貝努勒]";
+					mes "請重新簽名好嗎?這次要寫^3131FF清清楚楚^000000";
+					input .@input$;
+					next;
+					mes "[萊茵 伊貝努勒]";
+					mes "啊!原來是 ^3131FF"+strcharinfo(0)+"^000000喔!";
+					mes "這次確認沒問題了";
+					next;
+					emotion e_no1,"秘書萊茵 伊貝努勒#eden";
+					mes "[萊茵 伊貝努勒]";
+					mes "在伊甸園成員的名單上加入你的大名了，";
+					mes "非常歡迎你加入伊甸園!";
+					next;
+					mes "[萊茵 伊貝努勒]";
+					mes "希望你以後身為伊甸園成員後，恪守職守努力的完成任務吧!";
+					getitem 6219,1; //伊甸園徽章
+					next;
+					break;
+				case 2:
+					mes "[萊茵 伊貝努勒]";
+					mes "你對伊甸園還有疑問嗎?";
+					next;
+					break;
+				}
+			}
+			else {
+				mes "[萊茵 伊貝努勒]";
+				mes "你已經加入伊甸園了";
+				next;
+			}
+			break;
+		case 3:
+			mes "[萊茵 伊貝努勒]";
+			mes "你有要向伊甸園委託事情嗎?";
+			next;
+			switch(select("是:不是")) {
+			case 1:
+				mes "[萊茵 伊貝努勒]";
+				mes "請在這文件上寫下您的大名";
+				input .@input$;
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "^3131FF"+strcharinfo(0)+"^000000.. 這名字沒錯嗎?";
+				mes "嗯，字體不太工整，難以辨...";
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "請^3131FF"+strcharinfo(0)+"^000000告知您想委託的內容，";
+				mes "還有是在哪一個地區執行的委託呢?";
+				input .@input$;
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "^3131FF執行地: "+inputstr+"^000000";
+				mes "嗯.. 我先幫你登記";
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "需要執行哪一種委託事情請概略寫一下，";
+				mes "例如說'消滅波利 10隻'等'";
+				input .@input$;
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "都寫好了嗎?";
+				mes "我來看一下";
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "嗯...........";
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "嗯嗯..................";
+				next;
+				emotion e_dots,"秘書萊茵 伊貝努勒#eden";
+				mes "[萊茵 伊貝努勒]";
+				mes "在登記委託之前要不要先接受我的委託呢?";
+				next;
+				emotion e_pif,"秘書萊茵 伊貝努勒#eden";
+				mes "[萊茵 伊貝努勒]";
+				mes "^3131FF委託人: 萊茵 伊貝努勒^000000";
+				mes "^3131FF執行內容: 在寫字矯正處練習一個月^000000";
+				mes "實在是難懂的字體";
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "^3131FF執行內容: "+inputstr+"^000000";
+				mes "以完成登記了";
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "目前因登記的案件太多，更新到公佈欄上需要一點時間，";
+				mes "所以請耐心等候";
+				next;
+				break;
+			case 2:
+				break;
+			}
+			break;
+		case 4:
+			if (countitem(6219) > 0) {
+				mes "[萊茵 伊貝努勒]";
+				mes "你身為伊甸園成員願意執行伊甸園處所登記的委託案件嗎?";
+				next;
+				mes "[萊茵 伊貝努勒]";
+				mes "右側牆面的公佈欄上登記著各種委託案件正等著您去選擇，";
+				mes "請先閱讀執行委託條件與內容後，選出適合自己能力的案件吧!";
+				next;
+			}
+			else {
+				mes "[萊茵 伊貝努勒]";
+				mes "請你辦妥申請加入伊甸園手續後再來找我吧!";
+				close;
+			}
+			break;
+		case 5:
+			mes "[萊茵 伊貝努勒]";
+			mes "若有疑問歡迎隨時來找我";
+			close;
+		}
+	}
+	close;
+}
+
+prontera,124,76,3	script	伊甸園 空間移動師#1	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,1;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+moc_ruins,68,164,3	script	伊甸園 空間移動師#2	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,2;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+geffen,132,66,3	script	伊甸園 空間移動師#3	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,3;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+alberta,124,67,3	script	伊甸園 空間移動師#4	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,4;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+aldebaran,133,119,5	script	伊甸園 空間移動師#5	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,5;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+izlude_in,68,162,1	script	伊甸園 空間移動師#6	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp6;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+prt_church,103,78,3	script	伊甸園 空間移動師#7	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,7;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+geffen_in,160,104,5	script	伊甸園 空間移動師#8	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,8;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+moc_prydb1,53,126,3	script	伊甸園 空間移動師#9	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,9;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+alberta_in,75,39,3	script	伊甸園 空間移動師#10	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,10;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+payon_in02,58,58,1	script	伊甸園 空間移動師#11	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,11;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+payon,177,111,3	script	伊甸園 空間移動師#12	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,12;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+que_ng,33,73,3	script	伊甸園 空間移動師#13	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,13;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+que_ng,144,161,5	script	伊甸園 空間移動師#14	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,14;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+yuno,144,189,5	script	伊甸園 空間移動師#15	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,15;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+rachel,125,144,3	script	伊甸園 空間移動師#16	729,{
+	mes "[伊甸園 空間移動師]";
+	mes "對這世界感到陌生的受訓生及毫無目標地徬徨中的冒險家們，都來找我吧!";
+	mes "可以協助各位排除萬難的伊甸園登場囉!";
+	next;
+	mes "[伊甸園 空間移動師]";
+	mes "你不想虛度光陰嗎?";
+	mes "你想為大家服務嗎?";
+	mes "你想成為解決疑難雜症的專家嗎?";
+	mes "你在煩惱什麼呢?請立即洽詢伊甸園吧!";
+	next;
+	switch(select("前往伊甸園:結束對話")) {
+	case 1:
+		mes "[伊甸園 空間移動師]";
+		mes "出發囉!到我們的總部!";
+		set nak_warp,16;
+		close2;
+		warp "moc_para01",31,14;
+		end;
+	case 2:
+		mes "[伊甸園 空間移動師]";
+		mes "以後改變心意時歡迎隨時來找我!";
+		close;
+	}
+}
+
+moc_para01,30,10,0	script	#eden_out	45,1,1,{
+OnTouch:
+	switch (nak_warp) {
+		default:
+		case 1: warp "prontera",116,72; break;
+		case 2: warp "moc_ruins",64,161; break;
+		case 3: warp "geffen",120,39; break;
+		case 4: warp "alberta",117,56; break;
+		case 5: warp "aldebaran",168,112; break;
+		case 6: warp "izlude_in",73,165; break;
+		case 7: warp "prt_church",99,78; break;
+		case 8: warp "geffen_in",162,99; break;
+		case 9: warp "moc_prydb1",51,118; break;
+		case 10: warp "alberta_in",73,43; break;
+		case 11: warp "payon_in02",64,60; break;
+		case 12: warp "payon",161,58; break;
+		case 13: warp "que_ng",33,63; break;
+		case 14: warp "que_ng",144,166; break;
+		case 15: warp "yuno",158,125; break;
+		case 16: warp "rachel",115,125; break;
+	}
+	end;
+}
+
+moc_para01,57,27,0	warp	#warp_2_pub	1,1,moc_para01,162,26
+moc_para01,158,26,0	warp	#warp_2_din_1	1,1,moc_para01,55,27
+moc_para01,48,16,0	warp	#warp_2_2f	1,1,moc_para01,48,164
+moc_para01,47,161,0	warp	#warp_2_1f	1,1,moc_para01,47,18
+moc_para01,107,12,0	warp	#warp_2_din_2	1,1,moc_para01,47,37
+moc_para01,100,27,0	warp	#warp_2_gym	1,1,moc_para01,47,85
+moc_para01,49,86,0	warp	#warp_2_pass_1	1,1,moc_para01,103,27
+moc_para01,113,32,0	warp	#warp_2_ware	1,1,moc_para01,105,92
+moc_para01,102,92,0	warp	#warp_2_pass_2	1,1,moc_para01,111,33
+
+/*
+moc_para01,17,187,0	warp	#warp_2_bossroom	1,1,moc_para01,132,159
+moc_para01,132,156,0	warp	#warp_2_2fhall_1	1,1,moc_para01,17,185
+moc_para01,29,187,0	warp	#warp_2_room1	1,1,moc_para01,180,159
+moc_para01,180,156,0	warp	#warp_2_2fhall_2	1,1,moc_para01,29,185
+*/
+
+moc_para01,41,187,0	warp	#warp_2_room2	1,1,moc_para01,179,93
+moc_para01,179,90,0	warp	#warp_2_2fhall_3	1,1,moc_para01,41,185
+
+moc_para01,47,39,3	script	#warp_2_pass	111,{
+	if (countitem(6219) > 0) {
+		mes "[萊茵 伊貝努勒]";
+		mes "那裡是伊甸園的專屬空間，";
+		mes "只要是成員皆可自由使用";
+		next;
+		switch(select("進去:不進去")) {
+		case 1:
+			mes "雖然裝飾的很美麗，不過卻是很厚重的門";
+			close2;
+			warp "moc_para01",106,14;
+			end;
+		case 2:
+			mes "[萊茵 伊貝努勒]";
+			mes "你不太有好奇心喔!";
+			close;
+		}
+	}
+	else {
+		mes "[萊茵 伊貝努勒]";
+		mes "那邊是伊甸園的專屬空間，";
+		mes "若想入內必須先向我填寫加入伊甸園的申請表";
+		close;
+	}
+}
+
+moc_para01,16,22,7	script	老冒險家#eden	900,{
+	mes "[老冒險家]";
+	mes "我本來是想加入伊甸園，他卻如此慢待我!";
+	mes "你也覺得我像個推銷員嗎?";
+	close;
+}
+
+moc_para01,182,48,3	script	伊甸園料理師#eden	886,{
+	set .@eggf,rand(1,118);
+	set .@eggf_1,.@eggf+1;
+	set .@eggf_2,.@eggf+2;
+	set .@eggf_6,.@eggf+6;
+	mes "[伊甸園料理師]";
+	mes ""+.@eggf+".. "+.@eggf_1+"... "+.@eggf_2+".... "+.@eggf_6+"..?";
+	next;
+	emotion e_sob,"Eden's chief#eden";
+	mes "[伊甸園料理師]";
+	mes "哇啊!這到底是第幾個煎蛋呢?";
+	mes "嗚嗚!!!又得要重新數了!!";
+	next;
+	emotion e_sob,"Eden's chief#eden";
+	mes "[伊甸園料理師]";
+	mes "小姐為什麼說這是委託案件而交辦我做呢?";
+	next;
+	emotion e_sob,"Eden's chief#eden";
+	mes "[伊甸園料理師]";
+	mes "她要123個煎蛋幹嘛!又吃不完，一定是想捉弄我而已!嗚嗚!!!";
+	close;
+}
+
+moc_para01,172,28,5	script	見習伊甸園成員#eden	883,{
+	mes "[見習伊甸園成員]";
+	mes "我自從加入伊甸園後體會到一件事";
+	next;
+	mes "[見習伊甸園成員]";
+	mes "一定要非常努力才可以...";
+	next;
+	emotion 57,"見習伊甸園成員#eden";
+	mes "[見習伊甸園成員]";
+	mes "不過我連最基本的也沒成功過呢?";
+	next;
+	emotion e_sob,"見習伊甸園成員#eden";
+	mes "[見習伊甸園成員]";
+	mes "我可能沒救了...";
+	close;
+}
+
+moc_para01,20,35,5	script	秘書助理 妮蝶#e	814,{
+	mes "[妮蝶]";
+	mes "我加入伊甸園界如同昨日，如今早已過了三秋呢?";
+	mes "由於每天非常忙碌，都沒注意到時間過這麼快!";
+	next;
+	mes "[妮蝶]";
+	mes "天天都好像在打仗一樣";
+	next;
+	mes "[妮蝶]";
+	mes "由於^3131FF右邊餐廳^000000的主廚";
+	mes "使用超多調味料，連大廳都飄來那味道，因此必須隨時保持通風狀態";
+	next;
+	mes "[妮蝶]";
+	mes "另外^3131FF大廳北邊^000000大門對面的^3131FF校場^000000則不斷傳來吼叫聲";
+	next;
+	emotion 7,"秘書助理 妮蝶#e";
+	mes "[妮蝶]";
+	mes "在^3131FF2樓宿舍^000000裡小姐歇斯底里邊的叫聲與校場的吼叫聲，簡直就是一搭一唱呢?";
+	next;
+	mes "[妮蝶]";
+	mes "小姐是指我們伊甸園的團長啦!";
+	next;
+	mes "[妮蝶]";
+	mes "實在搞不懂一整天在做什麼?";
+	next;
+	emotion e_omg,"秘書助理 妮蝶#e";
+	mes "[妮蝶]";
+	mes "哈!";
+	mes "噓... 我說過的話請你保密喔!";
+	next;
+	mes "[妮蝶]";
+	emotion 54,"秘書助理 妮蝶#e";
+	mes "萬一被伊貝努勒知道，說不定會去告狀";
+	next;
+	emotion e_pif,"秘書萊茵 伊貝努勒#eden";
+	mes "[萊茵 伊貝努勒]";
+	mes "我不是那種人~";
+	next;
+	emotion e_wah,"秘書助理 妮蝶#e";
+	mes "[妮蝶]";
+	mes "唉呀! 被聽到了! 哇啊!";
+	close;
+}

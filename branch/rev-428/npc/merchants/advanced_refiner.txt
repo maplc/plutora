@@ -1,0 +1,244 @@
+//===== eAthena Script =======================================
+//= 商城精鍊
+//===== By: ==================================================
+//= 笨冰
+//===== Current Version: =====================================
+//= 1.7
+//===== Compatible With: =====================================
+//= Eathena SVN
+//===== Description: =========================================
+//= [Aegis Conversion]
+//= 對話完全參考台灣官方正式伺服器
+//===== Additional Comments: =================================
+//= 1.5 台灣官方版本 [笨冰]
+//= 1.6 2009年第二季商城，變更NPC名稱 [笨冰]
+//= 1.7 變更NPC位置 [笨冰]
+//============================================================
+
+prt_in,65,60,3	script	濃縮鋁達人-龍仙儒	85,{
+	mes "[龍仙儒]";
+	mes "我是專門鍛治武器與防具的鐵匠，";
+	mes "我可以為你鍛治裝置專案中的物品。";
+	mes "你想要鍛治裝置專案中的哪一項物品呢?";
+	next;
+	if (getequipisequiped(1) == 0) set .@strRetPart1$,"頭-[無法裝置]";
+	else set .@strRetPart1$,getequipname(1);
+	if (getequipisequiped(2) == 0) set .@strRetPart2$,"全身-[無法裝置]";
+	else set .@strRetPart2$,getequipname(2);
+	if (getequipisequiped(3) == 0) set .@strRetPart3$,"左手-[無法裝置]";
+	else set .@strRetPart3$,getequipname(3);
+	if (getequipisequiped(4) == 0) set .@strRetPart4$,"右手-[無法裝置]";
+	else set .@strRetPart4$,getequipname(4);
+	if (getequipisequiped(5) == 0) set .@strRetPart5$,"外袍-[無法裝置]";
+	else set .@strRetPart5$,getequipname(5);
+	if (getequipisequiped(6) == 0) set .@strRetPart6$,"鞋子-[無法裝置]";
+	else set .@strRetPart6$,getequipname(6);
+	if (getequipisequiped(7) == 0) set .@strRetPart7$,"裝飾品1-[無法裝置]";
+	else set .@strRetPart7$,getequipname(7);
+	if (getequipisequiped(8) == 0) set .@strRetPart8$,"裝飾品2-[無法裝置]";
+	else set .@strRetPart8$,getequipname(8);
+	if (getequipisequiped(9) == 0) set .@strRetPart9$,"頭2-[無法裝置]";
+	else set .@strRetPart9$,getequipname(9);
+	if (getequipisequiped(10) == 0) set .@strRetPart10$,"頭3-[無法裝置]";
+	else set .@strRetPart10$,getequipname(10);
+
+	set .@menu$,.@strRetPart1$+":"+.@strRetPart2$+":"+.@strRetPart3$+":"+.@strRetPart4$+":"+.@strRetPart5$+":"+.@strRetPart6$+":"+.@strRetPart7$+":"+.@strRetPart8$+":"+.@strRetPart9$+":"+.@strRetPart10$;
+
+	switch(select(.@menu$)) {
+	case 1:
+		set .@part,1;
+		if (getequipisequiped(1) == 0) {
+			mes "[龍仙儒]";
+			mes "要不要我把你的頭腦鍛治的聰明一點啊?";
+			close;
+		}
+		break;
+	case 2:
+		set .@part,2;
+		if (getequipisequiped(2) == 0) {
+			mes "[龍仙儒]";
+			mes "來吧! 我會用我熱情的身體來鍛治你的全身。";
+			close;
+		}
+		break;
+	case 3:
+		set .@part,3;
+		if (getequipisequiped(3) == 0) {
+			mes "[龍仙儒]";
+			mes "很抱歉現在還沒有哪種技術能在你的左手裝上火箭拳耶..";
+			close;
+		}
+		break;
+	case 4:
+		set .@part,4;
+		if (getequipisequiped(4) == 0) {
+			mes "[龍仙儒]";
+			mes "很抱歉現在還沒有哪種技術能在你的右手裝上火箭拳耶!";
+			close;
+		}
+		break;
+	case 5:
+		set .@part,5;
+		if (getequipisequiped(5) == 0) {
+			mes "[龍仙儒]";
+			mes "你擁有的裝置項目中沒有外袍不是嗎?";
+			close;
+		}
+		break;
+	case 6:
+		set .@part,6;
+		if (getequipisequiped(6) == 0) {
+			mes "[龍仙儒]";
+			mes "你的腳真不是普通的臭耶!";
+			close;
+		}
+		break;
+	case 7:
+		set .@part,7;
+		if (getequipisequiped(7) == 0) {
+			mes "[龍仙儒]";
+			mes "你說的是哪種裝飾品?";
+			close;
+		}
+		break;
+	case 8:
+		set .@part,8;
+		if (getequipisequiped(8) == 0) {
+			mes "[龍仙儒]";
+			mes "你說的是哪種裝飾品?";
+			close;
+		}
+		break;
+	case 9:
+		set .@part,9;
+		if (getequipisequiped(9) == 0) {
+			mes "[龍仙儒]";
+			mes "你說的是哪種裝飾品? 你指的該不會是頭部的其他部位吧?";
+			close;
+		}
+		break;
+	case 10:
+		set .@part,10;
+		if (getequipisequiped(10) == 0) {
+			mes "[龍仙儒]";
+			mes "...把你的骷髏頭給鍛治嗎? 嗯?";
+			close;
+		}
+		break;
+	}
+	if( !getequipisequiped(.@part) )
+		close;
+
+	if( !getequipisenableref(.@part) )
+	{
+		mes "[龍仙儒]";
+		mes "你說的這個項目是無法鍛治的項目喔!...";
+		close;
+	}
+	if( !getequipisidentify(.@part) )
+	{
+		mes "[龍仙儒]";
+		mes "This has not been identified. So, it can't be refined...";
+		close;
+	}
+	if( getequiprefinerycnt(.@part) >= 10 )
+	{
+		mes "[龍仙儒]";
+		mes "這項武器已經鍛治到最高等級，無法再鍛治了..";
+		close;
+	}
+	switch( getequipweaponlv(.@part) )
+	{
+		case 1: callsub S_RefineValidate,1,7620,50,.@part; break;
+		case 2: callsub S_RefineValidate,2,7620,200,.@part; break;
+		case 3: callsub S_RefineValidate,3,7620,5000,.@part; break;
+		case 4: callsub S_RefineValidate,4,7620,20000,.@part; break;
+		default: callsub S_RefineValidate,0,7619,2000,.@part; break;
+	}
+	if( getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100) )
+	{
+		mes "[龍仙儒]";
+		mes "鏘! 鏘! 鏘!";
+		SuccessRefItem .@part;
+		next;
+		Emotion e_no1;
+		mes "[龍仙儒]";
+		mes "拿去吧! 已經做好了。";
+		mes "好久沒鍛治出那麼優質的武器了，武器變強了你一定也很高興吧!";
+		close;
+	}
+	else
+	{
+		mes "[龍仙儒]";
+		mes "鏘! 鏘! 鏘!";
+		FailedRefItem .@part;
+		next;
+		if (rand(5) == 1)
+			Emotion e_cash;
+		else 
+			Emotion e_omg;
+		mes "[龍仙儒]";
+		mes "咳咳咳咳咳咳咳!!!!";
+		next;
+		mes "[龍仙儒]";
+		mes "咳...咳咳...";
+		mes "真...丟臉。";
+		mes "武器在鍛治的程序中損壞了。";
+		mes "我...我...早就告訴過你會這樣的嘛!";
+		close;
+	}
+S_RefineValidate:
+	mes "[龍先儒]";
+	if (getarg(0)) {
+		mes "你想要鍛治武器等級" + getarg(0) + "的武器啊!";
+		mes "要鍛治的話需要 ^ff9999" + getitemname(getarg(1)) + "^000000以及費用" + getarg(2) + "金幣。";
+	}
+	else {
+		mes "要鍛治你所選擇的這項裝備需要 ^ff9999" + getitemname(getarg(1)) + "^000000以及費用" + getarg(2) + "金幣。";
+	}
+	mes "你要繼續嗎?";
+	next;
+	if( select("是:否") == 1 )
+	{
+		if( getequippercentrefinery(getarg(3)) < 100 )
+		{
+			mes "[龍仙儒]";
+			mes "嗚哇!!";
+			mes "看來這武器已經鍛治很多次了的樣子...";
+			mes "要是再繼續鍛治的話，可能會造成損壞喔!";
+			next;
+			mes "要是損壞的話可就不能繼續使用了!!";
+			mes "插在裏面的卡片和特徵";
+			mes "^ff0000全部都會消失了!!^000000";
+			mes " 再說，防具被消失了!!";
+			mes "你確定還要繼續鍛治嗎?";
+			next;
+			if( select("是:否") == 2 )
+			{
+				mes "[龍仙儒]";
+				mes "很好。";
+				mes "如果太過無理的鍛治武器，而造成損壞，我心情也會跟著變壞的。";
+				close;
+			}
+		}
+		if( countitem(getarg(1)) > 0 && Zeny > getarg(2) )
+		{
+			delitem getarg(1), 1;
+			set Zeny, Zeny - getarg(2);
+			return;
+		}
+		else
+		{
+			mes "[龍仙儒]";
+			mes "這些就是你所擁有的所有物品嗎?";
+			mes "雖然很可惜，但是你的材料不足，我也實在愛莫能助，再說我付出也應該得要有所收穫嘛!";
+			close;
+		}
+	}
+	else
+	{
+		mes "[龍仙儒]";
+		mes "即使你不要我也沒辦法...";
+		close;
+	}
+}

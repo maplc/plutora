@@ -1,0 +1,1806 @@
+//==================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ---------------------------------
+// - 巫師 轉職腳本 - 
+//===================================
+// 版本：3.0
+//===================================
+
+gef_tower,111,37,4	script	工會服務人員	70,{
+	if (Upper == 1) {
+		mes "[凱特莉娜]";
+		mes "嗯?";
+		mes "來這裡有什麼事情嗎?";
+		next;
+		mes "[凱特莉娜]";
+		mes "總覺得你跟普通的時候有點不同";
+		mes "那努力吧";
+		close;
+	}
+	if (BaseJob != Job_Mage) {
+		if (BaseJob == Job_Wizard) {
+			mes "[凱特莉娜]";
+			mes "身為巫師的你已經沒理由來找我了吧";
+			next;
+			mes "[凱特莉娜]";
+			mes "如果你能幫我介紹個帥哥男朋友的話就更好囉，呵呵";
+			close;
+		}
+		else {
+			mes "[巫師工會 相關人員]";
+			mes "唉呀?你怎麼跑到這麼高的地方呢?";
+			mes "如果沒有特別的事情就請回去吧";
+			mes "這裡是為了巫師而建造的地方";
+		}
+		next;
+		mes "[巫師工會 相關人員]";
+		mes "那麼，就請你小心下去吧";
+		close;
+	}
+	if (WIZ_Q == 0) {
+		mes "[巫師工會 相關人員]";
+		mes "嗯?你怎麼跑到這麼高的地方呢?";
+		mes "你來到這裡有什麼事情嗎?";
+		next;
+		if (select("我是來轉職成為巫師的!:...沒什麼事") == 1) {
+			mes "[巫師工會 相關人員]";
+			mes "果然...如果不是為了這個理由，";
+			mes "也不會來到這麼高的塔之上吧";
+			mes "不管怎樣你來的正好";
+			mes "我會幫助你轉職成為巫師";
+			next;
+			mes "[巫師工會相關人員]";
+			mes "我的名字叫凱特莉娜·梅迪馳";
+			mes "我也是才剛轉職成為巫師";
+			mes "你可以直接叫我'凱特莉娜'";
+			mes "呵呵...";
+			next;
+			mes "[凱特莉娜]";
+			mes "雖然很多人想當巫師，";
+			mes "不過也有很多人落選...";
+			mes "也就是說轉職成巫師要先經過筆試以及實戰";
+			next;
+			mes "[凱特莉娜]";
+			mes "首先，為了轉職，職業等級必須要達到40級";
+			mes "等級不足的魔法由於不夠成熟是無法轉職為巫師的";
+			next;
+			mes "[凱特莉娜]";
+			mes "沒關系，關於更詳細的說明等你申請轉職之後再跟你說";
+			mes "怎麼樣?現在要申請嗎?";
+			next;
+			if (select("是的，我要申請:請讓我再考慮看看") == 1) {
+				if (JobLevel < 40) {
+					mes "[凱特莉娜]";
+					mes "喂，你忘了我剛才所說的話嗎?";
+					mes "職業等級要40以上才能夠轉職啊";
+					next;
+					mes "[巫師工會相關人員]";
+					mes "別太心急，多磨練自己之後再來吧";
+					mes "滿足條件之後再來轉職吧";
+					close;
+				}
+				if (SkillPoint) {
+					mes "[凱特莉娜]";
+					mes "唉呀，你還有剩餘的技能點呢";
+					mes "把技能點都加完後再來申請吧";
+					close;
+				}
+				mes "[凱特莉娜]";
+				mes "好吧，那我就收下你的轉職申請書了";
+				mes "名字是 " +strcharinfo(0)+ " ";
+				next;
+				mes "[凱特莉娜]";
+				mes "巫師的轉職分為三個部份：";
+				mes "第一是要先收集魔法物品";
+				mes "第二是要考筆試，";
+				mes "第三是現場測試你的魔法";
+				next;
+				mes "[凱特莉娜]";
+				mes "當中第一項的考試，";
+				mes "職業等級為50的人可以免考";
+				mes "因為這已經足夠證明你的努力了";
+				next;
+				if (JobLevel == 50) {
+					mes "[凱特莉娜]";
+					mes "啊，這麼看來，你職業等級已經50啦?";
+					mes "你好像挺努力的嘛";
+					mes "轉職為巫師之後會很帥唷";
+					next;
+					mes "[凱特莉娜]";
+					mes "那麼第一回合的測驗就算你過關了";
+					mes "不過還有剩下的兩個考試，";
+					mes "所以不要掉以輕心";
+					next;
+					mes "[凱特莉娜]";
+					mes "那麼你就去找角落的'拉武雷'考試後再過來找我";
+					mes "相當的困難喔，請多保重....嘻嘻";
+					set WIZ_Q,3;
+					setquest 9015;
+					close;
+				}
+				mes "[凱特莉娜]";
+				mes "我已經收下了你的申請書，我就說明第一回合的考試吧";
+				mes "把它背起來或記錄下來都可以，只要能記得就好";
+				next;
+				mes "[凱特莉娜]";
+				mes "第一回合的考試是要收集魔法物品";
+				mes "最重要的是要親自去收集喔";
+				next;
+				mes "[凱特莉娜]";
+				mes "你所要收集的物品是：";
+				set wizard_m1,rand(1,2);
+				if (rand(1)) {
+					set WIZ_Q,1;
+					setquest 9013;
+					mes "^3355FF黃色魔力礦石^000000 10個,";
+					mes "^3355FF藍色魔力礦石^000000 10個,";
+					mes "^3355FF黃色魔力礦石^000000 10個,";
+				}
+				else {
+					set WIZ_Q,2;
+					setquest 9014;
+					mes "^3355FF水靈礦石^000000 5個,";
+					mes "^3355FF地靈礦石^000000 5個,";
+					mes "^3355FF火靈礦石^000000 5個,";
+					mes "^3355FF風靈礦石^000000 5個,";
+				}
+				mes "我想這樣的程度對你來說應該沒問題";
+				next;
+				mes "[凱特莉娜]";
+				mes "那麼，路上請小心~";
+				mes "我會在這邊愉快的等待你....哈哈";
+				close;
+			}
+			mes "[凱特莉娜]";
+			mes "明白了那麼你就慢慢考慮看看吧";
+			mes "這邊隨時都接受轉職申請的";
+			close;
+		}
+		mes "[巫師工會 相關人員]";
+		mes "額...";
+		mes "如果沒有什麼事情就請回去吧~";
+		close;
+	}
+	else if (WIZ_Q == 1) {
+		mes "[凱特莉娜]";
+		mes "那麼，你已經找齊物品了嗎?";
+		mes "那就讓我確認看看你所收集的物品吧";
+		next;
+		if (countitem(716) > 9 && countitem(717) > 9 && countitem(715) > 9) {
+			mes "[凱特莉娜]";
+			mes "沒錯...你做得很好!";
+			mes "我越來越欣賞你了";
+			mes "這些物品將會對工會發揮很大的作用，呵呵";
+			next;
+			delitem 716,10; //紅色魔力礦石
+			delitem 717,10; //藍色魔力礦石
+			delitem 715,10; //黃色魔力礦石
+			set WIZ_Q,3;
+			changequest 9013,9015;
+			mes "[凱特莉娜]";
+			mes "好吧，第一回合的測驗就算你過關了";
+			mes "不過還有剩下的兩個考試，";
+			mes "所以不要掉以輕心";
+			next;
+			mes "[凱特莉娜]";
+			mes "那麼你就去找角落的拉武雷考試後再過來找我";
+			mes "相當的困難喔，請多保重....嘻嘻";
+			close;
+		}
+		mes "[凱特莉娜]";
+		mes "嗯?還沒收集完全啊";
+		next;
+		mes "[凱特莉娜]";
+		mes "雖然爬到這麼高的地方很辛苦，";
+		mes "不過你還是得回去收集完全";
+		mes "別想動歪腦筋了，下去之後就好好的收集完全吧";
+		next;
+		mes "[凱特莉娜]";
+		mes "^3355FF黃色魔力礦石^000000 10個,";
+		mes "^3355FF藍色魔力礦石^000000 10個,";
+		mes "^3355FF黃色魔力礦石^000000 10個,";
+		mes "記清楚這些物品好好收集吧";
+		close;
+	}
+	else if (WIZ_Q == 2) {
+		mes "[凱特莉娜]";
+		mes "那麼，你已經找齊物品了嗎?";
+		mes "那就讓我確認看看你所收集的物品吧";
+		next;
+		if (countitem(991) > 4 && countitem(993) > 4 && countitem(990) > 4 && countitem(992) > 4) {
+			mes "[凱特莉娜]";
+			mes "沒錯...你做得很好!";
+			mes "我越來越欣賞你了";
+			mes "這些物品將會對工會發揮很大的作用，呵呵";
+			next;
+			delitem 991,5; //Crystal_Blue
+			delitem 993,5; //Yellow_Live
+			delitem 990,5; //Boody_Red
+			delitem 992,5; //Wind_Of_Verdure
+			set WIZ_Q,3;
+			changequest 9014,9015;
+			mes "[凱特莉娜]";
+			mes "好吧，第一回合的測驗就算你過關了";
+			mes "不過還有剩下的兩個考試，";
+			mes "所以不要掉以輕心";
+			next;
+			mes "[凱特莉娜]";
+			mes "那麼你就去找角落的拉武雷考試後再過來找我";
+			mes "相當的困難喔，請多保重....嘻嘻";
+			close;
+		}
+		mes "[凱特莉娜]";
+		mes "嗯?還沒收集完全啊";
+		next;
+		mes "[凱特莉娜]";
+		mes "雖然爬到這麼高的地方很辛苦，";
+		mes "不過你還是得回去收集完全";
+		mes "別想動歪腦筋了，下去之後就好好的收集完全吧";
+		next;
+		mes "[凱特莉娜]";
+		mes "^3355FF水靈礦石^000000 5個,";
+		mes "^3355FF地靈礦石^000000 5個,";
+		mes "^3355FF火靈礦石^000000 5個,";
+		mes "^3355FF風靈礦石^000000 5個,";
+		mes "記清楚這些物品好好收集吧";
+		close;
+	}
+	else if (WIZ_Q == 3 || WIZ_Q == 4) {
+		mes "[凱特莉娜]";
+		mes "嗯?怎麼了?";
+		mes "第一個考試結束了就去找角落的拉武雷才對";
+		mes "光是收集完物品還是不能當一個巫師的";
+		next;
+		mes "[凱特莉娜]";
+		mes "你要先通過第二個考驗我才能考慮進行下個階段";
+		mes "我會等你的，放心去吧";
+		close;
+	}
+	else if (WIZ_Q == 5) {
+		mes "[凱特莉娜]";
+		mes "嘻嘻，我在旁邊都聽到了喔";
+		mes "考試辛苦了";
+		mes "我想送你一個禮物啦，";
+		mes "不過還有最後一項考試還沒考過呢";
+		next;
+		mes "[凱特莉娜]";
+		mes "你再多加油點就可以當上一名巫師，";
+		mes "到時候再給你禮物";
+		next;
+		mes "[凱特莉娜]";
+		mes "路上小心啊";
+		mes "拉武雷正在等著你呢";
+		close;
+	}
+	else if (WIZ_Q == 6) {
+		mes "[凱特莉娜]";
+		mes "唉呀，考試途中偷溜出來?";
+		mes "你....我沒想到你這麼沒毅力";
+		next;
+		if(Sex == 0) {
+			mes "[凱特莉娜]";
+			mes "雖然是女生也不能軟弱啊";
+			mes "不能小看自己";
+			mes "你不是為了想當巫師才到這來的嗎?";
+			next;
+			mes "[凱特莉娜]";
+			mes "雖然我也覺得很難，";
+			mes "不過也不到放棄的地步啊";
+			mes "人生還很長，這只是個小問題罷了";
+		}
+		else {
+			mes "雖然是魔法師，但是男子漢怎麼會這麼柔弱";
+			mes "回去再接再厲吧";
+		}
+		mes "[凱特莉娜]";
+		mes "那麼，打起精神來吧";
+		mes "拉武雷正在等著你呢";
+		close;
+	}
+	else if (WIZ_Q == 7) {
+		if (JobLevel < 40) {
+			set WIZ_Q,0;
+			mes "[凱特莉娜]";
+			mes "喂，你忘了我剛才所說的話嗎?";
+			mes "職業等級要40以上才能夠轉職啊";
+			next;
+			mes "[巫師工會相關人員]";
+			mes "別太心急，多磨練自己之後再來吧";
+			mes "滿足條件之後再來轉職吧";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[凱特莉娜]";
+			mes "唉呀，你還有剩餘的技能點呢";
+			mes "把技能點都加完後再來申請吧";
+			close;
+		}
+		mes "[凱特莉娜]";
+		mes "所有的考試合格了，";
+		mes "恭喜你啦!";
+		next;
+		mes "[凱特莉娜]";
+		mes "對喔，現在應該要先讓你轉職才對";
+		next;
+		completequest 9018;
+		callfunc "Job_Change",Job_Wizard;
+		callfunc "F_ClearJobVar";
+		mes "[凱特莉娜]";
+		mes "現在你也是一名巫師了";
+		mes "以後你身為巫師凡事都要慎重一點";
+		mes "我們巫師雖然擁有強大的法力，";
+		mes "以後你身為巫師處事要更慎重點";
+		next;
+		mes "[凱特莉娜]";
+		mes "在街上不能隨便亂用魔法，";
+		mes "會妨礙到其他人的戰鬥";
+		mes "所謂巫師所擁有的魔法，";
+		mes "是在與魔物戰鬥之中所發揮的力量";
+		next;
+		mes "[凱特莉娜]";
+		mes "先跟其他人結為伙伴之後再慢慢學習成長吧";
+		mes "啊...還有，稍等一下，我為你準備了轉職禮物，等我一下...";
+		next;
+		mes "[凱特莉娜]";
+		mes "（這裡找那裡找...）";
+		mes "（到處亂找...）";
+		next;
+		getitem 505,6; //藍色藥水
+		mes "[凱特莉娜]";
+		mes "希望你在必要的時候能夠好好利用";
+		mes "因為是我送你的禮物所以要全部吃掉而且不準賣掉，知道嗎?";
+		next;
+		mes "[凱特莉娜]";
+		mes "嗯，那麼....希望你當巫師愉快";
+		close;
+	}
+}
+
+gef_tower,102,24,2	script	看起來很兇的人	735,{
+	if (BaseJob != Job_Mage) {
+		if (BaseJob == Job_Wizard) {
+			mes "[拉武雷]";
+			mes "...你找我有什麼事?";
+			mes "你也是一個使用魔法的人，";
+			mes "那就得對魔法多了解一點";
+			next;
+			mes "[拉武雷]";
+			mes "如果活在世界上不忠實的話，";
+			mes "終有一天不能控制魔法...";
+			mes "如果你不想變成那樣，";
+			mes "就要多學習一點魔法的使用方法";
+			next;
+			mes "[拉武雷]";
+			mes "如果你對愛有所眷戀，";
+			mes "你以後的人生可能就會變成廢人...";
+			close;
+		}
+		else if (BaseJob == Job_Priest) {
+			mes "[拉武雷]";
+			mes "回去吧，神的代理人";
+			mes "所謂魔力就是違抗神力的力量";
+			next;
+			mes "[拉武雷]";
+			mes "我的身體本來就不健康了...";
+			mes "不要靠近我，快回去";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "[拉武雷]";
+			mes "你這年輕小伙子怎麼又來這裡?";
+			mes "快滾回去";
+			close2;
+			warp "geffen",120,110;
+			end;
+		}
+		mes "[拉武雷]";
+		mes "唉啊...好痛苦啊...";
+		mes "就像是被封鎖在冰塊裡面...";
+		next;
+		mes "[拉武雷]";
+		mes "你是什麼人...";
+		mes "快點滾吧...";
+		close;
+	}
+	if (WIZ_Q == 0) {
+		mes "[拉武雷]";
+		mes "...我不知道你是什麼人，";
+		mes "我沒時間跟你耗下去";
+		next;
+		mes "[拉武雷]";
+		mes "快滾回去!不要出現在我面前!";
+		close;
+	}
+	else if (WIZ_Q == 1 || WIZ_Q  == 2) {
+		mes "[拉武雷]";
+		mes "哈哈哈...";
+		mes "是個想當巫師的小伙子啊";
+		next;
+		mes "[拉武雷]";
+		mes "不如維持現狀，";
+		mes "先以狩獵為生吧";
+		next;
+		mes "[拉武雷]";
+		mes "咳、咳、我看你以後當個巫師似乎很好...";
+		close;
+	}
+	else if (WIZ_Q == 3) {
+		mes "[拉武雷]";
+		mes "哈哈哈...看樣子你已經通過第一回合考試了啊";
+		mes "好...我是負責你下一回合考試的巫師，";
+		mes "拉武雷 阿斯帕格拉斯";
+		next;
+		mes "[拉武雷]";
+		mes "還沒問你要不要考慮回村莊過和平的生活?嘻嘻...";
+		next;
+		mes "[拉武雷]";
+		mes "哈哈哈...";
+		mes "你還不了解使用魔力是多危險的一件事啊...";
+		next;
+		if (select("我還是當個平凡魔法師:我要繼續接受轉職考試") == 1) {
+			mes "[拉武雷]";
+			mes "哈哈哈...很好很好";
+			mes "你以後千萬別再想當一名巫師，";
+			mes "魔力可不是給人類所使用的啊...";
+			next;
+			mes "[拉武雷]";
+			mes "你就靜靜的從塔裡下去";
+			mes "千萬別再回頭";
+			mes "你可以用現在所擁有的力量，";
+			mes "在村落裡面過和平的生活";
+			close;
+		}
+		mes "[拉武雷]";
+		mes "我現在要開始考試了";
+		mes "如果回答錯一個問題就會落選";
+		next;
+		mes "[拉武雷]";
+		mes "我會出10題你必須要全部答對";
+		mes "如果答錯我也不會告訴你答案";
+		if(checkquest(9016) == -1) {
+			changequest 9015,9016;
+		}
+		next;
+		mes "[拉武雷]";
+		mes "咳、咳...那我們正式開始";
+L_AskQuestions:
+		next;
+		switch(rand(1,3)) {
+		case 1:
+			mes "[拉武雷]";
+			mes "1. 下面哪個不是火焰之壁的前置技能?";
+			next;
+			if (select("火箭術 Lv4:火球術 Lv5:火狩 Lv1:心靈爆破 Lv4") == 4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "2. 用冰凍術把魔物結凍之後，";
+			mes "魔物的屬性會變為?";
+			next;
+			if(select("水屬性","地屬性","火屬性","風屬性")==1)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "3. 心靈爆破點滿後的MATK是多少倍?";
+			next;
+			if (select("1.6:1.7:2:20") == 2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "4. 使用石化術時必備的物品是?";
+			next;
+			if (select("火靈礦石:藍色魔力礦石:黃色魔力礦石:紅色魔力礦石") == 4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "5. 下面哪一個是暗之障壁的前置技能?";
+			next;
+			if (select("心靈爆破 Lv7:聖靈召喚 Lv5:禪心 Lv6:火狩 Lv1") == 3)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "6. 學到禪心Lv7後，";
+			mes "單純技能效果在10秒內回復的SP是?";
+			next;
+			if (select("14:21:28:35") == 2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "7. 當SP只剩下50%時，";
+			mes "能量外套的減少傷害量、";
+			mes "SP的消耗量分別是多少?";
+			next;
+			if (select("傷害的18%、SP1.5%:傷害的18%、SP2%:傷害的24%、SP1.5%:傷害的24%、SP2%") == 2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "8. 使用暗之障壁Lv6時，";
+			mes "消耗的SP跟回避次數是?";
+			next;
+			if (select("SP 40、6回:SP 35、6回:SP 40、7回:SP 35、7回") == 3)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "9. 使用Lv10雷爆術時，";
+			mes "SP的消耗量是?";
+			next;
+			if (select("84:74:64:54") == 2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "10. 在依斯魯得島密穴裡面很有效的技能是?";
+			next;
+			if (select("雷擊術:火箭術:冰箭術:火狩") == 1)
+				set .@wizard_t,.@wizard_t+10;
+			break;
+		case 2:
+			mes "[拉武雷]";
+			mes "1. 在哪個魔物上可得到有洞的'鐵盾'?";
+			next;
+			if(select("盜蟲:大嘴鳥:蟲蛹:榔頭哥布靈")==3)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "2. 下面最容易打倒的是哪個魔物?";
+			next;
+			if(select("噬人花:基爾瑟:巨石怪:麥斯特")==1)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "3. 以下哪一個魔物完全對石化術免疫?";
+			next;
+			if(select("長老樹精:闇神官:魔鍋蛋:馬克")==2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "4. 用風屬性來攻擊水屬性Lv3的魔物，會有多少加成效果?";
+			next;
+			if (select("125%:150%:175%:200%") == 4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "5. 如果沙漠幼狼跟吸血蝙蝠打起來的話，哪一個會贏?";
+			next;
+			if(select("沙漠幼狼:吸血蝙蝠:不分勝負:不知道")==1)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "6. 下面哪一種魔物不能成為寵物?";
+			next;
+			if(select("波波利:羅達蛙:貍貓:毒魔菇")==2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "7. 下面哪一種魔物最怕火屬性攻擊?";
+			next;
+			if(select("刺刀哥布靈:鏈錘哥布靈:大斧哥布靈:榔頭哥布靈")==4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "8. 以下哪種魔物的魔法防御力最高?";
+			next;
+			if(select("鍬形蟲:蒼蠅:白蟻:刺蝟蟲")==4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "9. 從下面選出跟其他不同種族的魔物";
+			next;
+			if(select("波利:波利之王:幽靈波利:魔菇")==3)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "10. 下列哪種魔物不屬於不死系?";
+			next;
+			if(select("海盜之王:邪骸食人魚:狄奧斯:卡利斯格")==3)
+				set .@wizard_t,.@wizard_t+10;
+			break;
+		case 3:
+			mes "[拉武雷]";
+			mes "1. 對魔法師來說最重要的'素質'是?";
+			next;
+			if (select("INT:AGI:DEX:VIT") == 1)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "2. 在魔法師的'箭術'系列魔法中，";
+			mes "哪一種屬性不屬於其中?";
+			next;
+			if(select("水屬性:地屬性:火屬性:風屬性")==2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "3. 哪一項不是魔法師的特徵?";
+			next;
+			if(select("體力弱:可以遠距離攻擊:可以賺很多錢:SP很多")==3)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "4. 哪一個城鎮所住的魔法師最多?";
+			next;
+			if(select("普隆德拉:夢羅克:艾爾貝塔:吉芬")==4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "5. INT不會上升的卡片是?";
+			next;
+			if(select("白蟻幼蟲卡片:戰蟻卡片:沙漠幼狼卡片:長老樹精卡片")==2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "6. 選出魔法師勝過其他職業的地方";
+			next;
+			if(select("優秀的歌喉:優秀的演技:優秀的舞蹈能力:優秀的魔力")==4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "7. 在職業等級40時，魔法師獲得的INT加成是?";
+			next;
+			if (select("8:7:6:5") == 4)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "8. 魔法師所不能裝備的物品是?";
+			next;
+			if(select("短劍:無邊帽:輕便鞋:醫師髮箍")==2)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "9. 魔法師轉職考試時，";
+			mes "作為'混合液3號'的催化劑的魔力礦石是?";
+			next;
+			if(select("藍色魔力礦石:紅色魔力礦石:黃色魔力礦石:火靈礦石")==1)
+				set .@wizard_t,.@wizard_t+10;
+			mes "[拉武雷]";
+			mes "10. 和魔法沒有關連的卡片是?";
+			next;
+			if(select("馬爾杜克卡片:魔鍋蛋卡片:樹精卡片:蟻后卡片")==2)
+				set .@wizard_t,.@wizard_t+10;
+		}
+		mes "[拉武雷]";
+		mes "辛苦你了...";
+		next;
+		mes "[拉武雷]";
+		mes "那麼...您的分數是... " + .@wizard_t + "分..";
+		if (.@wizard_t > 79) {
+			set WIZ_Q,5;
+			changequest 9016,9017;
+			mes "哈哈哈...考得很好第二個考試算及格了";
+			next;
+			mes "[拉武雷]";
+			mes "不過還不能放心";
+			mes "還有第三回合的考試呢";
+			mes "在準備下一回合的時間中你可以好好休息...";
+			mes "哈哈哈哈哈...";
+			close;
+		}
+		else {
+			set WIZ_Q,4;
+			mes "不合格";
+			next;
+			mes "[拉武雷]";
+			mes "太差勁了...";
+			mes "才這麼一點本事也想當巫師....";
+			mes "滾回去!以你這種程度當巫師很快會被魔物給吃掉的!";
+			close;
+		}
+	}
+	else if (WIZ_Q == 4) {
+		mes "[拉武雷]";
+		mes "哈哈哈...有了前面的經驗...";
+		mes "這次可不要哭著回來啊";
+		mes "如你所願的開始吧...";
+		goto L_AskQuestions;
+	}
+	else if (WIZ_Q == 5) {
+		mes "[拉武雷]";
+		mes "好...想必你已經有足夠的休息了吧?";
+		mes "那麼，在轉職成巫師之前就來完成最後一回的考試吧";
+		next;
+		mes "[拉武雷]";
+		mes "關於考試內容要簡單說明一下嗎...?";
+		next;
+		if(select("不了，沒關係:我還是聽聽看好了")==1) {
+			mes "[拉武雷]";
+			mes "你這個笨蛋傢伙...你就去試試看吧";
+			mes "就算你死了我也不會幫你收屍";
+			mes "魔物會毫不留情的狠狠吃掉你的....哈哈哈";
+			next;
+			set WIZ_Q,6;
+			savepoint "geffen",120,107;
+			mes "[拉武雷]";
+			mes "你還挺有毅力的啊...好吧!";
+			mes "哈哈哈....如你所願的開始吧!";
+			close2;
+			warp "job_wiz",57,154;
+			end;
+		}
+		mes "[拉武雷]";
+		mes "誠實的傢伙...";
+		mes "好吧...我就說明給你聽";
+		mes "不管考試有多難，";
+		mes "只要我叫你做什麼你就照做，";
+		mes "考試就會很快的簡單結束";
+		next;
+		mes "[拉武雷]";
+		mes "考試一共分為三個階段";
+		mes "順序是水之間、地之間、火之間，";
+		mes "在每個房間會有符合屬性的魔物出場";
+		next;
+		mes "[拉武雷]";
+		mes "你進去看看就知道會出現怎樣的魔物";
+		mes "你就選擇相克的屬性去攻擊，";
+		mes "不會像想象中的那樣困難....";
+		mes "哈哈哈...";
+		next;
+		mes "[拉武雷]";
+		mes "只要你在規定的時間當中把魔物殺光後，";
+		mes "再把守在門口的把關魔物打倒則移動到另一個房間";
+		next;
+		mes "[拉武雷]";
+		mes "這樣就可以完全結束轉職考試，";
+		mes "到時候你就會被魔力所圍繞，";
+		mes "再也回不到現在的樣子";
+		next;
+		mes "[拉武雷]";
+		mes "哈哈哈...你的表情很害怕啊";
+		mes "現在後悔還不遲";
+		mes "如果現在選擇放棄，";
+		mes "我還是能讓你回村落的...怎麼樣?";
+		next;
+		if(select("繼續參加考試:好像很恐怖還是放棄好了")==1) {
+			set WIZ_Q,6;
+			savepoint "geffen",120,107;
+			mes "[拉武雷]";
+			mes "你還挺有毅力的啊...好吧!";
+			mes "哈哈哈....如你所願的開始吧!";
+			close2;
+			warp "job_wiz",57,154;
+			end;
+		}
+		set WIZ_Q,6;
+		mes "[拉武雷]";
+		mes "這樣想很好";
+		mes "嗯...你還是適合現在的樣子";
+		mes "回去之後你就過著平凡安逸的生活吧";
+		close2;
+		warp "geffen",120,110;
+		end;
+	}
+	else if (WIZ_Q == 6) {
+		if (WIZ_Q2 == 6) {
+			mes "[拉武雷]";
+			mes "...哈哈哈";
+			mes "沒看過像你這樣死纏爛打的傢伙...";
+			next;
+			mes "[拉武雷]";
+			mes "好吧...我就稍微指點你一下";
+			mes "我看你也已經很累了...哈哈哈...";
+			mes "好吧，你就拿一個^3051FD老舊卷軸^000000過來吧";
+			next;
+			set WIZ_Q2,WIZ_Q2+1;
+			mes "[拉武雷]";
+			mes "既然你還想試我就再給你一次機會吧";
+			mes "首先我會讓你學會如何應付考試...";
+			next;
+			close2;
+			warp "job_wiz",57,154;
+			end;
+		}
+		else if (WIZ_Q2 > 6) {
+			mes "[拉武雷]";
+			mes "好...你又來了...哈哈哈";
+			mes "要重考一次嗎...還是要拿^3051FD老舊卷軸^000000過來?";
+			next;
+			if (select("我要繼續考試","我還是去拿老舊卷軸...") == 1) {
+				savepoint "geffen",120,107;
+				mes "[拉武雷]";
+				mes "哈哈哈...好吧，你還挺有毅力的嘛";
+				mes "我就再讓你去一次，你就再受死看看吧...";
+				close2;
+				warp "job_wiz",57,154;
+				end;
+			}
+			if (countitem(618) > 0) {
+				delitem 618,1;
+				set WIZ_Q2,0;
+				set WIZ_Q,7;
+				mes "[拉武雷]";
+				mes "哈哈哈...結果你還是拿來了啊";
+				mes "來的好";
+				mes "利用這個我就可以繼續進行研究了";
+				mes "感謝啊...";
+				next;
+				mes "[拉武雷]";
+				mes "哈哈哈...";
+				mes "我會轉告凱特莉娜說你合格了...哈哈哈哈...";
+				mes "這段期間辛苦了";
+				close;
+			}
+		}
+		mes "[拉武雷]";
+		mes "什麼?你要重考...?";
+		mes "在考試的戰鬥中失敗的傢伙...哈哈哈...";
+		mes "你如此喜愛魔法啊...";
+		next;
+		mes "[拉武雷]";
+		mes "看這樣子，";
+		mes "我就讓你再考一次吧...";
+		mes "如果不滿的話就好好的考過吧";
+		next;
+		mes "[拉武雷]";
+		mes "那就再考一次吧...哈哈...";
+		next;
+		mes "[拉武雷]";
+		mes "1、在下列魔物當中，";
+		mes "選出不同屬性的魔物";
+		next;
+		if(select("螳螂:卡那多斯:基爾瑟:刺蝟蟲")==2)
+			set .@wizard_t,.@wizard_t+20;
+		mes "[拉武雷]";
+		mes "2. 下列哪一個是主動/被動屬性不同的魔物?";
+		next;
+		if(select("溜溜猴:魔鍋蛋:重金屬蝗蟲:傑洛米")==4)
+			set .@wizard_t,.@wizard_t+20;
+		mes "[拉武雷]";
+		mes "3. 下面哪個魔物中對魔法詠唱沒有反應?";
+		next;
+		if(select("水母:黑蟻:蠍子:基爾瑟")==1)
+			set .@wizard_t,.@wizard_t+20;
+		mes "[拉武雷]";
+		mes "4. 對付氣泡蟲最有用的魔法是?";
+		next;
+		if(select("冰箭術:火箭術:雷擊術:石化術")==3)
+			set .@wizard_t,.@wizard_t+20;
+		mes "[拉武雷]";
+		mes "5. 下面哪一個魔物會移動?";
+		next;
+		if(select("海葵:曼陀羅魔花:將軍魔碑:傘蜥")==4)
+			set .@wizard_t,.@wizard_t+20;
+		mes "[拉武雷]";
+		mes "哈哈...好好回答就不用再問一次了啊";
+		next;
+		mes "[拉武雷]";
+		mes "你的分數是... " + .@wizard_t + "分";
+		if (.@wizard_t == 100) {
+			mes "哈哈哈....答的很好，";
+			mes "為什麼不會戰鬥呢...";
+			next;
+		}
+		else if (.@wizard_t == 80) {
+			mes "哈哈...還過的去啊...";
+			mes "我再讓你進行一次戰鬥考試...";
+			next;
+		}
+		else {
+			mes "不合格多讀點書再來吧...";
+			next;
+			mes "[拉武雷]";
+			mes "果然你還是不夠用功";
+			mes "所以才會失敗啊...";
+			close;
+		}
+		if (select("開始考試吧:請再說明一次考試的方法") == 1) {
+			mes "[拉武雷]";
+			mes "這次也一樣，任誰也幫不了你...";
+			mes "呵呵呵...";
+			mes "死到臨頭時再後悔也來不及了!";
+			close2;
+			warp "job_wiz",57,154;
+			end;
+		}
+		mes "[拉武雷]";
+		mes "誠實的傢伙...";
+		mes "好吧...我就說明給你聽";
+		mes "不管考試有多難，";
+		mes "只要我叫你做什麼你就照做，";
+		mes "考試就會很快的簡單結束";
+		next;
+		mes "[拉武雷]";
+		mes "考試一共分為三個階段";
+		mes "順序是水之間、地之間、火之間，";
+		mes "在每個房間會有符合屬性的魔物出場";
+		next;
+		mes "[拉武雷]";
+		mes "你進去看看就知道會出現怎樣的魔物";
+		mes "你就選擇相克的屬性去攻擊，";
+		mes "不會像想象中的那樣困難....";
+		mes "哈哈哈...";
+		next;
+		mes "[拉武雷]";
+		mes "只要你在規定的時間當中把魔物殺光後，";
+		mes "再把守在門口的把關魔物打倒則移動到另一個房間";
+		next;
+		mes "[拉武雷]";
+		mes "這樣就可以完全結束轉職考試，";
+		mes "到時候你就會被魔力所圍繞，";
+		mes "再也回不到現在的樣子";
+		next;
+		if (select("繼續參加考試:放棄好了") == 1) {
+			percentheal 100,100;
+			mes "[拉武雷]";
+			mes "你還挺有毅力的啊...好吧!";
+			mes "哈哈哈....如你所願的開始吧!";
+			close2;
+			warp "job_wiz",57,154;
+			end;
+		}
+		mes "[拉武雷]";
+		mes "這樣想很好";
+		mes "嗯...你還是適合現在的樣子";
+		mes "回去之後你就過著平凡安逸的生活吧";
+		close2;
+		warp "geffen",120,110;
+		end;
+	}
+	else if (WIZ_Q == 7) {
+		mes "[拉武雷]";
+		mes "你已經完成所有轉職考試了，";
+		mes "趕快去找'凱特莉娜'轉職為巫師吧!";
+		close;
+	}
+}
+
+job_wiz,50,165,4	script	戰鬥進行人員	700,{
+	mes "[戰鬥進行人員]";
+	mes "歡迎來到戰鬥試驗場";
+	mes "參加試驗的人，";
+	mes "請進入試驗等候室";
+	next;
+	mes "[戰鬥進行人員]";
+	mes "有其人在進行試驗時，";
+	mes "就請先稍等一下";
+	mes "進行情況會知會給大家知道，";
+	mes "結束之後會馬上開始進行";
+	next;
+	mes "[戰鬥進行人員]";
+	mes "每人的戰鬥程序是5到10分鐘";
+	mes "如果有人想離開戰鬥場的話";
+	mes "就要再重新申請";
+	close;
+}
+
+job_wiz,50,165,4	script	轉職考試等待室#wiz	700,{
+OnInit:
+	waitingroom "轉職考試等待室",20,"轉職考試等待室#wiz::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+
+OnStartArena:
+	killmonsterall "job_wiz";
+	warpwaitingpc "job_wiz",114,169;
+	donpcevent "水之間::OnEnable";
+	disablenpc "轉職考試等待室#wiz";
+	disablewaitingroomevent;
+	end;
+
+OnStart:
+	enablewaitingroomevent;
+	end;
+}
+
+// Water Room (Test 2 part 1)
+//==========================================================
+job_wiz,1,1,1	script	水之間	66,{
+OnInit:
+	disablenpc "水之間";
+	end;
+
+OnEnable:
+	enablenpc "水之間";
+	set .MyMobs,8;
+	monster "job_wiz",109,174,"劍魚",1158,1,"水之間::OnMyMobDead";
+	monster "job_wiz",118,174,"貝殼魔靈",1074,1,"水之間::OnMyMobDead";
+	monster "job_wiz",109,165,"螃蟹",1066,1,"水之間::OnMyMobDead";
+	monster "job_wiz",118,165,"卡那多斯",1067,1,"水之間::OnMyMobDead";
+	monster "job_wiz",101,157,"水母",1141,1,"水之間::OnMyMobDead";
+	monster "job_wiz",126,157,"冰波利",1242,1,"水之間::OnMyMobDead";
+	monster "job_wiz",98,170,"魔鍋蛋",1138,1,"水之間::OnMyMobDead";
+	monster "job_wiz",129,170,"人魚",1044,1,"水之間::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonsterall "job_wiz";
+	disablenpc "水之間";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		set WIZ_Q2,WIZ_Q2+1;
+		mapannounce "job_wiz",strcharinfo(0)+" 殺死了水之間的所有怪物",bc_map;
+		donpcevent "水之間#Door::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer1000:
+	mapannounce "job_wiz","水之間的挑戰開始",bc_map;
+	end;
+
+OnTimer2000:
+	mapannounce "job_wiz","限制時間為 3分鐘",bc_map;
+	end;
+
+OnTimer3000:
+	mapannounce "job_wiz","必須在限定的時間內殺死場內的所有怪物",bc_map;
+	end;
+
+OnTimer33000:
+	mapannounce "job_wiz","剩下 2分 30秒",bc_map;
+	end;
+
+OnTimer63000:
+	mapannounce "job_wiz","剩下 2分鐘",bc_map;
+	end;
+
+OnTimer93000:
+	mapannounce "job_wiz","剩下 1分 30秒",bc_map;
+	end;
+
+OnTimer123000:
+	mapannounce "job_wiz","剩下 1分鐘",bc_map;
+	end;
+
+OnTimer153000:
+	mapannounce "job_wiz","剩下 30秒",bc_map;
+	end;
+
+OnTimer173000:
+	mapannounce "job_wiz","剩下最後 10秒!",bc_map;
+	end;
+
+OnTimer183000:
+	mapannounce "job_wiz","時間到了!",bc_map;
+	donpcevent "水之間::OnDisable";
+	end;
+
+OnTimer184000:
+	enablenpc "Room of Water#Failed";
+	end;
+
+OnTimer185000:
+	mapannounce "job_wiz","下一位請進入考場",bc_map;
+	end;
+
+OnTimer186000:
+	disablenpc "水之間#Failed";
+	donpcevent "水之間::OnDisable";
+	donpcevent "轉職考試等待室#wiz::OnStart";
+	end;
+}
+
+job_wiz,1,2,1	script	水之間#Door	66,{
+OnInit:
+	disablenpc "水之間#Door";
+	end;
+
+OnEnable:
+	enablenpc "水之間#Door";
+	donpcevent "水之間::OnDisable";
+	set .MyMobs,5;
+	monster "job_wiz",114,169,"氣泡蟲",1142,1,"水之間#Door::OnMyMobDead";
+	monster "job_wiz",112,169,"海葵",1068,1,"水之間#Door::OnMyMobDead";
+	monster "job_wiz",116,169,"海葵",1068,1,"水之間#Door::OnMyMobDead";
+	monster "job_wiz",114,171,"海葵",1068,1,"水之間#Door::OnMyMobDead";
+	monster "job_wiz",114,167,"海葵",1068,1,"水之間#Door::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonsterall "job_wiz";
+	disablenpc "水之間#Door";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mapannounce "job_wiz",strcharinfo(0)+" 殺死了水之間的守門怪物",bc_map;
+		warp "job_wiz",116,97;
+		percentheal 100,100;
+		donpcevent "水之間#Door::OnDisable";
+		donpcevent "地之間::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer1000:
+	mapannounce "job_wiz","守門怪物出現了，限制時間為 1分鐘!!",bc_map;
+	end;
+
+OnTimer30000:
+	mapannounce "job_wiz","剩下 30秒",bc_map;
+	end;
+
+OnTimer50000:
+	mapannounce "job_wiz","剩下 10秒",bc_map;
+	end;
+
+OnTimer60000:
+	mapannounce "job_wiz","時間到!",bc_map;
+	donpcevent "水之間#Door::OnDisable";
+	end;
+
+OnTimer61000:
+	enablenpc "水之間#Failed";
+	end;
+
+OnTimer62000:
+	mapannounce "job_wiz","下一位請進入考場",bc_map;
+	end;
+
+OnTimer63000:
+	disablenpc "水之間#Failed";
+	donpcevent "水之間#Door::OnDisable";
+	donpcevent "轉職考試等待室#wiz::OnStart";
+	end;
+}
+
+job_wiz,114,169,0	script	水之間#Failed	-1,16,16,{
+OnInit:
+	disablenpc "水之間#Failed";
+	end;
+
+OnTouch:
+	mapannounce "job_wiz",strcharinfo(0)+" 的轉職考試失敗了",bc_map;
+	warp "geffen",120,110;
+	end;
+}
+
+// Earth Room (Test 2 part 2)
+//==========================================================
+job_wiz,1,3,1	script	地之間	66,{
+OnInit:
+	disablenpc "地之間";
+	end;
+
+OnEnable:
+	enablenpc "地之間";
+	set .MyMobs,10;
+	monster "job_wiz",111,102,"溜溜猴",1057,1,"地之間::OnMyMobDead";
+	monster "job_wiz",120,102,"兵蟻",1105,1,"地之間::OnMyMobDead";
+	monster "job_wiz",111,102,"刺蝟蟲",1103,1,"地之間::OnMyMobDead";
+	monster "job_wiz",120,102,"蚯蚓",1127,1,"地之間::OnMyMobDead";
+	monster "job_wiz",111,93,"野豬",1166,1,"地之間::OnMyMobDead";
+	monster "job_wiz",120,93,"基爾瑟",1121,1,"地之間::OnMyMobDead";
+	monster "job_wiz",107,98,"大腳熊",1060,1,"地之間::OnMyMobDead";
+	monster "job_wiz",124,98,"獸人戰士",1023,1,"地之間::OnMyMobDead";
+	monster "job_wiz",104,86,"黑蟻",1176,1,"地之間::OnMyMobDead";
+	monster "job_wiz",127,86,"螳螂",1139,1,"地之間::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonsterall "job_wiz";
+	disablenpc "地之間";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mapannounce "job_wiz",strcharinfo(0) + " 殺死了地之間的所有怪物",bc_map;
+		donpcevent "地之間#Door::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer1000:
+	mapannounce "job_wiz","地之間的挑戰開始",bc_map;
+	end;
+
+OnTimer2000:
+	mapannounce "job_wiz","限制時間為 3分鐘",bc_map;
+	end;
+
+OnTimer3000:
+	mapannounce "job_wiz","必須在限定的時間內殺死場內的所有怪物",bc_map;
+	end;
+
+OnTimer33000:
+	mapannounce "job_wiz","剩下 2分 30秒",bc_map;
+	end;
+
+OnTimer63000:
+	mapannounce "job_wiz","剩下 2分鐘",bc_map;
+	end;
+
+OnTimer93000:
+	mapannounce "job_wiz","剩下 1分 30秒",bc_map;
+	end;
+
+OnTimer123000:
+	mapannounce "job_wiz","剩下 1分鐘",bc_map;
+	end;
+
+OnTimer153000:
+	mapannounce "job_wiz","剩下 30秒",bc_map;
+	end;
+
+OnTimer173000:
+	mapannounce "job_wiz","剩下 10秒",bc_map;
+	end;
+
+OnTimer183000:
+	mapannounce "job_wiz","時間到!",bc_map;
+	donpcevent "地之間::OnDisable";
+	end;
+
+OnTimer184000:
+	enablenpc "地之間#Failed";
+	end;
+
+OnTimer185000:
+	mapannounce "job_wiz","下一位請進入考場",bc_map;
+	end;
+
+OnTimer186000:
+	disablenpc "地之間#Failed";
+	donpcevent "地之間::OnDisable";
+	donpcevent "轉職考試等待室#wiz::OnStart";
+	end;
+}
+
+job_wiz,1,4,1	script	地之間#Door	66,{
+OnInit:
+	disablenpc "地之間#Door";
+	end;
+
+OnEnable:
+	enablenpc "地之間#Door";
+	donpcevent "地之間::OnDisable";
+	set .MyMobs,7;
+	monster "job_wiz",116,97,"噬人花",1118,1,"地之間#Door::OnMyMobDead";
+	monster "job_wiz",114,95,"曼陀羅魔花",1020,1,"地之間#Door::OnMyMobDead";
+	monster "job_wiz",118,95,"曼陀羅魔花",1020,1,"地之間#Door::OnMyMobDead";
+	monster "job_wiz",114,99,"曼陀羅魔花",1020,1,"地之間#Door::OnMyMobDead";
+	monster "job_wiz",118,99,"曼陀羅魔花",1020,1,"地之間#Door::OnMyMobDead";
+	monster "job_wiz",116,94,"曼陀羅魔花",1020,1,"地之間#Door::OnMyMobDead";
+	monster "job_wiz",116,100,"曼陀羅魔花",1020,1,"地之間#Door::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonsterall "job_wiz";
+	disablenpc "地之間#Door";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mapannounce "job_wiz",strcharinfo(0) + " 殺死了地之間的守門怪物",bc_map;
+		percentheal 100,100;
+		warp "job_wiz",46,99;
+		donpcevent "地之間#Door::OnDisable";
+		donpcevent "火之間::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer1000:
+	mapannounce "job_wiz","守門怪物出現了限制時間為 1分鐘",bc_map;
+	end;
+
+OnTimer30000:
+	mapannounce "job_wiz","剩下 30秒",bc_map;
+	end;
+
+OnTimer50000:
+	mapannounce "job_wiz","剩下 10秒",bc_map;
+	end;
+
+OnTimer60000:
+	mapannounce "job_wiz","時間到!",bc_map;
+	donpcevent "地之間#Door::OnDisable";
+	end;
+
+OnTimer61000:
+	donpcevent "地之間#Failed::OnEnable";
+	end;
+
+OnTimer62000:
+	mapannounce "job_wiz","下一位請進入考場",bc_map;
+	end;
+
+OnTimer63000:
+	disablenpc "地之間#Failed";
+	donpcevent "地之間#Door::OnDisable";
+	donpcevent "轉職考試等待室#wiz::OnStart";
+	end;
+}
+
+job_wiz,116,97,0	script	地之間#Failed	-1,16,16,{
+OnInit:
+	disablenpc "地之間#Failed";
+	end;
+
+OnTouch:
+	mapannounce "job_wiz",strcharinfo(0) + " 的轉職考試失敗了",bc_map;
+	warp "geffen",120,110;
+	end;
+}
+
+// Fire Room (Test 2 part 3)
+//==========================================================
+job_wiz,1,5,1	script	火之間	66,{
+OnInit:
+	disablenpc "火之間";
+	end;
+
+OnEnable:
+	enablenpc "火之間";
+	set .MyMobs,8;
+	monster "job_wiz",58,110,"傑洛米",1178,1,"火之間::OnMyMobDead";
+	monster "job_wiz",33,110,"鏈錘哥布靈",1123,1,"火之間::OnMyMobDead";
+	monster "job_wiz",40,103,"蠍子",1001,1,"火之間::OnMyMobDead";
+	monster "job_wiz",51,103,"傘蜥",1119,1,"火之間::OnMyMobDead";
+	monster "job_wiz",40,92,"大嘴鳥",1019,1,"火之間::OnMyMobDead";
+	monster "job_wiz",51,92,"長老樹精",1033,1,"火之間::OnMyMobDead";
+	monster "job_wiz",37,89,"重金屬蝗蟲",1058,1,"火之間::OnMyMobDead";
+	monster "job_wiz",54,89,"沙漠之狼",1106,1,"火之間::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonsterall "job_wiz";
+	disablenpc "火之間";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mapannounce "job_wiz",strcharinfo(0) + " 殺死了火之間的所有怪物",bc_map;
+		donpcevent "火之間#Door::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer1000:
+	mapannounce "job_wiz","火之間的挑戰開始",bc_map;
+	end;
+
+OnTimer2000:
+	mapannounce "job_wiz","這是最後的房間，限制時間一樣為 3分鐘",bc_map;
+	end;
+
+OnTimer3000:
+	mapannounce "job_wiz","必須在限定的時間內殺死場內的所有怪物",bc_map;
+	end;
+
+OnTimer33000:
+	mapannounce "job_wiz","剩下 2分 30秒",bc_map;
+	end;
+
+OnTimer63000:
+	mapannounce "job_wiz","剩下 2分鐘",bc_map;
+	end;
+
+OnTimer93000:
+	mapannounce "job_wiz","剩下 1分 30秒",bc_map;
+	end;
+
+OnTimer123000:
+	mapannounce "job_wiz","剩下 1分鐘",bc_map;
+	end;
+
+OnTimer153000:
+	mapannounce "job_wiz","剩下 30秒",bc_map;
+	end;
+
+OnTimer173000:
+	mapannounce "job_wiz","剩下 10秒",bc_map;
+	end;
+
+OnTimer183000:
+	mapannounce "job_wiz","時間到!",bc_map;
+	donpcevent "火之間::OnDisable";
+	end;
+
+OnTimer184000:
+	donpcevent "火之間#Failed::OnEnable";
+	end;
+
+OnTimer185000:
+	mapannounce "job_wiz","下一位請進入考場",bc_map;
+	end;
+
+OnTimer186000:
+	disablenpc "火之間#Failed";
+	donpcevent "火之間::OnDisable";
+	donpcevent "轉職考試等待室#wiz::OnStart";
+	end;
+}
+
+job_wiz,1,6,1	script	火之間#Door	66,{
+OnInit:
+	disablenpc "火之間#Door";
+	end;
+
+OnEnable:
+	enablenpc "火之間#Door";
+	donpcevent "火之間::OnDisable";
+	set .MyMobs,3;
+	monster "job_wiz",44,99,"將軍魔碑",1277,1,"火之間#Door::OnMyMobDead";
+	monster "job_wiz",43,99,"鬼火",1129,1,"火之間#Door::OnMyMobDead";
+	monster "job_wiz",45,99,"鬼火",1129,1,"火之間#Door::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonsterall "job_wiz";
+	disablenpc "火之間#Door";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mapannounce "job_wiz","恭喜恭喜! " + strcharinfo(0) + " 的考試合格了",bc_map;
+		set WIZ_Q,7;
+		changequest 9017,9018;
+		donpcevent "火之間#Door::OnDisable";
+		donpcevent "考試人員#wiz::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer1000:
+	mapannounce "job_wiz","守門怪物已經出現了，這次給你2分鐘!",bc_map;
+	end;
+
+OnTimer30000:
+	mapannounce "job_wiz","剩下 1分 30秒",bc_map;
+	end;
+
+OnTimer60000:
+	mapannounce "job_wiz","剩下1分鐘",bc_map;
+	end;
+
+OnTimer90000:
+	mapannounce "job_wiz","剩下 30秒",bc_map;
+	end;
+
+OnTimer110000:
+	mapannounce "job_wiz","剩下最後 10秒",bc_map;
+	end;
+
+OnTimer120000:
+	mapannounce "job_wiz","時間到!",bc_map;
+	donpcevent "火之間#Door::OnDisable";
+	end;
+
+OnTimer121000:
+	enablenpc "火之間#Failed";
+	end;
+
+OnTimer122000:
+	mapannounce "job_wiz","下一位考生請進入考場",bc_map;
+	end;
+
+OnTimer123000:
+	disablenpc "火之間#Failed";
+	donpcevent "火之間#Door::OnDisable";
+	donpcevent "轉職考試等待室#wiz::OnStart";
+}
+
+job_wiz,46,99,0	script	火之間#Failed	-1,16,16,{
+OnInit:
+	disablenpc "火之間#Failed";
+	end;
+
+OnTouch:
+	warp "geffen",120,110;
+	end;
+}
+
+job_wiz,1,7,1	script	考試人員#wiz	66,{
+	end;
+
+OnInit:
+	disablenpc "考試人員#wiz";
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc "考試人員#wiz";
+	end;
+
+OnTimer2000:
+	mapannounce "job_wiz","請到原來的考官那裡，辦好剩下的手續",bc_map;
+	end;
+
+OnTimer4000:
+	mapannounce "job_wiz","下一位考生可以進來了",bc_map;
+	end;
+
+OnTimer5000:
+	areawarp "job_wiz",33,82,57,113,"gef_tower",110,30;
+	end;
+
+OnTimer7000:
+	mapannounce "job_wiz","下一位請進入考場",bc_map;
+	end;
+
+OnTimer9000:
+	donpcevent "考試人員#wiz::OnDisable";
+	donpcevent "轉職考試等待室#wiz::OnStart";
+	stopnpctimer;
+	end;
+}
+
+gef_tower,107,36,4	script	白色的狗#wiz	81,{
+	if (BaseJob != Job_Mage) {
+		if (BaseJob == Job_Wizard) {
+			cutin "job_wizard_maria01",2;
+			mes "[瑪莉亞]";
+			mes "與其待在這邊，不如去外面確認自己有多強如何?";
+			next;
+			mes "[瑪莉亞]";
+			mes "不要忘記每天都有同為巫師的人在不斷成長啊";
+			close2;
+			cutin "job_wizard_maria01",255;
+			end;
+		}
+		else {
+			cutin "job_wizard_maria02",2;
+			mes "[狗]";
+			mes "哼...連魔法都不會的人還跑到這麼高的地方幹嘛?";
+			mes "時間那麼多的話不如去塔下練體操吧~";
+		}
+		next;
+		mes "[狗]";
+		mes "快滾回去!";
+		mes "我沒時間跟你們耗!";
+		close2;
+		cutin "job_wizard_maria02",255;
+		end;
+	}
+	if (WIZ_Q == 0) {
+		cutin "job_wizard_maria01",2;
+		mes "[狗]";
+		mes "啊，我知道你要說什麼";
+		mes "你想轉職為巫師對吧?";
+		next;
+		mes "[狗]";
+		mes "你想轉職的話就去找旁邊的凱特莉娜吧";
+		mes "她會好好幫你的";
+		next;
+		mes "[狗]";
+		mes "對轉職過程有什麼問題的話就讓我來幫你解答吧";
+		next;
+		switch(select(".......:狗會講話...")) {
+		case 1:
+			cutin "job_wizard_maria03",2;
+			mes "[瑪莉亞]";
+			mes "嗯?什麼啊...這種疏離感...";
+			mes "你第一次看到狗說話啊?";
+			next;
+			cutin "job_wizard_maria01",2;
+			mes "[瑪莉亞]";
+			mes "嗯...其實也很難看到狗開口說話啦";
+			mes "連我也不知不覺的認同了";
+			mes "嗯...";
+			mes "....";
+			next;
+			break;
+		case 2:
+			cutin "job_wizard_maria02",2;
+			mes "[狗]";
+			mes "不要用奇怪的眼神看我!";
+			mes "我知道我現在變成了一只狗...";
+			next;
+			cutin "job_wizard_maria01",2;
+			mes "[狗]";
+			mes "我的名字叫";
+			mes "'瑪莉亞·斯珀·羅朵波斯卡'，";
+			mes "直接叫我'瑪莉亞'就可以了";
+			mes "我在這邊幫助你們這些想當巫師的學生";
+			next;
+			cutin "job_wizard_maria03",2;
+			mes "[瑪莉亞]";
+			mes "我之所以變成狗...";
+			mes "是因為我的男朋友在考取魔法師學位時因為某個實驗失敗了...";
+			next;
+			cutin "job_wizard_maria02",2;
+			mes "[瑪莉亞]";
+			mes "理論上來說幾個月後應該就可以變回原來的樣子...";
+			next;
+			mes "[瑪莉亞]";
+			mes "無所謂了...";
+			mes "如果你接受轉職考試的話我會幫助你的";
+			next;
+			break;
+		}
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "我剛才說如果想轉職的話就去找旁邊的凱特莉娜";
+		mes "她也是剛轉職為巫師的新手巫師...哈哈";
+		next;
+		mes "[瑪莉亞]";
+		mes "其實我也可以幫你們講解轉職過程啦...";
+		mes "不過你們看起來很忙的樣子?";
+		mes "那麼，需要我來說明嗎?";
+		next;
+		switch(select("好的!請你說明:不用了，沒關係:狗也會說話啊...")) {
+		case 1:
+			cutin "job_wizard_maria01",2;
+			mes "[瑪莉亞]";
+			mes "好吧那我就特地來幫你講解轉職過程的事情吧";
+			next;
+			mes "[瑪莉亞]";
+			mes "要轉職成為巫師必須經過三個考試";
+			mes "第一個考試是收集魔法物品";
+			next;
+			mes "[瑪莉亞]";
+			mes "也就是說你跟凱特莉娜申請轉職之後就可以開始考試了";
+			mes "她會要你收集'魔力礦石'或'屬性原石'";
+			next;
+			mes "[瑪莉亞]";
+			mes "第二個考試是魔法問題";
+			mes "你有沒有看到旁邊那個看起來很兇的人，他是叫作拉武雷的負責人";
+			next;
+			mes "[瑪莉亞]";
+			mes "他會出魔法、魔物、或是魔法師相關的問題";
+			mes "他總共會問10題，如果錯一題就不能過關...";
+			next;
+			mes "[瑪莉亞]";
+			mes "接下來會進行第三個考試";
+			mes "第三個考試是要打倒魔物的考試";
+			next;
+			mes "[瑪莉亞]";
+			mes "當你進去房間之後會出現各種屬性的魔物";
+			mes "只要你選擇適當的魔法就能打倒魔物";
+			next;
+			mes "[瑪莉亞]";
+			mes "那麼，我就說到這裡為止";
+			mes "與其只聽說明不如實際去嘗試看看";
+			close2;
+			cutin "job_wizard_maria01",255;
+			warp "gef_dun00",116,102;
+			end;
+		case 2:
+			mes "[瑪莉亞]";
+			mes "好吧，那麼就祝你考試成功吧";
+			close2;
+			cutin "job_wizard_maria01",255;
+			end;
+		case 3:
+			cutin "job_wizard_maria02",2;
+			mes "[瑪莉亞]";
+			mes "狗不好嗎!!";
+			next;
+			mes "[瑪莉亞]";
+			mes "小鬼，你乾脆滾一邊去好了!!";
+			close2;
+			cutin "job_wizard_maria01",255;
+			warp "gef_dun00",116,102;
+			end;
+		}
+	}
+	else if (WIZ_Q == 1) {
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "你看起來好像憂鬱並且不知所措";
+		mes "你已經申請轉職，";
+		mes "並且開始要找東西了吧?";
+		next;
+		mes "[瑪莉亞]";
+		mes "因為是第一次考試嘛，";
+		mes "所以更要加油，";
+		mes "你一個人可以應付的來吧";
+		next;
+		mes "[瑪莉亞]";
+		mes "我在旁邊聽說你要找魔力礦石";
+		mes "我不能幫你去找，";
+		mes "不過我可以給你提示";
+		next;
+		mes "[瑪莉亞]";
+		mes "首先，紅色魔力礦石的話就去普隆德拉的地下水道";
+		mes "你可以從盜蟲、盜蟲卵的蛋中找到紅色魔力礦石";
+		next;
+		mes "[瑪莉亞]";
+		mes "黃色魔力礦石在沙漠中很難找到";
+		mes "禿鷹或者小雞，有時巨石怪身上也可以得到";
+		next;
+		mes "[瑪莉亞]";
+		mes "還有，要收集藍色魔力礦石的話最好去....海底迷宮";
+		mes "像是卡那多斯、螃蟹、烏賊魔物身上可以得到";
+		next;
+		mes "[瑪莉亞]";
+		mes "當然魔法商店裡面也有賣藍色魔力礦石....";
+		mes "不過你不覺得自己親自收集比較有成就感嗎";
+		next;
+		mes "[瑪莉亞]";
+		mes "總歸一句話你自己慢慢收集吧";
+		mes "為了要成為巫師必須經過這個第一階段";
+		close2;
+		cutin "job_wizard_maria01",255;
+		end;
+	}
+	else if (WIZ_Q == 2) {
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "你看起來好像憂鬱並且不知所措";
+		mes "你已經申請轉職，";
+		mes "並且開始要找東西了吧?";
+		next;
+		mes "[瑪莉亞]";
+		mes "因為是第一次考試嘛，";
+		mes "所以更要加油，";
+		mes "你一個人可以應付的來吧";
+		next;
+		mes "[瑪莉亞]";
+		mes "我在旁邊聽說你要找屬性原石";
+		mes "我不能幫你去找，";
+		mes "不過我可以給你提示";
+		next;
+		mes "[瑪莉亞]";
+		mes "首先，水靈礦石的話就到海底迷宮吧";
+		mes "可以從卡那多斯、螃蟹、烏賊、庫克雷...這些魔物手中得到";
+		next;
+		mes "[瑪莉亞]";
+		mes "地靈礦石可以從昆蟲類的魔物手中得到";
+		mes "你可以抓楸形蟲、螳螂、黑蟻之類的魔物";
+		next;
+		mes "[瑪莉亞]";
+		mes "還有，火靈礦石....";
+		mes "聽說可以從長老樹精手中得到，";
+		mes "也可以選擇去沙漠抓重金屬蝗蟲、蠍子，";
+		mes "也是不錯的選擇";
+		next;
+		mes "[瑪莉亞]";
+		mes "風靈礦石呢....蜂兵、瓢蟲、綠蒼蠅，";
+		mes "再接再厲就可以得到啦";
+		next;
+		mes "[瑪莉亞]";
+		mes "總歸一句話你自己慢慢收集吧";
+		mes "為了要成為巫師必須經過這個第一階段";
+		close2;
+		cutin "job_wizard_maria01",255;
+		end;
+	}
+	else if (WIZ_Q == 3) {
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "才考完第一回合就這麼放心了啊...!";
+		mes "還有兩回合的考試呢，";
+		mes "好好加油吧!";
+		close2;
+		cutin "job_wizard_maria01",255;
+		end;
+	}
+	else if (WIZ_Q == 4) {
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "Zzzz...Zzzz...Zzzz...";
+		next;
+		cutin "job_wizard_maria02",2;
+		mes "[瑪莉亞]";
+		mes "*打呼*";
+		close2;
+		cutin "job_wizard_maria02",255;
+		end;
+	}
+	else if (WIZ_Q == 5) {
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "嗯，考的還好吧";
+		next;
+		mes "[瑪莉亞]";
+		mes "那麼一直到最後都要加油喔";
+		mes "拉武雷正在等著你呢";
+		close2;
+		cutin "job_wizard_maria01",255;
+		end;
+	}
+	else if (WIZ_Q == 6) {
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "咦...你是因為放棄而回來的嗎?";
+		mes "你這...這麼心軟的話要怎麼當一個巫師啊!";
+		next;
+		mes "[瑪莉亞]";
+		mes "你知道每個房間都會出現各種不同的魔物吧?";
+		mes "身為使用魔法之人，";
+		mes "當然要了解屬性之間的相克魔法啊";
+		next;
+		mes "[瑪莉亞]";
+		mes "你也要小心會使用技能的魔物，";
+		mes "像會自殺攻擊的魔物就要先下手為強";
+		next;
+		mes "[瑪莉亞]";
+		mes "反正啊，你就再回去應付考試吧";
+		mes "不要在這邊抱怨啦，快回去吧";
+		close2;
+		cutin "job_wizard_maria01",255;
+		end;
+	}
+	else if (WIZ_Q == 7) {
+		cutin "job_wizard_maria01",2;
+		mes "[瑪莉亞]";
+		mes "對，我就知道你一定做得到!";
+		mes "現在叫你巫師也蠻適合的啊";
+		next;
+		mes "[瑪莉亞]";
+		mes "恭喜往後也要多加油";
+		close2;
+		cutin "job_wizard_maria01",255;
+		end;
+	}
+}

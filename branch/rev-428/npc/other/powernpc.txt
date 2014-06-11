@@ -1,0 +1,327 @@
+//===== eAthena Script =======================================
+//= Official Gonryun Power Arena
+//===== By: ==================================================
+//= KarLaeda (Aegis script cnversion)
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= Athena SVN 9000+
+//===== Additional Comments: =================================
+//= 1.1 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
+//============================================================
+
+
+gonryun,180,118,4	script	氣功師#gnp	85,{
+	if (checkweight(1201,1) == 0) {
+		mes "- 稍等一下 !! -";
+		mes "- 你攜帶的物品太多了. -";
+		mes "- 等你把東西卸下一點後再找我吧. -";
+		close;
+	}
+	if (BaseJob == Job_Novice) {
+		mes "[宋武杜]";
+		mes "小孩子是不許來這裡的喔!.";
+		close;
+	}
+	if (in_battle == 3) set in_battle,1;
+	if (in_battle < 1) {
+		mes "[宋武杜]";
+		mes "來喔來喔~ 這不是天天都有的喔";
+		mes "喔~ 你看起來很壯喔!";
+		mes "要試試看嗎?";
+		next;
+		switch(select("有何不可?:?????:不用了,謝謝!")){
+		case 1:
+			mes "[宋武杜]";
+			mes "哈哈~ 我就知道你會試試看.";
+			mes "如果你能把這拿起來的話,";
+			mes "我就告訴你一些有趣的事情.";
+			mes "準備好了嗎?";
+			next;
+			mes "^0000FF宋武杜指著石頭";
+			mes "並要你拿起來.";
+			if (BaseJob < Job_Knight) {
+				if (checkweight(7049,690)) {
+					mes "^0000FF你很輕鬆地把石頭拿起來.^000000";
+					set in_battle,1;
+					getitem 7049,690; // 石頭
+					next;
+					emotion e_no1;
+					mes "[宋武杜]";
+					mes "哇~ 非常好~";
+					mes "下次見面的時候,";
+					mes "我就帶你去一個很棒的地方";
+					mes "下次見囉~";
+				} else {
+					mes "對你來說可能太重了.^000000";
+					next;
+					mes "[宋武杜]";
+					mes "你還缺乏很多訓練啊...";
+					mes "多多練習後再來吧.";
+				}
+			} else if (BaseClass == Job_Swordman || BaseClass == Job_Thief || BaseClass == Job_Merchant || BaseJob == Job_Monk) {
+				if (checkweight(7049,1100)) {
+					mes "^0000FFYou lifted the Stone lightly.^000000";
+					set in_battle,1;
+					getitem 7049,1100; // Stone
+					next;
+					emotion e_no1;
+					mes "[宋武杜]";
+					mes "哇~ 非常好~";
+					mes "下次見面的時候,";
+					mes "我就帶你去一個很棒的地方";
+					mes "下次見囉~";
+				} else {
+					mes "對你來說可能太重了.^000000";
+					next;
+					mes "[宋武杜]";
+					mes "你還缺乏很多訓練啊...";
+					mes "多多練習後再來吧.";
+				}
+			} else {
+				if (checkweight(7049,730)) {
+					mes "^0000FFYou lifted the Stone lightly.^000000";
+					set in_battle,1;
+					getitem 7049,730; // Stone
+					next;
+					emotion e_no1;
+					mes "[宋武杜]";
+					mes "哇~ 非常好~";
+					mes "下次見面的時候,";
+					mes "我就帶你去一個很棒的地方";
+					mes "下次見囉~";
+				} else {
+					mes "對你來說可能太重了.^000000";
+					next;
+					mes "[宋武杜]";
+					mes "你還缺乏很多訓練啊...";
+					mes "多多練習後再來吧.";
+				}
+			}
+			break;
+		case 2:
+			mes "[宋武杜]";
+			mes "這不是什麼大不了的事.";
+			mes "如果你覺得你自己很強壯,";
+			mes "這會是一個很好的機會去體驗新的東西.";
+			mes "想試試看嗎??";
+			break;
+		case 3:
+			mes "[宋武杜]";
+			mes "真是看錯人了...";
+			mes "....";
+			emotion e_pif;
+			break;
+		}
+	} else if (in_battle == 1) {
+		mes "[宋武杜]";
+		mes "很高興再見到你!";
+		mes "想要去嗎??";
+		next;
+		if (select("當然:下次吧") == 1) {
+			mes "[宋武杜]";
+			mes "很好! 哈哈哈..";
+			mes "我喜歡你的自信.";
+			mes "祝你好運囉~";
+			close2;
+			warp "gon_test",53,6;
+			end;
+		} else {
+			mes "[宋武杜]";
+			mes "嗯...";
+			mes "好吧.";
+			mes "那麼下次再見囉.";
+		}
+	} else {
+		mes "[宋武杜]";
+		mes "你從裡面跑出來?";
+		mes "我猜你還沒有很強壯?";
+		mes "我再給你一次機會.";
+		mes "下次再見囉.";
+		emotion e_pif;
+		set in_battle,1;
+	}
+	close;
+}
+
+gon_test,50,14,4	script	管理人#gnp	780,{
+	mes "[管理人]";
+	if (BaseJob == Job_Novice) {
+		mes "小孩子是不許來這裡的.";
+		close;
+	}
+	if ($@in_battle) {
+		mes "對不起,";
+		mes "場地目前有人使用.";
+		mes "請待會再試.";
+		close;
+	}
+	mes "你準備好了嗎?";
+	mes "";
+	mes "使用費用是 500z";
+	next;
+	if (select("進入:取消.") == 2) {
+		mes "[管理人]";
+		mes "沒問題, 待會見.";
+		close;
+	}
+	if (Zeny < 500) {
+		mes "[管理人]";
+		mes "你身上的錢不夠啊.";
+		close;
+	}
+	set Zeny,Zeny - 500;
+	set in_battle,1;
+	warp "gon_test",42,86;
+	set $@in_battle,1;
+	setnpctimer 0,"召喚師#gnp";
+	startnpctimer "召喚師#gnp";
+	end;
+}
+
+gon_test,42,89,4	script	召喚師#gnp	774,{
+	mes "[宋延 余]";
+	if (in_battle == 3) {
+		mes "請通過認證後再進入.";
+		close;
+	} else if (in_battle == 2) {
+		mes "You had a single match already.";
+		mes "You can have a match once at a time.";
+		mes "Please re-enter if you want a match";
+		mes "with other monsters.";
+		close;
+	}
+	mes "歡迎.";
+	mes "你想召喚哪一種魔物呢?";
+	next;
+	set @gnpGroup,select("Group 1:Group 2:Group 3:Group 4:Group 5:Group 6:Group 7:Group 8:Group 9:Group 10:Group 11");
+	set @gnpGroupMob$,.gnpMobsName$[(@gnpGroup-1)*6];
+	for (set @i,1; @i < 6; set @i, @i+1) {
+		set @gnpGroupMob$, @gnpGroupMob$ + ":" + .gnpMobsName$[(@gnpGroup-1)*6 + @i];
+	}
+	set @gnpMob,select(@gnpGroupMob$);
+	mes "[宋延 余]";
+	mes "戰鬥開始!";
+	close2;
+	set in_battle,2;
+	if (getnpctimer(0) < 180000) monster "gon_test",56,86,.gnpMobsName$[(@gnpGroup-1)*6 + @gnpMob - 1],.gnpMobsId[(@gnpGroup-1)*6 + @gnpMob - 1],1,"Summoner#gnp::OnGnpMobDead";
+//  do init timer on mob select ?
+//	setnpctimer 0;
+	end;
+
+	OnInit:
+		initnpctimer;
+		stopnpctimer;
+		setarray .gnpMobsName$[0],"皮革髮帶","食物中毒","捐血證書","吸血鬼","螳螂拳","沙漠的臼齒";
+		setarray .gnpMobsId[0],1419,1428,1434,1430,1457,1432;
+		setarray .gnpMobsName$[6],"豬骷髏頭","食人熊","礦工","鬥犬","美人魚","老么";
+		setarray .gnpMobsId[6],1462,1442,1469,1460,1425,1472;
+		setarray .gnpMobsName$[12],"三葉蟲","獵犬","胡桃鉗娃娃","海馬","俠客","腐爛屍體";
+		setarray .gnpMobsId[12],1454,1455,1443,1426,1436,1423;
+		setarray .gnpMobsName$[18],"祭拜場","洋蔥梗","賺錢狂","自動娃娃","賣火柴的女孩","俠客專用";
+		setarray .gnpMobsId[18],1458,1440,1429,1459,1444,1422;
+		setarray .gnpMobsName$[24],"出去","黴菌","導熱飛彈","阿龍","阿飛龍","蟲牙菌";
+		setarray .gnpMobsId[24],1421,1481,1424,1465,1466,1433;
+		setarray .gnpMobsName$[30],"獨霸","豬弓箭手","小黑羊","變態","寶物箱子","白面書生";
+		setarray .gnpMobsId[30],1427,1473,1431,1446,1474,1471;
+		setarray .gnpMobsName$[36],"風流鬼","外星豬","迷宮的主人","怨恨騎士","怨恨弓箭手","大逃亡";
+		setarray .gnpMobsId[36],1450,1439,1461,1467,1453,1479;
+		setarray .gnpMobsName$[42],"嘴唇","吹風","E 卡片","觸鬚怪物","肌肉手錶","邪惡十字架";
+		setarray .gnpMobsId[42],1451,1475,1437,1441,1476,1435;
+		setarray .gnpMobsName$[48],"蛆","高級相框","讀書的季節","閃亮的手指頭","手提包","怨恨騎士長";
+		setarray .gnpMobsId[48],1477,1448,1478,1489,1488,1438;
+		setarray .gnpMobsName$[54],"女王","追逐火的男人","執行者的劍","突變龍","腐爛湯鍋","小魔劍";
+		setarray .gnpMobsId[54],1482,1464,1487,1449,1456,1486;
+		setarray .gnpMobsName$[60],"怪鳥","拷問技術者","武士","拷問輔助","大魔劍";
+		setarray .gnpMobsId[60],1447,1483,1490,1484,1485;
+	end;
+
+	OnTimer120000:
+		areaannounce "gon_test",41,81,74,92,"剩下一分鐘",0;
+	end;
+
+	OnTimer180000:
+		killmonster "gon_test","Summoner#gnp::OnGnpMobDead";
+	end;
+
+	OnTimer182000:
+		areaannounce "gon_test",41,81,74,92,"時間到.",0;
+	end;
+
+	OnGnpMobDead:
+		setnpctimer 0;
+		set in_battle,1;
+		areaannounce "gon_test",41,81,74,92,"歡迎再度光臨.",0;
+		sleep 4000;
+	OnTimer184000:
+		stopnpctimer;
+		areawarp "gon_test",41,81,74,92,"gon_test",44,4;
+		set $@in_battle,0;
+	end;
+}
+
+gon_test,46,14,3	script	對練場 介紹人	770,{
+	mes "[宋喜燕]";
+	mes ".....";
+	mes "Hi~";
+	mes "這裡是對練場.";
+	mes "有什麼問題嗎?";
+	next;
+	switch(select("對練場?:小姐,有空嗎?:進入觀眾席.:離開.:沒事.")){
+	case 1:
+		mes "[宋喜燕]";
+		mes "就如同這個場地的名字,";
+		mes "對練場.";
+		mes "我們有各種等級魔物";
+		next;
+		mes "[宋喜燕]";
+		mes "Boss魔物正在準備中.";
+		mes "入場時會向您收取一筆小費用.";
+		break;
+	case 2:
+		mes "[宋喜燕]";
+		mes "嗯... 你說什麼?";
+		mes "我現在正在工作中";
+		mes "不好意思..";
+		break;
+	case 3:
+		mes "[宋喜燕]";
+		mes "好的, 謝謝你.";
+		mes "祝你有個快樂的時光.";
+		close2;
+		set in_battle,3;
+		warp "gon_test",25,98;
+		end;
+	case 4:
+		mes "[宋喜燕]";
+		mes "謝謝.";
+		mes "歡迎再度光臨.";
+		close2;
+		warp "gonryun",177,112;
+		end;
+	case 5:
+		mes "[宋喜燕]";
+		mes "........";
+		mes "再見...";
+		break;
+	}
+	close;
+}
+
+gon_test,70,103,3	script	出口 服務人員#gnp	773,{
+	mes "[趙櫻櫻]";
+	mes "想回去了嗎?";
+	next;
+	if (select("回去.:不回去.") == 1) {
+		mes "[趙櫻櫻]";
+		mes "謝謝.";
+		mes "歡迎再度光臨.";
+		close2;
+		set in_battle,1;
+		warp "gon_test",44,4;
+		end;
+	}
+	mes "[趙櫻櫻]";
+	mes "謝謝.";
+	close;
+}

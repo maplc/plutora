@@ -1,0 +1,1393 @@
+//===== rAthena Script ======================================= 
+// Wanderer Job change Quest
+//===== By: ================================================== 
+//= Muad_Dib, Meyraw
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= Any rAthena SVN
+//===== Description: ========================================= 
+//= Official Script
+//= Job change Quest from Dancer / Gypsy -> Wanderer.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version.
+//============================================================
+//===== PlutoEA: =============================================
+//= D.weizhe 非官方中文化，部分名稱為官方
+//============================================================ 
+
+xmas,162,209,5	script	小艾瑞克#job_wan	714,{
+
+	if (job_wan == 0){
+		mes "[小艾瑞克]";
+		mes "咪咪 , 你好嗎?";
+		mes "哦，我的心臟跳動好快～～";
+		next;
+		mes "[咪咪]";
+		mes "小伊拉克, 為什麼臉紅了? 哈哈!";
+		next;
+		mes "[小艾瑞克]";
+		mes "喔~別開玩笑了, 咪咪 -";
+		mes "但是我有金舞者方面的想法！ ";
+		emotion e_shy;
+		next;
+		mes "[小艾瑞克]";
+		mes "由於迷人的浪姬舞者，浪姬舞者被舞者崇拜，而且當我見到她時，我可能會昏倒";
+		next;
+		mes "[咪咪]";
+		mes "冷靜點, 小艾瑞克.";
+		mes "如果你繼續像這樣，在公演開始之前，你可能會先倒下喔，哼!哼!";
+		next;
+		mes "[咪咪]";
+		mes "但我能理解.";
+		mes "聽說可以見到世界上最受好評的浪跡舞者之後，我也非常期待.";
+		if (Class == Job_Dancer || Class == Job_Gypsy){
+			if (BaseLevel < 99 || JobLevel < 50){
+				close;
+			}
+			next;
+		}
+		else {
+			close;
+		}
+		switch(select("金舞孃?:浪姬舞者?")){
+		case 1:
+		    mes "[小艾瑞克]";
+			mes "什麼!!! 你不知道任何關於金舞者的事嗎?";
+			mes "天阿,我完全不能相信";
+			mes "你看起來像一個專業的舞者,但你卻不知道金舞孃!我不能讓這種事情發生!";
+			next;
+			mes "[咪咪]";
+			mes "浪姬舞者有星星陪同與風所支持。他們在世界各地遊蕩並且擁有自由的靈魂.";
+			mes "他們總是跳舞，伴隨著優美的音樂。";
+			next;
+			mes "[咪咪]";
+			mes "金舞孃是名為<Nuoli Ou>的公演團體一份子，她是一個非常著名的舞蹈家。";
+			next;
+			mes "[咪咪]";
+			mes "我跟小艾瑞克是舞孃見習生. 很快的, 我們期待已久的<Nuoli Ou>公演, 就在這裡舉行.";
+			next;
+			mes "[小艾瑞克]";
+			mes "如果你是一個真正的舞者，那麼你應該觀賞他們的公演.";
+			mes "哦，在哪裡我可以遇到這樣浪漫的詩人像是宋樂師，咪咪";
+			next;
+			mes "[咪咪]";
+			mes "Huh-uh, 小艾瑞克.";
+			next;
+			if (select("公演在哪裡舉行?:結束談話.") == 2){
+				mes "[咪咪]";
+				mes "如果你對公演有興趣的話, 我可以盡我所能的幫你.";
+				close;
+			}
+			mes "[小艾瑞克]";
+			mes "在前面的聖誕樹!";
+			mes "白雪公主，美麗和誘人的舞蹈音樂.";
+			mes "這將是一個偉大的公演，對不對?";
+			set job_wan,1;
+			close;
+		case 2:
+			mes "[咪咪]";
+			mes "如果你對公演有興趣的話, 我可以盡我所能的幫你.";
+			close;
+		}
+	}
+	else if (job_wan == 1){
+		mes "[小艾瑞克]";
+		mes "盧提將在聖誕樹前舉行公演.";
+		mes "我好興奮! 哦,我覺得我快暈倒了, 咪咪~!";
+		close;
+	}
+	else if (job_wan == 10){
+		mes "[小艾瑞克]";
+		mes "<Nuoli Ou> 是最好的!!";
+		close;
+	}
+	mes "[小艾瑞克]";
+	mes "我想當個很棒的浪姬舞者, 咪咪~";
+	close;
+}
+
+xmas,163,209,3	script	咪咪#job_wan	714,{
+
+	if (job_wan == 0){
+		mes "[小艾瑞克]";
+		mes "咪咪 , 你好嗎?";
+		mes "哦，我的心臟跳動好快～";
+		next;
+		mes "[咪咪]";
+		mes "小伊拉克,你為什麼臉紅了?哈哈!";
+		next;
+		mes "[小艾瑞克]";
+		mes "喔~別開玩笑了, 咪咪 -";
+		mes "但是我正在想金舞者的事！";
+		emotion e_shy;
+		next;
+		mes "[小艾瑞克]";
+		mes "迷人的浪姬舞者，浪姬舞者被舞者們崇拜著，所以當我見到她時，我可能會昏倒!";
+		next;
+		mes "[咪咪]";
+		mes "冷靜點, 小艾瑞克.";
+		mes "如果你繼續像這樣，在公演開始之前，你可能會先倒下喔，哈哈";
+		next;
+		mes "[咪咪]";
+		mes "但我能理解.";
+		mes "聽說可以見到世界上最受好評的浪跡舞者之後，我也非常期待.";
+		if (Class == Job_Dancer || Class == Job_Gypsy){
+			if (BaseLevel < 99 || JobLevel < 50){
+				close;
+			}
+			next;
+		}
+		else {
+			close;
+		}
+		switch(select("金舞孃?:浪姬舞者?")){
+		case 1:
+		    mes "[小艾瑞克]";
+			mes "什麼!!! 你不知道任何關於金舞者的事嗎?";
+			mes "天阿,我完全不能相信";
+			mes "你看起來像一個專業的舞者,但你卻不知道金舞孃!我不能讓這種事情發生!";
+			next;
+			mes "[咪咪]";
+			mes "浪姬舞者有星星陪同與風所支持。他們在世界各地遊蕩並且擁有自由的靈魂.";
+			mes "T他們總是跳舞，伴隨著優美的音樂。";
+			next;
+			mes "[咪咪]";
+			mes "金舞孃是名為<Nuoli Ou>的公演團體一份子，她是一個非常著名的舞孃。";
+			next;
+			mes "[咪咪]";
+			mes "我跟小艾瑞克是舞孃見習生. 很快的, 我們期待已久的<Nuoli Ou>公演, 就要在這裡舉行.";
+			next;
+			mes "[小艾瑞克]";
+			mes "如果你是一個真正的舞者，那麼你應該觀賞他們的公演";
+			mes "哦，在哪裡我可以遇到這樣浪漫的詩人像是宋樂師，咪咪？";
+			next;
+			mes "[咪咪]";
+			mes "哈哈, 小艾瑞克.";
+			next;
+			if (select("公演在哪裡舉行?:結束談話.") == 2){
+				mes "[咪咪]";
+				mes "如果你對公演有興趣的話, 我可以盡我所能的幫你.";
+				close;
+			}
+			mes "[小艾瑞克]";
+			mes "在前面的聖誕樹!";
+			mes "白雪公主，美麗和誘人的舞蹈音樂.";
+			mes "這將是一個偉大的公演，對不對?";
+			set job_wan,1;
+			close;
+		case 2:
+			mes "[咪咪]";
+			mes "如果你對公演有興趣的話, 我可以盡我所能的幫你.";
+			close;
+		}
+	}
+	else if (job_wan == 1){
+		mes "[小艾瑞克]";
+		mes "盧提將在聖誕樹前舉行公演.";
+		mes "我好興奮! 哦,我覺得我快暈倒了, 咪咪~!";
+		close;
+	}
+	else if (job_wan == 10){
+		mes "[小艾瑞克]";
+		mes "<Nuoli Ou> 是最好的!!";
+		close;
+	}
+	mes "[小艾瑞克]";
+	mes "我想當個很棒的浪姬舞者, 咪咪~";
+	close;
+}
+
+xmas,132,143,5	script	公演工作人員#w	713,{
+
+	if (job_wan == 0){
+		mes "[舞台工作人員]";
+		mes "哦，怎麼會是這樣?";
+		close;
+	}
+	else if (job_wan == 1){
+		mes "[舞台工作人員]";
+		mes "哦，怎麼會是這樣?";
+		mes "他怎麼會發生?";
+		next;
+		emotion e_ag;
+		mes "[舞台工作人員]";
+		mes "嘿，你！";
+		mes "我和你談談嗎？";
+		mes "事實上，我通常不對你們說這些事情。 ";
+		mes "但我真的很鬱悶，真的真的很鬱悶。";
+		next;
+		while(1){
+			switch(select("我不感興趣:發生了什麼事？:如果你不說，你要怎麼告訴我？")) {
+				case 1:
+					mes "[舞台工作人員]";
+					mes "哦，這是一個無情的世界!";
+					close;
+				case 2:
+					mes "[舞台工作人員]";
+					mes "我只是想說,只剩下幾天卻離開了,觀眾席就都要客滿了,";
+					next;
+					mes "[舞台工作人員]";
+					mes "我沒有責任感...";
+					next;
+					goto L_wh1;
+				case 3:
+					emotion e_ag;
+					mes "[舞台工作人員]";
+					mes "我不是說我太鬱悶了嘛，現在你知道了嗎？！";
+					next;
+					break;
+			}
+		}
+L_wh1:
+		while(1){
+			switch(select("這是什麼問題?:你在說什麼?:在我看來，這不是什麼大事,對吧?")) {
+				case 1:
+					mes "[舞台工作人員]";
+					mes "怎麼會這樣?";
+					mes "我將會被丟雪球!";
+					mes "不,他們可能會對我丟雪人!";
+					next;
+					emotion e_wah;
+					mes "[舞台工作人員]";
+					mes "人們可能會拉著我的衣領! 噢,真是太可怕了!";
+					next;
+					goto L_wh2;
+				case 2:
+					mes "[舞台工作人員]";
+					mes "還有誰!";
+					mes "是 <Nuoli Ou>!";
+					mes "你知道嗎?";
+					mes "他們是全世界會糟糕的人.";
+					next;
+					break;
+				case 3:
+					mes "[舞台工作人員]";
+					mes "太多了!";
+					close;
+			}
+		}
+L_wh2:
+		while(1){
+			switch(select("為什麼擔心有人會打你嗎?:是不是演出出了什麼問題呢?:不管,我還是要去.")) {
+				case 1:
+					mes "[舞台工作人員]";
+					mes "如果我們換地方,你會不會感到害怕?";
+					mes "我是負責公演的人，你知道有多少演出，有多少資金或著是有多少人我們將面對！難道你不認為我有多重的負擔嗎?";
+					next;
+					break;
+				case 2:
+					mes "[舞台工作人員]";
+					mes "是!";
+					mes "傳說的 <Nuoli Ou> 突然通知取消演出!";
+					next;
+					mes "[舞台工作人員]";
+					mes "演出已經快到了，他們留下了所有的煩惱給我!";
+					next;
+					mes "[舞台工作人員]";
+					mes "你知道會有多少人會抱怨嗎?很可怕的...";
+					next;
+					goto L_wh3;
+				case 3:
+					mes "[舞台工作人員]";
+					mes "嘿,你要去哪!";
+					close;
+			}
+		}
+L_wh3:
+		mes "["+strcharinfo(0)+"]";
+		mes "當籌備工作並未按照計畫進行,你會變得非常擔心.";
+		mes "觀眾希望看到最好的表演.";
+		next;
+		mes "[舞台工作人員]";
+		mes "我不知道這是怎麼發生";
+		mes "為什麼他們突然取消他們的表演?";
+		mes "你知道嗎?";
+		next;
+		mes "[舞台工作人員]";
+		mes "<Nuoli Ou>... 他們為什麼突然取消了表演.";
+		mes "我做錯了什麼，他們簽訂的合約後，我做了他們想要的一切。.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Well...";
+		input .@input$;
+		mes "^3131FF" +.@input$+ "^000000";
+		mes "... 就是這個原因.";
+		next;
+		emotion e_ag;
+		mes "[舞台工作人員]";
+		mes "你在說什麼?";
+		mes "你在開玩笑或者你覺得我瘋了?";
+		next;
+		mes "[舞台工作人員]";
+		mes "哦，胸毛，噁心，頭暈了......”;";
+		next;
+		mes "[舞台工作人員]";
+		mes "嘿找到游吟詩人宋樂師!";
+		next;
+		switch(select("好吧.:我怎樣才能找到他!:快樂!")) {
+			case 1:
+				break;
+			case 2:
+				mes "[舞台工作人員]";
+				mes "我怎麼知道!?";
+				mes "嗯，沒有，沒有.";
+				mes "既然你是一個舞者，你必須對它感興趣，對嗎?";
+				mes "難道你不希望看到的表演嗎?";
+				next;
+				break;
+			case 3:
+				mes "[舞台工作人員]";
+				mes "不准你再繼續跟我說話了...";
+				close;
+		}
+		mes "[舞台工作人員]";
+		mes "如果你可以, 我真的想要宋樂師在這裡!";
+		mes "如果你說服他，一切可能去按計劃進行，但現在我必須處理主辦人的事情...";
+		next;
+		mes "[舞台工作人員]";
+		mes "雖然我不了解宋樂師，但我知道，他經常訪問在科摩多不同的地方!";
+		mes "盡快找到他，盡快哦，我真的鬱悶又要加深了!宋樂師！！！";
+		set job_wan,2;
+		setquest 2218;
+		close;
+	}
+	else if (job_wan == 2) {
+		mes "[舞台工作人員]";
+		mes "雖然我不了解宋樂師，但我知道，他經常訪問在科摩多不同的地方!";
+		close;
+	}
+	else if (job_wan == 9) {
+		mes "[舞台工作人員]";
+		mes "他們回來了!!!";
+		close;
+	}
+	else if (job_wan == 10) {
+		if (checkweight(1201,1) == 0) {
+			mes "[舞台工作人員]";
+			mes "- 等一下! 你身上太多東西了! -";
+			close;
+		}
+		if (countitem(6153) > 0) {
+			delitem 6153,1; // Exchange Coupon兌換券
+			getitem 5758,1; // Swan天鵝
+			mes "[舞台工作人員]";
+			mes "謝謝你，表演成功的進行了.";
+			mes "他們真的很有天賦!!";
+			next;
+			mes "[舞台工作人員]";
+			mes "啊，你有兌換券嗎？";
+			mes "你還沒有交換你的票？假如我知道，就不會對你大吼大叫了。我真的很抱歉.";
+			next;
+			mes "[舞台工作人員]";
+			mes "好!請拿好這個帽子.";
+			mes "這個物品很不容易拿到的,所以一定要小心,不要弄丟它!";
+			close;
+		}
+		else {
+			mes "[舞台工作人員]";
+			mes "謝謝你，表演成功的進行了.";
+			mes "他們真的很有天賦!!";
+			mes "作為獎勵，我特別為您準備了舞台.";
+			close;
+		}
+	}
+	mes "[舞台工作人員]";
+	mes "噢,好一個混亂阿,哈哈!";
+	close;
+}
+
+comodo,140,86,5	script	不愉快的吟遊詩人#w	479,{
+
+	if (job_wan < 2){
+		mes "[不愉快的吟遊詩人]";
+		mes "你可以跳舞 ~ ~";
+		mes "你可以工作 ~ ~";
+		mes "你是跳舞女王 ~ ~";
+		mes "感覺手鼓的節奏 ~ ~";
+		next;
+		mes "[不愉快的吟遊詩人]";
+		mes "謝謝你 ...";
+		close;
+	}
+	if (job_wan == 2){
+		mes "[不愉快的吟遊詩人]";
+		mes "你可以跳舞 ~ ~";
+		mes "你可以工作 ~ ~";
+		mes "你是跳舞女王 ~ ~";
+		mes "感覺手鼓的王道吧 ~ ~";
+		next;
+		mes "- 那傢伙應該是 宋樂師 -";
+		next;
+		if (select("那是一個宋樂師的陌生歌曲.:離他遠遠的.") == 2){
+			mes "- 多麼奇怪的一個人. -";
+			close;
+		}
+		mes "[不愉快的吟遊詩人]";
+		mes "什麼?!";
+		mes "你怎麼敢小看點擊率最高的 <Tambourine king>? 對我而言是一種汙辱. 那真的讓我很生氣.";
+		next;
+		menu "啊，我沒有汙辱你!",-;
+		emotion e_gasp;
+		mes "[不愉快的吟遊詩人]";
+		mes "哦，從你的衣服看來，你似乎是舞蹈團的人.";
+		next;
+		mes "[不愉快的吟遊詩人]";
+		mes "你怎樣對待你的同伴,舞者與樂師? 好? 如果沒有, 那你們要怎麼表演合唱?";
+		next;
+		mes "[不愉快的吟遊詩人]";
+		mes "我怎樣叫他?<宋樂師的煩惱>.";
+		mes "宋樂師將寫一首有關於成長的痛苦.";
+		mes "名字很有感覺,所以這將是非常受歡迎的.";
+		next;
+		menu "你是宋樂師嗎?",-;
+		emotion e_shy;
+		mes "[宋樂師]";
+		mes "哎......現在只有你承認我，我好傷心.";
+		mes "是的, 我是<Nuoli Ou>著名的樂師. 宋樂師, 史上第一的美男子, 呵,呵.";
+		next;
+		mes "[宋樂師]";
+		mes "你對我的提議感到興趣嗎??";
+		mes "大多數的人,聽完提議後已經快樂到昏倒了.";
+		next;
+		switch(select("金舞者在哪裡?:為什麼取消表演的理由.")){
+		case 1:
+			mes "[宋樂師]";
+			mes "為什麼突然提這個?";
+			mes "嘿，嘿，可以說，每個人都很開心，好嗎?";
+			mes "如果沒有我和金舞孃，演出將很好.";
+			next;
+			menu "你在說什麼?",-;
+			mes "[宋樂師]";
+			mes "嘿,我沒有提到過?";
+			mes "我不想想起它. 當我想起它, 它總是讓我很難過.";
+			next;
+			mes "- 宋樂師 拒絕談論他. 它是唯一一個知道 <Nuoli Ou>的人. 我該做什麼? -";
+			set job_wan,3;
+			close;
+		case 2:
+			close;
+		}
+	}
+	else if (job_wan == 3) {
+		mes "["+strcharinfo(0)+"]";
+		mes "(我該怎麼讓 宋樂師 說?)";
+		next;
+		switch(select("尖叫:搖籃曲:幸運之吻")){
+			case 1:
+				set .@scream,getskilllv(326);
+				if (.@scream == 5) {
+					mes "- 緩慢的靠近 宋樂師的耳朵 -";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "啊~~~~~~";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "嘿 -!!!!!";
+					specialeffect EF_STUNATTACK;
+					next;
+					mes "[宋樂師]";
+					mes "啊，為什麼，為什麼你這樣做!";
+					mes "你這樣會打破我的耳膜.";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "嘿，振作起來!!!";
+					next;
+					mes "[宋樂師]";
+					mes "你在說什麼?";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "這應該是很清楚的,人們喜歡聽你唱歌,對吧?";
+					mes "很多人都在因為支持你而期待著.";
+					mes "你不感覺羞愧在沒有一個好理由下讓人們失望嗎 ?";
+					next;
+					break;
+				}
+				else {
+					set .@chance,(rand(1,100));
+					if (.@chance > 80) {
+						mes "- 緩慢的靠近 宋樂師的耳朵 -";
+						next;
+						mes "["+strcharinfo(0)+"]";
+						mes "啊~~~~~~";
+						next;
+						mes "["+strcharinfo(0)+"]";
+						mes "嘿 -!!!!!";
+						specialeffect EF_STUNATTACK,"不愉快的吟遊詩人#w";
+						next;
+						mes "[宋樂師]";
+						mes "啊，為什麼，為什麼你這樣做!";
+						mes "你這樣會打破我的耳膜.";
+						next;
+						mes "["+strcharinfo(0)+"]";
+						mes "嘿，振作起來!!!";
+						next;
+						mes "[宋樂師]";
+						mes "你說什麼？?";
+						next;
+						mes "["+strcharinfo(0)+"]";
+						mes "這應該是很清楚的,人們喜歡聽你唱歌,對吧?";
+						mes "很多人都在因為支持你而期待著.";
+						mes "你不感覺羞愧在沒有一個好理由下讓人們失望嗎 ?";
+						next;
+						break;
+					}
+					else {
+						mes "["+strcharinfo(0)+"]";
+						mes "啊 -";
+						next;
+						mes "["+strcharinfo(0)+"]";
+						mes "啊啊啊啊啊啊啊啊 !!!!!";
+						next;
+						mes "[宋樂師]";
+						mes "為什麼！！！ 這如此低劣!";
+						mes "警衛!!!";
+						next;
+						mes "[身穿黑衣的男子]";
+						mes "請不要這麼做.";
+						close2;
+						warp "comodo",117,98;
+						end;
+					}
+				}
+			case 2:
+				set .@scream,getskilllv(306);
+				if (.@scream == 0) {
+					mes "- 我沒有學到這個技能. -";
+					close;
+				}
+				else {
+					mes "["+strcharinfo(0)+"]";
+					mes "對我而言似乎不是一個好主意e.";
+					close;
+				}
+			case 3:
+				set .@scream,getskilllv(329);
+				if (.@scream == 0) {
+					mes "- 我沒有學到這個技能. -";
+					close;
+				}
+				else {
+					emotion e_lv,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "哦, 宋樂師 ~ ~";
+					next;
+					mes "[宋樂師]";
+					mes "哦，我想我起雞皮疙瘩.";
+					next;
+					emotion e_lv,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "我從很久以前就在期待<Nuoli Ou>的表演了.";
+					next;
+					mes "[宋樂師]";
+					mes "你真的是很知名! 哈-哈!";
+					next;
+					emotion e_lv2,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "我聽說過許多宮廷音樂家和他們的表演，但你的歌聲是頂端之上，你知道嗎?";
+					next;
+					mes "[宋樂師]";
+					mes "哈哈哈! 我真的很棒!";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "就像是第一次... 聽完你彈奏後, 我沒告訴你我又初戀了嗎?";
+					mes "這就像聽母親唱著搖籃曲，當你躺在搖籃裡～～如此美麗，如此動人......沒有更好的吟遊詩人了";
+					next;
+					specialeffect EF_STEAL;
+					mes "[宋樂師]";
+					mes "嘿嘿，當然，聽你的話後，我感到非常高興。";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "我期待著您在薑餅城的表演.";
+					mes "當我聽到表演被取消，我幾乎失去了心跳.";
+					next;
+					emotion e_sob,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "聽到你的音樂～我想跳舞，在音樂的海洋，感受蝴蝶自由。";
+					mes "我的夢想不會成真! 哀!";
+					next;
+					mes "[宋樂師]";
+					mes "哦，嗯......！";
+					next;
+					emotion e_sob,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "我很高興在這裡見到你，但美麗薑餅城表演......嗯...。";
+					next;
+					emotion e_sob,1;
+					mes "["+strcharinfo(0)+"]";
+					mes "到底...為什麼你取消了表演呢?";
+					mes "我真的很想知道,還是因為你恨我呢？";
+					next;
+					emotion e_omg;
+					mes "[宋樂師]";
+					mes "沒有，怎麼可能，這是有原因！";
+					next;
+					mes "["+strcharinfo(0)+"]";
+					mes "我求求你告訴我，因為我的心現在深陷痛苦中，我想聽聽你的音樂和優美的歌聲。";
+					emotion e_lv,1;
+					next;
+					break;
+				}
+		}
+		mes "[宋樂師]";
+		mes "啊，哦，好!";
+		mes "事實上,我希望待在舞台上!";
+		mes "但,如何能獨自做到這一點?";
+		next;
+		emotion e_ag;
+		mes "[宋樂師]";
+		mes "這是金舞孃的問題!";
+		mes "不久前，她突然發脾氣而且離開這＜ Nuoli Ou ＞ !";
+		mes "金舞孃有差勁脾氣.我也領受過了.";
+		next;
+		mes "[宋樂師]";
+		mes "這就是全部了.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "為什麼金舞孃突然生氣了?";
+		next;
+		emotion e_swt;
+		mes "[宋樂師]";
+		mes "我不知道，她現在似乎是瘋了!";
+		mes "金舞孃 always been a kind person.";
+		mes "她突然消失，然後寄了一封信，上面都是奇怪的字母,真的是封亂寫的信。";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "金舞孃現在在哪?";
+		next;
+		mes "[宋樂師]";
+		mes "我找不到那封信件的地址.";
+		mes "看來她回到家裡了，在我們第一次見面的地方.那是一個會舉行魔物賽跑的地方.";
+		next;
+		emotion e_hmm;
+		mes "[宋樂師]";
+		mes "她經常生氣，但她是一個偉大的舞蹈家.";
+		mes "我不知道最後，她為什麼不快樂了。當她聽著我的音樂時，她真的快樂。現在我的音樂似乎也提早結束。。";
+		set job_wan,4;
+		changequest 2218,2219;
+		close;
+	}
+	else if (job_wan > 3 && job_wan < 8) {
+		mes "[宋樂師]";
+		mes "金舞孃應該在舉行魔物賽跑的地方,對吧?";
+		mes "如果你喜歡魔物賽跑，你應該知道的位置......";
+		close;
+	}
+	else if (job_wan == 8){
+		emotion e_gasp;
+		mes "- 你告訴一切給宋樂師 -";
+		next;
+		mes "[宋樂師]";
+		mes "噢～～";
+		mes "金舞孃,你怎麼這麼傻～～";
+		mes "我會真心的照顧你～～";
+		next;
+		mes "[宋樂師]";
+		mes "立即,去薑餅城.我們將盡快地聚集在一起.";
+		set job_wan,9;
+		close;
+	}
+	else if (job_wan == 9){
+		mes "[宋樂師]";
+		mes " 我將會如你所願的去 薑餅城";
+		close;
+	}
+	else {
+		mes "[inability of the court musicians]";
+		mes "“我的伴侶在哪裡...";
+		close;
+	}
+}
+
+hu_in01,305,251,5	script	看起來在發呆的女人#w	879,{
+
+	if (job_wan < 4){
+		mes "[發呆的女人]";
+		mes "*Sigh*";
+		close;
+	}
+	else if (job_wan == 4){
+		mes "[發呆的女人]";
+		mes "... ... ... (嗚咽抽泣).";
+		next;
+		menu "為什麼你在哭?",-;
+		emotion e_sob;
+		mes "[發呆的女人]";
+		mes "因為我給了他的夢想. *嗚咽抽泣*";
+		next;
+		menu "你在說什麼?",-;
+		mes "[發呆的女人]";
+		mes "我總是與同伴旅行，但現在我和他分手了。";
+		next;
+		menu "“哦，為什麼你會這樣說呢？",-;
+		mes "[發呆的女人]";
+		mes "嗯......這......嗚";
+		next;
+		menu "告訴我全部",-;
+        mes "[發呆的女人]";
+        mes "知道，浪跡舞者和吟遊詩人一起表演嗎？";
+        next;
+        mes "[發呆的女人]";
+        mes "因此，導致浪跡舞者和吟遊詩人常常一起旅行，與合奏表演.";
+        mes "隨著輕快的音樂，跳舞像一個美女.";
+        next;
+        mes "[發呆的女人]";
+        mes "不久以前, 我跟宋樂師一起合作. 我們合作了各種組合的舞蹈和歌曲.宋樂師是個開朗的人.";
+        next;
+        mes "[發呆的女人]";
+        mes "我也跳得比平時更好,以換來更多的掌聲,因為我是一個非常驕傲的人.";
+        mes "宋樂師總是稱讚我的舞蹈，對我來說這是一個很大的優勢，我會很有優越感了。";
+        next;
+        mes "[發呆的女人]";
+        mes "但是...";
+        next;
+		menu "最後發生什麼事了... ?",-;
+        mes "[發呆的女人]";
+        mes "第二天早上，我起床刷牙，洗臉，我發現我還沒化妝.";
+        next;
+        emotion e_sob;
+        mes "[發呆的女人]";
+        mes "當時我不知道發生了什麼事, 但隨後 宋樂師 大聲喊道: ^3131FF 嘿你在做什麼? ^000000, 然後他把我從房間趕出去.";
+        next;
+        mes "[發呆的女人]";
+        mes "他一直是一個好夥伴, 但他怎麼能這樣對我?";
+        mes "我認為宋樂師是開玩笑!但他趕緊了關門，真的......";
+        next;
+        emotion e_sob;
+        mes "[發呆的女人]";
+        mes "為什麼宋樂師沒有認出我, 啊?我的臉上一直沒有化妝，所以他不會認識我，啊噢噢噢噢......";
+        next;
+		menu "所以你必須要解決這個問題嗎？",-;
+		emotion e_sob;
+        mes "[發呆的女人]";
+        mes "一個自尊的破碎的女人該做什麼呢？";
+        next;
+        mes "["+strcharinfo(0)+"]";
+        mes "怎麼會是這麼不小心！";
+        mes "因為這樣的小事,如果沒有解散的理由, 對不對?因為這一個問題本身，它不會自己消失，對不對？”; ";
+        next;
+        mes "[發呆的女人]";
+        mes "是的，但是那不是唯一的原因.";
+        mes "我不得不說，由於傷害......";
+        next;
+        mes "[發呆的女人]";
+        mes "我被宋樂師傷了心，所以我要留在我的家鄉，單獨的在我的房間,感謝上帝，我還有一個美味的蛋糕來安慰我。";
+        next;
+        emotion e_shy;
+        mes "[發呆的女人]";
+        mes "蛋糕是最好的!";
+        mes "周圍融化的黑巧克力和新鮮水果上面覆蓋，柔軟的奶油蛋糕，那是最好的蛋糕了！";
+        next;
+        mes "[發呆的女人]";
+        mes "在傷心時吃好吃的蛋糕......我感覺幸福童話來我的身邊，熱情和安慰我。";
+        next;
+        mes "[發呆的女人]";
+        mes "從早到晚，我盡情地享受著這幸福的童話。";
+        next;
+		menu "然後...",-;
+		emotion e_sob;
+        mes "[發呆的女人]";
+        mes "這童話帶走我的悲傷，但現在我胖了啊 - 啊 - 啊 - 啊啊！";
+        next;
+        mes "[發呆的女人]";
+        mes "舞孃不穿衣服，那舞蹈也不能被稱為妖精舞蹈,不穿衣服的舞孃,甚至不能被稱為浪跡舞者！！";
+        mes "我現在不能跳肚皮舞啊，啊，啊！.....";
+        next;
+        mes "[發呆的女人]";
+        mes "演出時間快要到了, but the monster who has brought me happiness than Miao also difficult test Tierney mountains! The performance day is coming soon, but to lose weight I need to train train hard.";
+        mes "我再次陷入絕望之中! 我不喜歡 宋樂師 跟粉絲看到! 我已經陷入絕望了，當我想像我跟宋樂師的舞蹈會是如何.";
+        mes "<Nuo Li>將會分解啊啊啊！";
+		set job_wan,5;
+		close;
+	}
+	else if (job_wan == 5){
+		emotion e_sob;
+        mes "[金舞孃]";
+        mes "我曾經是一個美麗的鴿子，但現在我成了一隻母雞。";
+        mes "金舞孃再也不是浪跡舞者。";
+        next;
+		if (select("不要放棄.:自己想辦法.") == 2){
+            mes "[金舞孃]";
+            mes "我無法從深淵裡爬出來......";
+            close;
+		}
+        mes "[金舞孃]";
+        mes "我已經說了,已經結束了多虧了宋樂師.";
+        mes "不用多說了,即使你仍堅持, 這不會造成任何事情";
+        next;
+		menu "如果你放棄了，一切都將結束了。",-;
+        mes "[金舞孃]";
+        mes "但是，如果這種情況持續下去......";
+        mes "有什麼我可以做的......";
+        next; 
+        mes "["+strcharinfo(0)+"]";
+        mes "你需要鍛煉減肥！";
+        mes "只要你努力鍛煉，你的身體會比以前更好的！";
+        next;
+        mes "[金舞孃]";
+        mes "但是我是屬於那種容易疲倦,容易放棄的人";
+        mes "用不了多久,我就會放棄了";
+        next;
+		if (select("那有沒有別的事可做.:一起運動吧.") == 1){
+            mes "[金舞孃]";
+            mes "有沒有夢想，沒有希望......";
+            close;
+		}
+        mes "[金舞孃]";
+        mes "你要鍛煉跟我一起嗎?";
+        mes "真的嗎?";
+        next;
+        mes "[金舞孃]";
+        mes "我們可以一起訓練......";
+        next;
+        mes "[金舞孃]";
+        mes "我的心現在感覺好多了！";
+        mes "我感覺我的身體點燃一些行動。";
+        mes "現在我的動機，考慮到時間上的優勢，盡快克服一切困難！";
+        next;
+		menu "我們該怎麼辦?",-;
+        mes "[金舞孃]";
+        mes "我有一個好主意!";
+        next;
+        mes "[金舞孃]";
+        mes "在附近雨果地帶，有一個湖叫深淵湖.";
+        mes "去那裡見面吧.";
+		set job_wan,6;
+		changequest 2219,2220;
+		close;
+	}
+	else if (job_wan == 6 || job_wan == 7) {
+        mes "[金舞孃]";
+        mes "我會在那邊等待你的,深淵湖水.";
+        close;
+	}
+	else if (job_wan == 8) {
+        mes "[金舞孃]";
+        mes "跟宋樂師來到薑餅城!";
+        mes "我會立即開始!";
+        close;
+	}
+	mes "[發呆的女人]";
+	mes "我的夥伴在哪裡...";
+	close;
+}
+
+hu_fild05,342,130,5	script	金舞孃#fild	879,{
+
+	if (job_wan == 6){
+		mes "[金舞孃]";
+		mes "運動還不夠好，但競爭，訓練效果會好很多！";
+		next;
+		mes "[金舞孃]";
+		mes "從現在起，開始獵殺黃諾博斯比賽。";
+		next;
+		mes "[金舞孃]";
+		mes "T我們的目標是50的黃諾博斯.";
+		mes "你準備好了嗎?";
+		next;
+		if (select("No.:是的.") == 1){
+            mes "[金舞孃]";
+            mes "請做好準備,並竭盡你所能的快,不然會令我興趣缺缺唷~";
+            close;
+		}
+		mes "[金舞孃]";
+		mes "好！準備！";
+		mes "開始!";
+		set job_wan,7;
+		changequest 2220,2221;
+		close;
+	}
+	else if (job_wan == 7){
+		set .@chk_nov_time,checkquest(2221,PLAYTIME);
+		set .@chk_nov_hunt,checkquest(2221,HUNTING);
+		if (.@chk_nov_time == 0 || .@chk_nov_time == 1){
+			if (.@chk_nov_hunt == 2){
+					mes "[金舞孃]";
+					mes "呼！";
+					mes "嘿，看起來像我已經輸了！";
+					next;
+					mes "[金舞孃]";
+					mes "這種感覺使我想起我的過去曾過越許多城市的邊界。";
+					next;
+					mes "[金舞孃]";
+					mes "看看這個啊！";
+					mes "我變得越來越苗條，你能感覺得到嗎？";
+					next;
+					mes "[金舞孃]";
+					mes "我覺得我的身體充滿了力量.";
+					mes "我突然想看看我的好夥伴宋樂師.";
+					mes "我又要開始跳舞了。";
+					next;
+					menu "跳舞怎麼樣在薑餅城?",-;
+					emotion e_gasp;
+					mes "[金舞孃]";
+					mes "阿!聖誕村! 好! 好!我的夢想就是在薑餅城跳舞,如今終於要實現了!";
+					next;
+					mes "[金舞孃]";
+					mes "我想跳舞，跳給人們帶來幸福的一天！!";
+					mes "所以我會去薑餅城.";
+					next;
+					mes "[金舞孃]";
+					mes "啊，幫我一個忙，拜託.";
+					mes "你能帶 宋樂師 到 薑餅城嗎?";
+					mes "說，他的夥伴正在等著他.";
+					next;
+					menu "No 沒問題!",-;
+					mes "[金舞孃]";
+					mes "是一個好人，我真的很高興，我遇見了你.";
+					mes "感謝上帝給我發送這樣一個固執的人!";
+					set job_wan,8;
+					changequest 2221,2222;
+					close;
+			}
+			mes "[金舞孃]";
+			mes "你太大意了。";
+			mes "讓我有更多的機會贏得這場比賽.";
+			close;
+		}
+		if (.@chk_nov_time == 2){
+			mes "[金舞孃]";
+			mes "你回來了.";
+			mes "太累了我的背很痛，我的身體似乎不能很好地為 <Nuo Li>工作,這一切都結束了。";
+			next;
+			mes "- 它看起來像舞蹈家金不能忍受的痛苦和放棄，她坐在地上 -";
+			set job_wan,6;
+			changequest 2221,2220;
+			close;
+		}
+		mes "[金舞孃]";
+		mes "啊......?";
+		set job_wan,6;
+		close;
+	}
+	else if (job_wan == 8) {
+		mes "[金舞孃]";
+		mes "請告訴宋樂師，我為他在薑餅城等候。.";
+		close;
+	}
+	mes "[金舞孃]";
+	mes "獵殺黃諾博斯真的是最好的運動.";
+	close;
+}
+
+hu_fild05,81,111,0	script	#fildshout01	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃：啊，你怎麼樣了啊~我只殺一些諾博斯.",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃: 耶! 諾博斯來了,他是我的姐姐!",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃: 哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,193,98,0	script	#fildshout02	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃：啊，你怎麼樣了啊~我只殺一些諾博斯.",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:耶! 諾博斯來了,他是我的姐姐!",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,252,74,0	script	#fildshout03	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃:啊，你怎麼樣了啊~我只殺一些諾博斯.",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:耶! 諾博斯來了,他是我的姐姐!",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,323,175,0	script	#fildshout04	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃:啊，你怎麼樣了啊~我只殺一些諾博斯.",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:耶! 諾博斯來了,他是我的姐姐!",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,334,225,0	script	#fildshout05	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃:啊，你怎麼樣了啊~我只殺一些諾博斯.",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:耶! 諾博斯來了,他是我的姐姐!",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,301,287,0	script	#fildshout06	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃:似乎，你的身體狀況很好，但這是這次我一定會贏.",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:啊，我的指甲斷了...不管他...",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	
+	}
+	end;
+}
+
+hu_fild05,229,315,0	script	#fildshout07	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃: 似乎，你的身體狀況很好，但這是這次我一定會贏",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:啊，我的指甲斷了...不管他...",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,146,309,0	script	#fildshout08	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃: 似乎，你的身體狀況很好，但這是這次我一定會贏",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:啊，我的指甲斷了...不管他...",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,80,239,0	script	#fildshout09	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃: 似乎，你的身體狀況很好，但這是這次我一定會贏",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:啊，我的指甲斷了...不管他...",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+hu_fild05,69,147,0	script	#fildshout10	-1,20,20,{
+
+OnTouch:
+	if (job_wan == 7){
+		set .@bc_rd,(rand(1,3));
+		if (.@bc_rd == 1){
+			mapannounce "hu_fild05","金舞孃: 似乎，你的身體狀況很好，但這是這次我一定會贏",bc_map;
+			end;
+		}
+		if (.@bc_rd == 2){
+			mapannounce "hu_fild05","金舞孃:啊，我的指甲斷了...不管他...",bc_map;
+			end;
+		}
+		else {
+			mapannounce "hu_fild05","金舞孃:哦，你已經累了這麼快? 看來，我會贏得這場!",bc_map;
+			end;
+		}
+	}
+	end;
+}
+
+xmas,148,131,0	script	#wandergogo	-1,3,3,{
+
+OnTouch:
+	if (job_wan == 9){
+		enablenpc "金舞孃#xmas";
+		enablenpc "宋樂師#xmas";
+		enablenpc "Audience#xmas1";
+		enablenpc "Audience#xmas2";
+		enablenpc "Audience#xmas3";
+		enablenpc "Audience#xmas4";
+		enablenpc "小艾瑞克#xm";
+		enablenpc "咪咪#xmas";
+	}
+	end;
+}
+
+xmas,147,135,5	script	金舞孃#xmas	485,{
+
+if (job_wan == 9){
+	if (Class == Job_Dancer || Class == Job_Gypsy){
+		if (BaseLevel < 99){
+			mes "- 轉職的條件不能滿足，不能轉職 -";
+			close;
+		}
+		if (JobLevel < 50){
+			mes "- 轉職的條件不能滿足，不能轉職 -";
+			close;
+		}
+		if (SkillPoint > 0){
+			mes "- 有剩餘的技能點，不能轉職 -";
+			close;
+		}
+		if (checkweight(1201,1) == 0){
+			mes "- 你包包滿了，不能轉職  -";
+			close;
+		}
+		mes "- You see the ongoing performance of <Nuoli Ou> -";
+		next;
+		emotion e_ho,"宋樂師#xmas";
+		emotion e_ho,"金舞孃#xmas";
+		mes "[宋樂師]";
+		mes "撲通撲通撲通撲通! 藍色的魚 ~ ~";
+		mes "風! 風! 風!~ ~";
+		mes "堅強的意志使我刀槍不入, 即使流著鼻血. ~ ~";
+		next;
+		emotion e_ho,"Audience#xmas1";
+		emotion e_ho,"Audience#xmas2";
+		emotion e_ho,"Audience#xmas3";
+		emotion e_ho,"Audience#xmas4";
+		emotion e_ho,"小艾瑞克#xm";
+		emotion e_ho,"咪咪#xmas";
+		mes "[觀眾]";
+		mes "啊啊啊啊啊 - !!!";
+		mes "太棒了! <Nuo Li> 是最棒的!!!";
+		next;
+		mes "[宋樂師]";
+		mes "Hello，大家好!";
+		next;
+		emotion e_lv,"Audience#xmas1";
+		emotion e_lv,"Audience#xmas2";
+		emotion e_lv,"Audience#xmas3";
+		emotion e_lv,"Audience#xmas4";
+		emotion e_lv,"小艾瑞克#xm";
+		emotion e_lv,"咪咪#xmas";
+		mes "[觀眾]";
+		mes "你好！！！";
+		next;
+		mes "[宋樂師]";
+		mes "我們尋找愛情，尋找風，這是通往浪漫的<Nuoli Ou>!";
+		next;
+		emotion e_lv,"Audience#xmas1";
+		emotion e_lv,"Audience#xmas2";
+		emotion e_lv,"Audience#xmas3";
+		emotion e_lv,"Audience#xmas4";
+		emotion e_lv,"小艾瑞克#xm";
+		emotion e_lv,"咪咪#xmas";
+		mes "[觀眾]";
+		mes "啊啊啊啊啊 - !!!";
+		next;
+		mes "[金舞孃]";
+		mes "在美麗的村莊裡，飄著雪花的舞.";
+		mes "我非常高興在薑餅城!";
+		next;
+		mes "[觀眾]";
+		mes "Wow ah ~ ~";
+		next;
+		mes "[金舞孃]";
+		mes "......今天的節目幾乎被取消，因為我犯了錯。";
+		next;
+		mes "[宋樂師]";
+		mes "我覺得我傷了金舞孃的心.";
+		mes "我想對她說句對不起";
+		next;
+		mes "[金舞孃]";
+		mes "沒有，因為我太固執，我才該向你道歉，我親愛的。";
+		next;
+		mes "[金舞孃]";
+		mes "實際上，我回家後，我整天壓抑，直到遇到了一個很好的朋友來鼓勵我，然後我們一起做事，來幫助我走出！";
+		next;
+		mes "[金舞孃]";
+		mes "我想你會喜歡看她的舞蹈，在不久的未來!";
+		mes "我看著她很長一段時間，她是一個非常有才華的人.";
+		next;
+		mes "[金舞孃]";
+		mes "讓我給你介紹一下!";
+		next;
+		mes "[金舞孃]";
+		mes "舞孃的希望和未來,新的璀璨明星, "+strcharinfo(0)+"!";
+		mapannounce "xmas","金舞孃: 讓我為你介紹,舞孃的希望和未來,新的璀璨明星 - "+strcharinfo(0)+"!",bc_map;
+		if (Class == Job_Dancer){
+			jobchange Job_Wanderer;
+		}
+		if (Class == Job_Gypsy){
+			jobchange Job_Wanderer_T;
+		}
+		getitem 5758,1; // Swan
+		getitem 2795,1; // Green Apple Ring
+		set job_wan,10;
+		completequest 2222;
+		next;
+		mes "[金舞孃]";
+		mes "哈哈哈，你感到驚訝嗎？";
+		mes "為什麼你茫然地望著我嗎？";
+		mes "然你把我帶到這裡，你已經完成了所有需要的資格。";
+		next;
+		mes "[金舞孃]";
+		mes "像一個美麗的天鵝！";
+		mes "我希望看到你跳舞而且是嫉妒的看著";
+		next;
+		mes "[金舞孃]";
+		mes ""+strcharinfo(0)+"! 我希望你會在未來取得顯著的成功！";
+		mes "我希望你能找到自己的搭檔，到那個時候，我們可以一起跳舞嗎？";
+		next;
+		mes "[宋樂師]";
+		mes "謝謝你，我找回到了寶貴的同伴！";
+		mes "I我真的很感謝你做的一切，在不久的將來，我，宋樂師，會寫一個關於你的歌。";
+		disablenpc "金舞孃#xmas";
+		disablenpc "宋樂師#xmas";
+		disablenpc "Audience#xmas1";
+		disablenpc "Audience#xmas2";
+		disablenpc "Audience#xmas3";
+		disablenpc "Audience#xmas4";
+		disablenpc "小艾瑞克#xm";
+		disablenpc "咪咪#xmas";
+		close;
+	}
+	mes "- 轉職的條件不能滿足，不能轉職 -";
+	close;
+}
+end;
+
+OnInit:
+	disablenpc "金舞孃#xmas";
+	end;
+}
+
+xmas,149,135,3	script	宋樂師#xmas	479,{
+end;
+
+OnInit:
+	disablenpc "宋樂師#xmas";
+	end;
+}
+xmas,142,130,7	script	觀眾#xmas1	711,{
+end;
+
+OnInit:
+	disablenpc "觀眾#xmas1";
+	end;
+}
+
+xmas,145,127,7	script	觀眾#xmas2	712,{
+end;
+
+OnInit:
+	disablenpc "觀眾#xmas2";
+	end;
+}
+
+xmas,151,127,7	script	觀眾#xmas3	716,{
+end;
+
+OnInit:
+	disablenpc "觀眾#xmas3";
+	end;
+}
+
+xmas,154,129,1	script	觀眾#xmas4	797,{
+end;
+
+OnInit:
+	disablenpc "觀眾#xmas4";
+	end;
+}
+
+xmas,149,127,1	script	咪咪#xmas	714,{
+end;
+
+OnInit:
+	disablenpc "咪咪#xmas";
+	end;
+}
+
+xmas,148,127,7	script	小艾瑞克#xm	714,{
+end;
+
+OnInit:
+	disablenpc "小艾瑞克#xm";
+	end;
+}

@@ -1,0 +1,2293 @@
+//===== rAthena Script =======================================
+//= Arch Bishop Job Quest
+//===== By: ==================================================
+//= L0ne_W0lf
+//= Credits: Gepard
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= [Aegis Conversion]
+//= Job change script fr Third class (Arch Bishop)
+//= Does not entirely support changing to Baby Third Class.
+//===== Additional Comments: =================================
+//= 1.0 First version.
+//= 1.1 Fixed class checks for arch bishops.
+//= 1.2 Fixed Job tags typos.
+//============================================================
+//===== PlutoEA: =============================================
+//= D.weizhe 非官方中文化，部分名稱為官方
+//============================================================ 
+
+prt_church,103,88,3	script	祈福牧師#arch	60,{
+	if (BaseJob != 8) {
+		if (Class == Job_Arch_Bishop || Class == Job_Arch_Bishop_T || Class == Job_Baby_Bishop) {
+			mes "[祈福牧師]";
+			mes "你是...大主教!.";
+			mes "你已經達到了最高的境界狀態.";
+			mes "我希望你能夠給予在冒險的人更多的幸福與榮耀.";
+			close;
+		}
+		else {
+			mes "[祈福牧師]";
+			mes "在全能的神奧丁前，不得有任何人比他更聰明、更仁慈.";
+			next;
+			mes "[祈福牧師]";
+			mes "奧丁的所有部長都應該是勤奮，而不是懶得為奧丁付出.";
+			next;
+			mes "[祈福牧師]";
+			mes "這幾天我聽說過，部長們成為他們的職責不嚴奧丁和裝飾自己與世界的輝煌.";
+			next;
+			mes "[祈福牧師]";
+			mes "如果你看到這些部長，可以請您帶他們去普隆德拉教堂嗎?";
+			next;
+			mes "[祈福牧師]";
+			mes "他們給了一個特殊的靈氣，所以你很容易就可以認出他們.";
+			mes "我打算讓他們有位澳丁付出的價值.";
+			close;
+		}
+	}
+	else {
+		if (Upper == 4) {
+			mes "[祈福牧師]";
+			mes "在全能的神奧丁前，不得有任何人比他更聰明、更仁慈.";
+			next;
+			mes "[祈福牧師]";
+			mes "奧丁的所有部長都應該是勤奮，而不是懶得為奧丁付出.";
+			next;
+			mes "[祈福牧師]";
+			mes "這幾天我聽說過，部長們成為他們的職責不嚴奧丁和裝飾自己與世界的輝煌.";
+			next;
+			mes "[祈福牧師]";
+			mes "如果你看到這些部長，可以請您帶他們去普隆德拉教堂嗎?";
+			next;
+			mes "[祈福牧師]";
+			mes "他們給了一個特殊的靈氣，所以你很容易就可以認出他們.";
+			mes "我打算讓他們有位澳丁付出的價值.";
+			close;
+		}
+		if ((BaseLevel == 99) && (JobLevel > 49)) {
+			if (job_arch == 0) {
+				if (SkillPoint) {
+					mes "你技能點尚未分配，請分配完之後再來找我!";
+					close;
+				}
+				mes "[祈福牧師]";
+				mes "在全能的神奧丁前，不得有任何人比他更聰明、更仁慈.";
+				next;
+				mes "[祈福牧師]";
+				mes "奧丁的所有部長都應該是勤奮，而不是懶得為奧丁付出.";
+				next;
+				mes "[祈福牧師]";
+				if (Sex == 1)
+					mes "你最近過的如何?";
+				else
+					mes "你最近過的如何?";
+				mes "你是否有著充實的生活?";
+				mes "你曾經在澳丁的生活過的好嗎?";
+				next;
+				mes "[祈福牧師]";
+				mes "我們的部長和我們的一舉一動都會被眾神看到的.";
+				mes "我們應該永遠銘記這一點.";
+				next;
+				mes "[祈福牧師]";
+				mes "我們應該永遠說真話.";
+				mes "我們不應該活在謊言和欺騙中.";
+				next;
+				mes "[祈福牧師]";
+				if (Sex == 1)
+					mes "兄弟...";
+				else 
+					mes "姐妹...";
+				mes "即使我們為奧丁，但我們都是普通的人.";
+				mes "儘管我們再怎麼掩蓋自己，我們都必須要明白.";
+				next;
+				mes "[祈福牧師]";
+				mes "我們要牢記我們的初衷和傳播奧丁的規則.";
+				next;
+				select("我應該要怎麼做呢?");
+				mes "[祈福牧師]";
+				mes "這是個好問題!";
+				mes "我們有許多的方法.";
+				mes "但我建議你....";
+				next;
+				mes "[祈福牧師]";
+				mes "你曾經有聽說過一個";
+				mes "^3131FF朝聖之地^000000?";
+				mes "一個聖地就是一個神聖的地方，以祈求保護和恩典的神奧丁.";
+				next;
+				mes "[祈福牧師]";
+				mes "你們像著奧丁聖地禱告的地方，你會覺得你被獲重生了.";
+				next;
+				mes "[祈福牧師]";
+				mes "你也這麼認為嗎?";
+				mes "你想像我們一樣像著勝地禱告嗎?";
+				next;
+				switch(select("是的.:我不認為.")) {
+				case 1:
+					mes "[祈福牧師]";
+					mes "你這是正確的態度.";
+					mes "人家住在一個人的世俗生活，更好地有一個新的身體和精神，並演變為真正的奧丁牧師.";
+					next;
+					mes "[祈福牧師]";
+					mes "告訴你，有一個小村莊，命名汶巴拉遠.";
+					mes "這個村是其中一個部落的生活與自然和諧相處的.";
+					next;
+					mes "[祈福牧師]";
+					mes "去那裡找牧師迪耶.";
+					mes "告訴他， ''^3131FF我在是為了聖地朝聖而來^000000.''";
+					next;
+					mes "[祈福牧師]";
+					mes "他很老，而且有點重聽.";
+					mes "你應該要說大聲一點而且清楚一點，懂嗎?";
+					mes "我希望這條路給已將你只向光明的奧丁牧師....";
+					set job_arch,1;
+					setquest 2187;
+					close;
+				case 2:
+					mes "[祈福牧師]";
+					mes "要去朝聖之地其實不難.";
+					mes "只是要注意，一旦成為了奧丁牧師，你就無法回頭!.";
+					next;
+					mes "[祈福牧師]";
+					mes "如果你改變主意，隨時來探望我.";
+					mes "我永遠都會在這邊等著你.";
+					close;
+				}
+			}
+			else {
+				mes "[祈福牧師]";
+				mes "旅途如何阿?";
+				mes "你遇到迪耶牧師了嗎??";
+				close;
+			}
+		}
+		else {
+			mes "[祈福牧師]";
+			mes "在全能的神奧丁前，不得有任何人比他更聰明、更仁慈.";
+			next;
+			mes "[祈福牧師]";
+			mes "奧丁的所有部長都應該是勤奮，而不是懶得為奧丁付出.";
+			next;
+			mes "[祈福牧師]";
+			mes "這幾天我聽說過，部長們成為他們的職責不嚴奧丁和裝飾自己與世界的輝煌.";
+			next;
+			mes "[祈福牧師]";
+			mes "如果你看到這些部長，可以請您帶他們去普隆德拉教堂嗎?";
+			next;
+			mes "[祈福牧師]";
+			mes "他們給了一個特殊的靈氣，所以你很容易就可以認出他們.";
+			mes "我打算讓他們有位澳丁付出的價值.";
+			close;
+		}
+	}
+}
+
+umbala,137,227,5	script	Utan Boy#arch	787,{
+	mes "[Utan Boy]";
+	mes "........";
+	close;
+}
+
+umbala,139,227,3	script	牧師#arch	60,{
+	if (job_arch < 1) {
+		mes "[牧師]";
+		mes "翁..翁..翁吧?...";
+		close;
+	}
+	else if (job_arch == 1) {
+		mes "[牧師]";
+		mes "翁..翁..翁吧?...";
+		next;
+		mes "[Utan Boy]";
+		mes "...............";
+		next;
+		mes "[牧師]";
+		mes "是這樣說...對吧?";
+		mes "嗯...所以...";
+		mes "翁...嗎? 翁...嗎?";
+		emotion e_swt,"牧師#arch";
+		next;
+		mes "[Utan Boy]";
+		mes "...............";
+		next;
+		mes "[牧師]";
+		mes "屋......";
+		mes "我覺得好飽.";
+		mes "吼.吼.吼.吼.";
+		next;
+		mes "- 喃喃自語~ -";
+		next;
+		mes "[牧師]";
+		mes "哈哈哈哈哈.";
+		mes "哼哼哼哼. 哼哼哼哼.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "你好. 你是...牧師迪耶?";
+		next;
+		mes "[牧師]";
+		mes "蛤?";
+		next;
+		mes "他轉頭面向你.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "妳是迪耶牧師嗎";
+		next;
+		mes "[牧師]";
+		mes "喃喃自語...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "牧師! 大~雁! 對吧!?";
+		next;
+		mes "[牧師 迪耶]";
+		mes "喔~, 是阿.";
+		mes "我是阿.";
+		if (Sex == 1)
+			mes "我是迪耶. 你好阿，兄弟.";
+		else
+			mes "我是迪耶. 你好阿，姊妹.";
+		next;
+		mes "老牧師對著你微笑. ";
+		next;
+		mes "[牧師 迪耶]";
+		mes "我忘了穿我的助聽器。哈哈.";
+		mes "對了，你為什麼來這裡?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "嗯...我要跟你說...";
+		next;
+		input .@input$;
+		mes "["+strcharinfo(0)+"]";
+		mes ""+.@input$+"";
+		next;
+		set .@urans$,.@input$;
+		set .@myans$,"我是從普隆德拉來朝聖的";
+		set .@sungzi,compare(.@urans$,.@myans$);
+		if (.@sungzi == 0) {
+			mes "牧師迪耶似乎並不理解你。他只是盯著你的微笑.";
+			next;
+			mes "[牧師]";
+			mes "啥?";
+			close;
+		}
+		mes "[牧師 迪耶]";
+		mes "..............?";
+		next;
+		mes "他把他的耳多面向你.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "^FF0000我是從普隆德拉來朝聖的!^000000";
+		mes "^FF0000我是從普隆德拉來朝聖的!^000000";
+		mes "^FF0000我是從普隆德拉來朝聖的!^000000";
+		mes "^FF0000我是從普隆德拉來朝聖的!^000000";
+		next;
+		mes "[牧師 迪耶]";
+		mes "你是?...";
+		mes "要來這邊朝聖的...";
+		mes "我已經很久沒有看到像你這樣的牧師要來這邊朝聖了!.";
+		if (Sex == 1)
+			mes "你好阿，兄弟.";
+		else
+			mes "你好阿，姐妹.";
+		next;
+		mes "老牧師給你一個親切的微笑.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "<你看到了一個巨大的森林圍繞著這個村莊>.";
+		mes "你看到了這些高大的樹木嗎?";
+		next;
+		mes "[牧師 迪耶]";
+		mes "這棵大樹被稱為 ^3131FF依德拉斯爾^000000.";
+		mes "那棵樹備亞米爾創造後，奧丁創造了世界，如你所知，符文塵世.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "噴泉盆滿缽滿，從依德拉斯爾的根，蔓延到每一個世界.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "你從跟頭可以找到春天的來源.";
+		mes "是在符米德加德有密米爾的春天。在仙宮，諸神的世界，有字的春天.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "密米爾泉井與情報，神話說，如果奧丁讓你有他的眼睛，你會獲得所有的知識在那個春天.";
+		next;
+		mes "[牧師 迪耶]";
+		if (Sex == 1)
+			mes "兄弟.";
+		else
+			mes "姐妹.";
+		mes "通過聖靈的朝聖中，我們可以使自己的虔誠，清潔我們的身體和靈魂.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "進入依德拉斯爾.";
+		mes "你可能會在那裡的生物襲擊，但要留意，他們的意圖是只保護依德拉斯爾的.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "朝著你的目標前進.";
+		mes "如果奧丁沒有拋棄你，你將可以抵達天地樹的根部.";
+		mes "當你到達那裡，找一個安靜的地方.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "用虔誠的態度祈求，你的罪孽將得到救贖.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "佩服奧丁的無所不知無所不能，並祈求能夠增長智慧，能選擇正確的道路.";
+		mes "^3131FF如果你不懂，你可以問我該如何祈禱^000000.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "讓我們一起去奧丁最著名的地方看看.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "當你朝聖後，讓我們喝一杯，談談你的經驗.";
+		next;
+		mes "- 迪耶再次露出微笑. -";
+		set job_arch,2;
+		changequest 2187,2188;
+		close;
+	}
+	else if (job_arch == 2) {
+		mes "[牧師 迪耶]";
+		mes "進入這世界上最神聖之一的天地術內部後，跪下向神祈禱吧!.";
+		mes "這神聖的一是會照亮你的靈魂";
+		next;
+		switch(select("關於祈禱的順序?:取消.")) {
+		case 1:
+			mes "[牧師 迪耶]";
+			mes "我們可以按照四個步驟去禱告.";
+			mes "記住接下來我告訴你的步驟.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "第一個方法^3131FF冥想^000000.";
+			mes "利用冥想的方式, 我們必須問心無愧的迎接奧丁.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "冥想將能^3131FF鎮靜^000000你的腦袋.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "第二個方法^3131FF痛苦^000000.";
+			mes "透過痛苦，我們可以反省、懺悔我們前半生的錯誤.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "不要害怕疼痛，這將是清算過去的創傷的第一步.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "第三個方法^3131FF喜悅^000000.";
+			mes "擺脫自身的痛苦，你將會體驗到生活的熱去，給予他人安慰與幫助.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "他們會祝福你，因為你克服了痛苦與喜悅的存在我們稱之為^3131FF灑水之賜福^000000.";
+			mes "你必須要喝下一杯賜福過的^3131FF聖水^000000.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "最後一個方法^3131FF光芒^000000.";
+			mes "你將從罪惡當中獲得釋放，因為你的祝福與創造.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "你將會在光芒下重生.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "在這些禱告結束後, .";
+			mes "你將會得到奧丁借給你的智慧.";
+			next;
+			mes "[牧師 迪耶]";
+			mes "你準備好了嘛?";
+			mes "是時候你該離開了.";
+			mes "當你祈禱結束後再回來找我吧.";
+			close;
+		case 2:
+			mes "[牧師 迪耶]";
+			mes "我希望我的祈禱能減少你的痛苦...";
+			close;
+		}
+		close;
+	}
+	else if (job_arch == 3) {
+		mes "[牧師 迪耶]";
+		mes "噢，你回來了.";
+		mes "我可以感覺到你有嶄新的能量. 我想你已經非常虔誠的祈禱了.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我感到重生般輕鬆...";
+		next;
+		mes "[牧師 迪耶]";
+		mes "你的自信給你信心與勇氣.";
+		mes "用微笑去面對每個人，你將能卸除掉每個人的戒心.";
+		mes "請盡全力去愛這世界上每個人.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "感謝你的讚美.";
+		next;
+		mes "[牧師 迪耶]";
+		if (Sex == 1)
+			mes "兄弟.";
+		else
+			mes "姊妹.";
+		mes "現在，你應該去一個地方.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "修發茲共和國的毀葛村.";
+		mes "那裡有一位牧師叫做Vinue, 她是一個真正的主教，在世界上未受苦受難的人們祈禱.";
+		mes "但我最後一次看到她時，他似乎很傷心.";
+		next;
+		mes "[牧師 迪耶]";
+		mes "你可以說服她回來天地樹朝聖嘛?";
+		mes "我想她已經因為祈求消耗了太多能量，我希望天地樹的空氣會幫助他.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "別擔心.";
+		mes "我現在就去找她.";
+		next;
+		mes "[牧師 迪耶]";
+		if (Sex == 1)
+			mes "兄弟, 這裡隨時歡迎你回來.";
+		else
+			mes "姊妹, , 這裡隨時歡迎你回來.";
+		mes "每當有朋友來這裡參訪，我總是感到很幸福.";
+		set job_arch,4;
+		changequest 2188,2189;
+		close;
+	}
+	else {
+		mes "[迪耶]";
+		mes "你找到了Hugel的 Vinue嗎?";
+		close;
+	}
+}
+
+yggdrasil01,220,47,0	script	#A pilgrimage to the Ho	139,5,5,{
+OnTouch:
+	if (job_arch == 2) {
+		mes "["+strcharinfo(0)+"]";
+		mes "這是 Hvergelmir 的春天!";
+		mes "這個地方是一個非常生動和寧靜的地方.";
+		mes "這才是祈禱的地方.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "是時候該跪下了...";
+		mes "嗯...牧師是怎麼跟我說的呢?...";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "嗯...第一件事該做?...";
+		next;
+		switch(select("應該要沉默.:應該要說出來.:應該要冥想.")) {
+		case 1:
+			mes "["+strcharinfo(0)+"]";
+			mes "";
+			mes "好像不是這樣唷...";
+			close;
+		case 2:
+			mes "["+strcharinfo(0)+"]";
+			mes "The way of confession...?";
+			mes "好像不是這樣唷...";
+			close;
+		case 3:
+			mes "["+strcharinfo(0)+"]";
+			mes "是冥想嗎...?";
+			mes "對!我想到了，一定是冥想!";
+			next;
+			break;
+		}
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF第一件事就是要冥想.^000000";
+		mes "^3131FF在冥想的過程中, 我們內心必須迎接偉大的奧丁.^000000";
+		next;
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF冥想開始鎮靜你的頭腦與祝福.^000000";
+		next;
+		mes "- 你閉上了雙眼，並且緩緩的呼吸. -";
+		next;
+		mes "- * 祝福! * -";
+		specialeffect2 EF_BLESSING;
+		next;
+		mes "你的心靈被附加了祝福效果.";
+		mes "您繼續打坐，試圖讓你的頭腦擺脫任何干擾.";
+		next;
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF第二件事就是了解痛苦^000000.";
+		mes "^3131FF經過痛苦的方式，我們反映了我們的前半生事蹟的報復，我們對自己的供認.^000000";
+		next;
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF不要害怕疼痛。這是必要的，將是進入清算過去的創傷的第一步.^000000";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "痛苦......任何我擁有過的罪惡..";
+		input .@input$;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我承認我有罪，全能的神奧丁.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "^3131FF"+.@input$+".^000000";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "仁慈的奧丁，對我的憐憫和同情我，因為我在履行我的職責作為一名牧師.";
+		mes "請帶路，並保存你的智慧與憐憫.";
+		next;
+		mes "你表白全部，並再次陷入了沉思.";
+		next;
+		mes ".............................";
+		next;
+		mes ".............................";
+		mes ".........................";
+		next;
+		mes ".............................";
+		mes ".........................";
+		mes ".....................";
+		next;
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF第三件事，是快樂的方式.^000000";
+		mes "^3131FF正如你自己擺脫痛苦，你的頭腦會少受罪，你會體驗到生活的樂趣，你的幫助和安慰別人.^000000";
+		next;
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF並且他們會保佑你，因為你是一個存在克服了痛苦的喜悅。我們呼籲，阿斯頗西歐^000000.";
+		mes "^3131FF接著你必須喝'阿斯頗西歐'的一個神聖的水.^000000";
+		next;
+		if (!countitem(523)) {
+			mes "["+strcharinfo(0)+"]";
+			mes "阿!我忘記要準備聖水了!";
+			close;
+		}
+		mes "- 你低頭恭恭敬敬地舉行了把聖水喝下去. -";
+		next;
+		mes "- * 祈禱 ! * -";
+		specialeffect2 EF_ASPERSIO;
+		next;
+		specialeffect2 EF_RECOVERY;
+		mes ".............................";
+		next;
+		mes ".............................";
+		mes ".........................";
+		next;
+		mes ".............................";
+		mes ".........................";
+		mes ".....................";
+		next;
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF最後一種，是神聖的一種方式^000000.^000000.";
+		mes "^3131FF你是從所有的罪，因為你的祝福所有的創造.^000000";
+		next;
+		mes "^3131FF[牧師 迪耶]^000000";
+		mes "^3131FF你受到了重生，靈魂也為你歡歌.^000000";
+		next;
+		mes "- 在深的呼吸，開始歌頌.";
+		mes "你歌頌的和弦給其他人清心的感覺，彷彿獲得了重生. -";
+		specialeffect2 EF_GLORIA;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "~你為所有人祈禱.~";
+		mes "~你賦予整個世界一個新的面貌.~";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "~你保護了世界上的所有威脅.~";
+		specialeffect2 EF_GLORIA;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "~你讓整個世界呼喊的喜悅.~";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "~你給了一個神聖的預測.~";
+		specialeffect2 EF_GLORIA;
+		next;
+		mes "- 當你完成這首歌，你覺得充滿陽光，具有豐富的奉獻. -";
+		specialeffect2 EF_BLESSING;
+		specialeffect2 EF_RESURRECTION;
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "令人耳目一新.";
+		mes "我想我應該要回去找 牧師 迪耶.";
+		set job_arch,3;
+		close2;
+		warp "umbala",138,219;
+		end;
+	}
+	else if (job_arch == 3) {
+		mes "["+strcharinfo(0)+"]";
+		mes "我想我應該要回去找 牧師 迪耶.";
+		close2;
+		warp "umbala",138,219;
+		end;
+	}
+}
+
+hu_in01,205,204,7	script	Praying Nun#benew	79,{
+	if (job_arch == 4) {
+		mes "- 有個人閉上了她的眼睛，她喃喃地說這聽起來像一個祈禱的東西. -";
+		next;
+		switch(select("和他說話.:保持沉默.")) {
+		case 1:
+			break;
+		case 2:
+			mes "- 你沒感受到他的不安 -";
+			close;
+		}
+		mes "["+strcharinfo(0)+"]";
+		mes "你好阿?";
+		next;
+		mes "[Vinue]";
+		mes "恩，你好.";
+		mes "現在似乎時間還沒到...";
+		if (Sex == 1)
+			mes "你是要來這邊禱告的嗎?";
+		else
+			mes "你是要來這邊禱告的嗎?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我是從普龍德拉要來找 牧師 迪耶 的.";
+		next;
+		mes "[Vinue]";
+		mes "喔，牧師 迪耶.";
+		mes "他很棒吧?";
+		mes "它是個好人阿!.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "他告訴我他很擔心，因為當他最後一次見到你，你似乎傷心.";
+		mes "他要你去神聖的聖地.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "也就是汶巴拉!";
+		next;
+		mes "[Vinue]";
+		mes "嗯...";
+		if (Sex == 1)
+			mes "他人真的很好.";
+		else
+			mes "他人真的很好.";
+		next;
+		mes "[Vinue]";
+		mes "不要擔心我.";
+		mes "我只是有點累了，因為一個噩夢.";
+		next;
+		mes "[Vinue]";
+		mes "邪惡總是注視著我們的靈魂.";
+		mes "如果你專心的祈禱，那你從不錯過任何一個機會.";
+		next;
+		switch(select("一個夢嗎?什麼樣的夢想?:你的靈魂不會有事的.")) {
+		case 1:
+			break;
+		case 2:
+			mes "[Vinue]";
+			mes "但我還是很擔心...";
+			mes "雖然你這樣安慰我.";
+			mes "謝謝你提供的消息.";
+			mes "我還是繼續祈禱好了.";
+			close;
+		}
+		mes "[Vinue]";
+		mes "那是...";
+		mes "其實，我從我被任命之日起開始有一個噩夢.";
+		next;
+		mes "[Vinue]";
+		mes "起初它是一個夢，關於女武神是悲傷和黑暗.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "女武神?";
+		next;
+		mes "[Vinue]";
+		mes "是的...";
+		mes "他在一個黑暗的房間裡面哭泣.";
+		mes "他就像垂掛下來的一隻鳥，它的翅膀削減.";
+		next;
+		mes "[Vinue]";
+		mes "但是，隨著時間的推移，夢想成為可怕。現在武神用鐵鍊被逮捕，她終於破滅成碎片.";
+		next;
+		mes "[Vinue]";
+		mes "多麼殘忍性能！我突然不能正常呼吸，然後我醒來.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "有看到武神死亡的，通常都是一個痛苦的夢.";
+		next;
+		mes "[Vinue]";
+		mes "這是一個可怕的噩夢對吧?";
+		mes "或者你認為這是個預兆?";
+		next;
+		mes "[Vinue]";
+		mes "我一直想在奧丁的神社祈禱，夢想著離開。.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "神社嗎?";
+		mes "沒有人可以掩蓋罪惡?";
+		next;
+		mes "[Vinue]";
+		mes "不幸的，我是沒有任何驅魔技能的主教...";
+		mes "雨果居民只是站在的景象驚呆了，因為他們不熟悉與冒險.";
+		next;
+		mes "[Vinue]";
+		mes "這幾天，有很多人因為奧丁神殿的發展，但他們的處境也不是那麼好.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "是與邪惡的奧丁神殿有關的夢想?";
+		next;
+		mes "[Vinue]";
+		mes "恩...是阿.";
+		mes "我找不到任何的出口.";
+		mes "我沒有任何的方法...我只能禱告...";
+		next;
+		switch(select("我會幫你的.:我會教你怎麼禱告.")) {
+		case 1:
+			break;
+		case 2:
+			mes "[Vinue]";
+			mes "謝了.";
+			mes "我已經禱告夠久了.";
+			mes "我希望你在這邊能有個好旅程.";
+			close;
+		}
+		mes "[Vinue]";
+		mes "真的嗎?";
+		mes "但是這是一件很恐怖的事!";
+		mes "你確定你要幫我!?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "因為我不能假裝忽略了一個陷入麻煩的妹妹";
+		mes "雖然我只是個主教，但我一定可以幫你的忙!";
+		next;
+		mes "[Vinue]";
+		mes "恩...我太擔心了....";
+		mes "我永遠不會忘記你溫暖的心.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "我應該要怎麼幫你呢?";
+		next;
+		mes "[Vinue]";
+		mes "教堂右側有一個渡輪.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "好的，等我的好消息吧!";
+		next;
+		mes "[Vinue]";
+		mes "我會為你祈禱的.";
+		mes "我希望，奧丁給你保護...";
+		set job_arch,5;
+		changequest 2189,2190;
+		close;
+	}
+	else if ((job_arch > 4) && (job_arch < 100)) {
+		mes "[Vinue]";
+		mes "我會為你祈禱的...";
+		close;
+	}
+	else {
+		mes "[Vinue]";
+		mes "我感覺好多了.";
+		mes "這算是個好消息吧!!?";
+		mes "謝謝你.";
+		close;
+	}
+}
+
+odin_tem02,282,263,0	script	#find_val	-1,3,3,{
+OnTouch:
+	if ((job_arch > 4) && (job_arch < 100))
+		enablenpc "Valkyrie Illusion#arch";
+	end;
+}
+
+odin_tem02,281,275,3	script	Valkyrie Illusion#arch	403,{
+	if ((job_arch > 4) && (job_arch < 100)) {
+		mes "你可以看到武神有絕望的臉.";
+		next;
+		switch(select("觸摸女武神的臉.:離開.")) {
+		case 1:
+			mes "你失去了你的意識，但獲得的女武神的知覺.";
+			close2;
+			specialeffect2 EF_CLOAKING;
+			warp "job3_arch01",29,29;
+			disablenpc "Valkyrie Illusion#arch";
+			break;
+		case 2:
+			mes "由於恐懼，你奪走了武神的知覺.";
+			close2;
+			disablenpc "Valkyrie Illusion#arch";
+			break;
+		}
+	}
+	end;
+
+OnInit:
+	disablenpc "Valkyrie Illusion#arch";
+	end;
+}
+
+job3_arch01,29,34,3	script	Valkyrie#arch	403,{
+	if (Upper == 4) {
+		mes "[Valkyrie]";
+		//Custom translation
+		mes "你是唯一的孩子.";
+		mes "這是一個艱難的工作，請不要嘲笑我!";
+		close;
+	}
+	if (!checkweight(1201,2)) {
+		//Custom translation
+		mes "- 必須清空包包，才可以繼續. -";
+		close;
+	}
+	if ((BaseLevel != 99) || (JobLevel < 50)) {
+		warp "odin_tem02",282,263;
+		end;
+	}
+	if (getmercinfo(0)) {
+		mes "[Valkyrie]";
+		mes "如果你想和我談話，你必須要先^3131FF解散傭兵^000000.";
+		close;
+	}
+	if (SkillPoint) {
+		mes "你尚未分配完你的技能點數~";
+		close;
+	}
+	if (BaseJob != 8) {
+		warp "odin_tem02",282,263;
+		end;
+	}
+	else {
+		if (Class != Job_Arch_Bishop || Class != Job_Arch_Bishop_T || Class != Job_Baby_Bishop) {
+			if (job_arch < 5) {
+				warp "odin_tem02",282,263;
+				end;
+			}
+			else if (job_arch == 5) {
+				mes "[Valkyrie]";
+				mes "聲音在天空中散開，但不能飛的鳥爬行，並最終被壓死在地上件.";
+				mes "啊，我不甘心！所以遺憾!";
+				next;
+				mes "- 武神持有它的臉，然後她發現你有威脅的臉和凝視. -";
+				next;
+				mes "[Valkyrie]";
+				mes "你是生活在痛苦的一個凡人，作為一個凡人，你為什麼在這裡?";
+				mes "你在這裡嘲笑我的悲慘命運?";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "不是的!";
+				mes "我再這裡因為我是真實的.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "...我?";
+				mes "當然，我住在塵世，但我們不能共存於這個世界的命運的枷鎖下.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "我明白了，你的目標是進入瓦爾哈拉?";
+				mes "如果這是你要做的，那你來錯地方了!.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "我已經被阿斯加德開除了.";
+				mes "我的職責是保護人類試圖把它從神這個小島上，即使我不這樣做有任何能源.";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "這並不是個問題阿.";
+				mes "但誰認識你痛苦的局面已經派我到這裡.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "哈!你要來幫我?!";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "...................";
+				next;
+				mes "- 女武神給你了激烈的怒容. -";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "事實上，我現在的身體什麼都不能做.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "凡人，回答我的問題。你在這裡真誠地幫助我?";
+				next;
+				switch(select("是的:不是")) {
+				case 1:
+					break;
+				case 2:
+					mes "[Valkyrie Anguhilde]";
+					mes "我就知道我不應該相信凡人!";
+					close2;
+					warp "odin_tem02",282,263;
+					end;
+				}
+				mes "[Valkyrie Anguhilde]";
+				mes "好的...";
+				mes "我沒有任何能量，以保持自己的型態，所以我沒有其他選擇，但我相信你.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "我是一個普通的女武神，根據奧丁為了帶領戰士到瓦爾哈拉.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "但我傷害法拉奇，奧丁的狼之一，我被從奧丁的清單中開除了，所以沒有任何作為的女武神的能量，以保護本島.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "我覺得我丟臉，這個島嶼是作為奧丁寺廟非常重要和各種神靈.";
+				mes "我試圖盡我所能，以保護這個神聖的地方.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "但是有一天，魔鬼開始獲得這個島嶼上的影響.";
+				mes "我不知道他們為什麼來到這裡，他們來自何處.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "他們使用邪惡的力量想這裡，我用盡我的能量來阻止.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "魔鬼玷污了聖地.";
+				mes "我還要繼續這個不光彩的命運多久阿!";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "凡人，你叫什麼名字?";
+				next;
+				mes "["+strcharinfo(0)+"]";
+				mes "我叫做 "+strcharinfo(0)+".";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes ""+strcharinfo(0)+",";
+				mes "你告訴我，你要幫我，對不對？即使我丟臉的請求你的幫助.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "這個地方看起來就像是我的人。實際上，它是一個非常重要的紀念碑，也是神的歷史的一部分.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "我失去了我所有的能量，我的身體是密封的，所以我沒有辦法保護靖國神社.";
+				mes "你要發送消息到瓦爾哈拉，要求迅速從一個女武神的幫助.";
+				next;
+				select("How can I do that?");
+				mes "[Valkyrie Anguhilde]";
+				mes "從 ^3131FF最高的神社^000000, 您可以與他們聯繫 ^3131FF金色的管道^000000.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "我想給你一紙在一個古老的語言編寫的卷軸.";
+				mes "在這捲軸內有我偽造的東西.";
+				mes "^3131FF如果你到外面去，你可以使用捲軸召喚武神.^000000";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "你召喚我的分身後，你必須找到一個 ^3131FF壞掉的管子^000000.";
+				mes "也許它會被分散在神社中...";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "你有去神社上方，收集所有的壞掉的管子.";
+				mes "然後保護這些東西.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "一個分身將有助於當你移動或攻擊，只要你按下 ^FF0000ALT+click^000000.";
+				mes "但你要小心東西掉落.";
+				next;
+				mes "[Valkyrie Anguhilde]";
+				mes "當您完成準備好了，再次對我說話.";
+				mes "這將是一個漫長的旅程...";
+				set job_arch,6;
+				close;
+			}
+			else if (job_arch == 6) {
+				if ($@archbs== 0) {
+					set $@archbs,1; //Global Variable
+					mes "[Valkyrie Anguhilde]";
+					mes ""+strcharinfo(0)+" 你準備好進行你的苦修了嗎?";
+					next;
+					set .@exampc,getmapusers("job3_arch02");
+					if (.@exampc > 0) {
+						mes "[Valkyrie Anguhilde]";
+						//Custom translation
+						mes "啊，看來已經有人在寺廟打擊邪惡了.";
+						mes "我會去看看是誰，請稍等片刻.";
+						set $@archbs,0; //Global Variable
+						close;
+					}
+					else {
+						mes "[Valkyrie Anguhilde]";
+						mes "確定現在我要送你過去了?.";
+						mes "^FF0000當你去那裡，你必須召喚我的分身^000000. 別忘了.";
+						set $@archbs,0; //Global Variable
+						close2;
+						nude;
+						if (countitem(2798))
+							delitem 2798,countitem(2798); //Will_Of_Exhausted_Angel
+						donpcevent "start#arch::OnEnable";
+						set job_arch,7;
+						changequest 2190,2191;
+						warp "job3_arch02",119,49;
+						disablenpc "Valkyrie#arch";
+						end;
+					}
+				}
+				else {
+					mes "[Valkyrie Anguhilde]";
+					//Custom translation
+					mes "我已經與人交談，請稍候再跟我.";
+					close;
+				}
+			}
+			else if (job_arch == 7) {
+				if (countitem(12381))
+					delitem 12381,countitem(12381); //ValkyrieA_Scroll
+				if (countitem(12382))
+					delitem 12382,countitem(12382); //ValkyrieB_Scroll
+				if ($@archbs == 0) {
+					set $@archbs,1; //Global Variable
+					mes "[Valkyrie Anguhilde]";
+					mes "你還好吧，凡人?";
+					mes "如我所料，這是不容易的.";
+					mes "要從新蒐集一次嗎?";
+					next;
+					set .@exampc,getmapusers("job3_arch02");
+					if (.@exampc > 0) {
+						set $@archbs,0; //Global Variable
+						mes "[Valkyrie Anguhilde]";
+						//Custom translation
+						mes "啊，看來已經有人在寺廟打擊邪惡.";
+						mes "我去看看他是誰，請稍等片刻.";
+						close;
+					}
+					else {
+						set $@archbs,0; //Global Variable
+						mes "[Valkyrie Anguhilde]";
+						mes "好的，我要送你過去了.";
+						mes "^FF0000等你到那邊記得召喚我的分身^000000.";
+						mes "一個分身將有助於當你移動或攻擊，只要按下 ^FF0000ALT+click^000000.";
+						mes "但你要小心掉落的東西.";
+						close2;
+						nude;
+						if (countitem(2798))
+							delitem 2798,countitem(2798); //Will_Of_Exhausted_Angel
+						donpcevent "start#arch::OnEnable";
+						set job_arch,7;
+						warp "job3_arch02",119,49;
+						disablenpc "Valkyrie#arch";
+						end;
+					}
+				}
+				else {
+					mes "[Valkyrie Anguhilde]";
+					//Custom translation
+					mes "我已經與他交談，請稍候再跟我說話.";
+					close;
+				}
+			}
+		}
+	}
+	end;
+
+Onbc:
+	set $@archbs,0; //Global Variable
+	//Custom translation
+	mapannounce "job3_arch01", "女武神的吶喊：我聽到魔鬼的笑聲，有人在寺廟內掉落。",bc_map,"0xFFCE00";
+	enablenpc "Valkyrie#arch";
+	end;
+}
+
+job3_arch02,119,49,0	script	#arch_1_start	-1,6,6,{
+OnTouch:
+	if (!countitem(12381))
+		getitem 12381,1; //ValkyrieA_Scroll
+	mapannounce "job3_arch02", "分身的低語：我覺得沉重！讓我自由！",bc_map,"0xFFCE00";
+	disablenpc "#arch_1_start";
+	end;
+}
+
+job3_arch02,112,73,0	script	#arch_1_01	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一個分身的低語：你不能做自己的事情！讓我回去!",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "Embodiment of the voice: They are close to you!",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一個分身低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,94,123,0	script	#arch_1_02	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一個分身低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,93,173,0	script	#arch_1_03	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,114,186,0	script	#arch_1_04	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,134,201,0	script	#arch_1_05	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,154,211,0	script	#arch_1_06	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,175,227,0	script	#arch_1_07	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,201,240,0	script	#arch_1_08	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,223,252,0	script	#arch_1_09	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,255,268,0	script	#arch_1_10	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,269,302,0	script	#arch_1_11	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,245,289,0	script	#arch_1_12	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身的低語：我能感覺到魔鬼的精神！要小心！",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "聲音的體現：他們靠近你了！",bc_map,"0xFFCE00"; //Custom translation
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,203,286,0	script	#arch_1_boss	-1,5,5,{
+OnTouch:
+	if (countitem(12381)) {
+		delitem 12381,1; //ValkyrieA_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2037) { //VALKYRIE_A
+			mapannounce "job3_arch02", "女武神的夢魘：一個不稱職的女武神的幻想來到這裡與人類的援助。你想解脫這個噩夢?",bc_map,"0xFF0000";
+			donpcevent "mob#arch_1::Onkill";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,390,390,1	script	#arch_redcell	844,{
+	end;
+
+OnInit:
+	setcell "job3_arch02",276,290,280,294,cell_walkable,0;
+	setcell "job3_arch02",276,290,280,294,cell_shootable,0;
+	end;
+
+Ongreen:
+	setcell "job3_arch02",276,290,280,294,cell_walkable,1;
+	setcell "job3_arch02",276,290,280,294,cell_shootable,1;
+	end;
+
+Onred:
+	setcell "job3_arch02",276,290,280,294,cell_walkable,0;
+	setcell "job3_arch02",276,290,280,294,cell_shootable,0;
+	end;
+}
+
+job3_arch02,390,389,1	script	#arch_val01	844,{
+	end;
+
+OnEnable:
+	areamonster "job3_arch02",108,322,118,332,"Valkyrie's Nightmare",2036,1,"#arch_val01::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	if (mobcount("job_arch02","#arch_val01::OnMyMobDead") < 1) {
+		donpcevent "#arch_redcell::Ongreen";
+		mapannounce "job3_arch02", "女武神的惡夢：你的勝利僅僅是一個假象！哈哈哈哈！",bc_map,"0xFF0000";
+		enablenpc "Valkyrie#arch_01";
+		disablenpc "#arch_1_start";
+		disablenpc "#arch_1_01";
+		disablenpc "#arch_1_02";
+		disablenpc "#arch_1_03";
+		disablenpc "#arch_1_04";
+		disablenpc "#arch_1_05";
+		disablenpc "#arch_1_06";
+		disablenpc "#arch_1_07";
+		disablenpc "#arch_1_08";
+		disablenpc "#arch_1_09";
+		disablenpc "#arch_1_10";
+		disablenpc "#arch_1_11";
+		disablenpc "#arch_1_12";
+		disablenpc "#arch_1_boss";
+	}
+	end;
+
+Onkill:
+	killmonster "job3_arch02","#arch_val01::OnMyMobDead";
+	end;
+}
+
+job3_arch02,390,387,1	script	#arch_val02	844,{
+	end;
+
+OnEnable:
+	areamonster "job3_arch02",239,41,249,51,"Valkyrie's Nightmare",2036,1,"#arch_val02::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	if (mobcount("job_arch02","#arch_val02::OnMyMobDead") < 1) {
+		mapannounce "job3_arch02", "女武神的惡夢：你只是個孩子。我邀請加入魔鬼這邊。我確定你會喜歡的...哈哈!",bc_map,"0xFF0000";
+		enablenpc "Valkyrie#arch_02";
+		disablenpc "#arch_2_boss";
+		viewpoint 1,279,234,1,0xFFFF99;
+	}
+	end;
+
+Onkill:
+	killmonster "job3_arch02","#arch_val02::OnMyMobDead";
+	end;
+}
+
+job3_arch02,113,327,5	script	Valkyrie#arch_01	403,{
+	if (getmercinfo(0)) {
+		mes "[Valkyrie]";
+		mes "如果你想和我談話，你必須 ^3131FF取消所有您僱用的傭兵^000000.";
+		close;
+	}
+	mes "[Valkyrie Anguhilde]";
+	mes "魔鬼總是努力鼓動人們的想法.";
+	mes "你不必去關心他們的低語.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "不管怎樣，我能感覺到我的能量回來.";
+	mes "告訴我，你發現的東西.";
+	next;
+	mes "- 你一塊金色的管子，以女武神. -";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "喔，就是這塊管子!";
+	mes "如果你收集的碎片，你可以尋求幫助的其他女武神.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "因為一個緊密的戰鬥，我只能得到一點點的能量.";
+	mes "我要給你一個 ^3131FF新的古代捲軸^000000.";
+	mes "這將有助於找到其碎片.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "然後，我期待著你的好消息.";
+	close2;
+	getitem 12382,1; //ValkyrieB_Scroll
+	viewpoint 1,244,46,1,0xFFFF99;
+	disablenpc "Valkyrie#arch_01";
+	donpcevent "#arch_2_start::OnEnable";
+	end;
+}
+
+job3_arch02,244,46,5	script	Valkyrie#arch_02	403,{
+	mes "[Valkyrie Anguhilde]";
+	mes "你找到其餘的碎片了嗎?";
+	next;
+	if (countitem(6154) < 2) {
+		mes "[Valkyrie Anguhilde]";
+		mes "嗯?";
+		mes "我可以看到東西在妳身邊.";
+		getitem 6154,2; //Broken_Horn_Pipe
+		next;
+	}
+	mes "[Valkyrie Anguhilde]";
+	mes "好的.";
+	mes "我快要完成了!";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "但戰鬥還沒有結束.";
+	mes "你還記得 ^3131FF毀了的神社在島上的中心^000000嗎?";
+	mes "只有在你使用他的時候才能完成.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "我能感覺到我周圍的空氣越來越詭異.";
+	mes "而且感到寒冷漆黑的黑暗.";
+	mes "感覺危險存在我們的周圍.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "我給你一條項鍊作為禮物.";
+	mes "但我不確定它是不是有用....";
+	mes "小心阿.";
+	mes "請快一點!!";
+	close2;
+	getitem 2798,1; //Will_Of_Exhausted_Angel
+	disablenpc "Valkyrie#arch_02";
+	donpcevent "#arch_3_start::OnEnable";
+	end;
+}
+
+job3_arch02,279,234,0	script	#arch_end	-1,7,7,{
+OnInit:
+	disablenpc "#arch_end";
+	end;
+
+OnTouch:
+	donpcevent "#arch_3_01::Onkill";
+	donpcevent "#arch_3_02::Onkill";
+	donpcevent "#arch_3_03::Onkill";
+	donpcevent "mob#arch_2::Onkill";
+	enablenpc "Valkyrie Anguhilde#end";
+	if (!checkweight(1201,1)) {
+		mes "- 稍等片刻! -";
+		mes "- 你目前帶了 -";
+		mes "- 太多的東西. -";
+		mes "- 請清空一點放到倉庫 -";
+		mes "- 之後再來找我. -";
+		close;
+	}
+	if (countitem(6154) < 2) {
+		mes "[Valkyrie Anguhilde]";
+		mes "你蒐集了所有的東西了嗎?";
+		next;
+		mes "[Valkyrie Anguhilde]";
+		mes "我知道你找到源頭來幫我，但我不能缺少這兩個碎片.";
+		next;
+		mes "[Valkyrie Anguhilde]";
+		mes "他是很危險的，所以快點回去找吧.";
+		close;
+		nude;
+		if (countitem(2798))
+			delitem 2798,countitem(2798); //Will_Of_Exhausted_Angel
+		delitem 6154,countitem(6154); //Broken_Horn_Pipe
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	mes "[Valkyrie Anguhilde]";
+	mes "最後，我們完成了所有的準備工作.";
+	next;
+	mes "女武神擁有對天空的材料和武器.";
+	next;
+	mes "碰 - - - -";
+	next;
+	mes "碰 - - -";
+	next;
+	enablenpc "Valkyrie of the heavens";
+	mes "[Valkyrie Anguhilde]";
+	mes "奧丁的援助！士兵瓦爾哈拉!";
+	mes "黑暗沾染了神勝的奧丁聖地!";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "不要擔心.";
+	mes "你的願望已經傳到了瓦爾哈拉.";
+	mes "魔鬼將被其他女武神毀滅.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "現在這裡安全了嗎?";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "是的.";
+	mes "即使你因為一個事件而被開除，但是奧丁說他正在重新考慮你的放逐.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "真的?我可以回去神殿嗎?!";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "不要抱太大的期望.";
+	mes "但如果我有任何好消息將發送到您的.";
+	next;
+	mes "[Valkyrie Anguhilde]";
+	mes "為奧丁的榮耀!";
+	mes "我覺得充滿恩典.";
+	mes "如此的耀眼且溫暖....";
+	next;
+	mes "- 咻 -";
+	specialeffect EF_CLOAKING,"Valkyrie Anguhilde#end";
+	disablenpc "Valkyrie Anguhilde#end";
+	emotion e_omg,1;
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "你儘管放心吧.";
+	mes "他去了他應該要去的地方了.";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "感謝你為我做的所有事.";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "他是武神中權威最高的.";
+	mes "難道你沒看見過魔鬼覆蓋神社?";
+	mes "不幸的是，他無法應付的任務，所以他失敗了.";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "這是一種錯覺，他不希望得到任何人的認同.";
+	mes "她也不能去地獄，即使她死了，從她不斷的噩夢鬥爭.";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "但他的放逐是對你有益的.";
+	mes "即使它與現實不同，但現在她可以安息.";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "凡人，女武神欠你一次。謝謝.";
+	mes "我想我不能繼續和你對話了，但由奧丁賦予權力後，我可以繼續幫助你.";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "現在，回到你的世界去吧.";
+	mes "這世界將會歌送你的事蹟.";
+	next;
+	mes "[Valkyrie of the heavens]";
+	mes "不要忘了今天這樣一種利他主義的牧師的精神永存.";
+	mes "我希望我們可以看到對方的某個時候在瓦爾哈拉.";
+	nude;
+	if (countitem(2798))
+		delitem 2798,countitem(2798); //Will_Of_Exhausted_Angel
+	delitem 6154,countitem(6154); //Broken_Horn_Pipe
+	set job_arch,100;
+	completequest 2191;
+	getitem 5747,1; //Mitra
+	getitem 2795,1; //Green_Apple_Ring
+	callfunc "Job_Change",Job_Archbishop;
+	close;
+}
+
+job3_arch02,281,232,1	script	Valkyrie Anguhilde#end	403,{
+	end;
+
+OnInit:
+	disablenpc "Valkyrie Anguhilde#end";
+	end;
+}
+
+job3_arch02,273,235,5	script	Valkyrie of the heavens	811,{
+	if (job_arch == 100) {
+		mes "[Valkyrie of the heavens]";
+		mes "現在，回到你的世界吧.";
+		mes "這世界將會歌送你的事蹟.";
+		next;
+		mes "[Valkyrie of the heavens]";
+		mes "不要忘了今天這樣一種利他主義的牧師的精神永存.";
+		mes "我希望我們可以看到對方的某個時候在瓦爾哈拉.";
+		close2;
+		mapwarp "job3_arch02","job_arch01",29,29;
+	}
+	end;
+
+OnInit:
+	disablenpc "Valkyrie of the heavens";
+	end;
+}
+
+job3_arch02,132,323,0	script	#arch_2_01	-1,5,5,{
+OnTouch:
+	if (countitem(12382))
+		mapannounce "job3_arch02", "Whispering of Valkyrie: I see a new ancient scroll!",bc_map,"0x000000";
+	end;
+}
+
+job3_arch02,167,313,0	script	#arch_2_02	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音.",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,127,304,0	script	#arch_2_03	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,207,279,0	script	#arch_2_04	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,239,281,0	script	#arch_2_05	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,269,303,0	script	#arch_2_06	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,288,283,0	script	#arch_2_07	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,278,234,0	script	#arch_2_08	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,234,179,0	script	#arch_2_09	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,227,169,0	script	#arch_2_10	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,190,146,0	script	#arch_2_11	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) { //VALKYRIE_B
+			set .@randht,rand(1,10);
+			if (.@randht < 8)
+				mapannounce "job3_arch02", "一個分身低語：我能感覺到魔鬼的精神。你能聽到嗎?一群聚集的聲音",bc_map,"0xFFCE00";
+			else if ((.@randht == 8) && (.@randht == 9))
+				mapannounce "job3_arch02", "體現的聲音：戰鬥姿態！",bc_map,"0xFFCE00"; //Custom translation
+			else
+				mapannounce "job3_arch02", "一個分身的低語：我不能離開你！死吧！",bc_map,"0xFFCE00";
+			end;
+		}
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+			end;
+		}
+	}
+}
+
+job3_arch02,206,113,0	script	#arch_2_boss	-1,5,5,{
+OnTouch:
+	if (countitem(12382)) {
+		delitem 12382,1; //ValkyrieB_Scroll
+		mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+		mapwarp "job3_arch02","job_arch01",29,29;
+		end;
+	}
+	else {
+		if (getmercinfo(1) == 2038) //VALKYRIE_B
+			mapannounce "job3_arch02", "一個魔鬼的呼喊：你不過是個孩子。我邀請你加入我們。你一定會覺得很有趣的，哈哈！",bc_map,"0xFF0000";
+		else {
+			mapannounce "job3_arch02", "一分身的低語：你不能做自己的事情！讓我回去！",bc_map,"0xFFCE00";
+			mapwarp "job3_arch02","job_arch01",29,29;
+		}
+		end;
+	}
+}
+
+job3_arch02,284,159,0	script	#arch_3_01	-1,20,20,{
+OnInit:
+	enablenpc "#arch_3_01";
+	end;
+
+OnTouch:
+	if (BaseJob != 8) {
+		mapannounce "job3_arch02", "佛羅斯：你要見上帝?好吧，我送你到死亡之地!",bc_map,"0xFF0000";
+		areamonster "job3_arch02",239,41,249,51,"Frus",1762,1,"#arch_3_01::OnMyMobDead";
+	}
+	disablenpc "#arch_3_01";
+	end;
+
+Onkill:
+	killmonster "job3_arch02","#arch_3_01::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	end;
+}
+
+job3_arch02,307,200,0	script	#arch_3_02	-1,5,5,{
+OnInit:
+	enablenpc "#arch_3_02";
+	end;
+
+OnTouch:
+	if (BaseJob == 8) {
+		mapannounce "job3_arch02", "斯卡克:你是我的客人！",bc_map,"0xFF0000";
+		areamonster "job3_arch02",306,199,308,201,"Skogul",1761,1,"#arch_3_02::OnMyMobDead";
+	}
+	disablenpc "#arch_3_02";
+	end;
+
+Onkill:
+	killmonster "job3_arch02","#arch_3_02::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	end;
+}
+
+job3_arch02,296,216,0	script	#arch_3_03	-1,5,5,{
+OnInit:
+	disablenpc "#arch_3_03";
+	end;
+
+OnTouch:
+	mapannounce "job3_arch02", "佛羅斯:：我喜歡你的表情......我能偷走嗎?",bc_map,"0xFF0000";
+	areamonster "job3_arch02",295,215,297,217,"Frus",1762,1,"#arch_3_03::OnMyMobDead";
+	disablenpc "#arch_3_03";
+	end;
+
+Onkill:
+	killmonster "job3_arch02","#arch_3_03::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	end;
+}
+
+job3_arch02,389,390,1	script	mob#arch_1	844,{
+OnEnable:
+	areamonster "job3_arch02",99,101,101,103,"Shrine Invader",1394,2,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",89,130,91,132,"Shrine Invader",1394,2,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",90,169,92,171,"Shrine Invader",1427,1,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",103,182,105,184,"Shrine Invader",1427,1,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",137,204,139,206,"Shrine Invader",1394,2,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",160,214,162,216,"Shrine Invader",1394,2,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",164,214,166,216,"Shrine Invader",1427,1,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",200,235,202,237,"Shrine Invader",1394,2,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",217,249,219,251,"Shrine Invader",1427,1,"mob#arch_1::OnMyMobDead";
+	areamonster "job3_arch02",253,292,255,294,"Shrine Invader",1427,1,"mob#arch_1::OnMyMobDead";
+	end;
+
+Onkill:
+	killmonster "job3_arch02","mob#arch_1::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	end;
+}
+
+job3_arch02,389,389,1	script	mob#arch_2	844,{
+OnEnable:
+	areamonster "job3_arch02",155,320,157,322,"Shrine Invader",1480,2,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",169,304,171,306,"Shrine Invader",1480,2,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",182,292,184,294,"Shrine Invader",1453,1,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",199,286,201,288,"Shrine Invader",1453,1,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",255,292,257,294,"Shrine Invader",1480,2,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",285,283,287,285,"Shrine Invader",1480,2,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",277,235,279,237,"Shrine Invader",1453,1,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",291,184,293,186,"Shrine Invader",1480,2,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",280,169,282,171,"Shrine Invader",1453,1,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",226,165,228,167,"Shrine Invader",1453,1,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",189,145,191,147,"Shrine Invader",1480,1,"mob#arch_2::OnMyMobDead";
+	areamonster "job3_arch02",203,176,205,178,"Shrine Invader",1453,1,"mob#arch_2::OnMyMobDead";
+	end;
+
+Onkill:
+	killmonster "job3_arch02","mob#arch_2::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	end;
+}
+
+job3_arch02,389,388,1	script	start#arch	844,{
+	end;
+
+OnInit:
+	mapwarp "job3_arch02","job3_arch02",29,29;
+	end;
+
+OnEnable:
+	mapwarp "job3_arch02","job3_arch02",29,29;
+	enablenpc "#arch_1_start";
+	enablenpc "#arch_1_01";
+	enablenpc "#arch_1_02";
+	enablenpc "#arch_1_03";
+	enablenpc "#arch_1_04";
+	enablenpc "#arch_1_05";
+	enablenpc "#arch_1_06";
+	enablenpc "#arch_1_07";
+	enablenpc "#arch_1_08";
+	enablenpc "#arch_1_09";
+	enablenpc "#arch_1_10";
+	enablenpc "#arch_1_11";
+	enablenpc "#arch_1_12";
+	enablenpc "#arch_1_boss";
+	disablenpc "#arch_2_01";
+	disablenpc "#arch_2_02";
+	disablenpc "#arch_2_03";
+	disablenpc "#arch_2_04";
+	disablenpc "#arch_2_05";
+	disablenpc "#arch_2_06";
+	disablenpc "#arch_2_07";
+	disablenpc "#arch_2_08";
+	disablenpc "#arch_2_09";
+	disablenpc "#arch_2_10";
+	disablenpc "#arch_2_11";
+	disablenpc "#arch_2_boss";
+	disablenpc "#arch_3_01";
+	disablenpc "#arch_3_02";
+	disablenpc "#arch_3_03";
+	donpcevent "#arch_3_01::Onkill";
+	donpcevent "#arch_3_02::Onkill";
+	donpcevent "#arch_3_03::Onkill";
+	disablenpc "#arch_end";
+	disablenpc "Valkyrie#arch_01";
+	disablenpc "Valkyrie#arch_02";
+	disablenpc "Valkyrie Anguhilde#end";
+	disablenpc "Valkyrie of the heavens";
+	donpcevent "#arch_redcell::Onred";
+	donpcevent "mob#arch_1::Onkill";
+	donpcevent "mob#arch_2::Onkill";
+	donpcevent "start#arch::Ontimeoff";
+	donpcevent "start#arch::Ontimeon";
+	donpcevent "#arch_val01::Onkill";
+	donpcevent "#arch_val02::Onkill";
+	donpcevent "mob#arch_1::Onkill";
+	donpcevent "mob#arch_2::Onkill";
+	donpcevent "mob#arch_1::OnEnable";
+	donpcevent "#arch_val01::OnEnable";
+	end;
+
+Ontimeon:
+	initnpctimer;
+	end;
+
+Ontimeoff:
+	stopnpctimer;
+	end;
+
+OnTimer60000:
+OnTimer120000:
+OnTimer180000:
+OnTimer240000:
+OnTimer300000:
+OnTimer360000:
+OnTimer420000:
+OnTimer480000:
+OnTimer540000:
+	set .@mapcount,getmapusers("job3_arch02");
+	if (.@mapcount == 0) {
+		mapwarp "job3_arch02","job_arch01",29,29;
+		donpcevent "Valkyrie#arch::Onbc";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer600000:
+	mapannounce "job3_arch02", "惡魔一聲：太無聊了，再也不能想像會發生什麼事！朋友們，我們一起去，可以愚弄傲慢的傢伙，確定的經驗教訓呢？",bc_map,"0xFF0000";
+	end;
+
+OnTimer605000:
+	mapannounce "job3_arch02", "女武神的聲音：不！這不可能。我會送你馬上回來！",bc_map,"0xFFCE00";
+	mapwarp "job3_arch02","job_arch01",29,29;
+	donpcevent "Valkyrie#arch::Onbc";
+	stopnpctimer;
+	end;
+}
+
+job3_arch02,390,388,1	script	#arch_2_start	844,{
+	end;
+
+OnInit:
+	disablenpc "#arch_2_01";
+	disablenpc "#arch_2_02";
+	disablenpc "#arch_2_03";
+	disablenpc "#arch_2_04";
+	disablenpc "#arch_2_05";
+	disablenpc "#arch_2_06";
+	disablenpc "#arch_2_07";
+	disablenpc "#arch_2_08";
+	disablenpc "#arch_2_09";
+	disablenpc "#arch_2_10";
+	disablenpc "#arch_2_11";
+	disablenpc "#arch_2_boss";
+	end;
+
+OnEnable:
+	enablenpc "#arch_2_01";
+	enablenpc "#arch_2_02";
+	enablenpc "#arch_2_03";
+	enablenpc "#arch_2_04";
+	enablenpc "#arch_2_05";
+	enablenpc "#arch_2_06";
+	enablenpc "#arch_2_07";
+	enablenpc "#arch_2_08";
+	enablenpc "#arch_2_09";
+	enablenpc "#arch_2_10";
+	enablenpc "#arch_2_11";
+	enablenpc "#arch_2_boss";
+	donpcevent "#arch_val02::OnEnable";
+	donpcevent "mob#arch_2::OnEnable";
+	end;
+}
+
+job3_arch02,390,386,1	script	#arch_3_start	844,{
+	end;
+
+OnEnable:
+	enablenpc "#arch_3_01";
+	enablenpc "#arch_3_02";
+	enablenpc "#arch_3_03";
+	enablenpc "#arch_end";
+	enablenpc "#arch_end_eff";
+	end;
+}
+
+job3_arch02,290,221,0	script	#arch_end_eff	139,5,5,{
+OnTouch:
+	specialeffect EF_MAPPILLAR2,"#arch_end";
+	end;
+}
+
+job3_arch01,29,24,0	warp	#archout	1,1,odin_tem02,282,263
+
+/*
+job3_arch01,1,1,1	script	?OOA#arch	844,{
+	mes "[Ic1?AETEE]";
+	mes "CeEaEeAUA?";
+	next;
+	input .@input; //,0,9999;
+	if (input == 1854) {
+		set archglo,090219_archbs;
+		mes "[?DD]";
+		mes "IOO?A???aA???";
+		mes "" + archglo + "!￡";
+		mes "AaIeD?AAe?";
+		next;
+		switch(select("0:1")) {
+		case 1:
+			set $@archbs,0; //Global Variable
+			enablenpc "Valkyrie#arch";
+			break;
+		case 2:
+			set $@archbs,1; //Global Variable
+			enablenpc "Valkyrie#arch";
+			break;
+		}
+	}
+	else {
+		mes "[Ic1?AETEE]";
+		mes "I??EC?1yAUAe?EaEeOy?A??!";
+		close;
+	}
+}
+*/
+
+odin_tem02,30,181,0	script	#wherearch01	-1,10,10,{
+OnTouch:
+	if (job_arch == 5)
+		viewpoint 1,282,263,1,0xFFFF99;
+	end;
+}
+
+odin_tem02,30,335,0	script	#wherearch02	-1,10,10,{
+OnTouch:
+	if (job_arch == 5)
+		viewpoint 1,282,263,1,0xFFFF99;
+	end;
+}

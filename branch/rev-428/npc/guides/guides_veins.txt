@@ -1,0 +1,120 @@
+//==========================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ------------------------------------------
+// - 菲音斯 導遊 腳本 -
+// ------------------------------------------
+// 版本 1.1
+//==========================
+
+veins,210,345,5	script	菲音斯 導遊#1::ve_guide	934,{
+	mes "[菲音斯 導遊]";
+	mes "歡迎冒險者來到峽谷村落 菲音斯";
+	mes "第一次接受我們介紹的旅客們，先按選單";
+	mes "'聽取注意事項'，了解必須注意的事情";
+	set .@loop1,1;
+	while(.@loop1) {
+		next;
+		switch(select("開始由導遊說明城市:刪掉小地圖上全部的記號:聽取注意事項:取消")) {
+		case 1:
+			mes "[菲音斯 導遊]";
+			mes "好的，現在就為你導遊城市";
+			if (.@compass_check == 0) {
+				mes "要在小地圖上留下記號嗎?";
+				next;
+				if (select("好的:不要") == 1) set .@compass_check,1;
+			}
+			set .@loop2,1;
+			while(.@loop2) {
+				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
+				else next;
+				switch(select("瑟斯隆尼勒神殿:旅館:武器店:道具商店:飛空艇:酒店:地理研究協會:取消")) {
+				case 1:
+					mes "[菲音斯 導遊]";
+					mes "我們的神殿位在北邊";
+					mes "平常有許多信奉菲依雅女神的信徒";
+					mes "會在那裡";
+					if (.@compass_check == 1) viewpoint 1,196,258,1,0xFF0000;
+					break;
+				case 2:
+					mes "[菲音斯 導遊]";
+					mes "你可以在旅館裡休息";
+					mes "舒緩跋山涉水的疲憊";
+					if (.@compass_check == 1) viewpoint 1,128,266,2,0xFF00FF;
+					break;
+				case 3:
+					mes "[菲音斯 導遊]";
+					mes "是的，有時候你必須把自己從危險之中解救出來";
+					mes "購買一把好武器絕對是必要的";
+					mes "菲音斯的武器店位於西邊";
+					if (.@compass_check == 1) viewpoint 1,150,175,3,0x99FFFF;
+					break;
+				case 4:
+					mes "[菲音斯 導遊]";
+					mes "你背包內的補給品還夠用嗎?";
+					mes "如果有任何必須品需要購買的話，請到道具商店";
+					if (.@compass_check == 1) viewpoint 1,230,161,4,0x0000FF;
+					break;
+				case 5:
+					mes "[菲音斯 導遊]";
+					mes "請注意，";
+					mes "菲音斯的飛空艇只用來載運貨物";
+					if (.@compass_check == 1) viewpoint 1,273,285,5,0x00FF00;
+					break;
+				case 6:
+					mes "[菲音斯 導遊]";
+					mes "如果你想廣交朋友，";
+					mes "建議你到酒店裡去看看";
+					if (.@compass_check == 1) viewpoint 1,150,217,6,0x00FF00;
+					break;
+				case 7:
+					mes "[菲音斯 導遊]";
+					mes "你對地理研究有興趣嗎?";
+					mes "也許你可以過去看看，";
+					mes "地理研究協會在武器店的二樓";
+					if (.@compass_check == 1) viewpoint 1,150,175,7,0x00FF00;
+					break;
+				case 8:
+					mes "[菲音斯 導遊]";
+					mes "需要刪除記號請選擇「刪掉小地圖上全部的記號」";
+					set .@loop2,0;
+					break;
+				}
+			}
+			break;
+
+		case 2:
+			viewpoint 2,196,258,1,0xFF0000;
+			viewpoint 2,128,266,2,0xFF00FF;
+			viewpoint 2,150,175,3,0x99FFFF;
+			viewpoint 2,230,161,4,0x0000FF;
+			viewpoint 2,273,285,5,0x00FF00;
+			viewpoint 2,150,217,6,0x00FF00;
+			viewpoint 2,150,175,7,0x00FF00;
+			mes "[菲音斯 導遊]";
+			mes "已刪掉小地圖上所有標誌了";
+			mes "如果想要重新在地圖上做標誌的話，";
+			mes "請隨時來找我吧";
+			break;
+		case 3:
+			mes "[菲音斯 導遊]";
+			mes "我們廢除了原來較差的指引方式，採用最現代化的";
+			mes "無論您在哪裡都可以籍由小地圖知道您的位置";
+			next;
+			mes "[菲音斯 導遊]";
+			mes "在瀏覽之前，必須先參考右上方的小地圖";
+			mes "如果看不見小地圖的話，請按「Ctrl + Tab」或者選取基本情報視窗內的「map」";
+			mes "微型地圖出現之後，在地圖上按「-」幾下可以看見所有城市";
+			break;
+		case 4:
+			mes "[菲音斯 導遊]";
+			mes "那麼，祝你有個愉快的旅行";
+			close2;
+			set .@loop1,0;
+			break;
+		}
+	}
+	close;
+}
+
+veins,189,101,5	duplicate(ve_guide)	菲音斯 導遊#2	934

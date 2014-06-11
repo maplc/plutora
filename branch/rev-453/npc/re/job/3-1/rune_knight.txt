@@ -1,0 +1,3717 @@
+
+//===== PlutoEA: =============================================
+//= D.weizhe 非官方中文化，部分名稱為官方
+//============================================================ 
+prt_in,162,24,3	script	裝扮華麗的騎士	470,{
+	if (Upper == 4) {
+		// custom translation
+		mes "[裝扮華麗的騎士]";
+		mes "你這個小朋友,你的父母在哪裡?";
+		next;
+		mes "[裝扮華麗的騎士]";
+		mes "你的父母會不會也是一個騎士？要不要把他們介紹給我認識認識.";
+		close;
+	}
+	else {
+		if (BaseClass == Job_Rune_Knight) {
+			mes "[裝扮華麗的騎士]";
+			mes "你現在是我們認可的兄弟了. 我還記得我第一次見到你的時候.";
+			next;
+			mes "[裝扮華麗的騎士]";
+			mes "拚命的為劍與榮譽而戰...";
+			next;
+			mes "[裝扮華麗的騎士]";
+			mes "為我們嶄新的未來喝采...";
+			close;
+		}
+		else {
+			if (job_rune_edq == 0) {
+				mes "[裝扮華麗的騎士]";
+				mes "在這世界上有太多太多的選擇,很多人可以找到他適合的道路,但卻很少人可以遵循...";
+				next;
+				mes "[裝扮華麗的騎士]";
+				mes "不管如何,這裡的飲料非常好喝,你要不要也來一杯?";
+				next;
+				switch(select("當然,讓我們來一杯.:我不要.")) {
+				case 1:
+					if (BaseJob == Job_Knight) {
+						mes "[裝扮華麗的騎士]";
+						mes "你也是用你的劍在戰鬥不是嗎? 那樣我們應該心有靈犀,這杯飲料喝起來一定會更好喝的.";
+						next;
+						mes "[裝扮華麗的騎士]";
+						mes "這攤我請客.";
+						mes "敬~ 友宜";
+						next;
+						if ((BaseLevel > 98) && (JobLevel > 49)) {
+							mes "[裝扮華麗的騎士]";
+							mes "在我看來,你似乎已經準備好進入新的旅程了...";
+							next;
+							mes "[裝扮華麗的騎士]";
+							mes "揮舞雙劍是一個古老的戰鬥方法,接下來你將有個截然不同的旅程...";
+							next;
+							mes "[裝扮華麗的騎士]";
+							mes "如果你想要走在新的旅途、超越你目前的限制,我願意幫助你.";
+							next;
+							mes "[裝扮華麗的騎士]";
+							mes "成為盧恩騎士將能夠能夠打破劍的極限.";
+							next;
+							mes "[裝扮華麗的騎士]";
+							mes "你想不想加入我們? 你看起來完全有資格成為我們的一員.";
+							next;
+							mes "[裝扮華麗的騎士]";
+							mes "如果你有興趣,我將向你介紹我們的師傅,他將會引導你成為盧恩騎士.";
+							next;
+							switch(select("我還沒準備好.:我已經準備好要成為盧恩騎士了.")) {
+							case 1:
+								mes "[裝扮華麗的騎士]";
+								mes "很好,面對每個挑戰都必須先做好準備,我會等你的.";
+								next;
+								mes "[裝扮華麗的騎士]";
+								mes "當然,當你百分之百確定時我將會帶領你成為盧恩騎士.";
+								close;
+							case 2:
+								mes "[裝扮華麗的騎士]";
+								mes "你確定嗎?";
+								mes "讓我告訴我的同伴們,你願意加入我們.";
+								next;
+								set job_rune_edq,1;
+								setquest 3200;
+								mes "[裝扮華麗的騎士]";
+								mes "你知道克雷斯特漢姆古城吧? 那裏的路口有一個盧恩騎士在等著你,他將會引導你成為一個盧恩騎士";
+								next;
+								mes "[裝扮華麗的騎士]";
+								mes "我的名子叫做曼努埃爾. 我已經通知盧恩騎士隆貝爾了. 當你告訴他你是我推薦的盧恩騎士候選人,他將會處理剩下來的部分.";
+								next;
+								mes "[裝扮華麗的騎士]";
+								mes "我會等到你成為盧恩騎士的那天的.";
+								close;
+							}
+						}
+						else {
+							mes "[裝扮華麗的騎士]";
+							mes "如果你不斷的揮舞雙劍戰鬥,你將會感到你的力量受到限制...";
+							next;
+							mes "[裝扮華麗的騎士]";
+							mes "當時我將能夠幫助你超越這個極限,直到那天前你就繼續磨練吧.";
+							next;
+							mes "[裝扮華麗的騎士]";
+							mes "敬~ 你將能夠成為盧恩騎士的那天!";
+							close;
+						}
+					}
+					else {
+						mes "[裝扮華麗的騎士]";
+						mes "我相信改變不一定是好的.";
+						next;
+						mes "[裝扮華麗的騎士]";
+						mes "就像這種飲料. 我希望他能永久的保持著.";
+						close;
+					}
+				case 2:
+					mes "[裝扮華麗的騎士]";
+					mes "你確定嗎? 你不知道喝一杯是多麼高尚優雅的事...";
+					close;
+				}
+			}
+			else if (job_rune_edq == 1) {
+				mes "[裝扮華麗的騎士]";
+				mes "盧恩騎士正在克雷斯特漢姆古城入口處等著你...";
+				next;
+				mes "[裝扮華麗的騎士]";
+				mes "告訴他你是我推薦的盧恩騎士候選人,他會處理剩下的部份.";
+				next;
+				mes "[裝扮華麗的騎士]";
+				mes "我會等待你成為盧恩騎士那天的到來.";
+				close;
+			}
+			else {
+				mes "[裝扮華麗的騎士]";
+				mes "你現在還有其他的事情要做嗎?";
+				next;
+				mes "[裝扮華麗的騎士]";
+				mes "沒有? 那為什麼不來一杯.";
+				mes "難道你不喜歡這美酒的香味嗎?";
+				close;
+			}
+		}
+	}
+}
+
+glast_01,44,363,3	script	盧恩騎士的引導者 隆貝爾	468,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[盧恩騎士的引導者 隆貝爾]";
+		mes "噢 你一定是," + strcharinfo(0) + ".";
+		mes "歡迎.";
+		next;
+		mes "[盧恩騎士的引導者 隆貝爾]";
+		mes "我們期待你能為世界各地的盧恩騎士榮耀而戰";
+		next;
+		mes "[盧恩騎士的引導者 隆貝爾]";
+		mes "所以.. 我能幫助你什麼?";
+		next;
+		switch(select("我想要去公會聚集地.:沒事.")) {
+		case 1:
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "摁,我現在就將你傳送過去";
+			close2;
+			warp "job3_rune01",80,65;
+			end;
+		case 2:
+			close;
+		}
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq == 0) {
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "你知道這裡受到幽靈詛咒嗎? 還是你是個無知的冒險家?";
+			next;
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "如果你是活人,聽我說 我不會像你一樣拿我的生命在這裡開玩笑.";
+			next;
+			switch(select("你是誰?:你在這裡做什麼?:取消.")) {
+			case 1:
+				if (BaseJob == Job_Knight) {
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我只是在克雷斯特漢姆古城揮舞雙劍的劍士.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "如果你也跟持續隨著劍士的腳步,我們肯定會再次超越自我.";
+					close;
+				}
+				else {
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我只是在克雷斯特漢姆古城揮舞雙劍的劍士.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "既然你不是劍士,你將沒辦法了解我們的精神,走向你自己的道路吧.";
+					close;
+				}
+			case 2:
+				if (BaseJob == Job_Knight) {
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我是揮舞雙劍的劍士. 但我和你不一樣,我是個盧恩騎士.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我們不喜歡和其他騎士一樣大肆宣傳、吸收,所以你可能不知道我們.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我們盧恩騎士是一群學習科學真正的力量,並彰顯正義的劍士.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我們一直秘密生活在這克雷斯特漢姆古城已經半世紀了,現在是讓世界看見我們的時候了.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "現在世界各處都有我們的教官,正在四處收詢盧恩騎士的人才.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "如果你想要加入盧恩騎士,請聽從教官的建議再來找我.";
+					close;
+				}
+				else {
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我們不喜歡和其他騎士一樣大肆宣傳、吸收,所以你可能不知道我們.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我們盧恩騎士是一群學習科學真正的力量,並彰顯正義的劍士.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "我們一直秘密生活在這克雷斯特漢姆古城已經半世紀了,現在是讓世界看見我們的時候了.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					mes "現在世界各處都有我們的教官,正在四處收詢盧恩騎士的人才.";
+					next;
+					mes "[盧恩騎士的引導者 隆貝爾]";
+					// custom translation
+					mes "不幸的事,你所追求的道路與我們不同...我希望你可以堅持自己的信念繼續走下去.";
+					close;
+				}
+			case 3:
+				close;
+			}
+		}
+		else if (job_rune_edq == 1) {
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "你知道這裡受到幽靈詛咒嗎? 還是你是個無知的冒險家?";
+			next;
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "如果你是活人,我不會像你一樣拿我的生命在這裡開玩笑.";
+			next;
+			switch(select("我想成為盧恩騎士.:取消.")) {
+			case 1:
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "摁... 你是'曼努埃爾'推薦的候選人?";
+				next;
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "你的名子是"+ strcharinfo(0) +",對嗎? 我想你有資格成為我們的同志.";
+				next;
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "很好,再加入我們之前我將不會詢問你的資歷.";
+				mes "但我必須給你一些任務,現在我將給你第一項任務.";
+				next;
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "尋找我們盧恩騎士在克雷斯特漢姆內的聚會場所.";
+				next;
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "盧恩騎士的聚會場所就在古城騎士團內. 靠自己去找到吧.";
+				next;
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "在那裡將會有人迎接你.";
+				next;
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "當然在克雷斯特漢姆徘徊是非常危險的...但克服這些冒險是成為盧恩騎士的人應該努力的.";
+				set job_rune_edq,2;
+				changequest 3200,3201;
+				close;
+			case 2:
+				close;
+			}
+		}
+		else if (job_rune_edq == 2) {
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "第一個任務是要找到盧恩騎士在克雷斯特漢姆內的聚會場所.";
+			next;
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "盧恩騎士的聚會場所就在古城騎士團內. 靠自己去找到吧.";
+			next;
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "在那裡將會有人迎接你.";
+			next;
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "當然在克雷斯特漢姆徘徊是非常危險的...但克服這些冒險是成為盧恩騎士的人應該努力的.";
+			close;
+		}
+		else {
+			mes "[盧恩騎士的引導者 隆貝爾]";
+			mes "看來仍然在參加考試,表現你最好的一面,並通過測驗吧!.";
+			next;
+			switch(select("我想要去聚集的地方.:取消談話.")) {
+			case 1:
+				mes "[盧恩騎士的引導者 隆貝爾]";
+				mes "好的,我現在就送你過去.";
+				close2;
+				warp "job3_rune01",80,65;
+				end;
+			case 2:
+				close;
+			}
+		}
+	}
+	else {
+		mes "[盧恩騎士的引導者 隆貝爾]";
+		mes "我只是在克雷斯特漢姆古城揮舞雙劍的劍士.";
+		next;
+		mes "[盧恩騎士的引導者 隆貝爾]";
+		mes "既然你不是劍士,你將沒辦法了解我們的精神,走向你自己的道路吧.";
+		close;
+	}
+}
+
+gl_knt02,150,55,3	script	敢死隊隊長	83,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[敢死隊隊長]";
+		mes "歡迎," + strcharinfo(0) + ". 你要去聚集的地方嗎?";
+		next;
+		switch(select("是的,帶我進去.:我還有其他事情要忙.:取消.")) {
+		case 1:
+			mes "[敢死隊隊長]";
+			mes "好吧,近來我將會領導你.";
+			close2;
+			warp "job3_rune01",80,65;
+			end;
+		case 2:
+			mes "[敢死隊隊長]";
+			mes "哦? 先去忙吧.";
+			close;
+		case 3:
+			close;
+		}
+	}
+	else if (BaseJob == Job_Knight) {
+		if ((job_rune_edq > 0) && (job_rune_edq < 2)) {
+			// custom translation
+			mes "[敢死隊隊長]";
+			mes "阿...你被禁止來到這個地方了. 請不要影響我們.";
+			next;
+			mes "[敢死隊隊長]";
+			mes "雖然...你似乎有潛力成為我們的同伴.";
+			next;
+			mes "[敢死隊隊長]";
+			mes "我敢肯定,我們將會越過前面艱辛的道路. 我相信我們還會再見面的.";
+			close;
+		}
+		else if (job_rune_edq > 1) {
+			mes "[敢死隊隊長]";
+			mes "你能找到這個地方真不容易,'隆貝爾'叫我將你送到我們地聚會場所去.";
+			next;
+			mes "[敢死隊隊長]";
+			mes "當你進入這個地方,去和'底格里斯'聊聊,他一直在等你.";
+			next;
+			mes "[敢死隊隊長]";
+			mes "很好,跟我來吧";
+			close2;
+			warp "job3_rune01",80,65;
+			end;
+		}
+		end;
+	}
+	else {
+		mes "[敢死隊隊長]";
+		mes "等等! 這裡你不能進來. 我不介意你在這裡閒晃,但別來打擾我.";
+		close;
+	}
+}
+
+job3_rune01,80,60,3	script	敢死隊 隊長底格里斯	470,{
+	if (!checkweight(1201,1)) {
+		mes "你有太多東西了,請先整理一下你的背包.";
+		close;
+	}
+	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T) {
+		if (job_rune_edq == 23) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "噢... 請稍等片刻.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "我忘了檢查你是否有資格通過轉職任務了..";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "讓我檢查測試教官的報告.";
+			next;
+			if (job_rune_edq3 == 0) {
+				// custom translation
+				mes "[敢死隊 隊長底格里斯]";
+				mes "痾...完美. 真是罕見的結果.";
+				next;
+				mes "[敢死隊 隊長底格里斯]";
+				mes "摁,這個給妳.";
+				getitem 2140,1; //Energy_Rune_Guard
+				set job_rune_edq,24;
+				close;
+			}
+			else if ((job_rune_edq3 > 2) && (job_rune_edq3 < 6)) {
+				// custom translation
+				mes "[敢死隊 隊長底格里斯]";
+				mes "摁,好高的分數,非常好!.";
+				next;
+				mes "[敢死隊 隊長底格里斯]";
+				mes "摁,這個給妳.";
+				getitem 2794,1; //Magic_Stone_Ring
+				set job_rune_edq,24;
+				close;
+			}
+			else {
+				mes "[敢死隊 隊長底格里斯]";
+				mes "摁,不差. 但我想你能夠表現得更好.";
+				next;
+				mes "[敢死隊 隊長底格里斯]";
+				mes "摁,這個給妳.";
+				getitem 15002,1; //Rune_Plate
+				set job_rune_edq,24;
+				close;
+			}
+		}
+		else {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "嘿,好久不見," + strcharinfo(0) + ". 我想你應該沒什麼重要的事情要和我說吧? 把這裡當自己家吧,別客氣.";
+			close;
+		}
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq == 2) {
+			mes "一個穿著光榮鎧甲、眼睛中散發熱情的人站在我的眼前.";
+			next;
+			mes "他凝視我一段時間後開始和我說話.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "嘿,你是曼努埃爾推薦的那個人嗎? 我是底格里斯,你的名子是??";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "噢,我有聽曼努埃爾說過,但我好像忘記了,你是" + strcharinfo(0) + "..? 我真心歡迎你來到這裡.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "讓我們來看看,有很多候選人已經來到這裡了? 嘿,'盧娜妮雅'這裡有幾位候選人阿?";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "... 172個.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "她是這樣說的. 事實上我不希望看到下一個. 請你好好做.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "讓我看看... '曼努埃爾'和'隆貝爾'已經完成了基本的驗證,那我們現在開始測驗了.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "'盧娜妮雅',準備進行第一次測驗.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "...";
+			next;
+			mes "那位蒼白皮膚的女盧恩騎士'盧娜妮雅',只是點頭,靜靜的看著我.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "測驗現在開始. 首先,你會從冰夫人那裡得到第一次測驗的相關資訊,請竭盡你所能的完成他.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "當測驗結束後再來找我.";
+			next;
+			set job_rune_edq,3;
+			changequest 3201,3202;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "那麼,我會在這裡等你的.";
+			close;
+		}
+		else if (job_rune_edq == 3) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "測驗現在開始. 首先,你會從冰夫人那裡得到第一次測驗的相關資訊,請竭盡你所能的完成他.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "當測驗結束後再來找我.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "那麼,我會在這裡等你的.";
+			close;
+		}
+		else if ((job_rune_edq > 3) && (job_rune_edq < 6)) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "嘿! 你還沒有參加測試嗎? '盧娜妮雅',發生什麼事情了? 測驗全部都做完了?";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "......";
+			next;
+			mes "他只是搖搖頭沒有說任何一句話,並用他炯炯有神的雙眼凝視著我.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "好的,'盧娜妮雅'.  仔細聽我說,'盧娜妮雅'雖然不喜歡交談、很安靜,但你不應該忽視他";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "即使是我... 不,這裡任何人都拿她沒辦法.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "......";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "哇,別這樣看我. 好吧,你看到了? 熱血的盧恩騎士. 回去找'盧娜妮雅'參加考試吧. 祝你好運.";
+			close;
+		}
+		else if (job_rune_edq == 6) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "摁,看來你已經通過'盧娜妮雅'的考試了? 接下來不會再有其他基礎的測驗了.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "無庸置疑的,我們盧恩騎士是個分歧,但我們不應該忘記我們劍士的根本.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "現在開始,這將是你成為盧恩騎士真正的考驗,你需要準備參加接下來的測驗.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "雷諾亞,我知道你已經等很久了,接下來輪到你了.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "她真的已經等了很久了, 他和'盧娜妮雅'的測驗不同. 我希望你不會只是一個四肢發達的傢伙.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "哈哈哈,你知道嗎？這將不會是輕鬆的時間,我希望你能通過這次的測驗.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "去找火熱夫人進行接下來的任務吧,她在圖書館裡面.";
+			set job_rune_edq,7;
+			changequest 3204,3205;
+			close;
+		}
+		else if ((job_rune_edq > 6) && (job_rune_edq < 16)) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "現在開始,這將是你成為盧恩騎士真正的考驗,你需要準備參加接下來的測驗.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "雷諾亞,我知道你已經等很久了,接下來輪到你了.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "她真的已經等了很久了, 他和'盧娜妮雅'的測驗不同. 我希望你不會只是一個四肢發達的傢伙.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "哈哈哈,你知道嗎？這將不會是輕鬆的時間,我希望你能通過這次的測驗.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "去找火熱夫人進行接下來的任務吧,她在圖書館裡面.";
+			close;
+		}
+		else if (job_rune_edq == 16) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "噢,我聽說你已經通過'雷諾亞'的測驗拉? 只有少數人可以通過她的測驗呢.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "我聽說很多人都在'雷諾亞'的測驗時失敗了,所以測驗的考生一直高居不下.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "你應該了解. 我想這些測驗顯示了每個教官的個性. 摁...";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "現在,僅剩最後的測驗. 當你通過這個測驗後,你將成為一個盧恩騎士.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "最後一個測驗是由'阿森納'右側的'貝皮諾'教官所測驗的.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "我沒有開玩笑,我很期待你能成為盧恩騎士.";
+			mes "請竭盡所能完成測驗.";
+			set job_rune_edq,17;
+			changequest 3215,3216;
+			close;
+		}
+		else if ((job_rune_edq > 16) && (job_rune_edq < 22)) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "最後一個測驗是由'阿森納'右側的'貝皮諾'教官所測驗的.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "我沒有開玩笑,我很期待你能成為盧恩騎士. 請竭盡所能完成測驗.";
+			close;
+		}
+		else if (job_rune_edq == 22) {
+			mes "[敢死隊 隊長底格里斯]";
+			mes "恭喜. 現在你已經通過所有的測驗,現在你已經可以成為盧恩騎士了.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "我打從心底的為你高興、為你感到驕傲.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "現在你可以站在我們的身邊,成為我們的一員.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "這是從盧娜妮雅,雷諾亞和貝皮諾的測驗評價.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "雖然不是很多,但有些禮物要送給測驗成績優良的盧恩騎士.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "他們將會依照成績不同而有所差異,但這些都是對盧恩騎士很有幫助的裝備.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "最後這裡有幾件事情要提醒你.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "如果你現在有穿著任何裝備,或持有任何裝備的話,在你轉職的時候請你將它們清空.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "你可以找卡普拉服務人員使用倉庫服務.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "你可能已經知道,如果你騎乘大嘴鳥,你應該離開他. 如果你還騎乘著牠,請先將牠釋放再來找我.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "還有一件事,如果你還擁有未分配完的技能點數,你必須先將他分配完畢,否則你無法轉職.";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "好吧,我的工作已經完成了,你準備好要展開盧恩騎士展新的生活了嗎?";
+			next;
+			switch(select("每件事都已經準備完成了.:我需要再想想.")) {
+			case 1:
+				if ((Weight > 0) || (checkcart()) || (SkillPoint) || (checkfalcon()) || (checkriding())) {
+					mes "[敢死隊 隊長底格里斯]";
+					mes "你沒有在聽我說話嗎?";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "如果你現在有穿著任何裝備,或持有任何裝備的話,在你轉職的時候請你將它們清空.";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "你可以找卡普拉服務人員使用倉庫服務.";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "你可能已經知道,如果你騎乘大嘴鳥,你應該離開他. 如果你還騎乘著牠,請先將牠釋放再來找我.";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "還有一件事,如果你還擁有未分配完的技能點數,你必須先將他分配完畢,否則你無法轉職.";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "如果你明白了,請準備好再回來找我.";
+					close;
+				}
+				else {
+					if ((BaseJob != Job_Knight) && (JobLevel < 50) && (SkillPoint) && (BaseLevel < 99)) {
+						// custom translation
+						mes "[敢死隊 隊長底格里斯]";
+						mes "你似乎錯過什麼事情?";
+						close;
+					}
+					mes "[敢死隊 隊長底格里斯]";
+					mes "噢我的主......";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "這個騎士將會成為盧恩騎士和我們一同往前,請您給他祝福.";
+					next;
+					getitem 5746,1; //Rune_Circlet
+					getitem 2795,1; //Green_Apple_Ring
+					set job_rune_edq,23;
+					completequest 3219;
+					jobchange Job_Rune_Knight,Upper;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "永遠記住你已經成為盧恩騎士了.";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "這裡有個盧恩米德加茲王國給予每個新興盧恩騎士的禮物.";
+					next;
+					mes "[敢死隊 隊長底格里斯]";
+					mes "等我一下下,等等再來找我一次.";
+					close;
+				}
+			case 2:
+				close;
+			}
+		}
+	}
+	else {
+		// custom translation
+		mes "[敢死隊 隊長底格里斯]";
+		mes "我不知道你怎麼近來的...但你不應該在這裡.";
+		next;
+		mes "[敢死隊 隊長底格里斯]";
+		mes "回去你來的地方!";
+		close2;
+		warp "gl_knt02",150,55;
+		end;
+	}
+}
+
+job3_rune01,90,50,3	script	盧恩騎士 盧娜妮雅	469,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "她稍稍抬起她的頭,輕輕點點頭,和我打招呼.";
+		next;
+		mes "一會兒後她就把頭又低下去了...";
+		close;
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq < 3) {
+			mes "這個蒼白肌膚的女子似乎完全不在乎我";
+			close;
+		}
+		else if (job_rune_edq == 3) {
+			mes "她終於打開她的嘴開始對話.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "五分鐘... 如果你能夠擺脫所有怪物,你就成功了.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "在測試中,底格里斯,雷諾亞,貝皮諾和我將會看著你.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "如果你需要,你可以向我們求助. 但千萬別以為我們會永遠幫助你.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "但這只是一個測驗,要不要接受我們的幫助完全取決於你,接受我們的幫助或者靠自己通過測試都是可以的.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "當你準備好進入測驗區域,再來找我.";
+			next;
+			switch(select("現在就前往測驗區域.:讓我在想想.")) {
+			case 1:
+				if ($@rune_test1 == 0) {
+					mes "她點點她的頭,輕輕伸出她的手,然後拿起她的劍...";
+					set job_rune_edq,4;
+					changequest 3202,3203;
+					set $@job_rune_test1,1;
+					close2;
+					warp "job3_rune02",38,40;
+					end;
+				}
+				else {
+					// custom translation
+					mes "她點點她的頭,輕輕伸出她的手,然後拿起她的劍...";
+					next;
+					mes "但她的表情突然改變了一下,她四處看了看....";
+					next;
+					mes "[盧恩騎士 盧娜妮雅]";
+					mes "現在...測試場地有人在使用...";
+					next;
+					mes "[盧恩騎士 盧娜妮雅]";
+					mes "你必須等待...這必須採取一對一的測驗.";
+					next;
+					mes "[盧恩騎士 盧娜妮雅]";
+					mes "等個五分鐘吧,應該很快就輪到你了.";
+					close;
+				}
+			case 2:
+				close;
+			}
+		}
+		else if (job_rune_edq == 4) {
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "你失敗了嗎? 但這沒有限制的,你可以再嘗試看看.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "如果你想要再次參加測試,我可以再給你機會.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "五分鐘... 如果你能夠擺脫所有怪物,你就成功了.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "當你準備好進入測驗區域,再來找我.";
+			next;
+			switch(select("現在就前往測驗區域.:讓我在想想.")) {
+			case 1:
+				set .@test_miss_check,checkquest(3220,PLAYTIME);
+				if (.@test_miss_check == -1) {
+					if ($@rune_test1 == 0) {
+						mes "她點點她的頭,輕輕伸出她的手,然後拿起她的劍...";
+						set $@job_rune_test1,1;
+						if (checkquest(3220) > -1) erasequest 3220;
+						setquest 3220;
+						close2;
+						warp "job3_rune02",38,40;
+						end;
+					}
+					else {
+						// custom translation
+						mes "她點點她的頭,輕輕伸出她的手,然後拿起她的劍...";
+						next;
+						mes "但她的表情突然改變了一下,她四處看了看....";
+						next;
+						mes "[盧恩騎士 盧娜妮雅]";
+						mes "現在...測試場地有人在使用...";
+						next;
+						mes "[盧恩騎士 盧娜妮雅]";
+						mes "你必須等待...這必須採取一對一的測驗.";
+						next;
+						mes "[盧恩騎士 盧娜妮雅]";
+						mes "等個五分鐘吧,應該很快就輪到你了.";
+						close;
+					}
+				}
+				else if ((.@test_miss_check == 0) || (.@test_miss_check == 1)) {
+					mes "[盧恩騎士 盧娜妮雅]";
+					mes "她點點她的頭,輕輕伸出她的手,然後拿起她的劍...";
+					next;
+					mes "[盧恩騎士 盧娜妮雅]";
+					mes "當輪到你進入,你會被直接送到那裡。";
+					close;
+				}
+				else if (.@test_miss_check == 2) {
+					erasequest 3220;
+					if ($@rune_test1 == 0) {
+						mes "她點點她的頭,輕輕伸出她的手,然後拿起她的劍...";
+						set $@job_rune_test1,1;
+						setquest 3220;
+						close2;
+						warp "job3_rune02",38,40;
+						end;
+					}
+					else {
+						// custom translation
+						mes "她點點她的頭,輕輕伸出她的手,然後拿起她的劍...";
+						next;
+						mes "但她的表情突然改變了一下,她四處看了看....";
+						next;
+						mes "[盧恩騎士 盧娜妮雅]";
+						mes "現在...測試場地有人在使用...";
+						next;
+						mes "[盧恩騎士 盧娜妮雅]";
+						mes "你必須等待...這必須採取一對一的測驗.";
+						next;
+						mes "[盧恩騎士 盧娜妮雅]";
+						mes "等個五分鐘吧,應該很快就輪到你了.";
+						close;
+					}
+				}
+			case 2:
+				close;
+			}
+		}
+		else if (job_rune_edq == 5) {
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "你的測驗成功了?";
+			next;
+			mes "她輕輕對著我的微笑了..";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "這部份任務已經完成了,你去找底格里斯.";
+			set job_rune_edq,6;
+			changequest 3203,3204;
+			close;
+		}
+		else if (job_rune_edq > 5) {
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "這部份任務已經完成了,你去找底格里斯.";
+			next;
+			mes "[盧恩騎士 盧娜妮雅]";
+			mes "你應該有其他測驗要進行,我希望你能最到最好.";
+			close;
+		}
+	}
+	else {
+		mes "這個蒼白肌膚的女子似乎完全不在乎我";
+		close;
+	}
+}
+
+job3_rune01,55,50,3	script	盧恩騎士 雷諾亞	469,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[盧恩騎士 雷諾亞]";
+		mes "恭喜你成為我們的一員,盧恩騎士 " + strcharinfo(0) + ".";
+		next;
+		mes "[盧恩騎士 雷諾亞]";
+		mes "很快的你將會看到我們明確的未來.";
+		next;
+		mes "[盧恩騎士 雷諾亞]";
+		mes "直到那時,我依然還會在這裡發掘像你一樣的新鮮人.";
+		close;
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq < 7) {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "你要成為盧恩騎士？今天已經有很多人來報名了.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "可惜的是很少人可以過到我這一關,我只能在這裡發呆.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "我希望你全力以赴盧恩騎士的測驗. 要通過盧娜妮雅的測驗並不是這麼容易的事情?";
+			close;
+		}
+		else if (job_rune_edq == 7) {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "終於來了! 終於輪到我了嗎? 真開心.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "我已經懶得去計算盧娜妮雅淘汰掉多少人了.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "我是雷諾亞. 我負責教授盧恩騎士盧恩石的技術以及測驗.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "歡迎你來參加考試,前面的廢話太多了有點抱歉,哈哈";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "那麼首先,我給你一個任務.去圖書館研究這些書吧.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "摁,^0000FF盧恩石以及盧恩騎士^000000,^0000FF盧恩的原則^000000,^0000FF製作和使用盧恩石^000000. 剛開始就這三本吧...";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "徹底讀完這些書後再回來,如果你不喜歡閱讀、研究,那你未來盧恩之路應該會不好走.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "別擔心,你不必需和朱諾那些智者一樣擁有豐富的知識,但你不能是一個白癡.";
+			set job_rune_edq,8;
+			changequest 3205,3206;
+			close;
+		}
+		else if (job_rune_edq == 8) {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "那麼首先,我給你一個任務.去圖書館研究這些書吧.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "摁,^0000FF盧恩石以及盧恩騎士^000000,^0000FF盧恩的原則^000000,^0000FF製作和使用盧恩石^000000. 剛開始就這三本吧...";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "徹底讀完這些書後再回來,如果你不喜歡閱讀、研究,那你未來盧恩之路應該會不好走.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "別擔心,你不必需和朱諾那些智者一樣擁有豐富的知識,但你不能是一個白癡.";
+			close;
+		}
+		else if (job_rune_edq == 11) {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "你已經讀完那三本書了? 要讀完他們並不容易,但如果你有決心成為盧恩騎士,你必須有這些基本知識.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "基本上,魔法都是透過大自然中所有元素的組合運用所產生的.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "所以,巫師和賢者這樣的職業才能利用魔法創造出自己的神聖領域.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "盧恩騎士的領導者 貝傑夫,曾經在三維灰色空間的魔王夢羅克復活時與仙女接觸過.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "我從一個魔法學者那裡聽到一個關於實體化魔法的技術,之後我開始研究這項技術,並從他們身上的到一些幫助.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "使用盧恩力量的盧恩騎士就是這次在這次研究中誕生的.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "你似乎不明白我為什麼要重複說明在書上的故事.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "因此第二次測驗,你要去找那位在灰色空間指引、幫助盧恩騎士的智者拉菲尼.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "找到那位曾經幫助盧恩騎士的智者賽勒佩妮雅,他應該在異世界 米德加爾特聯合營地.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "那位智者已經和我們接觸很長一段時間了,所以你不必擔心語言不通的問題";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "如果你已經準備好了,我將你傳送到米德加爾特聯合營地,去找她吧.";
+			set job_rune_edq,12;
+			changequest 3206,3207;
+			close;
+		}
+		else if ((job_rune_edq > 11) && (job_rune_edq < 14)) {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "如果你已經準備好了,我將你傳送到米德加爾特聯合營地,去找她吧.";
+			next;
+			switch(select("是的,我很樂意.:不,還沒.")) {
+			case 1:
+				mes "[盧恩騎士 雷諾亞]";
+				mes "很好,我現在就傳送你過去,但有一件事我要告訴你.";
+				next;
+				mes "[盧恩騎士 雷諾亞]";
+				mes "你將會被傳送到異世界. 從盧恩米德加茲王國前往的冒險家或官員都必須獲得認證.";
+				next;
+				mes "[盧恩騎士 雷諾亞]";
+				mes "貝傑夫雖然有和聯盟簽訂協議,讓我們盧恩騎士可以前往米德加爾營地...";
+				next;
+				mes "[盧恩騎士 雷諾亞]";
+				mes "但如果你想要在異世界裡面自由行動,你必須透過正常的方法在米德加爾聯盟獲得資格. 這就和我們沒有關係了.";
+				next;
+				mes "[盧恩騎士 雷諾亞]";
+				mes "協議只允許我們派遣盧恩騎士的候選人前往米德加爾營地,其他地方並沒有辦法.";
+				next;
+				mes "[盧恩騎士 雷諾亞]";
+				mes "祝你好運.";
+				close2;
+				warp "mid_camp",235,250;
+				end;
+			case 2:
+				mes "[盧恩騎士 雷諾亞]";
+				mes "如果你準備好了再回來找我吧,我隨時有空.";
+				close;
+			}
+		}
+		else if (job_rune_edq == 14) {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "摁,你回來了? 你喜歡異世界嘛?";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "好了,你已經準備好了嘛?";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "現在開始參加盧恩騎士的考試. 我知道你已經通過了一些複雜的考試.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "我想給你一個直接與盧恩石接觸的考試.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "在這次測驗中,你會製作出一個盧恩石,這也將會是你最後一次的測驗.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "如果你還記得之前在圖書館閱讀的書籍,你就能夠獨立製作出一個盧恩石頭.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "如果你成功製作出盧恩石,他將在你成為盧恩騎士後給予你幫助,所以盡你所能的做到最好吧.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "你總共需要製作20個盧恩石.";
+			mes "記住了.";
+			set job_rune_edq,15;
+			changequest 3213,3214;
+			close;
+		}
+		else if (job_rune_edq == 15) {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "在這次測驗中,你會製作出一個盧恩石,這也將會是你最後一次的測驗.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "如果你還記得之前在圖書館閱讀的書籍,你就能夠獨立製作出一個盧恩石頭.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "如果你成功製作出盧恩石,他將在你成為盧恩騎士後給予你幫助,所以盡你所能的做到最好吧.";
+			next;
+			mes "[盧恩騎士 雷諾亞]";
+			mes "記住了,你總共需要製作20個盧恩石.";
+			next;
+			switch(select("檢查盧恩石樹木?:我已經做好20顆盧恩石了.")) {
+			case 1:
+				mes "[盧恩騎士 雷諾亞]";
+				mes "你已經製作了" + job_rune_edq2 + "個盧恩石.";
+				close;
+			case 2:
+				if (job_rune_edq2 == 20) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "你已經完成了任務. 我會把所有的成品交給底格里斯的.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "因為接下來還有一個測驗你需要使用到這些盧恩石.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "好了,你已經通過這裡的測驗了,回去找底格里斯吧,完成接下來的任務吧.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哈! 你幹得不錯。 如果你很緊張,先去好好放鬆一下吧.";
+					set job_rune_edq,16;
+					changequest 3214,3215;
+					close;
+				}
+				else if (job_rune_edq2 > 20) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 這是什麼? 你已經製作超過20個盧恩石了. 是可以通過沒錯,但還是要按照指示做事.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "你只要製作適量的數量就夠了,我將會交出所有的盧恩石給底格里斯.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "因為接下來還有一個測驗你需要使用到這些盧恩石.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "好了,你已經通過這裡的測驗了,回去找底格里斯吧,完成接下來的任務吧.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哈! 你幹得不錯。 如果你很緊張,先去好好放鬆一下吧.";
+					set job_rune_edq,16;
+					close;
+				}
+				else {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "嘿! 我告訴過你! 至少要20個.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[盧恩騎士 雷諾亞]";
+			mes "成為一個值得驕傲的盧恩騎士吧!";
+			close;
+		}
+	}
+	else {
+		// custom translation
+		mes "[盧恩騎士 雷諾亞]";
+		mes "你怎麼在這裡的?! 隊長! 這裡有個間諜!";
+		next;
+		mes "[敢死隊 隊長底格里斯]";
+		mes "阿? 你再說什麼阿,雷諾亞? 別用這種口氣說話! 你讓我們聽起來像是罪犯.";
+		next;
+		mes "[盧恩騎士 雷諾亞]";
+		mes "摁,有一個身分不明的人在這裡.";
+		next;
+		mes "[敢死隊 隊長底格里斯]";
+		mes "摁... 朋友來我這裡聊一下...";
+		close;
+	}
+}
+
+job3_rune01,58,51,1	script	加熱爐		844,{
+	if (job_rune_edq < 15) {
+		mes "[盧恩騎士 雷諾亞]";
+		mes "你不想碰那個東西,相信我,我不是在開玩笑.";
+		close;
+	}
+	else if (job_rune_edq == 15) {
+		set .@job_rune_crash,5;
+		set .@job_rune_test_rand,rand(1,24);
+		mes "我可以在雷諾亞後面看到一個巨大的洞窟. 我想這是書上所提到的大規模加熱爐.";
+		next;
+		switch(select("使用盧恩加熱爐:停止.")) {
+		case 1:
+			if (.@job_rune_test_rand == 1) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "這紅色螺旋的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"艾伊瓦茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "艾伊瓦茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						// occurances of this line are all custom. I couldn't get the damn thing to fail and give me the line.
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "艾伊瓦茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 2) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "紫色斜線型的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"歐特哈啦";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "歐特哈啦盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "歐特哈啦盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 3) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "綠寶石光菱形的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"馬納茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "馬納茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "馬納茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 4) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "綠寶石光圓行的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"安斯茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "安斯茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "安斯茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 5) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "天藍色星形閃逤的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"哈卡拉茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哈卡拉茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "哈卡拉茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 6) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "紅色鑽石的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"卡納茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "卡納茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "卡納茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 7) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "天藍色斜線的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"萊德赫";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "萊德赫盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "萊德赫盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 8) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "黃色圓形的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"突里薩茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "突里薩茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "突里薩茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 9) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "綠寶石光螺旋形的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"達卡茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "達卡茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "達卡茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 10) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "天藍色扇形盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"索維羅";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "索維羅盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "索維羅盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 11) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "黃色鑽石形的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"拉可茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "拉可茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "拉可茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 12) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "紫色螺旋形的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"伊札";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "伊札盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "伊札盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 13) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "銀色螺旋形的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"培爾多羅";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "培爾多羅盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "培爾多羅盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 14) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "金黃星型的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"貝爾卡諾";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "貝爾卡諾盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "貝爾卡諾盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 15) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "黃色錐形的盧恩石...";
+				next;
+				input .@input$;
+				set .@ans$,"蓋柏";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "蓋柏盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "蓋柏盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 16) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "綠寶石光斜線的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"亞爾其茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "亞爾其茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "亞爾其茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 17) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "灰色菱形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"愛沃";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "愛沃盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "愛沃盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 18) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "金黃色圓形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"提瓦茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "提瓦茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "提瓦茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 19) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "綠寶石光星形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"兀尤";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "兀尤盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "兀尤盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 20) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "黃色圓形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"耶拉";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "耶拉盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "耶拉盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 21) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "黃色扇形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"那特席茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "那特席茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "那特席茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 22) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "紫色菱形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"印格瓦茲";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "印格瓦茲盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "印格瓦茲盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 23) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "銀色圓形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"菲弗";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "菲弗盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "菲弗盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+			else if (.@job_rune_test_rand == 24) {
+				progressbar "ffff00",5;
+				mes "將合適的盧恩石形狀與顏色配對.";
+				next;
+				mes "紫色螺旋形的盧恩石是...";
+				next;
+				input .@input$;
+				set .@ans$,"伊札";
+				set .@pc_ans$,.@input$;
+				set .@ans_chk,compare(.@ans$,.@pc_ans$);
+				if (.@ans_chk == 1) {
+					mes "[盧恩騎士 雷諾亞]";
+					mes "哇! 完美的製作完成了!.";
+					next;
+					mes "[盧恩騎士 雷諾亞]";
+					mes "伊札盧恩石製作完成了.";
+					set job_rune_edq2,job_rune_edq2 + 1;
+					close;
+				}
+				else {
+					set .@job_rune_crash_go,rand(1,(((job_rune_edq3+1)+.@job_rune_crash)+.@job_rune_crash_check));
+					if (.@job_rune_crash_go == 3) {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "阿! 雖然不完全一樣，但她們相當接近.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "伊札盧恩石製作完成了.";
+						set job_rune_edq2,job_rune_edq2 + 1;
+						close;
+					}
+					else {
+						mes "[盧恩騎士 雷諾亞]";
+						mes "腦海中的盧恩石與形狀、顏色不相配，所以失敗了.";
+						next;
+						mes "[盧恩騎士 雷諾亞]";
+						mes "製作盧恩時失敗了... 請在試一次.";
+						set job_rune_edq3,job_rune_edq3 + 1;
+						close;
+					}
+				}
+			}
+		case 2:
+			close;
+		}
+	}
+	else {
+		mes "[盧恩騎士 雷諾亞]";
+		mes "你不會想碰那個東西的，相信我，我沒有開玩笑.";
+		close;
+	}
+}
+
+
+
+job3_rune01,40,54,1	script	Runes and Rune Knights	844,{
+	if (job_rune_edq < 8) {
+		//mes "[盧恩騎士 雷諾亞]";
+		mes " - 未經許可請勿觸碰 -";
+		//next;
+		//mes "[敢死隊 隊長底格里斯]";
+		//mes "Hey 雷諾亞 go easy on that Knight. You there too,you'd better stop touching stuff here without a permission.";
+		close;
+	}
+	else if (job_rune_edq > 7) {
+		while(1) {
+			switch(select("盧恩騎士的誕生:盧恩與魔法能量:停止閱讀")) {
+			case 1:
+				set job_rune_book1_1,job_rune_book1_1+job_rune_book1_1;
+				mes "盧恩騎士已經取得了劍與魔法之前的平衡.";
+				next;
+				mes "是由傳奇的劍士貝傑夫所開創的.";
+				next;
+				mes "盧恩騎士使用盧恩石的力量，而不是使用自己身體裡面的魔法力量.";
+				next;
+				mes "最早這些魔法的力量只能從身體內施展出來，但經過長久的研究";
+				next;
+				mes "然而，現在使用盧恩的力量，已經打破了這項限制.";
+				next;
+				mes "據了解傳奇劍士貝傑夫覺得這他的力量被限制住了，所以研究了克服物理限制的方法....";
+				next;
+				mes "我們猜測他已經與拉菲尼部落觸摸很久以前的三維裂谷發現，去灰真空.";
+				next;
+				mes "拉菲尼部落灰真空仙女，被稱為盧恩騎士的誕生有著密切的關係.";
+				next;
+				mes "現在有可能為那些，通常盧恩使用神奇的力量，進行中等，可以進行正常的凡人不能揮動前的魔術.";
+				next;
+				mes "學習這些技術的結果是和諧調整與物理電源劍盧恩石頭.";
+				next;
+				mes "開始學習的方式，與尼石刀劍harmoze貝傑夫的弟子成為被稱為盧恩騎士.";
+				next;
+				break;
+			case 2:
+				set job_rune_book1_2,job_rune_book1_2+1;
+				mes "作為一個盧恩石，是一個中等包含無形的存在，神奇的力量和它的精髓，可以直接使用.";
+				next;
+				mes "拉菲尼賢者，巫師和盧恩騎士貝傑夫合作研究的盧恩的創始人和他們的研究結果只最近成為世界上被稱為.";
+				next;
+				mes "這是一個無限的替代能源的來源和對他們的研究仍在進行中. ";
+				next;
+				mes "與人類不同，粉煤灰真空的生活的東西保留在自己的身體，它神奇的能量.";
+				next;
+				mes "發現盧恩到這片神奇的力量，細化與盧恩騎士由貝傑夫和賢者和共享.";
+				next;
+				break;
+			case 3:
+				if ((job_rune_book1_1 > 0) && (job_rune_book1_2 > 0) && (job_rune_edq == 8))
+					set job_rune_edq,9;
+				else if ((job_rune_book1_1 > 0) && (job_rune_book1_2 > 0) && (job_rune_edq == 9))
+					set job_rune_edq,10;
+				else if ((job_rune_book1_1 > 0) && (job_rune_book1_2 > 0) && (job_rune_edq == 10))
+					set job_rune_edq,11;
+				close;
+			}
+		}
+	}
+	end;
+}
+
+job3_rune01,43,44,1	script	The Principles of Runes	844,{
+	if (job_rune_edq < 8) {
+		//mes "[盧恩騎士 雷諾亞]";
+		mes " - 未經許可請勿觸碰 -";
+		//next;
+		//mes "[敢死隊 隊長底格里斯]";
+		//mes "Hey 雷諾亞 go easy on that Knight. You there too,you'd better stop touching stuff here without a permission.";
+		close;
+	}
+	else if (job_rune_edq > 7) {
+		while(1) {
+			switch(select("盧恩時的使用原則:盧恩石的總類:停止閱讀")) {
+			case 1:
+				set job_rune_book2_1,job_rune_book2_1+1;
+				mes "盧恩是一種象徵，這是符塵世大陸自古以來使用。到現在為止它只是被用來隱匿界.";
+				next;
+				mes "盧恩是一種象徵，這是符塵世大陸自古以來使用。到現在為止它只是被用來隱匿界.";
+				next;
+				mes "盧恩是作為一個符號系統，但故事口頭流傳下來的，它被稱為算命或用來繪製出人類的潛意識.";
+				next;
+				mes "盧恩有自己的制度和類型，並可以繪製出各種權力，他們是如何安排的。但其功率水平目前尚未被測量已知的手段.";
+				next;
+				mes "值得慶幸的是，盧恩騎士發現了他們的積極手段的使用。黑暗魔法盧恩沒有被使用，但它肯定是他們的權力可能被濫用，如果錯手.";
+				next;
+				break;
+			case 2:
+				set job_rune_book2_2,job_rune_book2_2+1;
+				mes "盧恩創建一個共25小石頭，他們是很脆弱的物理震動。因此，他們正在處理時需要特殊照顧.";
+				next;
+				mes "25顆寶石有不同的含義，其中，14時反的，可以有完全不同的功率從原來的意義，因此它必須研究的特殊方面.";
+				next;
+				mes "其他11個盧恩有一致的權力，不受任何位置的影響，所以，如果你不掌握所有11個普通的盧恩和逆盧恩14，你不能繪製出完整力量.";
+				next;
+				mes "其中11個普通的盧恩，空白盧恩是一個例外.";
+				next;
+				mes "25盧恩石的名稱是以下:";
+				next;
+				mes "艾伊瓦茲、歐特哈啦、馬納茲、安斯茲、哈卡拉茲、卡納茲、萊德赫、突里薩茲、達卡茲、索維羅、拉可茲、伊札、培爾多羅、貝爾卡諾、蓋柏、亞爾其茲、愛沃、提瓦茲、兀尤、耶拉、那特席茲、印格瓦茲、菲弗、伊札.";
+				next;
+				break;
+			case 3:
+				if ((job_rune_book2_1 > 0) && (job_rune_book2_2 > 0) && (job_rune_edq == 8))
+					set job_rune_edq,9;
+				else if ((job_rune_book2_1 > 0) && (job_rune_book2_2 > 0) && (job_rune_edq == 9))
+					set job_rune_edq,10;
+				else if ((job_rune_book2_1 > 0) && (job_rune_book2_2 > 0) && (job_rune_edq == 10))
+					set job_rune_edq,11;
+				close;
+			}
+		}
+	}
+	end;
+}
+
+job3_rune01,50,36,1	script	Runes,Make & Use	844,{
+	if (job_rune_edq < 8) {
+		//mes "[盧恩騎士 雷諾亞]";
+		mes " - 未經許可請勿觸碰 -";
+		//next;
+		//mes "[敢死隊 隊長底格里斯]";
+		//mes "Hey 雷諾亞 go easy on that Knight. You there too,you'd better stop touching stuff here without a permission.";
+		close;
+	}
+	else if (job_rune_edq > 7) {
+		while(1) {
+			switch(select("製作盧恩石:盧恩石的能力細節:停止閱讀")) {
+			case 1:
+				set job_rune_book3_1,job_rune_book3_1+1;
+				mes "盧恩石的製作是透過盧恩騎士的技能盧恩精熟所學習到的";
+				next;
+				mes "盧恩精熟這被作為一個盧恩騎士的標誌穿上身像一個代碼.";
+				next;
+				mes "普通百姓也可以學習這個技能，它需要自己的機器被稱為盧恩爐.";
+				next;
+				mes "當你製作盧恩與盧恩爐石，盧恩的類型決定把它放魔法能量，它不能改變.";
+				next;
+				mes "當使用盧恩掌握一個盧恩的石頭，它可以製作成你想要的盧恩屬性，但它作為一個盧恩騎士“自己的能力分類. ";
+				next;
+				mes "當你操作盧恩爐，身體的神奇能量得到集中通過它，它可以變化成一個符石.";
+				next;
+				break;
+			case 2:
+				set job_rune_book3_2,job_rune_book3_2+1;
+				switch(select("第一章:第二章:第三張:第四張:停止閱讀")) {
+				case 1:
+					mes "艾伊瓦茲 - 運氣和積極的增強力量。紅色的螺旋形.";
+					next;
+					mes "歐特哈啦 - 等價交換。紫色斜線行.";
+					next;
+					mes "馬納茲 - 希望和新的開始，也是積極的力量，可以扭轉了絕望的境地。綠寶石光菱形.";
+					next;
+					mes "安斯茲 - 準備或安排的能力，可以克服未來的不安。綠寶石光圓形. ";
+					next;
+					mes "哈卡拉茲 - 自由。天藍色星形.";
+					next;
+					mes "卡納茲 - 結束一切的力量。紅光菱形.";
+					next;
+					break;
+				case 2:
+					mes "萊德赫 - 組合和重組。天藍色斜線.";
+					next;
+					mes "突里薩茲 - 邊境和限制力量。黃色圓形.";
+					next;
+					mes "達卡茲 - 持久逆境的力量。綠寶石光螺旋.";
+					next;
+					mes "索維羅 - 勝利和成功，並安排和戒菸的力量。天藍色扇形.";
+					next;
+					mes "拉可茲 - 不確定性和保護內部的權力。黃色菱形.";
+					next;
+					mes "伊札 - 停止一切權力。紫色螺旋形.";
+					next;
+					break;
+				case 3:
+					mes "培爾多羅 - 啟示和機會。銀色螺旋形.";
+					next;
+					mes "貝爾卡諾 - 豐富的重生和防禦能力。黃金星形.";
+					next;
+					mes "蓋柏 - 合作與和諧。黃色圓錐.";
+					next;
+					mes "亞爾其茲 - 機會和挑戰。綠寶石光斜線.";
+					next;
+					mes "愛沃 - 改變的力量。灰色菱形.";
+					next;
+					mes "提瓦茲 - 完美的勝利和絕對迴避。黃金圓形.";
+					next;
+					break;
+				case 4:
+					mes "兀尤 - 智慧。綠寶石光星形.";
+					next;
+					mes "耶拉 - 舒適和休息。黃色圓形.";
+					next;
+					mes "那特席茲 - 軟弱和功率衰減。黃色扇形.";
+					next;
+					mes "印格瓦茲 - 中斷和分離的。紫色菱形.";
+					next;
+					mes "菲弗 - 實現和物化的力量。銀色圓形.";
+					next;
+					mes "伊札 - 命運的限制。紫色螺旋形.";
+					next;
+					break;
+				case 5:
+					close2;
+					break;
+				}
+				break;
+			case 3:
+				if ((job_rune_book3_1 > 0) && (job_rune_book3_2 > 0) && (job_rune_edq == 8))
+					set job_rune_edq,9;
+				else if ((job_rune_book3_1 > 0) && (job_rune_book3_2 > 0) && (job_rune_edq == 9))
+					set job_rune_edq,10;
+				else if ((job_rune_book3_1 > 0) && (job_rune_book3_2 > 0) && (job_rune_edq == 10))
+					set job_rune_edq,11;
+				close;
+			}
+		}
+	}
+	end;
+}
+
+mid_camp,238,250,3	script	盧恩騎士守衛	468,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[盧恩騎士守衛]";
+		mes "賽勒佩妮雅從盧恩騎士出現以來就一直與我們再一起了.";
+		next;
+		mes "[盧恩騎士守衛]";
+		mes "我非常自豪的成為一個守護她的盧恩騎士.";
+		close;
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq < 11) {
+			mes "[盧恩騎士 智者守衛]";
+			mes "你或許揮舞著雙劍戰鬥，但你還不是盧恩騎士，不要在這裡徘徊太久.";
+			close;
+		}
+		else if (job_rune_edq > 10) {
+			mes "[盧恩騎士守衛]";
+			mes "史波浪壯麗是屬於拉菲尼的領地. 盧恩騎士遠征隊友和該國家簽訂協議，所以我們可以方便的穿梭.";
+			next;
+			mes "[盧恩騎士守衛]";
+			mes "我們為了那些盧恩騎士的學員們開闢新的道路.";
+			next;
+			mes "[盧恩騎士守衛]";
+			mes "但一但你成為盧恩騎士後，你必須要加入遠征隊才能來到異世界";
+			close;
+		}
+	}
+	else {
+		mes "[盧恩騎士 智者守衛]";
+		mes "在這裡閒晃對你沒有好處，朝向你的目標繼續前進吧.";
+		close;
+	}
+}
+
+mid_camp,13,138,3	script	盧恩騎士#1	83,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[盧恩騎士]";
+		mes "謝謝你. 我們將繼續完成我們的使命.";
+		close;
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq < 11) {
+			mes "[盧恩騎士]";
+			mes "噓... 我們不應該太招搖. 請離開這裡.";
+			close;
+		}
+		else if (job_rune_edq > 10) {
+			mes "[盧恩騎士]";
+			mes "我一直在等待盧恩騎士的候選人. 協助我們的女王賽勒佩妮雅.";
+			next;
+			mes "[盧恩騎士]";
+			mes "你想要去史波浪壯麗原野嘛?";
+			next;
+			switch(select("回到史波浪壯麗原野:取消.")) {
+			case 1:
+				warp "spl_fild01",355,325;
+				end;
+			case 2:
+				close;
+			}
+		}
+	}
+	else {
+		mes "[盧恩騎士]";
+		mes "噓... 我們不應該太招搖. 請離開這裡.";
+		close;
+	}
+}
+
+spl_fild02,13,241,0	script	#roadblock1	-1,10,10,{
+OnTouch:
+	if ((job_rune_edq > 0) && (job_rune_edq < 23)) {
+		mes "-賽勒佩妮雅在我腦海裡細語.-";
+		next;
+		mes "[賢者 賽勒佩妮雅]";
+		mes "直到你成為一名光榮的盧恩騎士前，我不能幫你控制盧恩的力量.";
+		next;
+		mes "[賢者 賽勒佩妮雅]";
+		mes "請明白這一點.";
+		close2;
+		warp "spl_fild02",25,245;
+	}
+	end;
+}
+
+spl_fild01,361,327,3	script	盧恩騎士#2	83,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[盧恩騎士]";
+		mes "謝謝你. 我們將繼續完成我們的使命.";
+		close;
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq < 11) {
+			mes "[盧恩騎士]";
+			mes "噓... 我們不應該太招搖. 請離開這裡.";
+			close;
+		}
+		else if (job_rune_edq > 10) {
+			mes "[盧恩騎士]";
+			mes "我一直在等待盧恩騎士的候選人. 協助我們的女王賽勒佩妮雅.";
+			next;
+			mes "[盧恩騎士]";
+			mes "你想要回到米德加爾特聯合營區?";
+			next;
+			switch(select("摁.:不,還沒.")) {
+			case 1:
+				warp "mid_camp",50,153;
+				end;
+			case 2:
+				close;
+			}
+		}
+	}
+	else {
+		mes "[盧恩騎士]";
+		mes "噓... 我們不應該太招搖. 請離開這裡.";
+		close;
+	}
+}
+
+mid_camp,235,250,3	script	賢者 賽勒佩妮雅	435,{
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[賢者 賽勒佩妮雅]";
+		mes "你是一個光榮的盧恩騎士. 我很高興能幫助你.";
+		next;
+		mes "[賢者 賽勒佩妮雅]";
+		mes "盧恩石的力量還不夠完美，還有很多的研究工作要做。我聽說其他盧恩騎士都很喜歡你，請繼續努力.";
+		next;
+		mes "[賢者 賽勒佩妮雅]";
+		mes "希望你的生活會被盧恩石照亮.";
+		close;
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq < 12) {
+			mes "[賢者 賽勒佩妮雅]";
+			mes "你怎麼會在這裡!?.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "我們一直以來都和人類保持著特殊的關係.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "我一直在專研人類的書性，這就是我學習你們語言的方式.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "也許還需要一台能翻譯拉菲尼語言的機器，這樣人類才能更輕易的了解我們.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "最重要的事... 我不能告訴你更多了. 我不能亂說....";
+			close;
+		}
+		else if (job_rune_edq == 12) {
+			mes "[賢者 賽勒佩妮雅]";
+			mes "歡迎, 一個正在接受培訓的盧恩騎士. 我是賽勒佩妮雅.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "到目前為止你所看到的盧恩騎士都是我和貝傑夫所教出來的弟子. 你現在將用自己的方式加入他們.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "我想你已經從雷諾亞了解一些盧恩石基本的解說了. 現在輪到我來幫助你了.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "盧恩騎士使用的盧恩石，並不是在人類技術可以生成的力量.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "就在這個地方... 我們的領域，異世界.. 這神奇的力量";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "我們生活的地方已經將神奇的力量保留在自己的體內，不同於人類的世界.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "盧恩石的能量是從我們身體內塑造而成的.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "所以使用盧恩石，你必須從我們的身上獲得能量.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "但是，由於太多人提取了這片土地的魔法力量.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "現在我對你的身體施展了法術，你可以從其他生靈上收集到能量.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "暫時你可以從魔物中提取魔法力量，當然你無法直接使用他...";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "如果你從魔物中收集足夠的能量，我可以將他轉換成你可以使用的能量.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "在魔物死亡後的靈魂是偉大的能量來源.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "去消除 ^0000FF10 無顱武士^000000,^0000FF10 假面鬼^000000,^0000FF10 萬聖魔^000000,^0000FF10 兔斯拉^000000並收集他們的能量.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "我不會去測試你的資格. 因為其他的盧恩騎士將會做好這部分.";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "如果你還有什麼問題，再來找我吧.";
+			set job_rune_edq,13;
+			changequest 3207,3208;
+			setquest 3209;
+			setquest 3210;
+			setquest 3211;
+			setquest 3212;
+			close;
+		}
+		else if (job_rune_edq == 13) {
+			mes "[賢者 賽勒佩妮雅]";
+			mes "你已經收集完足夠的能量了嘛? 還是你有其他問題?";
+			next;
+			switch(select("我已經收集足夠的能量了.:前往收集的地方.:停止談話.")) {
+			case 1:
+				mes "[賢者 賽勒佩妮雅]";
+				mes "真的嘛? 讓我們來看看.";
+				next;
+				set .@rune_hunt1,checkquest(3209,HUNTING);
+				set .@rune_hunt2,checkquest(3210,HUNTING);
+				set .@rune_hunt3,checkquest(3211,HUNTING);
+				set .@rune_hunt4,checkquest(3212,HUNTING);
+				if ((.@rune_hunt1 == 2) && (.@rune_hunt2 == 2) && (.@rune_hunt3 == 2) && (.@rune_hunt4 == 2)) {
+					mes "[賢者 賽勒佩妮雅]";
+					mes "摁, 非常好. 你身上累積了足夠的魔法能量.";
+					next;
+					mes "[賢者 賽勒佩妮雅]";
+					mes "盧恩騎士 雷諾亞將會告訴你怎麼使用盧恩石.";
+					next;
+					mes "[賢者 賽勒佩妮雅]";
+					mes "現在我也希望你能成為一個光榮的盧恩騎士.";
+					next;
+					mes "[賢者 賽勒佩妮雅]";
+					mes "我將送你回到盧恩騎士聚集的地方，如果你準備好了，再來找我.";
+					set job_rune_edq,14;
+					changequest 3208,3213;
+					completequest 3209;
+					completequest 3210;
+					completequest 3211;
+					completequest 3212;
+					close;
+				}
+				else {
+					mes "[賢者 賽勒佩妮雅]";
+					mes "你還沒有收集足夠的魔法能量.";
+					next;
+					mes "[賢者 賽勒佩妮雅]";
+					mes "請振作精神，獵殺那些魔物，收集足夠的魔法能量.";
+					close;
+				}
+				break;
+			case 2:
+				mes "[賢者 賽勒佩妮雅]";
+				mes "你要回到聚集的地方嗎？如果你想我會馬上送你回去.";
+				next;
+				mes "[賢者 賽勒佩妮雅]";
+				mes "你要回到盧恩騎士聚集的地方嘛?";
+				next;
+				switch(select("我想回去.:取消.")) {
+				case 1:
+					warp "job3_rune01",80,65;
+					end;
+				case 2:
+					close;
+				}
+				break;
+			case 3:
+				close;
+			}
+		}
+		else if (job_rune_edq == 14) {
+			mes "[賢者 賽勒佩妮雅]";
+			mes "你已經準備好要回到盧恩騎士聚集的地方了嘛?";
+			next;
+			switch(select("我想現在就回去.:我還沒準備好.")) {
+			case 1:
+				warp "job3_rune01",80,65;
+				end;
+			case 2:
+				close;
+			}
+		}
+		else if (job_rune_edq > 14) {
+			mes "[賢者 賽勒佩妮雅]";
+			mes "轉職任務進行的順利嘛?";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "你現在不應該出現在這裡吧?";
+			next;
+			mes "[賢者 賽勒佩妮雅]";
+			mes "你應該回到盧恩騎士的聚集地.";
+			next;
+			switch(select("我要回到盧恩騎士的聚集地.:我還要待在這裡.")) {
+			case 1:
+				warp "job3_rune01",80,65;
+				end;
+			case 2:
+				close;
+			}
+		}
+	}
+	else {
+		mes "[賢者 賽勒佩妮雅]";
+		mes "我們一直以來都和人類保持著特殊的關係.";
+		next;
+		mes "[賢者 賽勒佩妮雅]";
+		mes "我一直在專研人類的書性，這就是我學習你們語言的方式.";
+		next;
+		mes "[賢者 賽勒佩妮雅]";
+		mes "也許還需要一台能翻譯拉菲尼語言的機器，這樣人類才能更輕易的了解我們.";
+		next;
+		mes "[賢者 賽勒佩妮雅]";
+		mes "最重要的事... 我不能告訴你更多了. 我不能亂說....";
+		close;
+	}
+}
+
+job3_rune01,114,50,3	script	盧恩騎士 貝皮諾	468,{
+	set .@strRetPart1,getequipisequiped(EQI_HEAD_TOP);
+	set .@strRetPart2,getequipisequiped(EQI_ARMOR);
+	set .@strRetPart3,getequipisequiped(EQI_HAND_L);
+	set .@strRetPart4,getequipisequiped(EQI_HAND_R);
+	set .@strRetPart5,getequipisequiped(EQI_GARMENT);
+	set .@strRetPart6,getequipisequiped(EQI_SHOES);
+	set .@strRetPart7,getequipisequiped(EQI_ACC_L);
+	set .@strRetPart8,getequipisequiped(EQI_ACC_R);
+	set .@strRetPart10,getequipisequiped(EQI_HEAD_MID);
+	set .@strRetPart11,getequipisequiped(EQI_HEAD_LOW);
+	if (BaseClass == Job_Rune_Knight) {
+		mes "[盧恩騎士 貝皮諾]";
+		mes "你看起來還是像個盧恩騎士的新手. 為盧恩騎士帶來榮耀並提高自己的能力吧...";
+		close;
+	}
+	else if (BaseJob == Job_Knight) {
+		if (job_rune_edq < 17) {
+			mes "一個非常寒冷的感覺，從頭到腳穿著黑色的人看著我.";
+			next;
+			mes "為什麼所有的騎士不是沉默寡言、要不就熱血好戰...?";
+			next;
+			mes "[敢死隊 隊長底格里斯]";
+			mes "嘿... 我不喜歡這樣!";
+			close;
+		}
+		else if (job_rune_edq == 17) {
+			mes "[盧恩騎士 貝皮諾]";
+			mes "我沒想到將會有候選人來找我...";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "恭喜! 這是最後的測驗了... 我想你已經掌握到基本的知識了.";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "最後的測驗非常簡單，等測驗結束時，你也擺脫了這雷克斯漢特姆古城...";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "唯一的條件是，你必須使用這些盧恩石獵殺這些魔物.";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "在這個測驗中你只能使用單手武器和盾牌，或者雙手武器.";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "而武器的重量只能在400以下，而這裡將提供攻擊、防禦盧恩石個30個.";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "使用這些盧恩石，他將會給你一個特殊的能力.";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "古城裡面的三種魔物... 這將不會是一場簡單的戰鬥，但如果你通過這最後的測驗，你將成為盧恩騎士.";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "為了幫助盧恩騎士候選人,我們與卡普拉中心簽訂了合約,雇用了一位卡普拉服務人員. 你可以去找找她";
+			next;
+			mes "[盧恩騎士 貝皮諾]";
+			mes "你準備好了再來找我吧.";
+			set job_rune_edq,18;
+			changequest 3216,3217;
+			close;
+		}
+		else if ((job_rune_edq > 17) && (job_rune_edq < 21)) {
+			set .@rune_crush,countitem(12388);
+			set .@rune_storm,countitem(12389);
+			set .@rune_millenium,countitem(12390);
+			set .@rune_check,.@rune_crush + .@rune_storm + .@rune_millenium;
+			if (.@rune_check == 0) {
+				mes "[盧恩騎士 貝皮諾]";
+				mes "如果你已經準備完畢，我將送你到最後的測驗場.";
+				set job_rune_edq,18;
+				next;
+				switch(select("進入最後測驗場.:還沒準備好.")) {
+				case 1:
+					if ((.@strRetPart1 == 0) && (.@strRetPart2 == 0) && (.@strRetPart5 == 0) && (.@strRetPart6 == 0) && (.@strRetPart7 == 0) && (.@strRetPart8 == 0) && (.@strRetPart10 == 0) && (.@strRetPart11 == 0)) {
+						set .@test_miss_check,checkquest(3220,PLAYTIME);
+						if (.@test_miss_check == -1) {
+							if ($@job_rune_test1 == 0) {
+								if (Weight < 4001) {
+									set $@job_rune_test1,1;
+									//ConsumeSpecialItem Rune_Kn_Test_Int
+									sc_start SC_INCINT,300000,40;
+									getitem 12389,30; //Runstone_Storm
+									getitem 12390,30; //Runstone_Millennium
+									if (checkquest(3320) > -1) erasequest 3220;
+									setquest 3220;
+									warp "job3_rune02",38,40;
+								}
+								else {
+									mes "[盧恩騎士 貝皮諾]";
+									mes "在這個測驗中你只能裝備單手武器和盾牌，或者雙手武器. 請將你其他的裝備交給卡普拉服務人員保管";
+									close;
+								}
+							}
+							else {
+								// custom translation
+								mes "[盧恩騎士 貝皮諾]";
+								mes "看來裡面已經有人再測驗了.";
+								next;
+								mes "[盧恩騎士 貝皮諾]";
+								mes "請耐心等候,";
+								close;
+							}
+						}
+						else if ((.@test_miss_check == 0) || (.@test_miss_check == 1)) {
+							mes "[盧恩騎士 貝皮諾]";
+							mes "如果你失敗了，請在十分鐘後再來...";
+							next;
+							mes "[盧恩騎士 貝皮諾]";
+							mes "考慮到其他參加測驗考生的權利,請十分鐘後再來.";
+							close;
+						}
+						else if (.@test_miss_check == 2) {
+							if ($@job_rune_test1 == 0) {
+								if (Weight < 4001) {
+									set $@job_rune_test1,1;
+									//ConsumeSpecialItem Rune_Kn_Test_Int
+									sc_start SC_INCINT,300000,40;
+									getitem 12389,30; //Runstone_Storm
+									getitem 12390,30; //Runstone_Millennium
+									if (checkquest(3320) > -1) erasequest 3220;
+									setquest 3220;
+									warp "job3_rune02",38,40;
+								}
+								else {
+									mes "[盧恩騎士 貝皮諾]";
+									mes "唯一你只能使用一把武器，重量應該要在400以下，盧恩時將會提供攻擊、防禦盧恩石各三十個.";
+									next;
+									mes "[盧恩騎士 貝皮諾]";
+									mes "請將剩下的東西拿給卡普拉服務人員保管.";
+									close;
+								}
+							}
+							else {
+								// custom translation
+								mes "[盧恩騎士 貝皮諾]";
+								mes "看來裡面已經有人再測驗了.";
+								next;
+								mes "[盧恩騎士 貝皮諾]";
+								mes "請耐心等候,";
+								close;
+							}
+						}
+						end;
+					}
+					else {
+						mes "[盧恩騎士 貝皮諾]";
+						mes "在這個測驗中你只能裝備單手武器和盾牌，或者雙手武器. 請將你其他的裝備交給卡普拉服務人員保管";
+						close;
+					}
+					break;
+				case 2:
+					break;
+				}
+			}
+			else {
+				set .@rune_crush,countitem(12388);
+				set .@rune_storm,countitem(12389);
+				set .@rune_millenium,countitem(12390);
+				if (.@rune_crush > 0) {
+					mes "[盧恩騎士 貝皮諾]";
+					mes "等等我先回收一下你的盧恩石.";
+					delitem 12388,.@rune_crush; //Runstone_Crush
+					//next;
+					//mes "[盧恩騎士 貝皮諾]";
+					//mes "如果你的準備完成了，請您談談我再次。";
+					close;
+				}
+				else if (.@rune_storm > 0) {
+					mes "[盧恩騎士 貝皮諾]";
+					mes "等等我先回收一下你的盧恩石.";
+					delitem 12389,.@rune_storm; //Runstone_Storm
+					//next;
+					//mes "[盧恩騎士 貝皮諾]";
+					//mes "如果你的準備完成了，請您談談我再次。";
+					close;
+				}
+				else if (.@rune_millenium > 0) {
+					mes "[盧恩騎士 貝皮諾]";
+					mes "等等我先回收一下你的盧恩石.";
+					delitem 12390,.@rune_millenium; //Runstone_Millennium
+					//next;
+					//mes "[盧恩騎士 貝皮諾]";
+					//mes "如果你的準備完成了，請您談談我再次。";
+					close;
+				}
+				else {
+				}
+			}
+		}
+		else if (job_rune_edq == 21) {
+			mes "[盧恩騎士 貝皮諾]";
+			mes "你已經非常成功的通過了最後一次的測驗.";
+			next;
+			set .@rune_crush,countitem(12388);
+			set .@rune_storm,countitem(12389);
+			set .@rune_millenium,countitem(12390);
+			set .@rune_check,.@rune_crush + .@rune_storm + .@rune_millenium;
+			if (.@rune_check == 0) {
+				mes "[盧恩騎士 貝皮諾]";
+				mes "現在, 所有的測驗都已經結束了, 回去找底格里斯吧.";
+				next;
+				mes "[盧恩騎士 貝皮諾]";
+				mes "恭喜!";
+				mes "我現在應該要去測驗其他的候選人.";
+				set job_rune_edq,22;
+				changequest 3218,3219;
+				close;
+			}
+			else {
+				set .@rune_crush,countitem(12388);
+				set .@rune_storm,countitem(12389);
+				set .@rune_millenium,countitem(12390);
+				if (.@rune_crush > 0) {
+					mes "[盧恩騎士 貝皮諾]";
+					mes "等等我先回收一下你的盧恩石.";
+					delitem 12388,.@rune_crush; //Runstone_Crush
+					//next;
+					//mes "[盧恩騎士 貝皮諾]";
+					//mes "I'll need to re-use these unused rune stones. Talk to me again once I have taken all the test rune stones.";
+					close;
+				}
+				else if (.@rune_storm > 0) {
+					mes "[盧恩騎士 貝皮諾]";
+					mes "等等我先回收一下你的盧恩石.";
+					delitem 12389,.@rune_storm; //Runstone_Storm
+					//next;
+					//mes "[盧恩騎士 貝皮諾]";
+					//mes "I'll need to re-use these unused rune stones. Talk to me again once I have taken all the test rune stones.";
+					close;
+				}
+				else if (.@rune_millenium > 0) {
+					mes "[盧恩騎士 貝皮諾]";
+					mes "等等我先回收一下你的盧恩石.";
+					delitem 12390,.@rune_millenium; //Runstone_Millennium
+					//next;
+					//mes "[盧恩騎士 貝皮諾]";
+					//mes "I'll need to re-use these unused rune stones. Talk to me again once I have taken all the test rune stones.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "一個非常寒冷的感覺，從頭到腳穿著黑色的人看著我.";
+			close;
+		}
+	}
+	else {
+		mes "一個非常寒冷的感覺，從頭到腳穿著黑色的人看著我.";
+		close;
+	}
+}
+
+job3_rune02,38,40,0	script	#RK Test Hidden Portal 1	-1,10,10,{
+OnInit:
+	enablenpc "#RK Test Hidden Portal 1";
+	end;
+
+OnEnable:
+	enablenpc "#RK Test Hidden Portal 1";
+	end;
+
+OnDisable:
+	disablenpc "#RK Test Hidden Portal 1";
+	end;
+
+OnTouch:
+	if (job_rune_edq == 4) {
+		donpcevent "job_rune_edq#1st_broad::OnEnable";
+		donpcevent "#RK Test Hidden Portal 1::OnDisable";
+	}
+	else if ((job_rune_edq > 17) && (job_rune_edq < 21)) {
+		donpcevent "job_rune_edq#3rd_broad::OnEnable";
+		donpcevent "#RK Test Hidden Portal 1::OnDisable";
+	}
+	else {
+		donpcevent "#RK Test Hidden Portal 1::OnDisable";
+		donpcevent "job_rune_edq#1st_broad::OnDisable";
+		donpcevent "job_rune_edq#1st_control::OnDisable";
+		donpcevent "job_rune_edq#1st_con_mc::OnDisable";
+		donpcevent "job_rune_edq#1st_con_mc2::OnDisable";
+		donpcevent "job_rune_edq#1st_con_nc::OnDisable";
+		donpcevent "job_rune_edq#3rd_broad::OnDisable";
+		donpcevent "job_rune_edq#3rd_con::OnDisable";
+		set $@job_rune_test1,0;
+		set $@job_rune_test2,0;
+		donpcevent "#RK Test Hidden Portal 1::OnEnable";
+		mapwarp "job3_rune02","job3_rune01",80,65;
+	}
+	end;
+}
+
+job3_rune02,1,1,0	script	job_rune_edq#1st_broad	-1,{
+OnInit:
+	disablenpc "job_rune_edq#1st_broad";
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "job_rune_edq#1st_broad";
+	end;
+
+OnTimer5000:
+	mapannounce "job3_rune02","我將開始盧恩騎士轉職的第一次測試.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer8000:
+	mapannounce "job3_rune02","測驗內容是五分鐘內殺死所有怪物並生存下來.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer11000:
+	mapannounce "job3_rune02","如果你無法生存下來或者獵殺完畢，任務將失敗.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer14000:
+	mapannounce "job3_rune02","現在開始任務.",bc_map,"0xFFFF00";
+	donpcevent "job_rune_edq#1st_control::OnEnable";
+	donpcevent "job_rune_edq#1st_broad::OnDisable";
+	end;
+}
+
+job3_rune02,1,2,0	script	job_rune_edq#1st_control	-1,{
+OnInit:
+	disablenpc "job_rune_edq#1st_control";
+	end;
+
+OnEnable:
+	initnpctimer;
+	donpcevent "job_rune_edq#1st_con_mc::OnEnable";
+	donpcevent "job_rune_edq#1st_con_nc::OnEnable";
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "job_rune_edq#1st_control";
+	end;
+
+OnTimer300000:
+	killmonsterall "job3_rune02";
+	mapannounce "job3_rune02","你已經超過限制的時間了，所以我宣布測驗失敗.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer305000:
+	donpcevent "#RK Test Hidden Portal 1::OnDisable";
+	donpcevent "job_rune_edq#1st_broad::OnDisable";
+	donpcevent "job_rune_edq#1st_control::OnDisable";
+	donpcevent "job_rune_edq#1st_con_mc::OnDisable";
+	donpcevent "job_rune_edq#1st_con_mc2::OnDisable";
+	donpcevent "job_rune_edq#1st_con_nc::OnDisable";
+	donpcevent "job_rune_edq#3rd_broad::OnDisable";
+	donpcevent "job_rune_edq#3rd_con::OnDisable";
+	donpcevent "#RK Test Hidden Portal 1::OnEnable";
+	mapwarp "job3_rune02","job3_rune01",80,65;
+	set $@job_rune_test1,0;
+	set $@job_rune_test2,0;
+	stopnpctimer;
+	end;
+}
+
+job3_rune02,3,10,0	script	job_rune_edq#1st_con_mc	-1,{
+OnInit:
+	disablenpc "job_rune_edq#1st_con_mc";
+	end;
+
+OnEnable:
+	enablenpc "job_rune_edq#1st_con_mc";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job3_rune02","job_rune_edq#1st_con_mc::OnMyMobDead";
+	stopnpctimer;
+	disablenpc "job_rune_edq#1st_con_mc";
+	end;
+
+Onreset:
+	killmonsterall "job3_rune02";
+	end;
+
+OnTimer5000:
+	monster "job3_rune02",0,0,"幽靈劍士",1467,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	end;
+
+OnTimer50000:
+	set .@job_rune_p,rand(1,6);
+	if (.@job_rune_p == 1) {
+		monster "job3_rune02",0,0,"幽靈劍士",1467,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 2) || (.@job_rune_p == 4)) {
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 3) || (.@job_rune_p == 5)) {
+		monster "job3_rune02",0,0,"阿修羅狂戰士",1484,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"瑞比歐",1483,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if (.@job_rune_p == 6) {
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	end;
+
+OnTimer100000:
+	set .@job_rune_p,rand(1,6);
+	if (.@job_rune_p == 1) {
+		monster "job3_rune02",0,0,"幽靈劍士",1467,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 2) || (.@job_rune_p == 4)) {
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 3) || (.@job_rune_p == 5)) {
+		monster "job3_rune02",0,0,"阿修羅狂戰士",1484,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"瑞比歐",1483,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if (.@job_rune_p == 6) {
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	end;
+
+OnTimer150000:
+	set .@job_rune_p,rand(1,6);
+	if (.@job_rune_p == 1) {
+		monster "job3_rune02",0,0,"幽靈劍士",1467,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 2) || (.@job_rune_p == 4)) {
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 3) || (.@job_rune_p == 5)) {
+		monster "job3_rune02",0,0,"阿修羅狂戰士",1484,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"瑞比歐",1483,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if (.@job_rune_p == 6) {
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	end;
+
+OnTimer200000:
+	set .@job_rune_p,rand(1,6);
+	if (.@job_rune_p == 1) {
+		monster "job3_rune02",0,0,"幽靈劍士",1467,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 2) || (.@job_rune_p == 4)) {
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 3) || (.@job_rune_p == 5)) {
+		monster "job3_rune02",0,0,"阿修羅狂戰士",1484,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"瑞比歐",1483,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	else if (.@job_rune_p == 6) {
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc::OnMyMobDead";
+	}
+	end;
+
+OnTimer250000:
+	killmonster "job3_rune02","job_rune_edq#1st_con_mc::OnMyMobDead";
+	donpcevent "job_rune_edq#1st_con_mc2::OnEnable";
+	donpcevent "job_rune_edq#1st_con_mc::OnDisable";
+	end;
+
+OnMyMobDead:
+	end;
+}
+
+job3_rune02,3,11,0	script	job_rune_edq#1st_con_mc2	-1,{
+OnInit:
+	disablenpc "job_rune_edq#1st_con_mc2";
+	end;
+
+OnEnable:
+	enablenpc "job_rune_edq#1st_con_mc2";
+	initnpctimer;
+	set .@job_rune_p,rand(1,6);
+	if (.@job_rune_p == 1) {
+		monster "job3_rune02",0,0,"幽靈劍士",1467,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"幽靈弓箭手",1453,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 2) || (.@job_rune_p == 4)) {
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"飛行魔書",1478,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+	}
+	else if ((.@job_rune_p == 3) || (.@job_rune_p == 5)) {
+		monster "job3_rune02",0,0,"阿修羅狂戰士",1484,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"瑞比歐",1483,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+	}
+	else if (.@job_rune_p == 6) {
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+		monster "job3_rune02",0,0,"惡靈",1475,1,"job_rune_edq#1st_con_mc2::OnMyMobDead";
+	}
+	end;
+
+OnDisable:
+	killmonster "job3_rune02","job_rune_edq#1st_con_mc2::OnMyMobDead";
+	stopnpctimer;
+	disablenpc "job_rune_edq#1st_con_mc2";
+	end;
+
+OnMyMobDead:
+	if (mobcount("job3_rune02","job_rune_edq#1st_con_mc2::OnMyMobDead") < 1) {
+		set job_rune_edq,5;
+		erasequest 3220;
+		killmonster "job3_rune02","job_rune_edq#1st_con_mc2::OnMyMobDead";
+		mapannounce "job3_rune02","Congratulations. You've passed the first test.",bc_map,"0xFFFF00";
+		mapwarp "job3_rune02","job3_rune01",80,65;
+		donpcevent "job_rune_edq#1st_broad::OnDisable";
+		donpcevent "job_rune_edq#1st_control::OnDisable";
+		donpcevent "job_rune_edq#1st_con_nc::OnDisable";
+		donpcevent "job_rune_edq#1st_con_mc::OnDisable";
+		donpcevent "job_rune_edq#1st_con_mc2::OnDisable";
+		donpcevent "#RK Test Hidden Portal 1::OnEnable";
+		set $@job_rune_test1,0;
+		set $@job_rune_test2,0;
+	}
+	end;
+}
+
+job3_rune02,1,10,0	script	job_rune_edq#1st_con_nc	-1,{
+OnInit:
+	disablenpc "job_rune_edq#1st_con_nc";
+	end;
+
+OnEnable:
+	enablenpc "job_rune_edq#1st_con_nc";
+	initnpctimer;
+	end;
+
+OnDisable:
+	disablenpc "job_rune_edq#1st_con_nc";
+	set $@job_rune_test2,0;
+	donpcevent "敢死隊 隊長底格里斯#job::OnDisable";
+	donpcevent "盧恩騎士 盧娜妮雅#job::OnDisable";
+	donpcevent "盧恩騎士 雷諾亞#job::OnDisable";
+	donpcevent "盧恩騎士 貝皮諾#job::OnDisable";
+	stopnpctimer;
+	end;
+
+Onuse:
+	mapannounce "job3_rune02","敢死隊 隊長底格里斯 : Gentleman,Let's watch the test for a while.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	set $@job_rune_test2,0;
+	donpcevent "敢死隊 隊長底格里斯#job::OnDisable";
+	donpcevent "盧恩騎士 盧娜妮雅#job::OnDisable";
+	donpcevent "盧恩騎士 雷諾亞#job::OnDisable";
+	donpcevent "盧恩騎士 貝皮諾#job::OnDisable";
+	donpcevent "job_rune_edq#1st_con_nc::OnEnable";
+	end;
+
+OnTimer30000:
+	mapannounce "job3_rune02","敢死隊 隊長底格里斯 : Rune Knight Candidates... If you want to borrow our power talk to one of us.",bc_map,"0xFFFF00";
+	donpcevent "敢死隊 隊長底格里斯#job::OnEnable";
+	donpcevent "盧恩騎士 盧娜妮雅#job::OnEnable";
+	donpcevent "盧恩騎士 雷諾亞#job::OnEnable";
+	donpcevent "盧恩騎士 貝皮諾#job::OnEnable";
+	end;
+
+OnTimer60000:
+	mapannounce "job3_rune02","敢死隊 隊長底格里斯 : It seems you don't need our help... Let's watch the test for a while.",bc_map,"0xFFFF00";
+	stopnpctimer;
+	donpcevent "敢死隊 隊長底格里斯#job::OnDisable";
+	donpcevent "盧恩騎士 盧娜妮雅#job::OnDisable";
+	donpcevent "盧恩騎士 雷諾亞#job::OnDisable";
+	donpcevent "盧恩騎士 貝皮諾#job::OnDisable";
+	donpcevent "job_rune_edq#1st_con_nc::OnEnable";
+	end;
+}
+
+job3_rune02,34,46,5	script	敢死隊 隊長底格里斯#job	470,{
+	set .@tigris,rand(1,6);
+	if ((job_rune_edq == 4) && (!$@job_rune_test2)) {
+		if (.@tigris == 1) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","敢死隊 隊長底格里斯 : 貝傑夫祝福你!",bc_map,"0xFFFF00";
+			//UseSkillToPC 34 0 0 0
+			skilleffect "AL_BLESSING",0;
+			initnpctimer;
+		}
+		else if ((.@tigris == 2) || (.@tigris == 4)) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","敢死隊 隊長底格里斯 : 生命的火花... 讓火花再次綻放.",bc_map,"0xFFFF00";
+			//UseSkillToPC 28 8 70 99
+			skilleffect "AL_HEAL",2000;
+			heal 2000,0;
+			initnpctimer;
+		}
+		else if (.@tigris == 3) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","敢死隊 隊長底格里斯 : 惡魔! 回到你的墳末!",bc_map,"0xFFFF00";
+			specialeffect2 EF_METEORSTORM;
+			donpcevent "job_rune_edq#1st_con_mc::Onreset";
+			initnpctimer;
+		}
+		else if (.@tigris == 5) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","敢死隊 隊長底格里斯 : 對於盧恩騎士，這樣的考驗是什麼!",bc_map,"0xFFFF00";
+			sc_start SC_STUN,10000,0;
+			initnpctimer;
+		}
+		else if (.@tigris == 6) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","敢死隊 隊長底格里斯 : 對於盧恩騎士，這樣的考驗是什麼!",bc_map,"0xFFFF00";
+			sc_start SC_BLEEDING,10000,0;
+			initnpctimer;
+		}
+		else {
+			donpcevent "job_rune_edq#1st_con_nc::Onuse";
+		}
+	}
+	else {
+		donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	}
+	end;
+
+OnTimer5000:
+	donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	set $@job_rune_test2,0;
+	stopnpctimer;
+	end;
+OnInit:
+	disablenpc "敢死隊 隊長底格里斯#job";
+	end;
+
+OnEnable:
+	enablenpc "敢死隊 隊長底格里斯#job";
+	end;
+
+OnDisable:
+	disablenpc "敢死隊 隊長底格里斯#job";
+	end;
+}
+
+job3_rune02,43,46,3	script	盧恩騎士 盧娜妮雅#job	469,{
+	set .@tigris,rand(1,6);
+	if ((job_rune_edq == 4) && (!$@job_rune_test2)) {
+		if (.@tigris == 1) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","盧恩騎士 盧娜妮雅 : 快點...攻擊敵人的弱點!",bc_map,"0xFFFF00";
+			//UseSkillToPC 29 0 0 0
+			skilleffect "AL_INCAGI",0;
+			initnpctimer;
+		}
+		else if ((.@tigris == 2) || (.@tigris == 4)) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 盧娜妮雅 : 這並不會太難... 你需要更多力量...",bc_map,"0xFFFF00";
+			//UseSkillToPC 28 8 60 90
+			skilleffect "AL_HEAL",1500;
+			heal 1500,0;
+			initnpctimer;
+		}
+		else if (.@tigris == 3) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","盧恩騎士 盧娜妮雅 : 每件事都應該回到他出現的地方!",bc_map,"0xFFFF00";
+			//UseSkillToPC 35 0 0 0
+			skilleffect "AL_CURE",0;
+			initnpctimer;
+		}
+		else if (.@tigris == 5) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 盧娜妮雅 : 沒有經過磨練是沒辦法成長的!",bc_map,"0xFFFF00";
+			sc_start SC_POISON,30000,0;
+			initnpctimer;
+		}
+		else if (.@tigris == 6) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 盧娜妮雅 : 沒有經過磨練是沒辦法成長的!",bc_map,"0xFFFF00";
+			sc_start SC_CURSE,30000,0;
+			initnpctimer;
+		}
+		else {
+			donpcevent "job_rune_edq#1st_con_nc::Onuse";
+		}
+	}
+	else {
+		donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	}
+	end;
+
+OnTimer5000:
+	donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	set $@job_rune_test2,0;
+	stopnpctimer;
+	end;
+
+OnInit:
+	disablenpc "盧恩騎士 盧娜妮雅#job";
+	end;
+
+OnEnable:
+	enablenpc "盧恩騎士 盧娜妮雅#job";
+	end;
+
+OnDisable:
+	disablenpc "盧恩騎士 盧娜妮雅#job";
+	end;
+}
+
+job3_rune02,43,34,1	script	盧恩騎士 雷諾亞#job	469,{
+	set .@tigris,rand(1,6);
+	if ((job_rune_edq == 4) && (!$@job_rune_test2)) {
+		if (.@tigris == 1) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","盧恩騎士 雷諾亞 : 爆炸盧恩石! 他將會給你力量!",bc_map,"0xFFFF00";
+			//UseSkillToPC 29 0 0 0
+			skilleffect "AL_INCAGI",0;
+			initnpctimer;
+		}
+		else if ((.@tigris == 2) || (.@tigris == 4)) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 雷諾亞 : 重生盧恩石! 他將會給你生命!",bc_map,"0xFFFF00";
+			//UseSkillToPC 28 8 60 90
+			skilleffect "AL_HEAL",1500;
+			heal 1500,0;
+			initnpctimer;
+		}
+		else if (.@tigris == 3) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","盧恩騎士 雷諾亞 : 我比別人快! 我比別人強!",bc_map,"0xFFFF00";
+			specialeffect2 EF_PIERCESELF;
+			donpcevent "job_rune_edq#1st_con_mc::Onreset";
+			initnpctimer;
+		}
+		else if (.@tigris == 5) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 雷諾亞 : 對於一個盧恩騎士，這些考驗算什麼東西!",bc_map,"0xFFFF00";
+			sc_start SC_POISON,30000,0;
+			initnpctimer;
+		}
+		else if (.@tigris == 6) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 雷諾亞 : 對於一個盧恩騎士，這些考驗算什麼東西!",bc_map,"0xFFFF00";
+			sc_start SC_CURSE,30000,0;
+			initnpctimer;
+		}
+		else {
+			donpcevent "job_rune_edq#1st_con_nc::Onuse";
+		}
+	}
+	else {
+		donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	}
+	end;
+
+OnTimer5000:
+	set $@job_rune_test2,0;
+	donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	stopnpctimer;
+	end;
+
+OnInit:
+	disablenpc "盧恩騎士 雷諾亞#job";
+	end;
+
+OnEnable:
+	enablenpc "盧恩騎士 雷諾亞#job";
+	end;
+
+OnDisable:
+	disablenpc "盧恩騎士 雷諾亞#job";
+	end;
+}
+
+job3_rune02,34,34,7	script	盧恩騎士 貝皮諾#job	468,{
+	set .@tigris,rand(1,6);
+	if ((job_rune_edq == 4) && (!$@job_rune_test2)) {
+		if (.@tigris == 1) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 貝皮諾 : 你不應該是會在這種地方倒下來的人.",bc_map,"0xFFFF00";
+			//UseSkillToPC 28 8 60 90
+			skilleffect "AL_HEAL",1500;
+			heal 1500,0;
+			initnpctimer;
+		}
+		else if ((.@tigris == 2) || (.@tigris == 4)) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","盧恩騎士 貝皮諾 : 衝阿! 把他們打下來!",bc_map,"0xFFFF00";
+			//UseSkillToPC 29 0 0 0
+			skilleffect "AL_INCAGI",0;
+			initnpctimer;
+		}
+		else if (.@tigris == 3) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","盧恩騎士 貝皮諾 : 你並不孤單，我們都在你身邊",bc_map,"0xFFFF00";
+			//UseSkillToPC 34 0 0 0
+			skilleffect "AL_BLESSING",0;
+			initnpctimer;
+		}
+		else if (.@tigris == 5) {
+			set $@job_rune_test2,1;
+			// custom translation
+			mapannounce "job3_rune02","盧恩騎士 貝皮諾 :不要猶豫! 往前邁進!",bc_map,"0xFFFF00";
+			sc_start SC_FREEZE,10000,0;
+			initnpctimer;
+		}
+		else if (.@tigris == 6) {
+			set $@job_rune_test2,1;
+			mapannounce "job3_rune02","盧恩騎士 貝皮諾 : 這對盧恩騎士來說不是太困難的事情!",bc_map,"0xFFFF00";
+			sc_start SC_SLEEP,10000,0;
+			initnpctimer;
+		}
+		else {
+			donpcevent "job_rune_edq#1st_con_nc::Onuse";
+		}
+	}
+	else {
+		donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	}
+	end;
+
+OnTimer5000:
+	set $@job_rune_test2,0;
+	donpcevent "job_rune_edq#1st_con_nc::Onuse";
+	stopnpctimer;
+	end;
+
+OnInit:
+	disablenpc "盧恩騎士 貝皮諾#job";
+	end;
+
+OnEnable:
+	enablenpc "盧恩騎士 貝皮諾#job";
+	end;
+
+OnDisable:
+	disablenpc "盧恩騎士 貝皮諾#job";
+	end;
+}
+
+job3_rune02,2,1,0	script	job_rune_edq#3rd_broad	-1,{
+OnInit:
+	disablenpc "job_rune_edq#3rd_broad";
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "job_rune_edq#3rd_broad";
+	end;
+
+OnTimer5000:
+	mapannounce "job3_rune02","我將開始盧恩騎士最後一次的測驗.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer8000:
+	mapannounce "job3_rune02","請在8分鐘內使用這些盧恩石獵殺完這些怪物.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer11000:
+	mapannounce "job3_rune02","如果你死了，或者無法在時間內獵殺完這些怪物，任務將失敗.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer14000:
+	mapannounce "job3_rune02","現在開始測驗.",bc_map,"0xFFFF00";
+	donpcevent "job_rune_edq#3rd_con::OnEnable";
+	donpcevent "job_rune_edq#3rd_broad::OnDisable";
+	end;
+}
+
+job3_rune02,2,2,0	script	job_rune_edq#3rd_con	-1,{
+OnInit:
+	disablenpc "job_rune_edq#3rd_con";
+	end;
+
+OnEnable:
+	initnpctimer;
+	donpcevent "job_rune_edq#3rd_con_1::OnEnable";
+	end;
+
+OnDisable:
+	stopnpctimer;
+	donpcevent "job_rune_edq#3rd_con_1::OnDisable";
+	donpcevent "job_rune_edq#3rd_con_2::OnDisable";
+	donpcevent "job_rune_edq#3rd_con_3::OnDisable";
+	disablenpc "job_rune_edq#3rd_con";
+	end;
+
+OnTimer480000:
+	killmonsterall "job3_rune02";
+	mapannounce "job3_rune02","時間到了，任務失敗.",bc_map,"0xFFFF00";
+	end;
+
+OnTimer482000:
+	mapwarp "job3_rune02","job3_rune01",80,65;
+	donpcevent "job_rune_edq#1st_broad::OnDisable";
+	donpcevent "job_rune_edq#1st_control::OnDisable";
+	donpcevent "job_rune_edq#1st_con_nc::OnDisable";
+	donpcevent "job_rune_edq#1st_con_mc2::OnDisable";
+	donpcevent "job_rune_edq#1st_con_mc::OnDisable";
+	donpcevent "job_rune_edq#3rd_broad::OnDisable";
+	donpcevent "job_rune_edq#3rd_con::OnDisable";
+	donpcevent "#RK Test Hidden Portal 1::OnEnable";
+	set $@job_rune_test1,0;
+	set $@job_rune_test2,0;
+	stopnpctimer;
+	end;
+}
+
+job3_rune02,2,3,0	script	job_rune_edq#3rd_con_1	-1,{
+OnInit:
+	disablenpc "job_rune_edq#3rd_con_1";
+	end;
+
+OnEnable:
+	enablenpc "job_rune_edq#3rd_con_1";
+	monster "job3_rune02",40,40,"行刑者",2039,1,"job_rune_edq#3rd_con_1::OnMyMobDead";
+	end;
+
+OnDisable:
+	killmonster "job3_rune02","job_rune_edq#3rd_con_1::OnMyMobDead";
+	disablenpc "job_rune_edq#3rd_con_1";
+	end;
+
+OnMyMobDead:
+	if (mobcount("job3_rune02","job_rune_edq#3rd_con_1::OnMyMobDead") < 1) {
+		set job_rune_edq,19;
+		killmonster "job3_rune02","job_rune_edq#3rd_con_1::OnMyMobDead";
+		donpcevent "job_rune_edq#3rd_con_2::OnEnable";
+		donpcevent "job_rune_edq#3rd_con_1::OnDisable";
+	}
+	end;
+}
+
+job3_rune02,2,4,0	script	job_rune_edq#3rd_con_2	-1,{
+OnInit:
+	disablenpc "job_rune_edq#3rd_con_2";
+	end;
+
+OnEnable:
+	enablenpc "job_rune_edq#3rd_con_2";
+	monster "job3_rune02",40,40,"獸牙怪",2040,1,"job_rune_edq#3rd_con_2::OnMyMobDead";
+	end;
+
+OnDisable:
+	killmonster "job3_rune02","job_rune_edq#3rd_con_2::OnMyMobDead";
+	disablenpc "job_rune_edq#3rd_con_2";
+	end;
+
+OnMyMobDead:
+	if (mobcount("job3_rune02","job_rune_edq#3rd_con_2::OnMyMobDead") < 1) {
+		set job_rune_edq,20;
+		killmonster "job3_rune02","job_rune_edq#3rd_con_2::OnMyMobDead";
+		donpcevent "job_rune_edq#3rd_con_3::OnEnable";
+		donpcevent "job_rune_edq#3rd_con_2::OnDisable";
+	}
+	end;
+}
+
+job3_rune02,2,5,0	script	job_rune_edq#3rd_con_3	-1,{
+OnInit:
+	disablenpc "job_rune_edq#3rd_con_3";
+	end;
+
+OnEnable:
+	enablenpc "job_rune_edq#3rd_con_3";
+	monster "job3_rune02",40,40,"弒神者",2041,1,"job_rune_edq#3rd_con_3::OnMyMobDead";
+	end;
+
+OnDisable:
+	killmonster "job3_rune02","job_rune_edq#3rd_con_3::OnMyMobDead";
+	disablenpc "job_rune_edq#3rd_con_3";
+	end;
+
+OnMyMobDead:
+	if (mobcount("job3_rune02","job_rune_edq#3rd_con_3::OnMyMobDead") < 1) {
+		set job_rune_edq,21;
+		changequest 3217,3218;
+		erasequest 3220;
+		killmonster "job3_rune02","job_rune_edq#3rd_con_3::OnMyMobDead";
+		mapannounce "job3_rune02","恭喜! 你已經通過第二次測試了!",bc_map,"0xFFFF00";
+		mapwarp "job3_rune02","job3_rune01",80,65;
+		donpcevent "job_rune_edq#1st_broad::OnDisable";
+		donpcevent "job_rune_edq#1st_control::OnDisable";
+		donpcevent "job_rune_edq#1st_con_nc::OnDisable";
+		donpcevent "job_rune_edq#1st_con_mc2::OnDisable";
+		donpcevent "job_rune_edq#1st_con_mc::OnDisable";
+		donpcevent "job_rune_edq#3rd_broad::OnDisable";
+		donpcevent "job_rune_edq#3rd_con::OnDisable";
+		donpcevent "#RK Test Hidden Portal 1::OnEnable";
+		set $@job_rune_test1,0;
+		set $@job_rune_test2,0;
+	}
+	end;
+}
+
+job3_rune01,92,62,3	script	卡普拉服務人員#rk	114,{
+	cutin "kafra_04",2;
+	mes "[卡普拉服務人員]";
+	mes "歡迎光臨. 卡普拉公司";
+	mes "隨時為您們服務.";	mes "需要什麼服務嗎?";
+	next;
+	switch(select("使用倉庫服務")) {
+	case 1:
+		if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+			mes "[卡普拉服務人員]";
+			mes "對不起";
+			mes "想要使用倉庫服務的話，初學者的基本技能等級要到達 6級以上.";
+			
+			
+		}
+		else if ((countitem(7059) != 0) || (Zeny >= 50)) {
+			if (countitem(7059) != 0)
+				delitem 7059,1; //Cargo_Free_Ticket
+			else {
+				set RESRVPTS,RESRVPTS+5;
+				set zeny,zeny-80;
+			}
+			mes "[卡普拉服務人員]";
+			mes "要打開倉庫了";
+			mes "謝謝您的使用.";
+			
+			
+			close2;
+			cutin "kafra_04",255;
+			openstorage;
+			end;
+		}
+		else {
+			mes "[卡普拉服務人員]";
+			mes "顧客　您的金額不足.";
+			mes "倉庫使用費用是 80金幣.";
+			
+			
+		}
+		break;
+	}
+	close2;
+	cutin "kafra_04",255;
+	end;
+}

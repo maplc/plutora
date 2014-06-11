@@ -1,0 +1,349 @@
+//======================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// -------------------------------------
+// - 初學者貨品商人 腳本 -
+//======================================
+//= 版本: 1.4 [5511]
+//======================================
+
+prontera,123,102,5	script	商人#pron	85,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
+		mes "[商人]";
+		mes "哈哈!";
+		mes "你是超人嗎?";
+		mes "你帶了太多東西了!";
+		mes "你最好把一些東西放到卡普拉倉庫~";
+		close;
+	}
+	mes "[商人]";
+	mes "你好!";
+	mes "你有沒有收集一些像比如堅硬外";
+	mes "殼或是絨毛之類的東西?";
+	mes "傑勒比結晶呢? 是這樣, 我現在";
+	mes "很需要那些東西.";
+	next;
+	mes "[商人]";
+	mes "當然, 我不會免費要你的那些東";
+	mes "西的. 用一瓶紅色藥水換5 個堅";
+	mes "硬外殼, 或10 塊絨毛, 或是10 ";
+	mes "塊傑勒比結晶怎麼樣?";
+	next;
+	switch(select("好啊!:我想這是敲詐!:不, 謝謝.")) {
+	case 1:
+		mes "[商人]";
+		mes "那麼你給我帶來了什麼?";
+		mes "堅硬外殼, 絨毛, 還是傑勒比結晶?";
+		next;
+		switch(select("堅硬外殼:傑勒比結晶:絨毛:取消")) {
+		case 1: callfunc "F_PotExchange",935,5;
+		case 2: callfunc "F_PotExchange",909,10;
+		case 3: callfunc "F_PotExchange",914,10;
+		case 4:
+			mes "[商人]";
+			mes "好吧~";
+			mes "沒事.";
+			close;
+		}
+	case 2:
+		mes "[商人]";
+		mes "敲詐...?";
+		mes "如果你看過這些東西的市場價的";
+		mes "話, 我才算被敲詐, 好不好!";
+		close;
+	case 3:
+		mes "[商人]";
+		mes "好吧, 沒事.";
+		mes "如果你改變主意的話, 就來找我.";
+		close;
+	}
+}
+
+morocc,180,259,3	script	商人#morroc	85,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
+		mes "[商人]";
+		mes "哈哈!";
+		mes "你是超人嗎?";
+		mes "你帶了太多東西了!";
+		mes "你最好把一些東西放到卡普拉倉庫~";
+		close;
+	}
+	mes "[商人]";
+	mes "你好!";
+	mes "你有沒有收集一些像比如堅硬外";
+	mes "殼或是羽毛之類的東西?";
+	mes "傑勒比結晶呢? 是這樣, 我現在";
+	mes "很需要那些東西.";
+	next;
+	mes "[商人]";
+	mes "當然, 我不會免費要你的那些東";
+	mes "西的. 用一瓶紅色藥水換5 個堅";
+	mes "硬外殼殼, 或7 根羽毛, 或是10";
+	mes "塊傑勒比結晶怎麼樣?";
+	next;
+	switch(select("好啊!:我想這是敲詐!:不, 謝謝.")) {
+	case 1:
+		mes "[商人]";
+		mes "那麼你給我帶來了什麼?";
+		mes "外殼, 羽毛, 還是傑勒比結晶?";
+		next;
+		switch(select("外殼:羽毛:傑勒比結晶:取消")) {
+		case 1: callfunc "F_PotExchange",935,5;
+		case 2: callfunc "F_PotExchange",916,7;
+		case 3: callfunc "F_PotExchange",909,10;
+		case 4:
+			mes "[商人]";
+			mes "好吧~";
+			mes "沒事.";
+			close;
+		}
+	case 2:
+		mes "[商人]";
+		mes "敲詐...?";
+		mes "如果你看過這些東西的市場價的";
+		mes "話, 我才算被敲詐, 好不好!";
+		close;
+	case 3:
+		mes "[商人]";
+		mes "好吧, 沒事.";
+		mes "如果你改變主意的話, 就來找我.";
+		close;
+	}
+}
+
+payon,200,134,5	script	商人#pay	85,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
+		mes "[商人]";
+		mes "哈哈!";
+		mes "你是超人嗎?";
+		mes "你帶了太多東西了!";
+		mes "你最好把一些東西放到卡普拉倉庫~";
+		close;
+	}
+	mes "[商人]";
+	mes "你好!";
+	mes "你有沒有收集一些像比如樹根之";
+	mes "類的東西?";
+	mes "傑勒比結晶呢? 是這樣, 我現在";
+	mes "很需要那些東西.";
+	next;
+	mes "[商人]";
+	mes "當然, 我不會免費要你的那些物";
+	mes "品的. 用一瓶紅色藥水換6 顆樹";
+	mes "根, 或10 塊傑勒比結晶怎麼樣?";
+	next;
+	switch(select("好啊!:我想這是敲詐!:不, 謝謝.")) {
+	case 1:
+		mes "[商人]";
+		mes "那麼你給我帶來了什麼?";
+		mes "樹根, 還是傑勒比結晶?";
+		next;
+		switch(select("樹根:傑勒比結晶:取消")) {
+		case 1: callfunc "F_PotExchange",902,6;
+		case 2: callfunc "F_PotExchange",909,10;
+		case 3:
+			mes "[商人]";
+			mes "好吧~";
+			mes "沒事.";
+			close;
+		}
+	case 2:
+		mes "[商人]";
+		mes "敲詐...?";
+		mes "如果你看過這些東西的市場價的";
+		mes "話, 我才算被敲詐, 好不好!";
+		close;
+	case 3:
+		mes "[商人]";
+		mes "好吧, 沒事.";
+		mes "如果你改變主意的話, 就來找我.";
+		close;
+	}
+}
+
+aldebaran,152,63,5	script	商人#alde	85,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
+		mes "[商人]";
+		mes "哈哈!";
+		mes "你是超人嗎?";
+		mes "你帶了太多東西了!";
+		mes "你最好把一些東西放到卡普拉倉庫~";
+		close;
+	}
+	mes "[商人]";
+	mes "你好!";
+	mes "你有沒有收集一些像比如昆蟲外";
+	mes "殼或是羽毛之類的東西?";
+	mes "傑勒比結晶呢? 是這樣, 我現在";
+	mes "很需要那些東西.";
+	next;
+	mes "[商人]";
+	mes "當然, 我不會免費要你的那些物";
+	mes "品的. 用一瓶紅色藥水換1 個昆";
+	mes "蟲外殼, 或7 根羽毛, 或是10";
+	mes "塊傑勒比結晶怎麼樣?";
+	next;
+	switch(select("好啊!:我想這是敲詐!:不, 謝謝.")) {
+	case 1:
+		mes "[商人]";
+		mes "那麼你給我帶來了什麼?";
+		mes "羽毛?";
+		mes "昆蟲外殼?";
+		mes "或是傑勒比結晶?";
+		next;
+		switch(select("昆蟲外殼:羽毛:傑勒比結晶:取消")) {
+		case 1: callfunc "F_PotExchange",955,1;
+		case 2: callfunc "F_PotExchange",916,7;
+		case 3: callfunc "F_PotExchange",909,10;
+		case 4:
+			mes "[商人]";
+			mes "好吧~";
+			mes "沒事.";
+			close;
+		}
+	case 2:
+		mes "[商人]";
+		mes "敲詐...?";
+		mes "如果你看過這些東西的市場價的";
+		mes "話, 我才算被敲詐, 好不好!";
+		close;
+	case 3:
+		mes "[商人]";
+		mes "好吧, 沒事.";
+		mes "如果你改變主意的話, 就來找我.";
+		close;
+	}
+}
+
+geffen,173,88,5	script	商人#geff	85,{
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
+		mes "[商人]";
+		mes "哈哈!";
+		mes "你是超人嗎?";
+		mes "你帶了太多東西了!";
+		mes "你最好把一些東西放到卡普拉倉庫~";
+		close;
+	}
+	mes "[商人]";
+	mes "你好!";
+	mes "你有沒有收集一些像比如外殼或";
+	mes "是蟲繭之類的東西?";
+	mes "傑勒比結晶呢? 是這樣, 我現在";
+	mes "很需要那些東西.";
+	next;
+	mes "[商人]";
+	mes "當然, 我不會免費要你的那些物";
+	mes "品的. 用一瓶紅色藥水換5 個外";
+	mes "殼, 或6 塊蟲繭, 或是10 塊傑 ";
+	mes "勒比結晶怎麼樣?";
+	next;
+	switch(select("好啊!:我想這是敲詐!:不, 謝謝.")) {
+	case 1:
+		mes "[商人]";
+		mes "那麼你給我帶來了什麼?";
+		mes "外殼, 蟲繭, 還是傑勒比結晶?";
+		next;
+		switch(select("外殼:蟲繭:傑勒比結晶:取消")) {
+		case 1: callfunc "F_PotExchange",935,5;
+		case 2: callfunc "F_PotExchange",915,6;
+		case 3: callfunc "F_PotExchange",909,10;
+		case 4:
+			mes "[商人]";
+			mes "好吧~";
+			mes "沒事.";
+			close;
+		}
+	case 2:
+		mes "[商人]";
+		mes "敲詐...?";
+		mes "如果你看過這些東西的市場價的";
+		mes "話, 我才算被敲詐, 好不好!";
+		close;
+	case 3:
+		mes "[商人]";
+		mes "好吧, 沒事.";
+		mes "如果你改變主意的話, 就來找我.";
+		close;
+	}
+}
+
+function	script	F_PotExchange	{
+	if (countitem(getarg(0)) < getarg(1)) {
+		mes "[商人]";
+		mes "嘿, 這就是所有你答應要給我的";
+		mes ""+getitemname(getarg(0))+"嗎?";
+		mes "給我"+getitemname(getarg(0))+"啊!";
+		close;
+	}
+	else {
+		mes "[商人]";
+		mes "好吧, 讓我看看你有多少";
+		mes ""+getitemname(getarg(0))+". 嗯嗯...";
+		next;
+		mes "[商人]";
+		mes "你一共有" + countitem(getarg(0)) + " 的"+getitemname(getarg(0))+".";
+		mes "我最多能給你換" + (countitem(getarg(0))/getarg(1)) + " 瓶紅色藥水.";
+		next;
+		mes "[商人]";
+		mes "怎麼樣?";
+		mes "要交易嗎?";
+		next;
+		if (select("交易.:不交易.") == 1) {
+			mes "[商人]";
+			mes "你知道用那些"+getitemname(getarg(0))+"";
+			mes "可以換多少紅色藥水了吧?";
+			next;
+			mes "[商人]";
+			mes "那麼, 我一次可以跟你交易1 到";
+			mes "100 瓶的紅色藥水. 如果你改變";
+			mes "了你的主意, 輸入'0'來取消.";
+			next;
+			while(1) {
+				input .@input,0,101;
+				if (.@input == 0) {
+					mes "[商人]";
+					mes "什麼...?";
+					mes "為什麼要如此費勁的跟我交談?";
+					mes "早點說, 不好麼?";
+					close;
+				}
+				else if (.@input > 100) {
+					mes "[商人]";
+					mes "我不能一次給你超過100 瓶的紅";
+					mes "色藥水. 在試試吧.";
+					next;
+				}
+				else {
+					break;
+				}
+			}
+			set .@put_out_item,.@input * getarg(1);
+			if (countitem(getarg(0)) < .@put_out_item) {
+				mes "[商人]";
+				mes "呃, 你輸入的數字好像不正確. ";
+				mes "你最好再檢查一下你能交易的紅";
+				mes "色藥水的數量.";
+				close;
+			}
+			mes "[商人]";
+			mes "給你!";
+			mes "檢查下我剛給你的紅色藥水吧, ";
+			mes "那可是非常棒的. 謝謝, 多棒的";
+			mes "交易~";
+			delitem getarg(0),.@put_out_item; //交換物
+			getitem 501,.@input; //紅色藥水
+			close;
+		}
+		mes "[商人]";
+		mes "啊~";
+		mes "好吧.";
+		mes "對於你這樣的冒險家來說, 紅色";
+		mes "藥水難道沒用嗎?";
+		close;
+	}
+}

@@ -1,0 +1,158 @@
+//---------------------------
+// 二期公會地窟任務
+// (Siege SE Dungeon Quests)
+// Aegis->Eathena
+// By 5511
+//---------------------------
+
+// 修發茲瓦爾德地區
+schg_cas01,240,279,3	script	神奇的向日葵#schg01	976,{
+	set .@GID, GetCastleData("schg_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "schg_dun01",262,314;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+schg_cas02,174,328,3	script	神奇的向日葵#schg02	976,{
+	set .@GID, GetCastleData("schg_cas02",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "schg_dun01",94,284;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+schg_cas03,25,22,3	script	神奇的向日葵#schg03	976,{
+	set .@GID, GetCastleData("schg_cas03",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "schg_dun01",79,140;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+schg_cas04,280,391,3	script	神奇的向日葵#schg04	976,{
+	set .@GID, GetCastleData("schg_cas04",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "schg_dun01",212,70;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+schg_cas05,280,391,3	script	神奇的向日葵#schg05	976,{
+	set .@GID, GetCastleData("schg_cas05",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "schg_dun01",322,166;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+// 阿魯納菲茲地區
+arug_cas01,157,345,3	script	神奇的向日葵#arug01	977,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "arug_dun01",350,350;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+arug_cas02,350,294,3	script	神奇的向日葵#arug02	977,{
+	set .@GID, GetCastleData("arug_cas02",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "arug_dun01",350,50;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+arug_cas03,312,154,3	script	神奇的向日葵#arug03	977,{
+	set .@GID, GetCastleData("arug_cas03",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "arug_dun01",50,50;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+arug_cas04,312,154,3	script	神奇的向日葵#arug04	977,{
+	set .@GID, GetCastleData("arug_cas04",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "arug_dun01",50,350;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}
+
+arug_cas05,312,154,3	script	神奇的向日葵#arug05	977,{
+	set .@GID, GetCastleData("arug_cas05",1);
+	if (getcharid(2) == .@GID) {
+		mes "神奇的和人一樣大的向日葵.";
+		mes "可以隱隱地感覺到散發出來的魔力.";
+		next;
+		if (select("抓住莖幹:放棄") == 1) {
+			warp "arug_dun01",200,386;
+			end;	
+		}
+		mes "感覺好像會被吸引到未知的世界去一樣, 所以放棄了.";
+		close;
+	}
+}

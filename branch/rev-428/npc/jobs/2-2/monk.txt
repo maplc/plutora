@@ -1,0 +1,2137 @@
+prt_monk,55,249,4	script	武道僧_1	139,0,5,{
+	mes "[都好父]";
+	mes "你這傢伙!沒有我的允許";
+	mes "竟然可以隨便進入";
+	mes "神聖的修練場!!";
+	next;
+	mes "[都好父]";
+	mes "快給我出去!";
+	close;
+}
+prt_monk,59,247,4	script	武道僧#mk	120,{
+	if(JOB_MONK_Q == 1 ) goto Part1;
+	if(JOB_MONK_Q == 2 ) goto Part2;
+	if(BaseJob == Job_Monk) goto IsMonk;
+	goto L_START;
+
+IsMonk:
+	mes "[都好父]";
+	mes "並不是很歡迎你來到聖卡畢利那修道院";
+	mes "不過歡迎光臨，";
+	mes "希望你不要妨礙到，正在修練中的武道家";
+	mes "就算你是武道家，也是一樣!";
+	close;
+
+L_START:
+	mes "[都好父]";
+	mes "嗯?你找本主有什麼事嗎?";
+	mes "想要進入武道家的修練場前";
+	mes "先要告訴我你的姓名和職業等級，";
+	mes "基本等級之後才能進去!";
+	next;
+	mes "[都好父]";
+	mes "來，告訴我你的姓名和職業等級，基本等級";
+	next;
+	menu "不理他",-,"告訴他",L_MENU_1;
+
+		mes "[都好父]";
+		mes "沒禮貌的傢伙!快給我出去!";
+		warp "prt_fild03",357,256;
+		end;
+L_MENU_1:
+	mes "[都好父]";
+	mes "嗯..你叫 " + strcharinfo(0);
+	mes "..是這樣念沒錯吧，";
+	mes "我看看，職業等級是 " + joblevel;
+	next;
+	mes "[都好父]";
+	mes "來找我有什麼事呢?";
+	mes strcharinfo(0) + " 先生/小姐";
+	next;
+	menu "想要見識一下武道家修練的情形..",L_MENU_1_0,"想要成為武道家..",L_MENU_1_1,"想要在修練場休息一下..",L_MENU_1_2;
+
+	L_MENU_1_0:	
+		mes "[都好父]";
+		mes "嗯，是嗎，我知道了";
+		mes "希望我們武道家修練的樣子，";
+		mes "能助於你成為，有力量的武道家";
+		set JOB_MONK_Q, 1;
+		close;
+
+	L_MENU_1_1:
+		if(BaseJob != Job_Acolyte) goto IsNot4;
+		if(joblevel >= 40 ) goto SkillPointChk;
+			mes "[都好父]";
+			mes "職業等級 40 級以上才能夠轉職啊...";
+			next;
+			mes "[都好父]";
+			mes "別太心急，在世界上多磨練自己之後再來吧.";
+			mes "等到達到轉職條件之後再來找我吧... 哈哈.";
+			close;
+
+		SkillPointChk:
+
+			if(skillpoint == 0) goto L_GO;
+			mes "[都好父]";
+			mes "嗯... 情況不錯，你還有一些必備技能還沒學會吧?";
+			mes "等你先學會那些技能之後，再來申請吧";
+			close;
+
+		IsNot4:
+			mes "[都好父]";
+			mes "您真愛開玩笑";
+			close;
+
+		HighMonk:
+			mes "[都好父]";
+			mes "哎呀! 你已經是上位服事了呢!";
+			mes "很抱歉! 我沒有辦法讓你轉職成武道家!";
+			mes "請你去找武術宗師轉職吧!";
+			mes "那才是適合你的職業!";
+			set JOB_MONK_Q, 0;
+			close;
+
+		L_GO:
+			if (((BaseJob == Job_Acolyte) && (Upper == 1)) || (ReBirth > 0)) goto HighMonk;
+			mes "[都好父]";
+			mes "嗯..職業等級也到了一定的程度..";
+			mes "好吧..進去裡面找[武海]長老吧，";
+			mes "他會好好的引導你的";
+			set JOB_MONK_Q, 2;
+			close;
+
+	L_MENU_1_2:
+		mes "[都好父]";
+		mes "好吧，看來你是走累了..";
+		mes "偶而也需要休息一下，";
+		mes "在武道家修練場這裡";
+		mes "休息一下再走吧，";
+		next;
+		mes "[都好父]";
+		mes "總是想要努力";
+		mes "有力量的是我們武道家";
+		mes "希望我們的樣子";
+		mes "能帶給你小小的安息";
+		close;
+Part1:
+	mes "[都好父]";
+	mes "怎麼樣?看過之後有改變你的想法嗎?";
+	next;
+	menu "沒有",L_MENU_1_0,"我要當武道家!",L_MENU_1_1,"我要再休息一下",L_MENU_1_2;
+
+Part2:
+	mes "[都好父]";
+	mes "嗯..去見[武海]長老吧!";
+	mes "他在東南邊方向，的[武道家的殿堂]裡";
+	close;
+}
+
+monk_in,99,58,4	script	武海 長老	60,{
+	if(JOB_MONK_Q == 2 ) goto L_START;
+	if(JOB_MONK_Q == 3 ) goto Part1;
+	if(JOB_MONK_Q == 4 ) goto Part2;
+	if(JOB_MONK_Q >= 5 && JOB_MONK < 10) goto Part3;
+	if(JOB_MONK_Q >= 10 && countitem(506) > 0) goto Part4;
+	if(JOB_MONK_Q == 11 && countitem(506) == 0) goto Part5;
+	if(BaseJob == Job_Monk) goto Part6;
+	if(BaseJob == Job_Acolyte) goto Part7;
+		goto IsOther;
+IsOther:
+	mes "[武海 長老]";
+	mes "祝福你在大自然裡找到神..!!";
+	mes "歡迎光臨，找我有什麼事嗎?";
+	close;
+
+L_START:
+	mes "[武海 長老]";
+	mes "嗯..是個想要成為武道家的年經人..?";
+	mes "是嗎";
+	next;
+	menu "是",L_MENU_1,"不是",-;
+		mes "[武海 長老]";
+		mes "嗯..應該是沒錯啊..";
+		mes "不是嗎，看老夫的氣力衷退了..";
+		mes "連這點小事情都看不出來..";
+		mes "那麼，走你的路吧，年經人。";
+		close;
+L_MENU_1:
+	mes "[武海 長老]";
+	mes "喔喔..這個時代還會有年輕人會記得我們武道家啊..";
+	mes "歡迎光臨，師弟!";
+	next;
+	mes "[武海 長老]";
+	mes "想要當武道家嗎!老夫真是高興啊..";
+	mes "首先，當武道家之前，要光大概知道一下";
+	mes "幾件事情，";
+	next;
+	mes "[武海 長老]";
+	mes "我們武道家們，要嚴格鍛練自己的身體";
+	mes "並要守護和平";
+	next;
+	mes "[武海 長老]";
+	mes "鍛練身體是為了，幫助弱者";
+	mes "是為了保護弱者的";
+	next;
+	mes "[武海 長老]";
+	mes "當然，要把心情撫平，更重要的是不能得意忘行";
+	next;
+	mes "[武海 長老]";
+	mes "經歷這些過程會很辛苦的，";
+	mes "甚至會感覺到痛苦";
+	mes "看你可不可以忍受這種過程，";
+	mes "來決定你可不可以成為武道家";
+	next;
+	mes "[武海 長老]";
+	mes "好..那就來測試一下";
+	mes "看你轉職成為武道家之後";
+	mes "是否確實有資格當武道家";
+	next;
+	mes "[武海 長老]";
+	mes "首先，小小的考式一下你對武道家轉職的旨意力";
+	next;
+//~	if(joblevel == 50) goto IsJOB50;
+
+	set JOB_MONK_Q, 3;
+	set JOB_MONK_C,rand(1,6);
+L_Collect:
+	if(JOB_MONK_C == 1 ) goto L_Collect1;
+	if(JOB_MONK_C == 2 ) goto L_Collect2;
+	if(JOB_MONK_C == 3 ) goto L_Collect3;
+	if(JOB_MONK_C == 4 ) goto L_Collect4;
+	if(JOB_MONK_C == 5 ) goto L_Collect5;
+	if(JOB_MONK_C == 6 ) goto L_Collect6;
+
+	L_Collect1:
+		mes "[武海 長老]";
+		mes "去尋找蝙蝠牙10個";
+		mes "熊掌5個";
+		mes "毒魔菇芽孢20個";
+		mes "再拿過來，";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect2:
+		mes "[武海 長老]";
+		mes "去尋找刺蝟尖刺5個";
+		mes "蜘蛛絲20個";
+		mes "蝗蟲後腿10個";
+		mes "再拿過來，";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect3:
+		mes "[武海 長老]";
+		mes "去尋找植物梗30個個";
+		mes "傑勒比結晶5個";
+		mes "昆蟲外殼10個";
+		mes "再拿過來，";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect4:
+		mes "[武海 長老]";
+		mes "去尋找粘稠液體5個";
+		mes "蚯蚓皮10個";
+		mes "綠色藥草20個";
+		mes "再拿過來，";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect5:
+		mes "[武海 長老]";
+		mes "去尋找猴子尾巴20個";
+		mes "鐵礦石5個";
+		mes "藍色藥草3個";
+		mes "再拿過來，";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect6:
+		mes "[武海 長老]";
+		mes "去尋找堅硬外皮5個";
+		mes "堅硬外殼20個";
+		mes "剎勒空結晶5個";
+		mes "再拿過來，";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+L_CollectS:
+	mes "為了要考驗你的旨意力，所以要親自去尋找，";
+	next;
+	mes "[武海 長老]";
+	mes "那麼全部拿到之後再來找我吧，";
+	mes "好出發吧，";
+	mes "願老天的保佑一起伴隨著你";
+	close;
+
+//~IsJOB50:
+//~	mes "[武海 長老]";
+//~	mes "喔喔!看不出來你這麼努力啊";
+//~	mes "職業等級都已經" +joblevel +" 級囉";
+//~	mes "這樣的話你就不用再作收集的任務測驗";
+//~	next;
+//~	mes "[武海 長老]";
+//~	mes "辛苦了!!";
+//~	mes "我相信你想要成為武道家的旨意";
+//~	mes "已傳達給大家了!!";
+//~	next;
+//~	mes "[武海 長老]";
+//~	mes "我看看..有個叫";
+//~	mes "啊..[道武俠]的武道家想要想要見你";
+//~	mes "他在這裡的北邊，在武道家前輩";
+//~	mes "的墓地那裡";
+//~	set JOB_MONK_Q, 4;
+//~	close;
+
+Part1:
+//~	if(joblevel == 50) goto IsJOB50;
+	if(JOB_MONK_C == 1 && countitem(913) >= 10 && countitem(948) >= 5 && countitem(7033) >= 20) goto L_CollectS2_1;
+	if(JOB_MONK_C == 2 && countitem(1027) >= 5 && countitem(1025) >= 20 && countitem(940) >= 10) goto L_CollectS2_2;
+	if(JOB_MONK_C == 3 && countitem(905) >= 30 && countitem(909) >= 5 && countitem(955) >= 10) goto L_CollectS2_3;
+	if(JOB_MONK_C == 4 && countitem(938) >= 5 && countitem(1055) >= 10 && countitem(511) >= 20) goto L_CollectS2_4;
+	if(JOB_MONK_C == 5 && countitem(942) >= 20 && countitem(1002) >= 5 && countitem(510) >= 3) goto L_CollectS2_5;
+	if(JOB_MONK_C == 6 && countitem(943) >= 5 && countitem(935) >= 20 && countitem(912) >= 5) goto L_CollectS2_6;
+
+		mes "[武海 長老]";
+		mes "嗯?";
+		mes "還沒準備好嗎?";
+		mes "我再跟你說一遍!!";
+		next;
+		set @collect_tmp, 1;
+		goto L_Collect;
+
+		L_CollectS2_1:
+			delitem 913, 10;
+			delitem 948, 5;
+			delitem 7033, 20;
+			goto L_CollectS2_E;
+		L_CollectS2_2:
+			delitem 1027, 5;
+			delitem 1025, 20;
+			delitem 940, 10;
+			goto L_CollectS2_E;
+		L_CollectS2_3:
+			delitem 7012, 30;
+			delitem 909, 5;
+			delitem 955, 10;
+			goto L_CollectS2_E;
+		L_CollectS2_4:
+			delitem 938, 5;
+			delitem 1055, 10;
+			delitem 511, 20;
+			goto L_CollectS2_E;
+		L_CollectS2_5:
+			delitem 942, 20;
+			delitem 1002, 5;
+			delitem 510, 3;
+			goto L_CollectS2_E;
+		L_CollectS2_6:
+			delitem 943, 5;
+			delitem 935, 20;
+			delitem 912, 5;
+			goto L_CollectS2_E;
+	
+	L_CollectS2_E:
+		mes "[武海 長老]";
+		mes "喔喔..真的都找到了啊!!";
+		mes "辛苦了!!";
+		mes "我相信你想要成為武道家的旨意";
+		mes "已傳達給大家了!!";
+		next;
+		mes "[武海 長老]";
+		mes "我看看..有個叫";
+		mes "啊..[道武俠]的武道家想要想要見你";
+		mes "他在這裡的北邊，在武道家前輩";
+		mes "的墓地那裡";
+		set JOB_MONK_Q, 4;
+		set JOB_MONK_C, 0;
+		close;
+
+Part2:
+	mes "[武海 長老]";
+	mes "再來..應該是轉職問答題..?";
+	mes "去找道武俠吧，";
+	mes "他在這裡的北邊，在武道家前輩";
+	mes "的墓地那裡";
+	close;
+Part3:
+	mes "[武海 長老]";
+	mes "嗯?你還在考轉職考試啊..?";
+	mes "好好的考吧!";
+	close;
+Part4:
+	mes "[武海 長老]";
+	mes "嗯?你還沒吸取靈藥嗎?";
+	mes "那..快把那很像綠色藥的靈藥喝掉吧";
+	mes "不喝那靈藥的話，沒辦法達到武道家的";
+	mes "內功修為";
+	mes "記住,有幾個喝幾個,不能留下";
+	set JOB_MONK_Q, 11;
+	close;
+Part5:
+	mes "[武海 長老]";
+	mes "已經完成所有過程了..你的血脈";
+	mes "已足夠成為武道家";
+	mes "當然，剛剛喝了靈藥你的內功";
+	mes "也因些而增加了";
+	next;
+	mes "[武海 長老]";
+	mes "應該沒有..把貴重的藥物丟掉吧!";
+	mes "好，那麼來進行武道家的誓約之後";
+	mes "就可以完成轉職了";
+	next;
+	mes "[武海 長老]";
+	mes "請問你願意把剩下的人生，全都為了";
+	mes "世界和平而活嗎?";
+	next;
+	menu "是",L_MONK_Q_2,"否",-;
+
+		mes "[武海 長老]";
+		mes "....這個回答....";
+		mes "是還沒有心理準備成為武道家嗎?";
+		mes "還要再多跑幾次，再流些汗才會";
+		mes "有心裡準備嗎?";
+		next;
+		mes "[武海 長老]";
+		mes "再考慮之後再過來吧!";
+		mes "不想培養出惡質的武道家..";
+		close;
+L_MONK_Q_2:
+	mes "[武海 長老]";
+	mes "你會把賦予的能力為自己使用";
+	mes "來取得利益嗎?";
+	next;
+	menu "是",-,"不是",L_MONK_Q_3;
+
+		mes "[武海 長老]";
+		mes "..不行，我們武道家的修練並不是為了";
+		mes "取的任何利益，";
+		mes "守護世界和平的人，怎麼可以藉此";
+		mes "來取得利益呢!";
+		next;
+		mes "[武海 長老]";
+		mes "好好想一想武道家真正用意再來吧";
+		mes "那種想法只會讓你變得更貪心，";
+		mes "走火入魔之後會喪失掉你的能力";
+		close;
+
+L_MONK_Q_3:
+	mes "[武海 長老]";
+	mes "你對傷害弱者的人，當處罰他們時";
+	mes "會不會豫不決呢?";
+	next;
+	menu "不會",L_MONK_Q_4,"會",-;
+
+		mes "[武海 長老]";
+		mes "你是怎麼想我們武道家的啊!";
+		mes "不管是什麼人只要傷害弱者，";
+		mes "他們都是這世界的垃圾!";
+		mes "也沒資格活在這世界上!";
+		next;
+		mes "[武海 長老]";
+		mes "對那些在世界上對道德充滿否定的人，";
+		mes "從他們身上多學一點敵意再來吧";
+		mes "那你就知道要怎麼行動了";
+		close;
+
+L_MONK_Q_4:
+	mes "[武海 長老]";
+	mes "你為了保護一直被別人欺負的人";
+	mes "也會犧牲自己嗎?";
+	next;
+	menu "會",L_MONK_Q_5,"不會",-;
+
+		mes "[武海 長老]";
+		mes "不會..不是這樣的，";
+		mes "假如犧牲自我能殺掉更多的敵人";
+		mes "對夥伴們有幫助的話，這樣是很了不起";
+		mes "的行動啊";
+		next;
+		mes "[武海 長老]";
+		mes "犧牲到底是什麼意義，思考之後再來吧，";
+		mes "犧牲是一個簡單又困難的行動啊!";
+		close;
+
+L_MONK_Q_5:
+	mes "[武海 長老]";
+	mes "你會拖著很多的魔物走動";
+	mes "幫助別人的戰鬥嗎?";
+	next;
+	menu "會",-,"不會",L_MONK_Q_6;
+
+		mes "[武海 長老]";
+		mes "這樣不行，拖著很多魔物走動";
+		mes "不只是對他人";
+		mes "..";
+		mes "這種行是在侵害其他武道家的權力";
+		next;
+		mes "[武海 長老]";
+		mes "就算成為金鋼不壞之身之後，這是使用在";
+		mes "危急或是遇到強敵時的緊急之策，並不是";
+		mes "使用在這種情況!";
+		next;
+		mes "[武海 長老]";
+		mes "感覺上那是在幫助別人的感覺，";
+		mes "結果上是執行惡行，";
+		mes "什麼是真正武道家之路，";
+		mes "再好好的思考一下吧";
+		close;
+
+L_MONK_Q_6:
+	mes "[武海 長老]";
+	mes "你會在村落或其它原野上，跟其它人";
+	mes "反覆說著一樣的話嗎?";
+	next;
+	menu "會",-,"不會",L_MONK_Q_7;
+
+		mes "[武海 長老]";
+		mes "不行，這不只是對武道家，";
+		mes "對所有的人都包含在內";
+		mes "你再怎麼大叫也沒有人會";
+		mes "過來理你的!";
+		next;
+		mes "[武海 長老]";
+		mes "就算是要傳達神的話也是一樣的";
+		mes "你試著回顧一下自己的行為吧，";
+		mes "雖然很想要重新再考你一次，";
+		mes "不過這次就放過你吧!";
+		close;
+L_MONK_Q_7:
+	mes "[武海 長老]";
+	mes "你會覺自己是有意志的人，";
+	mes "會為正義而死嗎?";
+	next;
+	menu "是",L_MONK_Q_8,"不",-;
+
+		mes "[武海 長老]";
+		mes "以這種精神沒辦法成為武道家!!!";
+		mes "所謂死亡只是暫時性的，用我們的死能守";
+		mes "護這世界安全，這也是一種有意義的行動";
+		next;
+		mes "[武海 長老]";
+		mes "傷害弱者的人，必定會死，想要幫助弱者";
+		mes "的人，一定有老天補償!";
+		mes "你對人應該有什麼樣的態度，";
+		mes "好好地想一想吧!!";
+		close;
+
+L_MONK_Q_8:
+	mes "最後要發誓會遵守目前所說過的話，";
+	next;
+	menu "我發誓",L_MONK_Q_9,"不要",-;
+
+		mes "[武海 長老]";
+		mes "..........";
+		next;
+		mes "[武海 長老]";
+		mes "好像..修練還未完成啊";
+		mes "不能讓師弟成為武道家，";
+		next;
+		mes "[武海 長老]";
+		mes "再..，重頭開始修練會比較好..";
+		mes "鎮定一下心情，再來找本主吧!";
+		next;
+		mes "[武海 長老]";
+		mes "但願能把老天的旨意傳達給師弟..";
+		close;
+
+L_MONK_Q_9:
+	mes "[武海 長老]";
+	mes "那，就這樣結束以上的誓約了";
+	mes "請大家集合，";
+	mes "你已成為我們的兄弟了!";
+	next;
+	mes "[武海 長老]";
+	mes "師弟的誓約由我和你的心靈，";
+	mes "已傳達到武道家兄弟們那裡了";
+	next;
+	mes "[武海 長老]";
+	mes "那麼，現在就來舉行脫胎換骨儀式吧..";
+	next;
+	mes "[武海 長老]";
+	mes "來..開始刺你的365個大穴和";
+	mes "1129個經絡破功";
+	next;
+	mes "[武海 長老]";
+	mes "哈啊啊啊啊........";
+	next;
+	mes "[武海 長老]";
+	mes "呼嗚嗚嗚嗚..";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "- 他深呼吸之後 -";
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "- 開始刺我全身的穴道 -";
+	next;
+	mes "[武海 長老]";
+	mes "啊～嗒嗒嗒嗒嗒嗒!!!";
+	next;
+	mes "[武海 長老]";
+	mes "嗒咑咑咑咑嗒!!!";
+	next;
+	mes "[武海 長老]";
+	mes "啊～嗒嗒嗒嗒嗒嗒!!!";
+	next;
+	mes "[武海 長老]";
+	mes "哇啦丘喔!!!!";
+	next;
+	mes "[武海 長老]";
+	mes "呼嗚嗚嗚嗚....";
+	next;
+	mes "[武海 長老]";
+	mes "..你已經轉職了";
+	setoption 0;
+	callfunc "Job_Change",Job_Monk;
+	next;
+	mes "[武海 長老]";
+	mes "..咳咳!";
+	next;
+	mes "[武海 長老]";
+	mes "不愧..是老了嗎..體力不夠啊..";
+	mes "以前可是體力充沛啊..";
+	next;
+	mes "[武海 長老]";
+	mes "..好，你已經成為武道家了，";
+	mes "歡迎你成為我們的同志!";
+	next;
+	mes "[武海 長老]";
+	mes "不要忘記以上的誓約..";
+	next;
+	mes "[武海 長老]";
+	mes "維持不變的信念，也要勤於鍛練身體啊";
+	next;
+	mes "[武海 長老]";
+	mes "好..開始走向武道家的路吧，";
+	mes "這就是我送給你的小小禮物";
+	if(joblevel <= 49) getitem 1801, 1;
+	if(joblevel == 50) getitem 1804, 1;
+	set JOB_MONK_Q, 12;
+	close;
+Part6:
+	mes "[武海 長老]";
+	mes "祝福你在大自然裡找到神..!!";
+	mes "歡迎光臨，找我有什麼事嗎?";
+	next;
+	mes "[武海 長老]";
+	mes "修練還順利嗎?";
+	mes "請精進於修練吧";
+	next;
+	mes "[武海 長老]";
+	mes "如果不把我們的身體鍛練好，";
+	mes "就沒有辦法幫助別人，給敵人看到時";
+	mes "一定會找上門，在我們的心裡種下";
+	mes "邪惡之心";
+	next;
+	mes "[武海 長老]";
+	mes "不要忘記，我們永遠都是保護弱者的人，";
+	mes "以及守護世界和平的人，";
+	mes "隨時要注意到，不要掉入到邪惡之心";
+	mes "的考驗中";
+	close;
+
+Part7:
+	mes "[武海 長老]";
+	mes "祝福你在大自然裡找到神..!!";
+	mes "歡迎光臨，找我有什麼事嗎?";
+	next;
+	mes "[武海 長老]";
+	mes "你是..服事啊";
+	mes "如果是來治訪的話，去普隆德拉聖堂那裡吧";
+	mes "這裡是武道家修練場，並不是給你治談的地方";
+	mes "沒有想要成為武道家的話，";
+	mes "去別的地方看看吧!";
+	close;
+}
+
+prt_monk,251,255,4	script	道武俠	79,{
+	if(JOB_MONK_Q == 4 ) goto L_START;
+	if(JOB_MONK_Q == 5 ) goto Part1;
+	if(JOB_MONK_Q == 6 ) goto Part2;
+	if(JOB_MONK_Q > 6 ) goto Part3;
+	goto IsOther;
+
+IsOther:
+	mes "[道武俠]";
+	mes "我們武道家!";
+	mes "擁有無限力量的人!";
+	mes "擁有無限智慧的人!";
+	next;
+	mes "[道武俠]";
+	mes "以我們無限的力量和智慧!";
+	mes "守護世界和平!";
+	next;
+	mes "[道武俠]";
+	mes "所以說!!";
+	mes "你也是敵人嗎?";
+	mes "擋住了我的路!!!";
+	next;
+	mes "[道武俠]";
+	mes "只要擋住我!!就打!!";
+	mes "嗒啊啊啊啊!!";
+	next;
+	mes "[道武俠]";
+	mes "呵哈哈哈哈!!";
+	next;
+	mes "[道武俠]";
+	mes "不必害怕，走你的路吧!";
+	close;
+
+L_START:
+	mes "[道武俠]";
+	mes "有什麼事嗎?";
+	mes "想要跟我聊一些有關神的事嗎?";
+	next;
+	mes "[道武俠]";
+	mes "喔，你正在進行武道家的修行，";
+	mes "你所散發的氣，跟武道家的那個很類似，";
+	next;
+	mes "[道武俠]";
+	mes "看來氣脈已打開，";
+	mes "應該是從武海 長老大人那裡過來的吧，";
+	mes "很好，";
+	next;
+	mes "[道武俠]";
+	mes "我先講一下有關武道家精神部份";
+	mes "的必要事項，";
+	mes "以及有關武道家的簡單教理，";
+	mes "再來幫你調整氣血之後，幫你做成可以";
+	mes "參加下一關考試的身體，";
+	next;
+	mes "[道武俠]";
+	mes "好好記住我講的話，再來默念，";
+	mes "慢慢的把心鎮定下來..準備好了嗎?";
+	next;
+	menu "是",L_MENU_1,"不是",-;
+		mes "[道武俠]";
+		mes "準備好了再過來吧!";
+		close;
+L_MENU_1:
+	mes "[道武俠]";
+	mes "好..開始，";
+	next;
+	set @JOB_MONK_C2, rand(1,4);
+L_Again:
+	if(@JOB_MONK_C2 == 1) goto L_ROOT_1;
+	if(@JOB_MONK_C2 == 2) goto L_ROOT_2;
+	if(@JOB_MONK_C2 == 3) goto L_ROOT_3;
+
+	L_ROOT_1:
+		set @monk_str0$,"神的地上代理人";
+		set @monk_str1$,"神罰的地上代行者";
+		set @monk_str2$,"我們武道家是";
+		set @monk_str3$,"我們的使命是";
+		set @monk_str4$,"以我們的極限肉體";
+		set @monk_str5$,"違背神者";
+		set @monk_str6$,"把愚蠢的人之肉身";
+		set @monk_str7$,"徘徊的人之肉身";
+		set @monk_str8$,"徹底的追擊";
+		set @monk_str9$,"把他抹滅及毀滅";
+		goto L_MES;
+	L_ROOT_2:
+		set @monk_str0$,"為了神傳達著神的聲明";
+		set @monk_str1$,"以我們擁有的肉體來顯示我們的光榮";
+		set @monk_str2$,"我們武道家";
+		set @monk_str3$,"神罰的地上代行者";
+		set @monk_str4$,"神的地上代理人";
+		set @monk_str5$,"我們武道家的使命是";
+		set @monk_str6$,"違背神者";
+		set @monk_str7$,"未死亡者之肉身";
+		set @monk_str8$,"把愚蠢的人之肉體";
+		set @monk_str9$,"徹底的追擊讓他消滅";
+		goto L_MES;
+	L_ROOT_3:
+		set @monk_str0$,"違背神者給予審判!";
+		set @monk_str1$,"違背神者給予最後!";
+		set @monk_str2$,"違背神者給予絕滅!";
+		set @monk_str3$,"我們，武道家";
+		set @monk_str4$,"以擁有的肉體來代替神的光榮";
+		set @monk_str5$,"神的地上代理人";
+		set @monk_str6$,"神罰的地上代行者";
+		set @monk_str7$,"就算骨骼及肉體被切割";
+		set @monk_str8$,"所有都是為了神的光榮";
+		set @monk_str9$,"為了審判所有對抗神者";
+		goto L_MES;
+L_MES:
+	mes "[道武俠]";
+	mes "好好聽著，開始默念，";
+	next;
+	mes "[道武俠]";
+	mes @monk_str0$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str1$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str2$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str3$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str4$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str5$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str6$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str7$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str8$;
+	next;
+	mes "[道武俠]";
+	mes @monk_str9$;
+
+	next;
+	mes "[道武俠]";
+	mes "好了，到此為止";
+	mes strcharinfo(0) + " 換你了";
+	next;
+	set @monk_q, 0;
+	if(@JOB_MONK_C2 == 1) goto L_MONK_Q1_1;
+	if(@JOB_MONK_C2 == 2) goto L_MONK_Q2_1;
+	if(@JOB_MONK_C2 == 3) goto L_MONK_Q3_1;
+//第一題
+//神的地上代理人
+//神罰的地上代行者
+//我們武道家
+//我們的使命是
+//以我們極限的肉體
+//違背神者
+//愚蠢的人之肉身
+//徘徊的人之肉身
+//徹底的追擊
+//把他抹殺及消滅
+
+L_MONK_Q1_1:
+
+	menu "我們的使命是",L_MONK_Q1_2,
+		"我們武道家",L_MONK_Q1_2,
+		"違背神者",L_MONK_Q1_2,
+		"把愚蠢的人之肉體",L_MONK_Q1_2,
+		"徹底的追擊",L_MONK_Q1_2,
+		"以我們極限的肉體",L_MONK_Q1_2,
+		"神的地上代理人",-,
+		"徘徊的人之肉身",L_MONK_Q1_2,
+		"把他抹殺及消滅",L_MONK_Q1_2,
+		"神罰的地上代行者",L_MONK_Q1_2;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_2:
+
+	menu "我們武道家",L_MONK_Q1_3,
+		"徹底的追擊",L_MONK_Q1_3,
+		"神的地上代理人",L_MONK_Q1_3,
+		"我們的使命是",L_MONK_Q1_3,
+		"神罰的地上代行者",-,
+		"違背神者",L_MONK_Q1_3,
+		"徘徊的人之肉身",L_MONK_Q1_3,
+		"把愚蠢的人之肉體",L_MONK_Q1_3,
+		"以我們極限的肉體",L_MONK_Q1_3,
+		"把他抹殺及消滅",L_MONK_Q1_3;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_3:
+
+	menu "以我們極限的肉體",L_MONK_Q1_4,
+		"我們武道家",-,
+		"神的地上代理人",L_MONK_Q1_4,
+		"我們的使命是",L_MONK_Q1_4,
+		"神罰的地上代行者",L_MONK_Q1_4,
+		"徘徊的人之肉身",L_MONK_Q1_4,
+		"徹底的追擊",L_MONK_Q1_4,
+		"違背神者",L_MONK_Q1_4,
+		"把愚蠢的人之肉體",L_MONK_Q1_4,
+		"把他抹殺及消滅",L_MONK_Q1_4;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_4:
+
+	menu "我們的使命是",-,
+		"神的地上代理人",L_MONK_Q1_5,
+		"我們武道家",L_MONK_Q1_5,
+		"徹底的追擊",L_MONK_Q1_5,
+		"神罰的地上代行者",L_MONK_Q1_5,
+		"把他抹殺及消滅",L_MONK_Q1_5,
+		"以我們極限的肉體",L_MONK_Q1_5,
+		"徘徊的人之肉身",L_MONK_Q1_5,
+		"違背神者",L_MONK_Q1_5,
+		"把愚蠢的人之肉體",L_MONK_Q1_5;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_5:
+
+	menu "神罰的地上代行者",L_MONK_Q1_6,
+		"神的地上代理人",L_MONK_Q1_6,
+		"我們武道家",L_MONK_Q1_6,
+		"我們的使命是",L_MONK_Q1_6,
+		"違背神者",L_MONK_Q1_6,
+		"把愚蠢的人之肉體",L_MONK_Q1_6,
+		"徘徊的人之肉身",L_MONK_Q1_6,
+		"徹底的追擊",L_MONK_Q1_6,
+		"以我們極限的肉體",-,
+		"把他抹殺及消滅",L_MONK_Q1_6;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_6:
+
+	menu "神的地上代理人",L_MONK_Q1_7,
+		"把愚蠢的人之肉體",L_MONK_Q1_7,
+		"違背神者",-,
+		"神罰的地上代行者",L_MONK_Q1_7,
+		"我們的使命是",L_MONK_Q1_7,
+		"把他抹殺及消滅",L_MONK_Q1_7,
+		"徹底的追擊",L_MONK_Q1_7,
+		"以我們極限的肉體",L_MONK_Q1_7,
+		"我們武道家",L_MONK_Q1_7,
+		"徘徊的人之肉身",L_MONK_Q1_7;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_7:
+
+	menu "徘徊的人之肉身",L_MONK_Q1_8,
+		"徹底的追擊",L_MONK_Q1_8,
+		"把他抹殺及消滅",L_MONK_Q1_8,
+		"神的地上代理人",L_MONK_Q1_8,
+		"神罰的地上代行者",L_MONK_Q1_8,
+		"以我們極限的肉體",L_MONK_Q1_8,
+		"我們武道家",L_MONK_Q1_8,
+		"我們的使命是",L_MONK_Q1_8,
+		"違背神者",L_MONK_Q1_8,
+		"把愚蠢的人之肉體",-;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_8:
+
+	menu "徘徊的人之肉身",-,
+		"徹底的追擊",L_MONK_Q1_9,
+		"把愚蠢的人之肉體",L_MONK_Q1_9,
+		"神的地上代理人",L_MONK_Q1_9,
+		"我們武道家",L_MONK_Q1_9,
+		"我們的使命是",L_MONK_Q1_9,
+		"以我們極限的肉體",L_MONK_Q1_9,
+		"違背神者",L_MONK_Q1_9,
+		"神罰的地上代行者",L_MONK_Q1_9,
+		"把他抹殺及消滅",L_MONK_Q1_9;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_9:
+
+	menu "神的地上代理人",L_MONK_Q1_10,
+		"神罰的地上代行者",L_MONK_Q1_10,
+		"我們武道家",L_MONK_Q1_10,
+		"我們的使命是",L_MONK_Q1_10,
+		"以我們極限的肉體",L_MONK_Q1_10,
+		"把他抹殺及消滅",L_MONK_Q1_10,
+		"違背神者",L_MONK_Q1_10,
+		"把愚蠢的人之肉體",L_MONK_Q1_10,
+		"徘徊的人之肉身",L_MONK_Q1_10,
+		"徹底的追擊",-;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_10:
+
+	menu "神的地上代理人",L_MONK_QUEST_END,
+		"神罰的地上代行者",L_MONK_QUEST_END,
+		"我們武道家",L_MONK_QUEST_END,
+		"我們的使命是",L_MONK_QUEST_END,
+		"以我們極限的肉體",L_MONK_QUEST_END,
+		"違背神者",L_MONK_QUEST_END,
+		"把愚蠢的人之肉體",L_MONK_QUEST_END,
+		"徘徊的人之肉身",L_MONK_QUEST_END,
+		"徹底的追擊",L_MONK_QUEST_END,
+		"把他抹殺及消滅",L_MONK_QUEST_1_2;
+
+
+//第二題
+//為了神傳達著神的聲明
+//以我們擁有的肉體來顯示我們的光榮
+//我們武道家
+//神罰的地上代行者
+//神的地上代理人
+//我們武道家的使命是
+//違背神者
+//未死亡者之肉身
+//愚蠢的人之肉身
+//徹底的追擊讓他消滅
+
+L_MONK_Q2_1:
+
+	menu "我們武道家",L_MONK_Q2_2,
+		"以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_2,
+		"神罰的地上代行者",L_MONK_Q2_2,
+		"為了神傳達著神的聲明",-,
+		"神的地上代理人",L_MONK_Q2_2,
+		"未死亡者之肉身",L_MONK_Q2_2,
+		"我們武道家的使命是",L_MONK_Q2_2,
+		"違背神者",L_MONK_Q2_2,
+		"把愚蠢的人之肉體",L_MONK_Q2_2,
+		"徹底的追擊讓他消滅",L_MONK_Q2_2;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_2:
+
+	menu "我們武道家",L_MONK_Q2_3,
+		"神的地上代理人",L_MONK_Q2_3,
+		"我們武道家的使命是",L_MONK_Q2_3,
+		"神罰的地上代行者",L_MONK_Q2_3,
+		"違背神者",L_MONK_Q2_3,
+		"未死亡者之肉身",L_MONK_Q2_3,
+		"徹底的追擊讓他消滅",L_MONK_Q2_3,
+		"為了神傳達著神的聲明",L_MONK_Q2_3,
+		"以我們擁有的肉體來顯示我們的光榮",-,
+		"把愚蠢的人之肉體",L_MONK_Q2_3;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_3:
+
+	menu "我們武道家",-,
+		"以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_4,
+		"為了神傳達著神的聲明",L_MONK_Q2_4,
+		"徹底的追擊讓他消滅",L_MONK_Q2_4,
+		"違背神者",L_MONK_Q2_4,
+		"神罰的地上代行者",L_MONK_Q2_4,
+		"把愚蠢的人之肉體",L_MONK_Q2_4,
+		"神的地上代理人",L_MONK_Q2_4,
+		"我們武道家的使命是",L_MONK_Q2_4,
+		"未死亡者之肉身",L_MONK_Q2_4;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_4:
+
+	menu "以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_5,
+		"違背神者",L_MONK_Q2_5,
+		"我們武道家",L_MONK_Q2_5,
+		"神的地上代理人",L_MONK_Q2_5,
+		"未死亡者之肉身",L_MONK_Q2_5,
+		"神罰的地上代行者",-,
+		"我們武道家的使命是",L_MONK_Q2_5,
+		"把愚蠢的人之肉體",L_MONK_Q2_5,
+		"徹底的追擊讓他消滅",L_MONK_Q2_5,
+		"為了神傳達著神的聲明",L_MONK_Q2_5;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_5:
+
+	menu "未死亡者之肉身",L_MONK_Q2_6,
+		"為了神傳達著神的聲明",L_MONK_Q2_6,
+		"神罰的地上代行者",L_MONK_Q2_6,
+		"我們武道家的使命是",L_MONK_Q2_6,
+		"違背神者",L_MONK_Q2_6,
+		"把愚蠢的人之肉體",L_MONK_Q2_6,
+		"徹底的追擊讓他消滅",L_MONK_Q2_6,
+		"我們武道家",L_MONK_Q2_6,
+		"以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_6,
+		"神的地上代理人",-;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_6:
+
+	menu "神罰的地上代行者",L_MONK_Q2_7,
+		"我們武道家",L_MONK_Q2_7,
+		"以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_7,
+		"為了神傳達著神的聲明",L_MONK_Q2_7,
+		"我們武道家的使命是",-,
+		"神的地上代理人",L_MONK_Q2_7,
+		"未死亡者之肉身",L_MONK_Q2_7,
+		"違背神者",L_MONK_Q2_7,
+		"徹底的追擊讓他消滅",L_MONK_Q2_7,
+		"把愚蠢的人之肉體",L_MONK_Q2_7;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_7:
+
+	menu "以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_8,
+		"違背神者",-,
+		"我們武道家的使命是",L_MONK_Q2_8,
+		"未死亡者之肉身",L_MONK_Q2_8,
+		"我們武道家",L_MONK_Q2_8,
+		"神罰的地上代行者",L_MONK_Q2_8,
+		"神的地上代理人",L_MONK_Q2_8,
+		"把愚蠢的人之肉體",L_MONK_Q2_8,
+		"徹底的追擊讓他消滅",L_MONK_Q2_8,
+		"為了神傳達著神的聲明",L_MONK_Q2_8;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_8:
+
+	menu "未死亡者之肉身",-,
+		"神罰的地上代行者",L_MONK_Q2_9,
+		"神的地上代理人",L_MONK_Q2_9,
+		"以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_9,
+		"我們武道家的使命是",L_MONK_Q2_9,
+		"我們武道家",L_MONK_Q2_9,
+		"違背神者",L_MONK_Q2_9,
+		"把愚蠢的人之肉體",L_MONK_Q2_9,
+		"為了神傳達著神的聲明",L_MONK_Q2_9,
+		"徹底的追擊讓他消滅",L_MONK_Q2_9;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_9:
+
+	menu "為了神傳達著神的聲明",L_MONK_Q2_10,
+		"我們武道家",L_MONK_Q2_10,
+		"以我們擁有的肉體來顯示我們的光榮",L_MONK_Q2_10,
+		"神的地上代理人",L_MONK_Q2_10,
+		"神罰的地上代行者",L_MONK_Q2_10,
+		"我們武道家的使命是",L_MONK_Q2_10,
+		"違背神者",L_MONK_Q2_10,
+		"把愚蠢的人之肉體",-,
+		"未死亡者之肉身",L_MONK_Q2_10,
+		"徹底的追擊讓他消滅",L_MONK_Q2_10;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_10:
+
+	menu "為了神傳達著神的聲明",L_MONK_QUEST_END,
+		"以我們擁有的肉體來顯示我們的光榮",L_MONK_QUEST_END,
+		"我們武道家",L_MONK_QUEST_END,
+		"神罰的地上代行者",L_MONK_QUEST_END,
+		"神的地上代理人",L_MONK_QUEST_END,
+		"我們武道家的使命是",L_MONK_QUEST_END,
+		"違背神者",L_MONK_QUEST_END,
+		"未死亡者之肉身",L_MONK_QUEST_END,
+		"把愚蠢的人之肉體",L_MONK_QUEST_END,
+		"徹底的追擊讓他消滅",L_MONK_QUEST_1_2;
+
+
+//第三題
+//違背神者給予審判!
+//違背神者給予最後!
+//違背神者給予絕滅!
+//我們，武道家
+//以擁有的肉體來代替神的光榮
+//神的地上代理人
+//神罰的地上代行者
+//就算骨骼及肉體被切割
+//所有都是為了神的光榮
+//為了審判所有對抗神者
+
+L_MONK_Q3_1:
+
+	menu "違背神者給予最後!",L_MONK_Q3_2,
+		"違背神者給予審判!",-,
+		"違背神者給予絕滅!",L_MONK_Q3_2,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_2,
+		"我們，武道家",L_MONK_Q3_2,
+		"神罰的地上代行者",L_MONK_Q3_2,
+		"神的地上代理人",L_MONK_Q3_2,
+		"就算骨骼及肉體被切割",L_MONK_Q3_2,
+		"為了審判所有對抗神者",L_MONK_Q3_2,
+		"所有都是為了神的光榮",L_MONK_Q3_2;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_2:
+
+	menu "就算骨骼及肉體被切割",L_MONK_Q3_3,
+		"神罰的地上代行者",L_MONK_Q3_3,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_3,
+		"所有都是為了神的光榮",L_MONK_Q3_3,
+		"為了審判所有對抗神者",L_MONK_Q3_3,
+		"違背神者給予絕滅!",L_MONK_Q3_3,
+		"違背神者給予審判!",L_MONK_Q3_3,
+		"違背神者給予最後!",-,
+		"我們，武道家",L_MONK_Q3_3,
+		"神的地上代理人",L_MONK_Q3_3;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_3:
+
+	menu "違背神者給予審判!",L_MONK_Q3_4,
+		"違背神者給予最後!",L_MONK_Q3_4,
+		"違背神者給予絕滅!",-,
+		"我們，武道家",L_MONK_Q3_4,
+		"就算骨骼及肉體被切割",L_MONK_Q3_4,
+		"為了審判所有對抗神者",L_MONK_Q3_4,
+		"所有都是為了神的光榮",L_MONK_Q3_4,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_4,
+		"神的地上代理人",L_MONK_Q3_4,
+		"神罰的地上代行者",L_MONK_Q3_4;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_4:
+
+	menu "違背神者給予最後!",L_MONK_Q3_5,
+		"違背神者給予審判!",L_MONK_Q3_5,
+		"違背神者給予絕滅!",L_MONK_Q3_5,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_5,
+		"我們，武道家",-,
+		"神罰的地上代行者",L_MONK_Q3_5,
+		"神的地上代理人",L_MONK_Q3_5,
+		"所有都是為了神的光榮",L_MONK_Q3_5,
+		"就算骨骼及肉體被切割",L_MONK_Q3_5,
+		"為了審判所有對抗神者",L_MONK_Q3_5;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_5:
+
+	menu "違背神者給予審判!",L_MONK_Q3_6,
+		"違背神者給予最後!",L_MONK_Q3_6,
+		"違背神者給予絕滅!",L_MONK_Q3_6,
+		"以擁有的肉體來代替神的光榮",-,
+		"我們，武道家",L_MONK_Q3_6,
+		"神的地上代理人",L_MONK_Q3_6,
+		"神罰的地上代行者",L_MONK_Q3_6,
+		"所有都是為了神的光榮",L_MONK_Q3_6,
+		"就算骨骼及肉體被切割",L_MONK_Q3_6,
+		"為了審判所有對抗神者",L_MONK_Q3_6;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_6:
+
+	menu "違背神者給予最後!",L_MONK_Q3_7,
+		"違背神者給予絕滅!",L_MONK_Q3_7,
+		"違背神者給予審判!",L_MONK_Q3_7,
+		"我們，武道家",L_MONK_Q3_7,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_7,
+		"神罰的地上代行者",L_MONK_Q3_7,
+		"神的地上代理人",-,
+		"就算骨骼及肉體被切割",L_MONK_Q3_7,
+		"所有都是為了神的光榮",L_MONK_Q3_7,
+		"為了審判所有對抗神者",L_MONK_Q3_7;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_7:
+
+	menu "違背神者給予最後!",L_MONK_Q3_8,
+		"就算骨骼及肉體被切割",L_MONK_Q3_8,
+		"神罰的地上代行者",-,
+		"所有都是為了神的光榮",L_MONK_Q3_8,
+		"為了審判所有對抗神者",L_MONK_Q3_8,
+		"違背神者給予絕滅!",L_MONK_Q3_8,
+		"違背神者給予審判!",L_MONK_Q3_8,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_8,
+		"我們，武道家",L_MONK_Q3_8,
+		"神的地上代理人",L_MONK_Q3_8;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_8:
+
+	menu "就算骨骼及肉體被切割",-,
+		"所有都是為了神的光榮",L_MONK_Q3_9,
+		"違背神者給予審判!",L_MONK_Q3_9,
+		"違背神者給予最後!",L_MONK_Q3_9,
+		"違背神者給予絕滅!",L_MONK_Q3_9,
+		"我們，武道家",L_MONK_Q3_9,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_9,
+		"神的地上代理人",L_MONK_Q3_9,
+		"神罰的地上代行者",L_MONK_Q3_9,
+		"為了審判所有對抗神者",L_MONK_Q3_9;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_9:
+
+	menu "違背神者給予絕滅!",L_MONK_Q3_10,
+		"違背神者給予最後!",L_MONK_Q3_10,
+		"違背神者給予審判!",L_MONK_Q3_10,
+		"所有都是為了神的光榮",-,
+		"以擁有的肉體來代替神的光榮",L_MONK_Q3_10,
+		"我們，武道家",L_MONK_Q3_10,
+		"就算骨骼及肉體被切割",L_MONK_Q3_10,
+		"神罰的地上代行者",L_MONK_Q3_10,
+		"神的地上代理人",L_MONK_Q3_10,
+		"為了審判所有對抗神者",L_MONK_Q3_10;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_10:
+
+	menu "違背神者給予審判!",L_MONK_QUEST_END,
+		"違背神者給予最後!",L_MONK_QUEST_END,
+		"違背神者給予絕滅!",L_MONK_QUEST_END,
+		"我們，武道家",L_MONK_QUEST_END,
+		"以擁有的肉體來代替神的光榮",L_MONK_QUEST_END,
+		"神的地上代理人",L_MONK_QUEST_END,
+		"神罰的地上代行者",L_MONK_QUEST_END,
+		"就算骨骼及肉體被切割",L_MONK_QUEST_END,
+		"所有都是為了神的光榮",L_MONK_QUEST_END,
+		"為了審判所有對抗神者",-;
+L_MONK_QUEST_1_2:
+		set @monk_q, @monk_q + 1;
+L_MONK_QUEST_END:
+
+	if(@monk_q != 10) goto L_C2_FAIL;
+
+L_C2_DONE:
+	set @monk_q, 0;
+	next;
+	mes "[道武俠]";
+	mes "呵嗯..";
+	next;
+	mes "[道武俠]";
+	mes "..真厲害!太完美了";
+	next;
+	mes "[道武俠]";
+	mes "不過別太早放下心，武道家的路還很遠呢，";
+	next;
+	mes "[道武俠]";
+	mes "嗒啊!..";
+	next;
+	mes "咻喀!";
+	next;
+	mes "咻苦!";
+	next;
+	mes "啪厭!";
+	next;
+	mes "[道武俠]";
+	mes "以我們的約定，你的血脈已經照武道家";
+	mes "的血脈流著";
+	next;
+	mes "[道武俠]";
+	mes "好..再來就去找[富海]先生吧，";
+	next;
+	mes "[道武俠]";
+	mes "好，出發吧，是[富海]先生，不要忘記";
+	set JOB_MONK_Q, 6;
+	close;
+
+L_C2_FAIL:
+	mes "[" + strcharinfo(0) + "]";
+	mes "此列表尚待模擬 >.< ";
+	next;
+	mes "[道武俠]";
+	mes "好總之辛苦你了";
+	next;
+	mes "[道武俠]";
+	mes "呵嗯..";	
+	next;
+	mes "[道武俠]";
+	mes "真是的，連這個都不知道嗎?";
+	next;
+	mes "[道武俠]";	
+	mes "你自已無妨懷疑一下，";
+	mes "自己的本質也無所謂啦?";
+	mes "..真是的，這不是在開玩笑吧";
+	mes "來，來，再來嘗試一次";
+	next;
+	mes "[道武俠]";	
+	mes "我怕漏掉先跟你說，在通過這次關之前";
+	mes "不論找誰都是沒有用的，";
+	set JOB_MONK_Q, 5;
+	close;
+
+Part1:
+	mes "[道武俠]";
+	mes "嗯，好吧，我再念一次";
+	next;
+	goto L_Again;
+
+Part2:
+	mes "[道武俠]";
+	mes "嗯?忘記要找誰了嗎?";
+	next;
+	mes "[道武俠]";
+	mes "......現在，";
+	next;
+	mes "[道武俠]";
+	mes "..你在考驗我的忍耐性嗎?";
+	next;
+	mes "[道武俠]";
+	mes "..好吧，我再講一次，";
+	mes "請去找[富海]先生";
+	close;
+Part3:
+	mes "[道武俠]";
+	mes "..剩下的考試，祝你一切順利";
+	close;
+}
+
+prt_monk,57,179,4	script	富海	110,{
+
+	if(@Choice_mission == 1 ) goto Part1;
+	if(@Choice_mission == 2 ) goto Part2;
+	if(JOB_MONK_Q == 6 ) goto L_START;
+	goto IsOther;
+IsOther:
+	mes "[富海]";
+	mes "哈啊啊啊啊..!!";
+	next;
+	mes "-疑似陷入冥想中-";
+	close;
+
+L_START:
+	mes "[富海]";
+	mes "..";
+	next;
+	mes "[富海]";
+	mes "....";
+	next;
+	mes "[富海]";
+	mes "......";
+	next;
+	mes "[富海]";
+	mes "........";
+	next;
+	menu "喂..請問..",-;
+
+		mes "[富海]";
+		mes "..什麼事?";
+		mes "竟然妨礙到我的修練";
+		mes "如果不是重要的事情";
+		next;
+		mes "[富海]";
+		mes "......";
+		mes "你的命，很難保全";
+		next;
+		mes "[富海]";
+		mes "好，有什麼事?";
+		mes "請說明，";
+		next;
+		menu "是[道武俠]的武道家介紹我來的",L_MENU_1,
+			"沒什麼事",-;
+			
+			mes "[富海]";
+			mes "......";
+			mes "..幫你挖土讓你永遠站不起來吧!嗯?";
+			close;
+	L_MENU_1:
+		mes "[富海]";
+		mes "嗯，是嗎?";
+		mes "這樣啊..";
+		next;
+		mes "[富海]";
+		mes "呵嗯..你的血脈..";
+		mes "嗯，好..";
+		next;
+		mes "[富海]";
+		mes "不過，你跟[道武俠]武道家";
+		mes "都做了什麼事啊?";
+		next;
+		menu "啊..那個..嘛..",-,
+			"默念文章之後就來這裡了",L_MENU_1_1,
+			"接受血脈診斷之後就來這裡了",-;
+
+			mes "[富海]";
+			mes "..真愚蠢!";
+			mes "不要妨礙我快點離開吧!";
+			close;
+	L_MENU_1_1:
+		mes "[富海]";
+		mes "嗯..還有呢";
+		mes "他沒有幫你作什麼事嗎?";
+		next;
+		menu "啊..那是..什麼啦..",-,
+			"檢查身體",L_MENU_1_1_1,
+			"告訴我成為武道家的初步事項",L_MENU_1_1_1,
+			"把我的血脈轉換成，武道家的初步血脈",L_MENU_1_1_2;
+
+			mes "[富海]";
+			mes "..真愚蠢!";
+			mes "快點離開吧!嗯?";
+			close;
+	L_MENU_1_1_1:
+		mes "[富海]";
+		mes "話是沒錯，不過不是正確答案，";
+		mes "請你確實的瞭解?";
+		close;
+
+	L_MENU_1_1_2:
+		set JOB_MONK_Q, 7;
+		mes "[富海]";
+		mes "好，至少可以知道自己的身體";
+		mes "有了什麼變化吧，";
+		mes "好..來，進行下一個階段吧..";
+		next;
+		mes "[富海]";
+		mes "那，我跟其它人不一樣把選擇的權";
+		mes "利交給你";
+		mes "下列中選一項，來進行修練吧!";
+		next;
+		menu "採集蘑菇",L_ROOT_1,"馬拉松",L_ROOT_2;
+
+	L_ROOT_1:
+		mes "[富海]";
+		mes "採集蘑菇，好啊，可以讓你體會一下忍耐的";
+		mes "極限，讓你感覺到神獻給你強的意志力";
+		mes "意義";
+		mes "那麼準備好之後再來吧!";
+		set @Choice_mission, 1;
+		close;
+	L_ROOT_2:
+		mes "[富海]";
+		mes "馬拉松，好啊，可以讓你體會一下體力的";
+		mes "極限，讓你感覺到神獻給你強的體力";
+		mes "意義";
+		mes "那麼準備好之後再來吧!";
+		set @Choice_mission, 2;
+		close;
+Part1:
+	mes "[富海]";
+	mes "嗯，都準備好了嗎?，";
+	mes "只要確知自己有此能力耐的話";
+	mes "也不必準備什麼";
+	next;
+	mes "[富海]";
+	mes "你所選擇的採集蘑菇考試是";
+	mes "堅持要說的話..是考驗自己的考試，";
+	next;
+	mes "[富海]";
+	mes "再來，去修道院中心附近的建築物裡面，";
+	next;
+	mes "[富海]";
+	mes "這個考試只要收集到一定的蘑菇，";
+	mes "就可以過關了";
+	mes "好那麼，出發吧，";
+	close;
+Part2:
+	mes "[富海]";
+	mes "嗯，都準備好了嗎?，";
+	mes "不過雙腿齊全的話";
+	mes "也不必準備什麼";
+	next;
+	mes "[富海]";
+	mes "你所選擇的馬拉松考試是";
+	mes "堅持要說的話..是克服自己的考試，";
+	next;
+	mes "[富海]";
+	mes "再來，去修道院中心附近的建築物裡面，";
+	next;
+	mes "[富海]";
+	mes "這個考試只要按照指定的次數，";
+	mes "指定的場合繞著跑就好了，";
+	mes "好那麼，出發吧，";
+	close;
+
+}
+
+prt_monk,199,169,4	script	守門將	746,{
+	if(JOB_MONK_Q == 7) goto L_START;
+	if(JOB_MONK_Q > 6) goto Part1;
+	goto IsOther;
+IsOther:
+	mes "[守門將 曹立]";
+	mes "..這裡是";
+	mes "武道家轉職考場";
+	next;
+	mes "[守門將 曹立]";
+	mes "：在考場請保持肅靜";
+	close;
+
+L_START:
+	mes "[守門將 曹立]";
+	mes "..這裡是";
+	mes "武道家轉職考場";
+	next;
+	mes "[守門將 曹立]";
+	mes strcharinfo(0) + " .. 是嗎!!";
+	next;
+	mes "[守門將 曹立]";
+	mes "什麼不是啊!!進去吧!!";
+	mes "考式正在等著你!!";
+	next;
+	mes "[守門將 曹立]";
+	mes "嗯!很好!很爽快，進去吧!";
+	mes "考試正在等著你!!";
+	close;
+
+Part1:
+	mes "[守門將 曹立]";
+	mes "在考場裡請保持安靜";
+	close;
+}
+
+monk_test,329,61,4	script	助教#mk	753,{
+	if(JOB_MONK_Q == 7) goto L_START;
+	if(JOB_MONK_Q == 8) goto IsOther;
+	goto IsOther;
+IsOther:
+	mes "[巴修]";
+	mes "您好..這裡是武道家修練場，聖";
+	mes "卡畢利那 修道院的武道家修練所，";
+	mes "進去裡面之後....";
+	mes "可以看到管理前輩武道家成績的道文武道家";
+	next;
+	mes "[巴修]";
+	mes "請不要隨便動任何東西，";
+	mes "也不要在道文武道家面前大吵大鬧，";
+	next;
+	mes "[巴修]";
+	mes "那麼，希望你與神有個快樂的對話時間";
+	close;
+L_START:
+	mes "[巴修]";
+	mes "請問要去哪一個考場?";
+	next;
+	if(@Choice_mission == 0) goto L_MISSC;
+	if(@Choice_mission == 2) goto L_MISS2;
+	mes "[巴修]";
+	mes "以我所知，你之前選擇的是採集蘑菇";
+	mes "也就是採集蘑菇的考試..";
+	goto L_MISSC;
+L_MISS2:
+	mes "[巴修]";
+	mes "以我所知，你之前選擇的是馬拉松";
+	mes "也就是跑步考試..";
+L_MISSC:
+	mes "不過選擇什麼是你的自由";
+	next;
+	menu "武道家的忍耐-採集蘑菇",-,"武道家的自我克服-馬拉松",L_MENU_1;
+
+	mes "[巴修]";
+	mes "你選擇的是考驗武道家的忍耐-採集蘑菇";
+	next;
+	warp "job_monk",225,179;
+	end;
+
+L_MENU_1:
+	mes "[巴修]";
+	mes "你選擇的是考驗武道家的自我克服-馬拉松";
+	next;
+	warp "monk_test",387,345;
+	end;
+}
+
+monk_test,387,347,4	script	助教#mk2	110,{
+	mes "[見習 武道家]";
+	mes "歡..歡迎光臨!";
+	mes "這..這裡是考驗武道家忍..忍耐性的考場";
+	next;
+	mes "[見習 武道家]";
+	mes "一 .. 一直跑就可以了!";
+	mes "直到下命令停止之前，";
+	mes "快..快跑....跑..跑啊!";
+	next;
+	mes "[見習 武道家]";
+	mes "跑..跑啊!我!總有一天會這裡跑!";
+	next;
+	mes "[見習 武道家]";
+	mes "我..我要!";
+	mes "成為武道家..武武武..武道家!";
+	next;
+	mes "[見習 武道家]";
+	mes "中..中中..中途 放..放棄?嗯?繼續?";
+	mes "放棄?";
+	next;
+	menu "我要放棄",-,"我要繼續跑",L_MENU_1;
+
+		mapannounce "monk_test","助教：" + strcharinfo(0) + "..放..放棄轉職!跑步，在馬拉松中途放棄!! 沒..沒有..沒有耐性!!!哈哈哈哈!!",8;
+		mes "[見習 武道家]";
+		mes strcharinfo(0) + "..放..放棄轉職!";
+		mes "跑步，在馬拉松中途放棄!! 沒..沒有";
+		mes "..沒有耐性!!!哈哈哈哈!!";
+		next;
+		warp "prt_monk",196,168;
+		end;
+L_MENU_1:
+	next;
+	mes "[見習 武道家]";
+	mes "直到下命令停止之前，";
+	mes "快..快跑....跑..跑啊!";	
+	if(@runtimes == 0) set @runtimes, rand(8,10);
+	close;
+}
+monk_test,390,387,0	script	monk_warp	45,1,1,{
+	set @run, @run + 1;
+	if(@run == (@runtimes-1)) mapannounce "monk_test","助教：接下來是..最..最後一圈囉!請..請再加把勁吧!",8;
+	if(@run == @runtimes) goto L_DONE;
+	warp "monk_test",388,348;
+	end;
+L_DONE:
+	mapannounce "monk_test","助教：恭..恭喜" + strcharinfo(0)+ "過關了，接著請去找下一位考官[道文]，他在修道院的最深處",8;
+	set JOB_MONK_Q, 8;
+	warp "prt_monk",196,168;
+	end;
+
+}
+monk_test,0,0,0	script	monk_traps	-1,{
+	mapannounce "monk_test","陷阱：" + strcharinfo(0)+ "，你已掉入陷阱，即將要回到開始的位置",8;
+	warp "monk_test",388,348;
+	end;
+}
+//---------------------
+monk_test,386,164,0	script	monk1-1	139,0,0,{doevent "monk_traps";end;}
+monk_test,386,165,0	script	monk1-2	139,0,0,{doevent "monk_traps";end;}
+monk_test,387,164,0	script	monk1-3	139,0,0,{doevent "monk_traps";end;}
+monk_test,387,165,0	script	monk1-4	139,0,0,{doevent "monk_traps";end;}
+monk_test,388,164,0	script	monk1-5	139,0,0,{doevent "monk_traps";end;}
+monk_test,388,165,0	script	monk1-6	139,0,0,{doevent "monk_traps";end;}
+monk_test,389,164,0	script	monk1-7	139,0,0,{doevent "monk_traps";end;}
+monk_test,389,165,0	script	monk1-8	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+monk_test,386,42,0	script	monk2-1	139,0,0,{doevent "monk_traps";end;}
+monk_test,386,43,0	script	monk2-2	139,0,0,{doevent "monk_traps";end;}
+monk_test,387,42,0	script	monk2-3	139,0,0,{doevent "monk_traps";end;}
+monk_test,387,43,0	script	monk2-4	139,0,0,{doevent "monk_traps";end;}
+monk_test,388,42,0	script	monk2-5	139,0,0,{doevent "monk_traps";end;}
+monk_test,388,43,0	script	monk2-6	139,0,0,{doevent "monk_traps";end;}
+monk_test,389,42,0	script	monk2-7	139,0,0,{doevent "monk_traps";end;}
+monk_test,389,43,0	script	monk2-8	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+monk_test,184,11,0	script	monk3-1	139,0,3,{doevent "monk_traps";end;}
+monk_test,185,11,0	script	monk3-2	139,0,3,{doevent "monk_traps";end;}
+monk_test,186,11,0	script	monk3-3	139,0,3,{doevent "monk_traps";end;}
+monk_test,187,11,0	script	monk3-4	139,0,3,{doevent "monk_traps";end;}
+//---------------------
+monk_test,70,10,0	script	monk4-1	139,0,0,{doevent "monk_traps";end;}
+monk_test,70,11,0	script	monk4-2	139,0,0,{doevent "monk_traps";end;}
+monk_test,70,12,0	script	monk4-3	139,0,0,{doevent "monk_traps";end;}
+monk_test,70,13,0	script	monk4-4	139,0,0,{doevent "monk_traps";end;}
+monk_test,71,10,0	script	monk4-5	139,0,0,{doevent "monk_traps";end;}
+monk_test,71,11,0	script	monk4-6	139,0,0,{doevent "monk_traps";end;}
+monk_test,71,12,0	script	monk4-7	139,0,0,{doevent "monk_traps";end;}
+monk_test,71,13,0	script	monk4-8	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+monk_test,8,30,0	script	monk5-1	139,0,0,{doevent "monk_traps";end;}
+monk_test,8,31,0	script	monk5-2	139,0,0,{doevent "monk_traps";end;}
+monk_test,9,30,0	script	monk5-3	139,0,0,{doevent "monk_traps";end;}
+monk_test,9,31,0	script	monk5-4	139,0,0,{doevent "monk_traps";end;}
+monk_test,10,30,0	script	monk5-5	139,0,0,{doevent "monk_traps";end;}
+monk_test,10,31,0	script	monk5-6	139,0,0,{doevent "monk_traps";end;}
+monk_test,11,30,0	script	monk5-7	139,0,0,{doevent "monk_traps";end;}
+monk_test,11,31,0	script	monk5-8	139,0,0,{doevent "monk_traps";end;}
+monk_test,12,30,0	script	monk5-9	139,0,0,{doevent "monk_traps";end;}
+monk_test,12,31,0	script	monk5-10	139,0,0,{doevent "monk_traps";end;}
+monk_test,13,30,0	script	monk5-11	139,0,0,{doevent "monk_traps";end;}
+monk_test,13,31,0	script	monk5-12	139,0,0,{doevent "monk_traps";end;}
+monk_test,14,30,0	script	monk5-13	139,0,0,{doevent "monk_traps";end;}
+monk_test,14,31,0	script	monk5-14	139,0,0,{doevent "monk_traps";end;}
+monk_test,15,30,0	script	monk5-15	139,0,0,{doevent "monk_traps";end;}
+monk_test,15,31,0	script	monk5-16	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+monk_test,10,158,0	script	monk6-1	139,0,0,{doevent "monk_traps";end;}
+monk_test,10,159,0	script	monk6-2	139,0,0,{doevent "monk_traps";end;}
+monk_test,11,158,0	script	monk6-3	139,0,0,{doevent "monk_traps";end;}
+monk_test,11,159,0	script	monk6-4	139,0,0,{doevent "monk_traps";end;}
+monk_test,12,158,0	script	monk6-5	139,0,0,{doevent "monk_traps";end;}
+monk_test,12,159,0	script	monk6-6	139,0,0,{doevent "monk_traps";end;}
+monk_test,13,158,0	script	monk6-7	139,0,0,{doevent "monk_traps";end;}
+monk_test,13,159,0	script	monk6-8	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+monk_test,38,386,0	script	monk7-1	139,0,0,{doevent "monk_traps";end;}
+monk_test,38,387,0	script	monk7-2	139,0,0,{doevent "monk_traps";end;}
+monk_test,38,388,0	script	monk7-3	139,0,0,{doevent "monk_traps";end;}
+monk_test,38,389,0	script	monk7-4	139,0,0,{doevent "monk_traps";end;}
+monk_test,39,386,0	script	monk7-5	139,0,0,{doevent "monk_traps";end;}
+monk_test,39,387,0	script	monk7-6	139,0,0,{doevent "monk_traps";end;}
+monk_test,39,388,0	script	monk7-7	139,0,0,{doevent "monk_traps";end;}
+monk_test,39,389,0	script	monk7-8	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+monk_test,82,390,0	script	monk8-1	139,0,0,{doevent "monk_traps";end;}
+monk_test,82,391,0	script	monk8-2	139,0,0,{doevent "monk_traps";end;}
+monk_test,83,390,0	script	monk8-3	139,0,0,{doevent "monk_traps";end;}
+monk_test,83,391,0	script	monk8-4	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+monk_test,82,384,0	script	monk8-5	139,0,0,{doevent "monk_traps";end;}
+monk_test,82,385,0	script	monk8-6	139,0,0,{doevent "monk_traps";end;}
+monk_test,83,384,0	script	monk8-7	139,0,0,{doevent "monk_traps";end;}
+monk_test,83,385,0	script	monk8-8	139,0,0,{doevent "monk_traps";end;}
+//---------------------
+prt_monk,225,179,4	script	玄武#mk 	89,{
+	mes "[玄武]";
+	mes "看著農作物的成長，我就會深深";
+	mes "感到神的恩典";
+	next;
+	mes "[玄武]";
+	mes "還有，看看我們那身體強壯的武道家";
+	mes "努力栽培的農作物!";
+	mes "那畫面有多美麗啊!";
+	next;
+	mes "[玄武]";
+	mes "說真的，種田的行為看起來不知道";
+	mes "有多美麗啊!";
+	mes "你所喝的藍色藥水，也是一定是很多人";
+	mes "感到神的旨意而栽培出來的";
+	next;
+	mes "[玄武]";
+	mes "我們總是要感謝";
+	next;
+	mes "[玄武]";
+	mes "神留給你的這一切，以及那些努力把";
+	mes "這一切加工以方便使用的人";
+	next;
+	mes "[玄武]";
+	mes "農者天下之大本..這是麼多美的話!";
+	close;
+}
+job_monk,225,179,4	script	玄武#mk2	89,{
+
+	if(JOB_MONK_Q == 8 ) goto Part2;
+	if(@mission_start == 1 ) goto Part1;
+
+	mes "[玄武]";
+	mes "歡迎光臨，我是負責採集蘑菇考試的";
+	mes "玄武";
+	next;
+	mes "[玄武]";
+	mes "現在開始諸君們要經歷的苦難是";
+	mes "全部把他當作是修練的一種過程";
+	mes "瞭解嗎?";
+	next;
+	mes "[玄武]";
+	mes "為了我們武道家的生活";
+	mes "你們必須要為我們奉獻";
+	mes "我們有栽培一些農作物，";
+	mes "也是身心修練的一種";
+	next;
+	mes "[玄武]";
+	mes "我們認為想要誕解神的旨意";
+	mes "沒有比這個更好的課程，";
+	mes "所以說呢，前陣子開始有種";
+	mes "發出惡臭的菇類不斷的";
+	mes "在這裡蔓延";
+	next;
+	mes "[玄武]";
+	mes "你們要作的事情就是，";
+	mes "要把那些香菇全部毀滅";
+	mes "只要帶來一定的證物就可以過關，";
+	mes "所謂的證物就是 ^ff0000惡臭香菇，毒香菇^000000";
+	next;
+	mes "[玄武]";
+	mes "想要增進內功並成為武道家的話";
+	mes "就趕快去採來吧!";
+	mes "不跟你說要采多少，";
+	mes "采適當的量就回來吧!";
+	mes "聽懂了就開始行動吧!";
+	next;
+
+	mes "[玄武]";
+	mes "什麼?想要放棄嗎?";
+	next;
+	menu "採集蘑菇",L_MENU_1,"我要放棄",L_MENU_2;
+
+L_MENU_2:
+		mapannounce "monk_test","助教：......又是個沒毅力的傢伙，居然放棄",8;
+		mes "[玄武]";
+		mes "..又是個沒毅力的傢伙，居然放棄";
+		set @mission_start, 0;
+		getitem 1069, 1;
+		delitem 1069, 1;
+		next;
+		warp "prt_monk",196,168;
+		end;		
+L_MENU_1:
+	mes "[玄武]";
+	mes "開始行動!";
+	set @mission_start, 1;
+	close;
+
+Part1:
+	// 過關條件確認
+	if(countitem(1069) >= 30 && countitem(1070) >0 ) goto L_DONE;
+	if(countitem(1070) >= 30 && countitem(1069) >0 ) goto L_DONE;
+	mes "[玄武]";
+	mes "還早還早～再努力點吧!";
+	next;
+	mes "[玄武]";
+	mes "什麼?想要放棄啊?";
+	next;
+	menu "繼續採集",-,"放棄採集",L_MENU_2;
+		close;
+L_DONE:
+	set JOB_MONK_Q, 8;
+	mes "[玄武]";
+	mes "嗯..馬馬虎虎採完了啊?";
+	mes "好，過關!";
+	set @mission_start, 0;
+	delitem 1069, countitem(1069);
+	delitem 1070, countitem(1070);
+	next;
+	mes "[玄武]";
+	mes "再來去找，[道文]武道家吧";
+	mes "[道文]武道家，在修道院附近建築物";
+	mes "內部的最深處";
+	close;
+Part2:
+	mes "[玄武]";
+	mes "我不是叫你去找，[道文]武道家?";
+	mes "還想要測試我的耐性嗎??";
+	mes "[道文]武道家，在修道院附近建築物";
+	mes "內部的最深處";
+	close;
+}
+job_monk,191,172,4	script	job_monk_warp	45,1,1,{
+	warp "monk_test",329,57;
+	end;
+}
+
+job_monk,199,169,4	script	守門將 	746,{
+	mes "[守門將 曹立]";
+	mes "在考場裡請保持安靜";
+	close;
+}
+
+monk_test,319,139,4	script	道文	52,{
+	if(JOB_MONK_Q == 8) goto L_START;
+	if(JOB_MONK_Q == 9) goto Part1;
+	if(JOB_MONK_Q == 10) goto Part2;
+		goto IsOther;
+IsOther:
+	mes "[道文]";
+	mes "..悄悄的走過去吧，";
+	mes "呼嗚嗚嗚嗚嗚....";
+	next;
+	mes "[道文]";
+	mes "這裡，聖 卡畢利那";
+	mes "修道院中心如果出了問題，那麼先輩";
+	mes "武道家的業績很可能成為泡沫";
+	next;
+	mes "[道文]";
+	mes "如果不想看到後面，被封印的宿敵";
+	mes "醒來的話，最好不要打擾我";
+	close;
+L_START:
+	mes "[道文]";
+	mes "來的正好";
+	mes "這裡是最後一關，我是驅魔修行的負責人";
+	mes "道文!";
+	next;
+	mes "[道文]";
+	mes "好..!!還需要說什麼話呢";
+	mes "有擋路的人!就打!就這樣!";
+	next;
+	mes "[道文]";
+	mes "當你迷路正在徘徊時所有擋住你的敵人!";
+	mes "打他!砍他!";
+	mes "告訴他神與你的旨意，讓他們和世界訣別!!";
+	next;
+	mes "[道文]";
+	mes "不要跟懦弱的祭司比較!";
+	mes "我們一向是身體最強壯的武道家";
+	next;
+	mes "[道文]";
+	mes "我們跟只會跑腿又懦弱的祭司是不一樣的!";
+	next;
+	mes "[道文]";
+	mes "好!握住拳頭!站起來!就是現在";
+	next;
+	mes "[道文]";
+	mes "儘管，儘管發揮你的實力吧!!";
+	mes "咳哈哈哈哈哈哈!!";
+	next;
+	warp "monk_test",88,73;
+	end;
+
+Part1:
+	mes "[道文]";
+	mes "做的好!!咳哈哈哈哈!";
+	mes "果然我沒有看錯人!";
+	mes "來..我特別，傳授給你可以讓你";
+	mes "內功升值1甲子以上的秘藥";
+	next;
+	getitem 506, 1;
+	mes "[道文]";
+	mes "把它喝了之後，你的內功會增強，因而";
+	mes "可以轉職為武道家!!";
+	mes "好..那麼，就去找第一次申請轉職的地方";
+	mes "去[武海]長老那裡吧!!";
+	set JOB_MONK_Q, 10;
+	close;
+Part2:
+	mes "[道文]";
+	mes "去找[武海]長老吧!!";
+	close;
+}
+
+monk_test,88,91,4	script	考試 監督#mk2	52,{
+	mes "[考試 監督]";
+	mes "好，準備好要進行驅魔修行了嗎?";
+	next;
+	mes "[考試 監督]";
+	mes "考場是看不到的迷宮型成的";
+	mes "想要移動也不易移動，都是用透明的";
+	mes "牆所組成的";
+	next;
+	mes "[考試 監督]";
+	mes "想要走出這迷宮的方法，就是在開始的";
+	mes "地點及反方向的傳送點逃出";
+	next;
+	mes "[考試 監督]";
+	mes "在迷宮裡，偶而會出現一些魔物在徘徊，";
+	mes "就打敗他們就好了，";
+	mes "那麼祝你一路順風";
+	next;
+	if(getareausers("monk_test",126,161,165,199) > 0) goto L_WAIT;
+	killmonster "monk_test","monk_mob1";
+	enablenpc "monk_mob1_1";
+	enablenpc "monk_mob1_2";
+	enablenpc "monk_mob1_3";
+	enablenpc "monk_mob1_3";
+	warp "monk_test",127,179;
+	end;
+L_WAIT:
+	mes "[考試 監督]";
+	mes "目前有人正在考場中正進";
+	mes "測驗，請稍待一會再作測試!";
+	close;
+}
+monk_test,129,180,4	script	monk_mob1_1	139,0,19,{
+	monster "monk_test",130,183,"--ja--",1015,1,"monk_mob1";
+	monster "monk_test",130,177,"--ja--",1015,1,"monk_mob1";
+//~	disablenpc "monk_mob1_1";
+	end;
+}
+monk_test,133,180,4	script	monk_mob1_2	139,0,19,{
+	monster "monk_test",134,183,"--ja--",1015,1,"monk_mob1";
+	monster "monk_test",134,177,"--ja--",1015,1,"monk_mob1";
+//~	disablenpc "monk_mob1_2";
+	end;
+}
+monk_test,145,180,4	script	monk_mob1_3	139,0,19,{
+	monster "monk_test",145,180,"--ja--",1041,1,"monk_mob1";
+//~	disablenpc "monk_mob1_3";
+	end;
+}
+monk_test,155,180,4	script	monk_mob1_4	139,0,19,{
+	monster "monk_test",157,183,"--ja--",1015,1,"monk_mob1";
+	monster "monk_test",157,177,"--ja--",1015,1,"monk_mob1";
+//~	disablenpc "monk_mob1_4";
+	end;
+}
+monk_test,165,179,4	script	monk_mob1_warp	45,1,1,{
+	set JOB_MONK_Q, 9;
+	mapannounce "monk_test","恭喜" + strcharinfo(0)+ "通過驅魔修行，接著請與 '道文' 武道家進行對話，下一位申請者請準備",8;
+	killmonster "monk_test","monk_mob1";
+	warp "monk_test",317,142;
+	end;
+}
+
+monk_test,1,1,1	script	monk_mob1	-1,{
+		end;
+}
+
+monk_test,95,85,4	script	考試 監督#btl#3	79,{
+	mes "[考試 監督]";
+	mes "好，準備好要進行驅魔修行了嗎?";
+	next;
+	mes "[考試 監督]";
+	mes "考場是看不到的迷宮型成的";
+	mes "想要移動也不易移動，都是用透明的";
+	mes "牆所組成的";
+	next;
+	mes "[考試 監督]";
+	mes "想要走出這迷宮的方法，就是在開始的";
+	mes "地點及反方向的傳送點逃出";
+	next;
+	mes "[考試 監督]";
+	mes "在迷宮裡，偶而會出現一些魔物在徘徊，";
+	mes "就打敗他們就好了，";
+	mes "那麼祝你一路順風";
+	next;
+	if(getareausers("monk_test",126,262,165,300) > 0) goto L_WAIT;
+	killmonster "monk_test","monk_mob2";
+	enablenpc "monk_mob2_1";
+	enablenpc "monk_mob2_2";
+	enablenpc "monk_mob2_3";
+	enablenpc "monk_mob2_4";
+	warp "monk_test",127,278;
+	end;
+
+L_WAIT:
+	mes "[考試 監督]";
+	mes "目前有人正在考場中正進";
+	mes "測驗，請稍待一會再作測試!";
+	close;
+
+}
+monk_test,129,281,4	script	monk_mob2_1	139,0,19,{
+	monster "monk_test",130,278,"--ja--",1015,1,"monk_mob2";
+	monster "monk_test",130,284,"--ja--",1015,1,"monk_mob2";
+//~	disablenpc "monk_mob2_1";
+	end;
+}
+monk_test,136,281,4	script	monk_mob2_2	139,0,19,{
+	monster "monk_test",139,278,"--ja--",1015,1,"monk_mob2";
+	monster "monk_test",139,284,"--ja--",1015,1,"monk_mob2";
+//~	disablenpc "monk_mob2_2";
+	end;
+}
+monk_test,144,281,4	script	monk_mob2_3	139,0,19,{
+	monster "monk_test",145,281,"--ja--",1041,1,"monk_mob2";
+//~	disablenpc "monk_mob2_3";
+	end;
+}
+monk_test,153,281,4	script	monk_mob2_4	139,0,19,{
+	monster "monk_test",155,278,"--ja--",1015,1,"monk_mob2";
+	monster "monk_test",155,284,"--ja--",1015,1,"monk_mob2";
+//~	disablenpc "monk_mob2_4";
+	end;
+}
+monk_test,165,278,4	script	monk_mob2_warp	45,1,1,{
+	set JOB_MONK_Q, 9;
+	mapannounce "monk_test","恭喜" + strcharinfo(0)+ "通過驅魔修行，接著請與 '道文' 武道家進行對話，下一位申請者請準備",8;
+	killmonster "monk_test","monk_mob2";
+	warp "monk_test",317,142;
+	end;
+}
+
+monk_test,1,1,1	script	monk_mob2	-1,{
+		end;
+}
+
+monk_test,82,85,4	script	考試 監督#mk	95,{
+	mes "[考試 監督]";
+	mes "好，準備好要進行驅魔修行了嗎?";
+	next;
+	mes "[考試 監督]";
+	mes "考場是看不到的迷宮型成的";
+	mes "想要移動也不易移動，都是用透明的";
+	mes "牆所組成的";
+	next;
+	mes "[考試 監督]";
+	mes "想要走出這迷宮的方法，就是在開始的";
+	mes "地點及反方向的傳送點逃出";
+	next;
+	mes "[考試 監督]";
+	mes "在迷宮裡，偶而會出現一些魔物在徘徊，";
+	mes "就打敗他們就好了，";
+	mes "那麼祝你一路順風";
+	next;
+	if(getareausers("monk_test",233,262,269,300) > 0) goto L_WAIT;
+	killmonster "monk_test","monk_mob3";
+	enablenpc "monk_mob3_1";
+	enablenpc "monk_mob3_2";
+	enablenpc "monk_mob3_3";
+	enablenpc "monk_mob3_4";
+	warp "monk_test",231,279;
+	end;
+
+L_WAIT:
+	mes "[考試 監督]";
+	mes "目前有人正在考場中正進";
+	mes "測驗，請稍待一會再作測試!";
+	close;
+}
+
+monk_test,234,281,4	script	monk_mob3_1	139,0,19,{
+	monster "monk_test",235,277,"--ja--",1015,1,"monk_mob3";
+	monster "monk_test",235,284,"--ja--",1015,1,"monk_mob3";
+//~	disablenpc "monk_mob3_1";
+	end;
+}
+monk_test,239,281,4	script	monk_mob3_2	139,0,19,{
+	monster "monk_test",240,277,"--ja--",1015,1,"monk_mob3";
+	monster "monk_test",240,284,"--ja--",1015,1,"monk_mob3";
+//~	disablenpc "monk_mob3_2";
+	end;
+}
+monk_test,248,281,4	script	monk_mob3_3	139,0,19,{
+	monster "monk_test",249,281,"--ja--",1041,1,"monk_mob3";
+//~	disablenpc "monk_mob3_3";
+	end;
+}
+monk_test,260,281,4	script	monk_mob3_4	139,0,19,{
+	monster "monk_test",261,277,"--ja--",1015,1,"monk_mob3";
+	monster "monk_test",261,284,"--ja--",1015,1,"monk_mob3";
+//~	disablenpc "monk_mob3_4";
+	end;
+}
+monk_test,269,279,4	script	monk_mob3_warp	45,1,1,{
+	set JOB_MONK_Q, 9;
+	mapannounce "monk_test","恭喜" + strcharinfo(0)+ "通過驅魔修行，接著請與 '道文' 武道家進行對話，下一位申請者請準備",8;
+	killmonster "monk_test","monk_mob3";
+	warp "monk_test",317,142;
+	end;
+}
+
+monk_test,1,1,1	script	monk_mob3	-1,{
+		end;
+}
+
+
+//==============================================================================
+// Monsters of Mushroom Collecting
+//==============================================================================
+job_monk,0,0,0,0	monster	盜蘑菇	1182,170,0,0,0
+job_monk,0,0,0,0	monster	盜蟲	1051,120,0,0,0

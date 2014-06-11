@@ -1,0 +1,360 @@
+//===========================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// -----------------------------------------
+// - EP11.1打洞 腳本 -
+//===========================================
+// EP12的 雷亞布連 移動至另一個檔案
+//===========================================
+
+//世亞布連(EP11.1)
+-	script	世亞布連#dummy::SocketEnchant	-1,{
+	mes "[世亞布連]";
+	mes "我是在一般武器或防具上";
+	mes "進行打洞的技術員，嗯，";
+	mes "雖然也有人說這只是";
+	mes "打洞的小事情而已，";
+	mes "不過這一切都是外行人的";
+	mes "偏頗說詞罷了";
+	next;
+	mes "[世亞布連]";
+	mes "那證據就是，除了我之外";
+	mes "無人擁有這種技術啊?";
+	mes "那意思就是打洞的技術";
+	mes "沒那麼簡單啦，總之，";
+	mes "你有帶打洞的裝備嗎?";
+	mes "會依照裝備的不同手續費或必須材料，";
+	mes "成功機率也會有所不同，你先挑挑看";
+	next;
+	switch(select("武器:防具:再聽聽說明:取消")) {
+	case 1:
+		mes "[世亞布連]";
+		mes "武器嘛... OK，武器○○";
+		mes "依作業的難易度來看，嗯";
+		mes "約分成4種，C級是最容易的，";
+		mes "S級是最困難的，首先挑選";
+		mes "難易度水準吧";
+		next;
+		switch(select("C級:B級:A級:S級")) {
+		case 1:
+			mes "[世亞布連]";
+			mes "你選C級，那麼希望我為你修飾";
+			mes "哪一種C級的武器呢?";
+			next;
+			switch(select("德瑞尹長戟:鞭子:小提琴")) {
+			case 1: setarray .@sk[0],1,1460,1461,40,66,200,1010,10; break;
+			case 2: setarray .@sk[0],1,1950,1951,40,66,200,1010,10; break;
+			case 3: setarray .@sk[0],1,1901,1902,40,66,200,1010,10; break;
+			}
+			break;
+		case 2:
+			mes "[世亞布連]";
+			mes "你選不難的B級喔，那我為你修飾";
+			mes "哪一種B級的武器呢?";
+			next;
+			switch(select("鏈錘:長柄短劍:角弓:步兵長矛:海東劍:魯特琴:鋼鐵鞭子:虎爪拳套:亞伯雷弓")) {
+			case 1: setarray .@sk[0],1,1519,1520,40,61,300,1010,10; break;
+			case 2: setarray .@sk[0],2,1219,1220,40,61,300,984,1,999,5; break;
+			case 3: setarray .@sk[0],2,1714,1716,40,61,300,984,2,999,5; break;
+			case 4: setarray .@sk[0],1,1407,1408,40,61,300,1010,10; break;
+			case 5: setarray .@sk[0],2,1123,1128,40,61,300,984,2,999,5; break;
+			case 6: setarray .@sk[0],1,1905,1906,40,61,300,1011,10; break;
+			case 7: setarray .@sk[0],1,1954,1955,40,61,300,1011,10; break;
+			case 8: setarray .@sk[0],1,1801,1802,40,61,300,1010,10; break;
+			case 9: setarray .@sk[0],2,1713,1715,40,61,300,984,2,999,5; break;
+			}
+			break;
+		case 3:
+			mes "[世亞布連]";
+			mes "你偏愛高難度的喔，A級? 好吧，";
+			mes "你希望我為你修飾哪一種武器呢?";
+			next;
+			switch(select("獵人之弓:生存的魔杖(INT):巨大雙手劍:水紋之劍:刺殺拳刃:貝利斯塔強弩:昏迷之錘:秘拳套 閃光:十字巨劍")) {
+			case 1: setarray .@sk[0],2,1718,1726,40,61,500,984,2,999,10; break;
+			case 2: setarray .@sk[0],2,1619,1620,40,61,500,984,2,999,10; break;
+			case 3: setarray .@sk[0],2,1168,1171,40,61,800,984,5,999,10; break;
+			case 4: setarray .@sk[0],2,1129,1149,40,61,500,984,2,999,10; break;
+			case 5: setarray .@sk[0],2,1261,1266,40,61,700,984,5,999,10; break;
+			case 6: setarray .@sk[0],2,1722,1727,40,61,500,984,5,999,10; break;
+			case 7: setarray .@sk[0],2,1522,1532,40,61,700,984,2,999,10; break;
+			case 8: setarray .@sk[0],2,1814,1816,40,61,700,984,5,999,10; break;
+			case 9: setarray .@sk[0],2,1163,1172,40,61,700,984,5,999,10; break;
+			}
+			break;
+		case 4:
+			mes "[世亞布連]";
+			mes "呵，哦，S級! 顫抖顫抖顫抖...";
+			mes "...你要選哪一種S級的武器呢?!";
+			next;
+			switch(select("剛尼爾長矛:巨毒短劍:破甲短錐:砂塵短劍:卡卡普劍:狂擊之劍:死神之鐮:生存的魔杖(DEX)")) {
+			case 1: setarray .@sk[0],2,1413,1418,40,51,1000,984,5,999,10; break;
+			case 2: setarray .@sk[0],2,1239,13016,40,51,1000,984,5,999,10; break;
+			case 3: setarray .@sk[0],2,1230,13017,40,51,1000,984,5,999,10; break;
+			case 4: setarray .@sk[0],2,1236,13018,40,51,1000,984,5,999,10; break;
+			case 5: setarray .@sk[0],2,13002,13019,40,51,1000,984,5,999,10; break;
+			case 6: setarray .@sk[0],2,1135,13400,40,51,1000,984,5,999,10; break;
+			case 7: setarray .@sk[0],2,1466,1476,40,51,1000,984,5,999,10; break;
+			case 8: setarray .@sk[0],2,1617,1618,40,51,2000,984,5,999,10; break;
+			}
+			break;
+		}
+		break;
+	case 2:
+		mes "[世亞布連]";
+		mes "防具嘛.. OK，防具大概";
+		mes "依作業的難易度來看，嗯";
+		mes "約分成4種，C級是最容易的，";
+		mes "S級是最困難的，首先挑選";
+		mes "難易度水準吧";
+		next;
+		switch(select("C級:B級:A級:S級" )) {
+		case 1:
+			mes "[世亞布連]";
+			mes "你選C級，那麼希望我為你修飾";
+			mes "哪一種C級的防具呢?";
+			next;
+			switch(select("大衣:長大衣:頭箍:聖職之帽")) {
+			case 1: setarray .@sk[0],1,2307,2308,40,66,200,999,3; break;
+			case 2: setarray .@sk[0],1,2309,2310,40,66,200,999,3; break;
+			case 3: setarray .@sk[0],1,2232,2233,40,66,200,999,3; break;
+			case 4: setarray .@sk[0],1,2216,2217,40,66,200,999,3; break;
+			}
+			break;
+		case 2:
+			mes "[世亞布連]";
+			mes "你選不難的B級喔，那我為你修飾";
+			mes "哪一種B級的防具呢?";
+			next;
+			switch(select("鏡盾:鋼鐵鎖子甲:聖職之衣:絲質外袍:戰士長靴:長靴:披肩:鐵盾:圓盾:鋼盾:妖道帽")) {
+			case 1:  setarray .@sk[0],1,2107,2108,40,61,250,999,5; break;
+			case 2:  setarray .@sk[0],1,2314,2315,40,61,250,999,5; break;
+			case 3:  setarray .@sk[0],1,2325,2326,40,61,300,999,5; break;
+			case 4:  setarray .@sk[0],1,2321,2322,40,61,300,999,5; break;
+			case 5:  setarray .@sk[0],1,2405,2406,40,61,300,999,5; break;
+			case 6:  setarray .@sk[0],1,2403,2404,40,61,300,999,5; break;
+			case 7:  setarray .@sk[0],1,2503,2504,40,61,300,999,5; break;
+			case 8:  setarray .@sk[0],1,2101,2102,40,61,300,999,5; break;
+			case 9:  setarray .@sk[0],1,2103,2104,40,61,300,999,5; break;
+			case 10: setarray .@sk[0],1,2105,2106,40,61,250,999,5; break;
+			case 11: setarray .@sk[0],1,5046,5168,40,61,250,999,5; break;
+			}
+			break;
+		case 3:
+			mes "[世亞布連]";
+			mes "你偏愛高難度的喔，A級? 好吧，";
+			mes "你希望我為你修飾哪一種防具呢?";
+			next;
+			switch(select("寶石頭盔:軟呢帽:謊言紀錄本:緊身便衣:秘銀金屬鎧甲:鋼鐵鎧甲:盜賊之衣:重靴:修女的帽子:斗篷:金屬頭盔:忍服 血櫻:獸人頭盔:伯爵斗篷:神聖之帽:黃金帽:敏捷別針:僵屍帽")) {
+			case 1:  setarray .@sk[0],1,2230,2231,40,61,400,985,1; break;
+			case 2:  setarray .@sk[0],1,5114,5120,40,61,400,985,1; break;
+			case 3:  setarray .@sk[0],1,2109,2121,40,61,400,985,1; break;
+			case 4:  setarray .@sk[0],1,2330,2331,40,61,400,985,1; break;
+			case 5:  setarray .@sk[0],1,2341,2342,40,61,400,985,1; break;
+			case 6:  setarray .@sk[0],1,2316,2317,40,61,400,985,1; break;
+			case 7:  setarray .@sk[0],1,2335,2336,40,61,400,985,1; break;
+			case 8:  setarray .@sk[0],1,2411,2412,40,61,400,985,1; break;
+			case 9:  setarray .@sk[0],1,5092,5093,40,61,400,985,1; break;
+			case 10: setarray .@sk[0],1,2505,2506,40,61,400,985,1; break;
+			case 11: setarray .@sk[0],1,2228,2229,40,61,400,985,1; break;
+			case 12: setarray .@sk[0],1,2337,2359,40,61,400,985,1; break;
+			case 13: setarray .@sk[0],1,2299,5157,40,61,400,985,1; break;
+			case 14: setarray .@sk[0],1,2507,2525,40,61,400,985,1; break;
+			case 15: setarray .@sk[0],1,2251,5158,40,61,400,985,1; break;
+			case 16: setarray .@sk[0],1,2246,5159,40,61,400,985,1; break;
+			case 17: setarray .@sk[0],1,2605,2625,40,61,400,985,1; break;
+			case 18: setarray .@sk[0],1,2264,5167,40,61,300,985,1; break;
+			}
+			break;
+		case 4:
+			mes "[世亞布連]";
+			mes "呵，哦，S級! 顫抖顫抖顫抖...";
+			mes "...你要選哪一種S級的防具呢?!";
+			next;
+			switch(select("山羊頭盔:尖角髮圈:骨製頭盔:海盜船長帽:王冠:后冠:人面獅身帽:創作者外袍:智力耳環:力量戒指:神射手套")) {
+			case 1:  setarray .@sk[0],1,2256,5160,40,51,2000,985,2; break;
+			case 2:  setarray .@sk[0],1,2258,5161,40,51,2000,985,2; break;
+			case 3:  setarray .@sk[0],1,5017,5162,40,51,2000,985,2; break;
+			case 4:  setarray .@sk[0],1,5019,5163,40,51,2000,985,2; break;
+			case 5:  setarray .@sk[0],1,2235,5165,40,51,2000,985,2; break;
+			case 6:  setarray .@sk[0],1,2234,5164,40,51,2000,985,2; break;
+			case 7:  setarray .@sk[0],1,5053,5166,40,51,1000,985,2; break;
+			case 8:  setarray .@sk[0],1,2343,2360,40,51,1000,985,2; break;
+			case 9:  setarray .@sk[0],1,2602,2622,40,51,1000,985,2; break;
+			case 10: setarray .@sk[0],1,2601,2621,40,51,1000,985,2; break;
+			case 11: setarray .@sk[0],1,2619,2671,40,51,1000,985,2; break;
+			}
+			break;
+		}
+		break;
+	case 3:
+		mes "[世亞布連]";
+		mes "你又想打聽什麼... 若要給你一個";
+		mes "提示的話，由於我是流浪的";
+		mes "打洞術師，所以曾周遊累計";
+		mes "豐富經驗才從事此工作，總覺得";
+		mes "這村落，在夢羅克精鍊值越高的";
+		mes "裝備，打洞成功率則越高";
+		next;	
+		mes "[世亞布連]";
+		mes "雖然是微妙的差異，但總覺得";
+		mes "愈是低精鍊的裝備愈容易打開..";
+		mes "當然一旦失敗的話其裝備";
+		mes "也就全部泡湯了... 不過單看";
+		mes "成功率的話是值得躍躍欲試的";
+		next;
+		mes "[世亞布連]";
+		mes "當然也有村落是因高裝備";
+		mes "而更順手導致成功率更高，";
+		mes "那只是別處的事情先跳過...";
+		next;
+		mes "[世亞布連]";
+		mes "另外，還有要注意的";
+		mes "一點是，嗯…舉例說，";
+		mes "當你持有+7 斗篷和一般";
+		mes "斗篷時，向我委託要在";
+		mes "斗篷打洞的話，你覺得";
+		mes "兩者間我會打哪一個呢?";
+		next;
+		mes "[世亞布連]";
+		mes "正案是隨我意…啦，即，";
+		mes "有著同樣名稱的裝備時";
+		mes "不會管對方的意見由我";
+		mes "在想打的裝備上打洞的";
+		mes "意思啦";
+		next;
+		mes "[世亞布連]";
+		mes "^FF0000若非要在特定裝備上";
+		mes "打洞的話，祉要帶一個";
+		mes "同名稱的裝備就行了，";
+		mes "同名稱但不想打洞的";
+		mes "裝備最好式放置";
+		mes "別處後再來^000000";
+		next;
+		mes "[世亞布連]";
+		mes "如果沒有妥善處理的話，";
+		mes "萬一在不當意的裝備上";
+		mes "出現打洞的結果時我可";
+		mes "不負責喔? 請確實檢查";
+		next;
+		mes "[世亞布連]";
+		mes "我不用再說明了吧? 好了，";
+		mes "百聞不如一見! 要不要先來";
+		mes "挑戰打洞呢? 我也要";
+		mes "糊口過日子啊";
+		close;
+	case 4:
+		mes "[世亞布連]";
+		mes "唭";
+		close;
+	}
+	mes "[世亞布連]";
+	mes "你選" +getitemname(.@sk[1])+ "喔，OK，那個的話，";
+	if (.@sk[0] == 1) {
+		mes "費用是 ^FF0000" +.@sk[5] / 10+ "萬金幣^000000，另外要準備的";
+		mes "材料是 ^FF0000" +getitemname(.@sk[6])+ " " +.@sk[7]+ "個^000000.";
+	}
+	else if (.@sk[0] == 2) {
+		mes "手續費 ^FF0000" +.@sk[5] / 10+ "萬金幣^000000，另外要準備的";
+		mes "材料是^FF0000" +getitemname(.@sk[6])+ " " +.@sk[7]+ "個^000000，^FF0000" +getitemname(.@sk[8])+ " " +.@sk[9]+ "個^000000，";
+	}
+	mes "當然" +getitemname(.@sk[1])+ "理應也要帶過來";
+	next;
+	mes "[世亞布連]";
+	mes "材料和費用都帶齊了嗎? 還有，";
+	mes "若失敗時材料、裝備都會";
+	mes "消失，這點要認知清楚，即使";
+	mes "打洞成功了 精鍊值或已插好的";
+	mes "卡片也會消失不見，要銘記了";
+	next;
+	if (select("委託他打洞的工作:把機會留在下次再挑戰") == 2 ) {
+		mes "[世亞布連]";
+		mes "那麼下次有機會再來";
+		close;
+	}
+	switch(.@sk[0]) {
+	case 1:
+		if((Zeny < .@sk[5]*1000) || (countitem(.@sk[6]) < .@sk[7]) || (!countitem(.@sk[1]))) {
+			mes "[世亞布連]";
+			mes "笨蛋! 材料不足嘛!";
+			mes "請你備齊後再來吧?!";
+			close;
+		}
+		break;
+	case 2:
+		if((Zeny < .@sk[5]*1000) || (countitem(.@sk[6]) < .@sk[7]) || (countitem(.@sk[8]) < .@sk[9]) || (!countitem(.@sk[1]))) {
+			mes "[世亞布連]";
+			mes "笨蛋! 材料不足嘛!";
+			mes "請你備齊後再來吧?!";
+			close;
+		}
+		break;
+	}
+	mes "[世亞布連]";
+	mes "那麼開始進行吧!";
+	mes "要祈禱能圓滿完成";
+	next;
+	set .@skrand,rand(1,100);
+	if((.@skrand > .@sk[3]) && (.@skrand < .@sk[4])) {
+		if(.@sk[4] == 51) specialeffect EF_LORD;
+		else specialeffect EF_SANCTUARY;
+		mes "[世亞布連]";
+		mes "OK... 似乎做得不錯，成功了，";
+		mes "做的很漂亮呢? 總之恭喜恭喜";
+		delitem .@sk[1],1;
+		delitem .@sk[6],.@sk[7];
+		if(.@sk[0] == 2) delitem .@sk[8],.@sk[9];
+		set Zeny,Zeny - .@sk[5]*1000;
+		getitem .@sk[2],1;
+		next;
+		mes "[世亞布連]";
+		mes "那麼歡迎下次再利用囉!";
+		close;
+	}
+	else {
+		specialeffect EF_FREEZING;
+		mes "[世亞布連]";
+		mes "嗚... 對不起，失敗了，";
+		mes "不過我沒罪，這都是";
+		mes "天意，只是運氣不佳，";
+		mes "請你別太傷心";
+		delitem .@sk[1],1;
+		delitem .@sk[6],.@sk[7];
+		if(.@sk[0] == 2) delitem .@sk[8],.@sk[9];
+		set Zeny,Zeny - .@sk[5]*1000;
+		next;
+		mes "[世亞布連]";
+		mes "那麼歡迎下次再利用囉!";
+		close;
+	}
+}
+
+payon,140,151,5	duplicate(SocketEnchant)	世亞布連#pay	84
+lhz_in02,281,35,5	duplicate(SocketEnchant)	世亞布連#lhz	84
+prt_in,33,70,5	duplicate(SocketEnchant)	世亞布連#prt	84
+morocc,51,41,4	duplicate(SocketEnchant)	世亞布連#moc	84
+
+// 村落青年
+-	script	村落青年#dummy::SocketMan	-1,{
+	mes "[村落青年]";
+	mes "在裝備上打洞時，裝備";
+	mes "本身的選項也會有";
+	mes "改變的可能，這點";
+	mes "必須注意";
+	next;
+	mes "[村落青年]";
+	mes "啊，還有.. 也有罕見情況是";
+	mes "隨著裝備的不同在物品上";
+	mes "一次會打兩個洞的情形，";
+	mes "所以要看清楚了，當然";
+	mes "並非所有裝備都是如此";
+	next;
+	mes "[村落青年]";
+	mes "我也從現在起努力讀書";
+	mes "當個打洞師傅好了";
+	close;
+}
+
+prt_in,31,57,1	duplicate(SocketMan)	村落青年#prt	97
+payon,143,143,7	duplicate(SocketMan)	村落青年#pay	97
+morocc,60,42,3	duplicate(SocketMan)	村落青年#moc	97
+lhz_in02,269,33,5	duplicate(SocketMan)	村落青年#lhz	97

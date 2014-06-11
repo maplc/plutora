@@ -1,0 +1,109 @@
+//==========================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ------------------------------------------
+// - 吉芬 導遊 腳本 -
+// ------------------------------------------
+// 版本 1.3
+//==========================
+
+// 北邊 -------------------------------------
+geffen,123,202,5	script	導遊::Gef_Guide	705,{
+	cutin "gef_soldier",2;
+	mes "[吉芬導遊]";
+	mes "非常歡迎來到魔幻之都吉芬.";
+	mes "我們為了來到吉芬的旅客 安排了導遊為您們介紹這個城市. 當您們有問題的時候隨時, 可以詢問他們.";
+	mes "第一次來到這裡的旅客  先按選單 '選擇注意事項' 瞭解必須注意的事情.";
+	while(1) {
+		next;
+		switch (select("開始由導遊說明城市:刪掉微型地圖上全部的記號:聽取注意事項:取消")) {
+		case 1:
+			if(@compass&0x04 == 0) {
+				mes "[吉芬導遊]";
+				mes "請您選擇想知道的選單";
+				mes "要在微型地圖上留下記號嗎?";
+				next;
+				if(select("要:不要")==1)
+					set @compass,@compass|0x04;
+			}
+			while(1) {
+				next;
+				switch (select("^FF0000魔法學校^000000","鍛冶屋:武器商店:道具商店:酒店:旅館:取消")) {
+				case 1:
+					mes "[吉芬導遊]";
+					mes "專門辦理魔法師轉職業務的魔法學校.";
+					if(@compass&0x04)
+						viewpoint 1,61,180,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[吉芬導遊]";
+					mes "工具商店位在以微型地圖為中心的東南方.";
+					if(@compass&0x04)
+						viewpoint 1,182,59,2,0x00FF00;
+					continue;
+				case 3:
+					mes "[吉芬導遊]";
+					mes "武器商店位在以微型地圖為中心的西北方.";
+					if(@compass&0x04)
+						viewpoint 1,99,140,3,0xFF00FF;
+					continue;
+				case 4:
+					mes "[吉芬導遊]";
+					mes "道具商店位在以微型地圖為中心的西南方.";
+					if(@compass&0x04)
+						viewpoint 1,44,86,4,0xFF00FF;
+					continue;
+				case 5:
+					mes "[吉芬導遊]";
+					mes "酒店位在以微型地圖為中心的東北方.";
+					if(@compass&0x04)
+						viewpoint 1,138,138,5,0xFF00FF;
+					continue;
+				case 6:
+					mes "[吉芬導遊]";
+					mes "旅館位在以微型地圖為中心的東北方.";
+					if(@compass&0x04)
+						viewpoint 1,172,174,6,0xFF00FF;
+					continue;
+				case 7:
+					mes "[吉芬導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號' .";
+				}
+				break;
+			}
+			continue;
+		case 2:
+			viewpoint 2,61,180,1,0xFF0000;
+			viewpoint 2,182,59,2,0x00FF00;
+			viewpoint 2,99,140,3,0xFF00FF;
+			viewpoint 2,44,86,4,0xFF00FF;
+			viewpoint 2,138,138,5,0xFF00FF;
+			viewpoint 2,172,174,6,0xFF00FF;
+			set @compass,@compass&~0x04;
+			continue;
+		case 3:
+			mes "[吉芬導遊]";
+			mes "我們廢除了原來較差的指引方式採用最現代化的。無論您在那裡都可以借由微型地圖知道您的位置.";
+			mes "您們可以直接確認盧恩米德加爾特王國魔法和科學技術組合後的廣域測位系統的功能.";
+			next;
+			mes "[吉芬導遊]";
+			mes "在流覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[吉芬導遊]";
+			mes "旅途愉快";
+			close2;
+			cutin "gef_soldier",255;
+			end;
+		}
+	}
+}
+
+// 南邊 ------------------------------------------
+geffen,118,62,0	duplicate(Gef_Guide)	導遊#Gef2	705
+// 東邊 -----------------------------------------------------
+geffen,203,116,2	duplicate(Gef_Guide)	導遊#Gef3	705
+// 西邊 ----------------------------------------------
+geffen,37,123,5	duplicate(Gef_Guide)	導遊#Gef4	705

@@ -1,0 +1,187 @@
+//==========================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ------------------------------------------
+// - 里希塔樂鎮 導遊 腳本 -
+// ------------------------------------------
+// 版本 1.1
+//==========================
+
+lighthalzen,220,311,3	script	導遊::LhzSlum	852,{
+	mes "[里希塔樂鎮 導遊]";
+	mes "這裡是企業之都 里希塔樂鎮，歡迎各位大家的來訪，";
+	mes "我們是對來到里希塔樂鎮的旅客們，為了他們的便利做村落介紹的，隨時像我們導遊人員詢問吧，";
+	mes "第一次接受我們介紹的旅客們，先按選單'選擇注意事項'瞭解必須注意的事情";
+	while(1) {
+		next;
+		switch(select("開始由導遊說明城市:刪掉微型地圖上全部的記號:聽取注意事項:取消")) {
+		case 1:
+			mes "[里希塔樂鎮 導遊]";
+			mes "我是負責里希塔樂鎮'^ff0000右邊區域 - 貧民街^000000'的介紹人員，";
+			mes "請您選擇想知道的選單";
+			mes "要在微型的圖上留下記號嗎?";
+			next;
+			if(select("要:不要")==1) {
+				set @tempguide,1;
+			}
+			mes "[里希塔樂鎮 導遊]";
+			mes "請選擇地點";
+			while(1) {
+				next;
+				switch(select("道具屋:搗碎店:酒店:取消")) {
+				case 1:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'道具店'位於'貧民街' 11點鐘的方向";
+					if(@tempguide)viewpoint 1,324,301,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'搗碎店'位於'貧民街' 1點鐘的方向";
+					if(@tempguide)viewpoint 1,365,301,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'酒店'位於'貧民街' 南邊的位置";
+					if(@tempguide)viewpoint 1,346,232,3,0xCCFFFF;
+					continue;
+				case 4:
+					mes "[里希塔樂鎮 導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號'";
+				}
+				break;
+			}
+			continue;
+		case 2:
+			viewpoint 2,324,301,1,0xFF0000;
+			viewpoint 2,365,301,2,0xFF00FF;
+			viewpoint 2,346,232,3,0xCCFFFF;
+			continue;
+		case 3:
+			mes "[里希塔樂鎮 導遊]";
+			mes "在瀏覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[里希塔樂鎮 導遊]";
+			mes "里希塔樂鎮以中央的鐵路為中心分為兩個區域，";
+			mes "為了治安衛兵們隨時的在巡邏中，若有不方便的地方或是疑問的話，請隨時請求我們的協助吧";
+			next;
+			mes "[里希塔樂鎮 導遊]";
+			mes "那麼祝你有個愉快的旅行";
+			close;
+		}
+	}
+}
+
+lighthalzen,207,311,5	script	導遊::LhzWest	852,{
+	mes "[里希塔樂鎮 導遊]";
+	mes "這裡是企業之都 里希塔樂鎮，歡迎各位大家的來訪，";
+	mes "我們是對來到里希塔樂鎮的旅客們，為了他們的便利做村落介紹的，隨時像我們導遊人員詢問吧，";
+	mes "第一次接受我們介紹的旅客們，先按選單'選擇注意事項'瞭解必須注意的事情";
+	while(1) {
+		next;
+		switch(select("開始由導遊說明城市:刪掉微型地圖上全部的記號:聽取注意事項:取消")) {
+		case 1:
+			mes "[里希塔樂鎮 導遊]";
+			mes "我是負責里希塔樂鎮'^ff0000右邊區域 - 貧民街^000000'的介紹人員，";
+			mes "請您選擇想知道的選單";
+			mes "要在微型的圖上留下記號嗎?";
+			next;
+			if(select("要:不要")==1) {
+				set @tempguide,1;
+			}
+			mes "[里希塔樂鎮 導遊]";
+			mes "請選擇地點";
+			while(1) {
+				next;
+				switch(select("^FF0000雷根貝勒^000000","火車站:派出所:銀行:飯店:機場:商人公會:寶石商店:武器店:百貨店:取消")) {
+				case 1:
+					mes "[里希塔樂鎮 導遊]";
+					mes "在村落西北方有秀發茲發德最大的企業 '雷根貝勒'所在的位置，'雷根貝勒'是對秀發茲發德全區域提供飛空艇服務的大規模企業，若有空的話勸你去看看也不錯的";
+					if(@tempguide)viewpoint 1,103,244,1,0xFF0000;
+					continue;
+				case 2:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'火車站'位於村落中央的位置，從礦山之都艾音貝赫出發的火車，也連接到里希塔樂鎮這裡";
+					if(@tempguide)viewpoint 1,240,163,2,0xFF00FF;
+					continue;
+				case 3:
+					mes "[里希塔樂鎮 導遊]";
+					mes "由中央稍微往北邊走有負責治安的'派出所'，發現有行蹤可疑的人或是有任何困難時請隨時拜訪派出所吧";
+					if(@tempguide)viewpoint 1,236,276,3,0xCCFFFF;
+					continue;
+				case 4:
+					mes "[里希塔樂鎮 導遊]";
+					mes "由中央稍微往北邊走在派出所對面有'銀行'，是負責相關各種金錢業務的地方";
+					if(@tempguide)viewpoint 1,199,257,4,0x0000FF;
+					continue;
+				case 5:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'飯店'是在'里希塔樂鎮'南邊寬廣的中央位置上，是一些有名人士常來使用的飯店，以最好的設備和服務對舒適的旅行有相當大的幫助的";
+					if(@tempguide)viewpoint 1,159,133,5,0x0FFF00;
+					continue;
+				case 6:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'機場'位於中央大路最低端右邊位置，可以透過飛空艇往各個村落便利的移動";
+					if(@tempguide)viewpoint 1,266,76,6,0x00FF00;
+					continue;
+				case 7:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'商人公會'位於'里希塔樂鎮'西南方的位置";
+					if(@tempguide)viewpoint 1,74,52,7,0xEFAEBD;
+					continue;
+				case 8:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'寶石商店'位於'里希塔樂鎮'西南方，是南方廣場西邊的位置，可以在這裡購買些各種貴金屬的物品";
+					if(@tempguide)viewpoint 1,92,110,8,0xFF9500;
+					continue;
+				case 9:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'武器店'位於'里希塔樂鎮'中央大道最低端，販賣項目和規模可算是里希塔樂鎮裡最好的一家";
+					if(@tempguide)viewpoint 1,196,46,9,0x330033;
+					continue;
+				case 10:
+					mes "[里希塔樂鎮 導遊]";
+					mes "'百貨店'位於'里希塔樂鎮'中央的位置，有各個商家們密集的最高的採購區域";
+					if(@tempguide)viewpoint 1,199,163,10,0xFFFF00;
+					continue;
+				case 11:
+					mes "[里希塔樂鎮 導遊]";
+					mes "需要刪掉記號請選取 '刪掉微型地圖上全部的記號'";
+				}
+				break;
+			}
+			continue;
+		case 2:
+			viewpoint 2,103,244,1,0xFF0000;
+			viewpoint 2,240,163,2,0xFF00FF;
+			viewpoint 2,236,276,3,0xCCFFFF;
+			viewpoint 2,199,257,4,0x0000FF;
+			viewpoint 2,159,133,5,0x0FFF00;
+			viewpoint 2,266,76,6,0x00FF00;
+			viewpoint 2,74,52,7,0xEFAEBD;
+			viewpoint 2,92,110,8,0xFF9500;
+			viewpoint 2,196,46,9,0x330033;
+			viewpoint 2,199,163,10,0xFFFF00;
+			continue;
+		case 3:
+			mes "[里希塔樂鎮 導遊]";
+			mes "在瀏覽之前必須先參考右上方的微型地圖.";
+			mes "如果看不見微型地圖的話 請按'ctrl+tab'或者選取基本情報視窗 內的'map'.";
+			mes "微型地圖出現之後, 在地圖上按  '-' 幾下可以看見所有城市.";
+			continue;
+		case 4:
+			mes "[里希塔樂鎮 導遊]";
+			mes "里希塔樂鎮以中央的鐵路為中心分為兩個區域，";
+			mes "為了治安衛兵們隨時的在巡邏中，若有不方便的地方或是疑問的話，請隨時請求我們的協助吧";
+			next;
+			mes "[里希塔樂鎮 導遊]";
+			mes "那麼祝你有個愉快的旅行";
+			close;
+		}
+	}
+}
+
+lighthalzen,154,100,5	duplicate(LhzWest)	導遊#lhz1	852
+lighthalzen,307,224,3	duplicate(LhzSlum)	導遊#lhz2	852

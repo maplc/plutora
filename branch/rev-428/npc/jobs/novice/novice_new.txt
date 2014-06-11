@@ -1,0 +1,2687 @@
+//===== eAthena Script =======================================
+//= New Novice Training Grounds
+//= 新的初學者修練場 (台灣伺服器版本)
+//===== By: ==================================================
+//= Kisuka
+//= 哲小莫(1.1~1.2)
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= eAthena SVN
+//= PlutoEA SVN
+//===== Description: =========================================
+//= New Novice Training Grounds
+//= [Hand Scripted (No Programs or AEGIS Scripts)]
+//===== Important Note: ======================================
+//= Its recommended that you have Renewal EXP Table!
+//= Lower the 'getexp' rewards if your not using renewal exp table!
+//===== Additional Comments: =================================
+//= 1.0 First version. [Kisuka]
+//= 1.1 台灣部分的對話架構與eAthena對話架構不同，
+//=     有作符合台灣的設定修改. -接續-
+//= 1.2 完成轉職部分的內容與體驗書本的對話內容.
+//=     有稍微潤滑部分對話內容與幾句不對照官方內容. [哲小莫]
+//============================================================
+
+//============================================================================
+// Sprakki (Start of Novice Training Ground, Outside Castle)
+// 絲普拉琪
+//============================================================================
+new_1-1,53,114,4	script	絲普拉琪#newbe	90,{
+	if(job_novice_q < 1) {
+		mes "[絲普拉琪]";
+		mes "您好! 歡迎來到仙境傳說的夢幻世界!";
+		mes "我是負責為各位解說的叫做絲普拉琪，";
+		mes "為了進行下一步的對話請點擊[下一步]或按下[Enter]鍵";
+		next;
+		mes "[絲普拉琪]";
+		mes "我會為您說明基礎操作，";
+		mes "基本的^4A4AFF移動和物品的選擇及攻擊^000000，都是使用 ^4A4AFF滑鼠左鍵^000000.";
+		next;
+		cutin "tutorial01",3;
+		mes "-! 說明 !-";
+		mes "在往移動地點的地板上用滑鼠點擊時，角色就會移至該地點，";
+		mes "攻擊怪物或與NPC對話也可點擊滑鼠來進行";
+		next;
+		cutin "",255;
+		mes "[絲普拉琪]";
+		mes "那麼先來移動看看吧!";
+		mes "在右邊有看到木橋嗎?";
+		next;
+		setquest 7117;
+		set job_novice_q,1;
+		mes "[絲普拉琪]";
+		mes "過橋後就會看到修練場之用的城堡，";
+		mes "我會在城內等你，請你親自移動到那邊看看吧!";
+		next;
+		cutin "tutorial02",3;
+		mes "-! 說明 !-";
+		mes "你接下了絲普拉琪的任務，";
+		mes "任務內容可從任務視窗中查詢喔!";
+		next;
+		mes "-! 說明 !-";
+		mes "任務資訊視窗可透過 ^4A4AFFALT + U^000000鍵來開啟查詢";
+		next;
+		cutin "",255;
+		mes "[絲普拉琪]";
+		mes "任務資訊視窗確認過了嗎?";
+		mes "我會在橋的對面修練場裏面等你";
+		close;
+	} else {
+		mes "[絲普拉琪]";
+		mes "我會在東側橋的對面等你";
+		close;
+	}
+}
+
+//============================================================================
+// Sprakki (Inside Castle)
+// 絲普拉琪
+//============================================================================
+new_1-2,100,29,4	script	絲普拉琪#newbe	90,{
+	if(job_novice_q < 1) {
+		mes "[絲普拉琪]";
+		mes "歡迎來到仙境傳說的夢幻世界!";
+		mes "我是負責為各位解說的叫絲普拉琪，";
+		mes "為了進行下一步的對話請點擊[下一步]或按下[Enter]鍵";
+		next;
+		mes "[絲普拉琪]";
+		mes "我會為您說明基礎操作，";
+		mes "基本的^4A4AFF移動和物品的選擇及攻擊^000000，都是使用 ^4A4AFF滑鼠左鍵^000000.";
+		next;
+		cutin "tutorial01",3;
+		mes "-! 說明 !-";
+		mes "在往移動地點的地板上用滑鼠點擊時，角色就會移至該地點，";
+		mes "攻擊怪物或與NPC對話也可點擊滑鼠來進行";
+		next;
+		cutin "",255;
+		setquest 7117;
+		set job_novice_q,1;
+		mes "[絲普拉琪]";
+		mes "那麼我再給你一次與我對話的任務，";
+		mes "對話結束後，請你再點擊我一次吧!";
+		next;
+		cutin "tutorial02",3;
+		mes "-! 說明 !-";
+		mes "你接下了絲普拉琪的任務，";
+		mes "任務內容可從任務視窗中查詢喔!";
+		next;
+		mes "-! 說明 !-";
+		mes "任務資訊視窗可透過 ^4A4AFFALT + U^000000鍵來開啟查詢";
+		next;
+		cutin "",255;
+		mes "[絲普拉琪]";
+		mes "任務資訊視窗確認過了嗎?";
+		mes "那麼請你再跟我對話吧!";
+		close;
+	} else {
+		if(job_novice_q == 1) {
+			getexp 300,0;
+			getexp 300,5;
+			completequest 7117;
+			set job_novice_q,2;
+			mes "[絲普拉琪]";
+			mes "非常好!";
+			mes "現在移動和對話的操作方法都明白了吧?";
+			next;
+		}
+		mes "[絲普拉琪]";
+		mes "這前面就是為大家準備的修練場，";
+		mes "在修練場可以學習玩遊戲所需的理論常識，";
+		mes "以及親自體驗戰鬥時的實戰演練";
+		next;
+		mes "[絲普拉琪]";
+		mes "當然修練場只是選項之一，也可以跳過修練場，直接送你到自己喜歡的村落去，";
+		mes "不過這樣就無法享受修練場所給的優惠喔!";
+		next;
+		switch(select("從修練場開始:直接進入遊戲")) {
+		case 1:
+			mes "[絲普拉琪]";
+			mes "那麼我就送你到新手修練場了，";
+			mes "裡面有位為各位介紹的教官'布萊伊德'等候著";
+			next;
+			setquest 7118;
+			set job_novice_q,3;
+			mes "[絲普拉琪]";
+			mes "以後的說明就由'布萊伊德'負責，";
+			mes "請先去找'布萊伊德'吧!";
+			next;
+			mes "^4A4AFF- 從絲普拉琪接了'新手修練場 -1' 任務，^000000";
+			mes "^4A4AFF可透過任務資訊視窗來確認-^000000";
+			close2;
+			savepoint "new_1-2",100,100;
+			warp "new_1-2",100,100;
+			end;
+		case 2:
+			mes "[絲普拉琪]";
+			mes " OK! 那直接開始吧!";
+			mes "你想從哪個村落";
+			mes "開始呢?";
+			next;
+			switch(select("普隆德拉:夢羅克:吉芬:斐揚:艾爾貝塔:依斯魯得島")) {
+			case 1:
+			mes "[絲普拉琪]";
+			mes "我知道了，";
+			mes "希望你變成能為社會奉獻的人，以及祝你成功";
+			nude;
+			close2;
+			warp "prontera",273,354;
+			case 2:
+			mes "[絲普拉琪]";
+			mes "我知道了，";
+			mes "希望你變成能為社會奉獻的人，以及祝你成功";
+			nude;
+			close2;
+			warp "morocc",160,94;
+			case 3:
+			mes "[絲普拉琪]";
+			mes "我知道了，";
+			mes "希望你變成能為社會奉獻的人，以及祝你成功";
+			nude;
+			close2;
+			warp "geffen",120,100;
+			case 4:
+			mes "[絲普拉琪]";
+			mes "我知道了，";
+			mes "希望你變成能為社會奉獻的人，以及祝你成功";
+			nude;
+			close2;
+			warp "payon",70,100;
+			case 5:
+			mes "[絲普拉琪]";
+			mes "我知道了，";
+			mes "希望你變成能為社會奉獻的人，以及祝你成功";
+			nude;
+			close2;
+			warp "alberta",116,57;
+			case 6:
+			mes "[絲普拉琪]";
+			mes "我知道了，";
+			mes "希望你變成能為社會奉獻的人，以及祝你成功";
+			nude;
+			close2;
+			warp "izlude",94,103;
+			}
+		}
+	}
+}
+
+
+//============================================================================
+// Instructor Brade
+// 布萊伊德
+//============================================================================
+new_1-2,100,105,4	script	布萊伊德#newbe	733,{
+	if(job_novice_q < 3) {
+		mes "[教官布萊伊德]";
+		mes "How did you get here?";
+		close2;
+		warp "new_1-1",53,111;
+		end;
+	}
+	else if(job_novice_q == 3) {
+		getexp 300,0;
+		getexp 300,0;
+		getexp 300,10;
+		completequest 7118;
+		set job_novice_q,4;
+		mes "[教官布萊伊德]";
+		mes "做的很好，";
+		mes "我是負責為大家解說的教官布萊伊德，";
+		mes "你已完成了任務，我會送你經驗值作為獎勵";
+		next;
+		mes "[教官布萊伊德]";
+		mes "透過任務或打怪所取得的經驗值，可從左上角的經驗值條隨時查看";
+		next;
+		mes "[教官布萊伊德]";
+		mes ".....我當教官還沒多久，";
+		mes "...講述還不太習慣，";
+		mes "這樣說明能了解吧!";
+		next;
+		mes "[教官布萊伊德]";
+		mes "那麼接下來是...";
+		mes "有關物品和裝備方面";
+		next;
+		mes "[教官布萊伊德]";
+		mes "請你先收下這些東西，";
+		mes "是基本的裝備和恢復藥水";
+		getitem 2352,1;	// Novice_Plate
+		getitem 2510,1;	// Novice_Hood
+		getitem 2414,1;	// Novice_Boots
+		getitem 5055,1;	// Novice_Egg_Cap
+		getitem 1243,1;	// Novice_Knife
+		getitem 2112,1;	// Novice_Guard
+		getitem 569,300;	// Novice_Potion
+		setquest 7119;
+		set job_novice_q,5;
+		next;
+		mes "[教官布萊伊德]";
+		mes "於左上角的基本資訊視窗上按下'Item'符號時，就能開啟物品視窗，";
+		mes "物品視窗可分為三大類";
+		next;
+		mes "[教官布萊伊德]";
+		mes "分為'消耗', '裝備', '其他'物品，";
+		mes "將想要使用或穿戴的物品點擊兩次";
+		mes "或拖曳至裝備欄上即可";
+		next;
+		mes "[教官布萊伊德]";
+		mes "若想瀏覽各物品的詳細說明時，只要在該物品上點擊右鍵，";
+		mes "即可看到所選物品的細節部份";
+		next;
+		cutin "tutorial04",3;
+		mes "!- 說明 -!";
+		mes "在物品上點擊右鍵時，即可看到該物品的詳細說明";
+		next;
+		mes "!- 說明 -!";
+		mes "選擇角色時就會開啟社群選單，並可進行組隊及交易";
+		next;
+		cutin "",255;
+		mes "[教官布萊伊德]";
+		mes "首先來穿戴我送你的裝備吧??";
+		mes "在想要穿戴的物品上^4A4AFF點兩次^000000即可，等裝備好後再進行吧!";
+		next;
+		cutin "tutorial03",3;
+		mes "!- 說明 -!";
+		mes "在物品上輕鬆的點兩次即可使用或穿戴，";
+		mes "物品視窗則可利用快捷鍵Alt + E來開啟或關閉";
+		next;
+		mes "!- 說明 -!";
+		mes "已裝備的物品可利用快捷鍵ALT + Q來開啟後確認，";
+		mes "也可將物品拖曳至想要裝備的位置上";
+		next;
+		mes "!- 說明 -!";
+		mes "將教官所給的裝備都穿戴上去吧!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if(job_novice_q == 4) {
+		mes "[教官布萊伊德]";
+		mes "Uh... Where were we? Oh right, let's continue.";
+		mes "It's about items and equipments.";
+		next;
+		mes "[教官布萊伊德]";
+		mes "Take these.";
+		mes "Basic equipments and recovery potions.";
+		getitem 2352,1;	// Novice_Plate
+		getitem 2510,1;	// Novice_Hood
+		getitem 2414,1;	// Novice_Boots
+		getitem 5055,1;	// Novice_Egg_Cap
+		getitem 1243,1;	// Novice_Knife
+		getitem 2112,1;	// Novice_Guard
+		getitem 569,300;	// Novice_Potion
+		setquest 7119;
+		set job_novice_q,5;
+		next;
+		mes "[教官布萊伊德]";
+		mes "In the upper left Basic Info Window, press the 'Item' icon to open the Item Window.";
+		mes "The item window is divided into...";
+		next;
+		mes "[教官布萊伊德]";
+		mes "3 sections: consumable items, equipment and other items.";
+		mes "If you want to use or equip items, double-click on the item or drag them into the Equipment Window.";
+		next;
+		mes "[教官布萊伊德]";
+		mes "You can see detailed info of each item by right-clicking on the item.";
+		mes "Do that and the info will pop-up in a separate window.";
+		next;
+		cutin "tutorial04",3;
+		mes "!- 說明 -!";
+		mes "Double-click on the item to see the detailed information.";
+		next;
+		mes "!- 說明 -!";
+		mes "Right-click on other players to show the Community Menu and you can join a party, request trades, etc.";
+		next;
+		cutin "",255;
+		mes "[教官布萊伊德]";
+		mes "Why don't you equip the items I gave you earlier?";
+		mes "^4A4AFFDouble-Click^000000 on the item you want to equip. Let us continue after you are done gearing up.";
+		next;
+		cutin "tutorial03",3;
+		mes "!- 說明 -!";
+		mes "Items can be easily equipped or used by simply clicking on them.";
+		mes "The Hot Key to open the Item Window is Alt + E.";
+		next;
+		mes "!- 說明 -!";
+		mes "To check on the items that are currently equipped, use the hot key Alt + Q.";
+		mes "Or, drag the item on to the item slot you want the item to be equipped.";
+		next;
+		mes "!- 說明 -!";
+		mes "Equip all of the equipment given by Instructor Brade.";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if(job_novice_q == 5 || job_novice_q == 6) {
+		set .@EquipCheck,0;
+		if (getequipisequiped(EQI_SHOES)) { set .@EquipCheck,.@EquipCheck+1; }
+		if (getequipisequiped(EQI_ARMOR)) { set .@EquipCheck,.@EquipCheck+1; }
+		if (getequipisequiped(EQI_GARMET)) { set .@EquipCheck,.@EquipCheck+1; }
+		if (getequipisequiped(EQI_HEAD_TOP)) { set .@EquipCheck,.@EquipCheck+1; }
+		if (getequipisequiped(EQI_HAND_L)) { set .@EquipCheck,.@EquipCheck+1; }
+		if (getequipisequiped(EQI_HAND_R)) { set .@EquipCheck,.@EquipCheck+1; }
+		if(.@EquipCheck >= 4) {
+			if(job_novice_q == 5) {
+				mes "[教官布萊伊德]";
+				mes "你學習得不錯，";
+				mes "都有跟到修練場教官的進度";
+				getexp 300,0;
+				getexp 300,0;
+				getexp 300,0;
+				getexp 300,15;
+				getitem 12323,50;	// 新手專用蒼蠅翅膀
+				getitem 12324,20;	// 新手專用蝴蝶翅膀
+				completequest 7119;
+				set job_novice_q,6;
+				next;
+				mes "[教官布萊伊德]";
+				mes "為了表示對你的肯定，送你蒼蠅翅膀和蝴蝶翅膀以玆鼓勵，";
+				mes "雖然現在用不到，不過以後絕對很好用";
+				next;
+			}
+			mes "[教官布萊伊德]";
+			mes "那麼這次講解快捷鍵的使用方法，";
+			mes "按下^4A4AFF按鍵 F12^000000 好嗎?";
+			mes "會出現九個排列的小格快捷列";
+			next;
+			mes "[教官布萊伊德]";
+			mes "拖曳快捷列的右角部分時也可看下一頁";
+			next;
+			mes "[教官布萊伊德]";
+			mes "使用方式很簡單，各欄位相對應的是F1~F9的按鍵，";
+			mes "想把使用的技能或物品放在欄位上後，按下相對應的鍵即可";
+			next;
+			cutin "tutorial05",3;
+			mes "!- 說明 -!";
+			mes "於快捷鍵欄位上把想使用的技能或物品的符號拖曳即可登錄";
+			next;
+			mes "!- 說明 -!";
+			mes "放在欄位上的物品與裝備可與各欄位相對應之F1~F9按鍵來使用或安裝";
+			next;
+			mes "!- 說明 -!";
+			mes "可透過快捷鍵設定來任意指定相對應之快捷鍵使用";
+			next;
+			mes "!- 說明 -!";
+			mes "可將常用之物品和技能放上去後方便使用";
+			next;
+			cutin "",255;
+			mes "[教官布萊伊德]";
+			mes "那麼最後要講解的是技能使用方面，";
+			mes "在這之前要先學一樣東西";
+			next;
+			setquest 7120;
+			set job_novice_q,7;
+			mes "[教官布萊伊德]";
+			mes "在這房間的某處有位叫^4A4AFF陳河^000000的人，";
+			mes "去找陳河先學習^4A4AFF[緊急治療]^000000吧!";
+			next;
+			mes "[教官布萊伊德]";
+			mes "講解是在那之後，";
+			mes "去找陳河學習緊急治療吧!";
+			close;
+		}else{
+			mes "[教官布萊伊德]";
+			mes "我給你的裝備至少著裝四個以上看看吧!";
+			mes "像穿鞋、穿衣服、佩武器等";
+			close;
+		}
+	}
+	else if(job_novice_q == 7) {
+		mes "[教官布萊伊德]";
+		mes "在這房間的某處有位叫'陳河'的人，";
+		mes "你去找陳河學習他所教的技能吧!";
+		close;
+	}
+	else if(job_novice_q == 8) {
+		mes "[教官布萊伊德]";
+		mes "現在你已具備[緊急治療]技能了吧?";
+		mes "跟剛才講解過的一樣把緊急治療技能的符號置於快捷鍵欄位上的話，";
+		mes "就可以很方便的運用了";
+		next;
+		mes "[教官布萊伊德]";
+		mes "在這裡我都已經教完了，";
+		mes "你有看到西邊的出口嗎?";
+		mes "進入西側房間內後會有人招呼你";
+		next;
+		mes "[教官布萊伊德]";
+		mes "雖然我們很快就會再見，";
+		mes "但先到西側房間接受下一步說明吧";
+		next;
+		mes "[教官布萊伊德]";
+		mes "到目前為止你表現的很好，";
+		mes "這是一點心意請你收下吧!";
+		getitem 2393,1;	// 新手專用冒險衣
+		completequest 7120;
+		set job_novice_q,9;
+		close;
+	}
+	else if(job_novice_q > 8) {
+		mes "[教官布萊伊德]";
+		mes "修練場的下一課程會在西側房間內進行，";
+		mes "若不會走我可以送你過去..";
+		next;
+		if(select("我可以自己去:那麻煩你了") == 2) {
+			mes "[教官布萊伊德]";
+			mes "無所謂，";
+			mes "總比迷路的好，";
+			mes "哈哈..";
+			close2;
+			warp "new_1-2",41,172;
+			end;
+		}
+		mes "[教官布萊伊德]";
+		mes "很好，精神可嘉，";
+		mes "最好不要老依賴他人，";
+		mes "那你快去下一個房間吧!";
+		close;
+	}
+	else {
+		mes "[教官布萊伊德]";
+		mes "Why are you still here?";
+		close2;
+		warp "prontera",156,90;
+		end;
+	}
+}
+
+//============================================================================
+// Instructor Jinha
+// 陳河
+//============================================================================
+new_1-2,115,120,4	script	陳河#newbe	59,{
+	if(job_novice_q < 7) {
+		mes "[陳河]";
+		mes "What can I help you with?";
+		mes "Hmm? You haven't followed the curriculum correctly.";
+		next;
+		mes "[陳河]";
+		mes "You have to see Instructor Brade first before me. I will send you to Instructor Brade.";
+		close2;
+		warp "new_1-2",100,100;
+		end;
+	}
+	else if(job_novice_q == 7) {
+		mes "[陳河]";
+		mes "你好!";
+		mes "需要什麼服務呢?";
+		next;
+		select("我要學緊急治療");
+		mes "[陳河]";
+		mes "沒問題，";
+		mes "緊急治療是指在危機時刻將sp轉換為HP的技能";
+		next;
+		specialeffect2 58;
+		specialeffect2 234;
+		mes "[陳河]";
+		mes "雖然恢復量不是很多..";
+		mes "至少可頂住致命一擊時的昏厥";
+		next;
+		skill 141,1,0;	// NV_FIRSTAID
+		set job_novice_q,8;
+		mes "[陳河]";
+		mes "技能欄可於基本資訊視窗上^4A4AFFskill^000000用按鍵來開啟，";
+		mes "快捷鍵是^4A4AFFALT + S^000000，";
+		mes "試試看緊急治療吧?";
+		next;
+		mes "[陳河]";
+		mes "Good, now you know how to use the First Aid Skill, you have to move on to the next step.";
+		mes "Go back to Instructor Brade and show him what you've learned here.";
+		close;
+	}
+	else if(job_novice_q == 8) {
+		mes "[陳河]";
+		mes "緊急治療已經學會了不是嗎?";
+		mes "去找布萊伊德教官驗收吧!";
+		mes "如果不知道位置，我會送你過去";
+		next;
+		if(select("我可以自己去:麻煩你了") == 2) {
+			mes "[陳河]";
+			mes "我會送你到布萊伊德教官";
+			close2;
+			warp "new_1-2",100,100;
+			end;
+		}
+		mes "[陳河]";
+		mes "非常好，";
+		mes "就是那種態度!";
+		mes "你以後必成大器";
+		close;
+	}
+	else if(job_novice_q > 8) {
+		mes "[陳河]";
+		mes "需要什麼服務呢?";
+		mes "下一個課程會在西側房間進行，";
+		mes "請你到西側房間吧!";
+		close;
+	}
+	else {
+		mes "[陳河]";
+		mes "Why are you still here?";
+		close2;
+		warp "prontera",156,90;
+		end;
+	}
+}
+
+//============================================================================
+// People/Services in Ragnarok
+//============================================================================
+// ---------- Chocolat ----------
+// ---------- 秀克拉 ----------
+new_1-2,32,172,4	script	秀克拉#newbe	96,{
+	if(job_novice_q < 9) {
+		mes "[秀克拉]";
+		mes "Hmm? Strange.";
+		mes "Let me see that Traniee ID for a sec.";
+		next;
+		mes "[秀克拉]";
+		mes "You were still on the basic course.";
+		mes "You should go back to Instructor Brade or Jinha.";
+		next;
+		mes "[秀克拉]";
+		mes "If you don't know how to find them, I can send you to Instructor Brade, How about it?";
+		next;
+		if(select("I will go myself.:Will you do that for me?") == 2) {
+			mes "[秀克拉]";
+			mes "Sure.";
+			mes "I will see you later.";
+			close2;
+			warp "new_1-2",100,100;
+			end;
+		}
+		mes "[秀克拉]";
+		mes "Sure. Go out to the door to the right.";
+		close;
+	}
+	else if(job_novice_q == 9) {
+		mes "[秀克拉]";
+		mes "你好嗎!";
+		mes "我來為你介紹會在村落遇見的一些朋友，";
+		mes "在村落與都市裡有許多朋友，認識他們總會有幫助";
+		next;
+		mes "[秀克拉]";
+		mes "那裡有許多朋友，但其中比較重要的就是這幾位";
+		next;
+		mes "[秀克拉]";
+		mes "就在我身後[卡普拉]公司的職員們，";
+		mes "當首次訪問其競爭公司[准它]的";
+		mes "村落時一定要去找他[導覽士兵]，";
+		mes "還有舒適的休息室[旅館]";
+		next;
+		mes "[秀克拉]";
+		mes "那我針對個別的角色來說明吧?";
+		mes "首先要說明的是[卡普拉]";
+		setquest 7121;
+		set job_novice_q,10;
+		close;
+	}
+	else if(job_novice_q == 10) {
+		mes "[秀克拉]";
+		mes "請你依序去見我身後的人吧!";
+		mes "首先是最左邊的[卡普拉]姐姐";
+		close;
+	}
+	else if(job_novice_q == 11) {
+		mes "[秀克拉]";
+		mes "你對卡普拉已經了解了嗎?";
+		mes "即刻起就可使用卡普拉服務了";
+		next;
+		mes "[秀克拉]";
+		mes "在修練場課程中若想回到村落時可隨時透過卡普拉前往，";
+		mes "此時就視為從修練場結業了，無法再回到修練場";
+		next;
+		mes "接下來是去見卡普拉的競爭對手[准它]職員吧?";
+		mes "[准它]尤其跟活動方面有關，";
+		mes "最好親自去見一面吧?";
+		close;
+	}
+	else if(job_novice_q == 12) {
+		mes "[秀克拉]";
+		mes "[卡普拉]與[准它]之後就是[導覽士兵]!";
+		mes "雖平時容易忽略他的存在，但在危機時刻就像救命丹一樣重要";
+		next;
+		mes "[秀克拉]";
+		mes "特別請來了普隆德拉的導覽士兵，";
+		mes "你去問[導覽士兵]的角色是什麼吧!";
+		close;
+	}
+	else if(job_novice_q == 13) {
+		mes "[秀克拉]";
+		mes "[導覽士兵]的說明怎麼樣呢?";
+		mes "最後是旅館的使用方法，";
+		mes "每個村落都有設置旅館";
+		next;
+		mes "[秀克拉]";
+		mes "在旅館或大飯店可付住宿費休息，";
+		mes " HP和SP皆可恢復喔!";
+		mes "偶而利用一下效果不錯呢?";
+		next;
+		mes "[秀克拉]";
+		mes "除此之外還有許多買賣各類物品的商人，到村落後一定要試試看喔! ";
+		completequest 7121;
+		getexp 300,0;
+		getexp 300,0;
+		getexp 300,0;
+		getexp 300,0;
+		getexp 300,0;
+		getexp 300,20;
+		getitem 7059,20;	// 卡普拉倉庫 免費利用券
+		getitem 7060,30;	// 卡普拉傳送點 免費利用券
+		set job_novice_q,14;
+		next;
+		mes "[秀克拉]";
+		mes "我交付的任務都執行了耶!";
+		mes "獎勵是倉庫與空間移動服務免費使用券，";
+		mes "以後可以好好使用喔!";
+		next;
+		mes "[秀克拉]";
+		mes "我的說明到此結束，";
+		mes "現在輪到實戰教學";
+		next;
+		mes "[秀克拉]";
+		mes "Real Combat Training will be given by Instructor Brade. You met him earlier.";
+		mes "I will send you to the Real Combat Training Field.";
+		close2;
+		savepoint "new_1-3",96,21;
+		warp "new_1-3",96,21;
+		end;
+	}
+	else if(job_novice_q > 13) {
+		mes "[秀克拉]";
+		mes "需要什麼服務呢?";
+		next;
+		switch(select("我想去村落:實戰教學在哪裡呢?")) {
+			case 1:
+			mes "[秀克拉]";
+			mes "建議你去利用卡普拉看看吧!";
+			mes "去試試卡普拉的[空間移動服務]吧!";
+			close;
+			case 2:
+			mes "[秀克拉]";
+			mes "我會立刻送你到實戰教學場地";
+			close2;
+			savepoint "new_1-3",96,21;
+			warp "new_1-3",96,21;
+			end;
+		}
+	}
+	else {
+		mes "[秀克拉]";
+		mes "Why are you still here?";
+		close2;
+		warp "prontera",156,90;
+		end;		
+	}
+}
+
+
+// ---------- Kafra ----------
+// ---------- 卡普拉 ----------
+new_1-2,30,176,4	script	卡普拉#newbe	117,{
+	if(job_novice_q < 10) {
+		mes "[卡普拉職員]";
+		mes "你好!";
+		mes "好像還沒輪到我的樣子，";
+		mes "請你先去找秀克拉對話好嗎?";
+		close;
+	}
+	else if(job_novice_q == 10) {
+		mes "[卡普拉職員]";
+		mes "你好!";
+		mes "我特別為了提供新手們服務，";
+		mes "而從卡普拉總部派來的，";
+		mes "我們卡普拉服務，";
+		mes "擔負著所有物流的關係，";
+		mes "請冒險家們務必記清楚";
+		mes "以下的說明";
+		next;
+		mes "[卡普拉職員]";
+		mes "現在來說明在卡普拉服務中";
+		mes "最常使用的[儲存], [使用倉庫], [空間移動]等";
+		next;
+		mes "[卡普拉職員]";
+		mes "這是戰死時可記憶";
+		mes "復活地點的服務，";
+		mes "儲存於各村落的卡普拉時，";
+		mes "即可在該卡普拉服務地點上";
+		mes "復活，並可返回";
+		mes "相關地點";
+		next;
+		mes "[卡普拉職員]";
+		mes "儲存地區是以最後記憶的場所";
+		mes "為主，需使用蝴蝶翅膀";
+		mes "物品即可返回相關地點，";
+		mes "由於是免費提供服務，";
+		mes "敬請多加利用!";
+		next;
+		mes "[卡普拉職員]";
+		mes "接下來是有關使用倉庫的說明，";
+		mes "我們卡普拉是擁有悠久歷史和";
+		mes "優良傳統的大陸最佳物流中心，";
+		mes "我們為各位提供保管物品的服務，";
+		mes "並且在村落任何有卡普拉的";
+		mes "地方，即可享受";
+		mes "相關服務";
+		next;
+		mes "[卡普拉職員]";
+		mes "在移動或戰鬥中有些像過重的";
+		mes "物品和不會立即使用的";
+		mes "物品的話，即可利用我們";
+		mes "卡普拉來保管物品，";
+		mes "這樣不是很方便嗎?";
+		next;
+		mes "[卡普拉職員]";
+		mes "針對想使用倉庫的";
+		mes "資深冒險家為對象";
+		mes "收取一點倉庫使用費，";
+		mes "以提供便捷的服務，";
+		mes "另外使用倉庫的限制是^4A4AFF基本技能 6";
+		mes "以上^000000才可以";
+		next;
+		mes "[卡普拉職員]";
+		mes "倉庫與物品一樣分為";
+		mes "消耗、裝備及其他物品類，";
+		mes "每一類可保管的物品數量是3萬個";
+		next;
+		mes "[卡普拉職員]";
+		mes "倉庫是由同一個帳號的";
+		mes "角色所共有，";
+		mes "各地區的倉庫使用費";
+		mes "略有不同，使用時";
+		mes "請留意!";
+		next;
+		mes "[卡普拉職員]";
+		mes "我們卡普拉物流中心利用";
+		mes "多年累積的經驗，為縮短";
+		mes "各位在長途旅遊時所花的";
+		mes "時間，因此同時提供空間";
+		mes "移動的便捷服務";
+		next;
+		mes "[卡普拉職員]";
+		mes "透過資深的空間術師";
+		mes "以保障各位旅途中的";
+		mes "舒適與平安，空間移動";
+		mes "可行的地區依各村落";
+		mes "而略有差異，敬請注意!";
+		next;
+		mes "[卡普拉職員]";
+		mes "這一切的成就都歸功於";
+		mes "冒險家們的支持與鼓勵，";
+		mes "我們卡普拉物流中心";
+		mes "保證會提供更優質的服務";
+		next;
+		mes "[卡普拉職員]";
+		mes "需要重新說明嗎?";
+		set job_novice_q,11;
+		next;
+		goto L_ServiceMenu;
+	}
+	else if(job_novice_q > 11) {
+		mes "[卡普拉職員]";
+		mes "卡普拉服務隨時隨地";
+		mes "陪伴您左右，";
+		mes "需要什麼服務呢?";
+		next;
+		mes "[卡普拉職員]";
+		mes "使用空間移動服務前事先向您說明，";
+		mes "如果現在移動到村落的話，";
+		mes "^4A4AFF不能再回到新手修練場上，^000000";
+		mes "這點敬請注意!";
+		next;
+		switch(select("空間移動服務:關於卡普拉服務...")) {
+			case 1:
+			mes "[卡普拉職員]";
+			mes "您是立即前往村落的冒險家吧!";
+			mes "我會向您進行簡單的村落說明，";
+			mes "普隆德拉是盧恩 米德加茲王國的首都，並有衛星城市 依斯魯得島";
+			next;
+			mes "[卡普拉職員]";
+			mes "^4A4AFF夢羅克為沙漠城市，可以轉職為盜賊與刺客^000000，";
+			mes "^4A4AFF斐揚為山岳村落，鄰近弓手村^000000，";
+			mes "^4A4AFF吉芬為魔法城市，想成為魔法師吉芬^000000是最佳選擇";
+			next;
+			mes "[卡普拉職員]";
+			mes "^4A4AFF艾爾貝塔為港都有商人公會^000000，";
+			mes "若想搭船的話艾爾貝塔為必經之地，";
+			mes "請選擇想要移往的村落吧!";
+			next;
+			switch(select("普隆德拉:夢羅克:斐揚:艾爾貝塔:吉芬")) {
+			case 1:
+			mes "[卡普拉職員]";
+			mes "";
+			nude;
+			close2;
+			warp "prontera",273,354;
+			case 2:
+			mes "[卡普拉職員]";
+			mes "";
+			nude;
+			close2;
+			warp "morocc",160,94;
+			case 3:
+			mes "[卡普拉職員]";
+			mes "";
+			nude;
+			close2;
+			warp "payon",70,100;
+			case 4:
+			mes "[卡普拉職員]";
+			mes "";
+			nude;
+			close2;
+			warp "alberta",116,57;
+			case 5:
+			mes "[卡普拉職員]";
+			mes "";
+			nude;
+			close2;
+			warp "geffen",120,100;
+			}
+			case 2:
+			mes "[卡普拉職員]";
+			mes "我馬上為您說明";
+			mes "卡普拉服務，";
+			mes "請選擇所需說明的";
+			mes "服務吧!";
+			next;
+			goto L_ServiceMenu;
+		}
+	}
+	/*else {
+		mes "[卡普拉職員]";
+		mes "Kafra Service at your service";
+		mes "What can I do for you?";
+		next;
+		select("About Kafra Service");
+		mes "[卡普拉職員]";
+		mes "I will explain about the Kafra Service.";
+		mes "Which service do you want to be informed about?";
+		next;
+		goto L_ServiceMenu;
+	}*/
+	
+	L_ServiceMenu:
+		while(1) {
+			switch(select("使用定位服務:使用倉庫服務:使用空間移動服務:使用手推車服務:取消")) {
+			case 1:
+				mes "[卡普拉職員]";
+				mes "這是戰死時可記憶";
+				mes "復活地點的服務，";
+				mes "儲存於各村落的卡普拉時，";
+				mes "即可在該卡普拉服務地點上";
+				mes "復活，並可返回";
+				mes "相關地點";
+				next;
+				mes "[卡普拉職員]";
+				mes "儲存地區是以最後記憶的場所";
+				mes "為主，需使用蝴蝶翅膀";
+				mes "物品即可返回相關地點，";
+				mes "由於是免費提供服務，";
+				mes "敬請多加利用!";
+				next;
+				break;
+			case 2:
+				mes "[卡普拉職員]";
+				mes "我們卡普拉是擁有悠久歷史和";
+				mes "優良傳統的大陸最佳物流中心，";
+				mes "我們為各位提供保管物品的服務，";
+				mes "並且在村落任何有卡普拉的";
+				mes "地方，即可享受";
+				mes "相關服務";
+				next;
+				mes "[卡普拉職員]";
+				mes "在移動或戰鬥中有些像過重的";
+				mes "物品和不會立即使用的";
+				mes "物品的話，即可利用我們";
+				mes "卡普拉來保管物品";
+				mes "不是很方便嗎?";
+				next;
+				mes "[卡普拉職員]";
+				mes "針對想使用倉庫的";
+				mes "資深冒險家為對象";
+				mes "收取一點倉庫使用費，";
+				mes "以提供便捷的服務，";
+				mes "另外使用倉庫的限制是^4A4AFF基本技能 6";
+				mes "以上^000000才可以";
+				next;
+				mes "[卡普拉職員]";
+				mes "倉庫與物品一樣分為";
+				mes "消耗、裝備及其他物品類，";
+				mes "每一類可保管的物品數量是3萬個";
+				next;
+				mes "[卡普拉職員]";
+				mes "倉庫是由同一個帳號的";
+				mes "角色所共有，";
+				mes "各地區的倉庫使用費";
+				mes "略有不同，使用時";
+				mes "請留意!";
+				next;
+				break;
+			case 3:
+				mes "[卡普拉職員]";
+				mes "我們卡普拉物流中心利用";
+				mes "多年累積的經驗，為縮短";
+				mes "各位在長途旅遊時所花的";
+				mes "時間，因此同時提供空間";
+				mes "移動的便捷服務";
+				next;
+				mes "[卡普拉職員]";
+				mes "透過資深的空間術師";
+				mes "以保障各位旅途中的";
+				mes "舒適與平安，空間移動";
+				mes "可行的地區依各村落";
+				mes "而略有差異，敬請注意!";
+				next;
+				mes "[卡普拉職員]";
+				mes "這一切的成就都歸功於";
+				mes "冒險家們的支持與鼓勵，";
+				mes "我們卡普拉物流中心";
+				mes "保證會提供更優質的服務";
+				next;
+				break;
+			case 4:
+				mes "[卡普拉職員]";
+				mes "我們卡普拉物流中心";
+				mes "以商人系列為對象，";
+				mes "出租運輸工具之一的";
+				mes "手推車，本來是由艾爾";
+				mes "貝塔的商人公會提供服務，";
+				mes "如今已由卡普拉接手了";
+				next;
+				mes "[卡普拉職員]";
+				mes "現在各位可以更便捷地";
+				mes "使用該項服務了，";
+				mes "手推車只限商人系列的";
+				mes "商人, 鐵匠, 鍊金術師等";
+				mes "職業和超級初心者";
+				mes "才可使用";
+				next;
+				mes "[卡普拉職員]";
+				mes "當然需要先學會手推車";
+				mes "相關技能才能使用，";
+				mes "另外手推車出租費用每個村落";
+				mes "也略有不同，敬請注意!";
+				next;
+				break;
+			case 5:
+				mes "[卡普拉職員]";
+				mes "關於我們卡普拉服務的";
+				mes "相關說明已經足夠了嗎?";
+				close;
+			}
+		}
+}
+
+// ---------- Cool Event Staff ----------
+// ---------- 准它活動人員 ----------
+new_1-2,33,176,4	script	准它#newbe	874,{
+	if(job_novice_q < 11) {
+		mes "[准它活動人員]";
+		mes "好像還沒輪到我的樣子，";
+		mes "與卡普拉職員的對話結束了嗎?";
+		close;
+	}
+	else if(job_novice_q == 11) {
+		mes "[准它活動人員]";
+		mes "你好!";
+		mes "與盧恩 米德加茲王國的卡普拉中心一樣，負責米德加爾特大陸的物流和活動中心的准它企劃公司";
+		next;
+		mes "[准它活動人員]";
+		mes "我們准它與卡普拉中心所提供的[使用倉庫], [儲存服務], [空間移動服務]一樣，";
+		mes "都提供相同的服務項目";
+		next;
+		mes "[准它活動人員]";
+		mes "在卡普拉職員沒有營業的據點處由准它來提供服務，";
+		mes "另外我們在艾爾貝塔還負責特殊活動";
+		next;
+		mes "[准它活動人員]";
+		mes "也是扮演連接世界內外活動的角色，";
+		mes "若有疑問請詢問艾爾貝塔的准它員工吧!";
+		next;
+		mes "[准它活動人員]";
+		mes "衷心希望你以後";
+		mes "心想事成!";
+		next;
+		mes "[准它活動人員]";
+		mes "通常我們准它員工都像我一樣穿紅外套制服，在卡普拉沒有營業的據點上提供相關服務，敬請多加利用!";
+		set job_novice_q,12;
+		close;
+	}
+	else {
+		mes "[准它活動人員]";
+		mes "基本上准它提供的服務與卡普拉一模一樣，";
+		mes "相關服務說明卡普拉小姐有對你說過吧?";
+		close;
+	}
+}
+
+// ---------- Soldier ----------
+// ---------- 導覽士兵 ----------
+new_1-2,36,176,4	script	導覽士兵#newbe	105,{
+	if(job_novice_q < 12) {
+		mes "[導覽士兵]";
+		mes "好像還沒輪到我的樣子，";
+		mes "請你去找秀克拉聽取有關進行的說明吧!";
+		close;
+	}
+	else if(job_novice_q == 12) {
+		mes "[導覽士兵]";
+		mes "我們導覽士兵都在村落入口處";
+		mes "提供指引位置的便捷服務，";
+		mes "若是初次造訪的村落，";
+		mes "去找我們導覽士兵後，";
+		mes "接受指引地理位置的";
+		mes "服務吧!";
+		next;
+		mes "[導覽士兵]";
+		mes "各村落的導覽士兵穿著";
+		mes "具有該村落特色的服裝，";
+		mes "因此略有差異敬請注意!";
+		mes "其它細節請親自去見導覽士兵後，";
+		mes "接受指引道路的服務吧!";
+		next;
+		mes "[導覽士兵]";
+		mes "所指引的目的地可依自己的喜好在小地圖上用 ^4A4AFF+^000000 來作標示，";
+		mes "若照著標示走就能到達目的地了吧?";
+		next;
+		mes "[導覽士兵]";
+		mes "你若想到村落的話，";
+		mes "請找前面的卡普拉職員";
+		mes "使用空間移動服務，";
+		mes "即可到達目的地了";
+		set job_novice_q,13;
+		close;
+	}
+	else {
+		mes "[導覽士兵]";
+		mes "請問需要什麼服務呢?";
+		mes "再次為您說明好嗎?";
+		next;
+		if(select("麻煩你再說明一次:不要") == 2) {
+			mes "[導覽士兵]";
+			mes "接下來由秀克拉繼續為您服務";
+			close;
+		}
+		mes "[導覽士兵]";
+		mes "我們導覽士兵都在村落入口處";
+		mes "提供指引位置的便捷服務，";
+		mes "若是初次造訪的村落，";
+		mes "去找我們導覽士兵後，";
+		mes "接受指引地理位置的";
+		mes "服務吧!";
+		next;
+		mes "[導覽士兵]";
+		mes "各村落的導覽士兵穿著";
+		mes "具有該村落特色的服裝，";
+		mes "因此略有差異敬請注意!";
+		mes "其它細節請親自去見導覽士兵後，";
+		mes "接受指引道路的服務吧!";
+		next;
+		mes "[導覽士兵]";
+		mes "所指引的目的地可依自己的喜好在小地圖上用 ^4A4AFF+^000000 來作標示，";
+		mes "若照著標示走就能到達目的地了吧?";
+		close;
+	}
+}
+
+//============================================================================
+// Instructor Brade (Real Combat Training)
+// 實戰演練
+//============================================================================
+-	script	Brade#newbe::NvBrade	733,{
+	if(job_novice_q < 14) {
+		mes "[布萊伊德]";
+		mes "How did you get here?";
+		close2;
+		warp "new_1-2",100,100;
+		end;
+	}
+	else if(job_novice_q == 14) {
+		mes "[布萊伊德]";
+		mes "終於來到實戰了，"
+		mes "歡迎你來到這裡，";
+		mes "在這裡可以體驗實戰";
+		next;
+		mes "[布萊伊德]";
+		mes "至於戰鬥方法我最初也講過，只要點擊想要攻擊的標的即可，";
+		mes "每點擊一次就能攻擊一次";
+		next;
+		mes "[布萊伊德]";
+		mes "還有更便捷的方法是";
+		mes "按著^4A4AFFCtrl 鍵點擊^000000的話，直到打死對方為止可進行自動攻擊";
+		next;
+		mes "[布萊伊德]";
+		mes "不然在對話輸入欄上輸入[ /nc ]的話，可事先對戰鬥進行設定，";
+		mes "不管使用哪種，選擇自己方便的方法吧!";
+		next;
+		mes "[布萊伊德]";
+		mes "那現在簡單地來打波利吧?";
+		mes "去抓出沒於這附近的'波利' 1隻看看";
+		setquest 7122;
+		set job_novice_q,15;
+		getitem 569,100;	// 初學者專用藥水
+		next;
+		mes "^4A4AFF- 於是從布萊伊德接下'首次戰鬥'任務了，^000000";
+		mes "^4A4AFF可透過任務資訊視窗來確認 -^000000";
+		close;
+	}
+	else if(job_novice_q == 15) {
+		if(checkquest(7122,HUNTING) == 2) {
+			mes "[布萊伊德]";
+			mes "親自去體驗後感覺不難吧?";
+			mes "非常厲害";
+			getitem 13040,1;	// 新手專用卡特短劍
+			getexp 1000,0;
+			getexp 1000,0;
+			getexp 1000,30;
+			completequest 7122;
+			set job_novice_q,16;
+			next;
+			mes "[布萊伊德]";
+			mes "現在修練場課程也快要結束了，";
+			mes "目前你仍是初學者階段";
+			next;
+			mes "[布萊伊德]";
+			mes "不過等你學會基本技能後，職業等級JOB Level 到達 10的話，即可進行轉職了";
+			next;
+			mes "[布萊伊德]";
+			mes "第一次可轉職的職業有基本6種和擴充職業群";
+			next;
+			mes "[布萊伊德]";
+			mes "基本職業6種如下：";
+			mes "擅用長劍的劍士，";
+			mes "擅用短劍的盜賊，";
+			mes "擅用聖力的服事，";
+			mes "擅用魔力的魔法師，";
+			mes "擅用弓箭的弓箭手，";
+			mes "擅長經營與製造的商人";
+			next;
+			mes "[布萊伊德]";
+			mes "另外擴充職業有";
+			mes "擅長跆拳道體術的'跆拳'，";
+			mes "擅用槍枝的'神槍手'，";
+			mes "異國特殊職業'忍者'等";
+			next;
+			mes "[布萊伊德]";
+			mes "其中最基本的職業有6種，劍士, 盜賊, 服事, 弓箭手, 商人, 魔法師，";
+			mes "它們各有哪些特色，可親自體驗看看!";
+			next;
+			mes "[布萊伊德]";
+			mes "現在在我後頭有各職業公會所派出的人，";
+			mes "這些派遣人員會發可事先體驗各職業技能的入門手冊";
+			next;
+			mes "將好奇職業的該入門手冊裝備後開啟技能欄時，就能使用該職業的技能，";
+			mes "親自使用看看後再考慮選擇哪個職業吧!";
+			close;
+		}else{
+			mes "[布萊伊德]";
+			mes "打1隻波利應該不難吧..?";
+			mes "再去試試看";
+			percentheal 100,100;
+			skilleffect 28,9999;
+			close;
+		}
+	}
+	else if(job_novice_q > 16) {
+		mes "[布萊伊德]";
+		mes "入門入門手冊的技能都記清楚了嗎?";
+		mes "若想深入了解各職業的說明的話，去找派遣在各職業的人吧!";
+		next;
+		mes "[布萊伊德]";
+		mes "現在可以從修練場結業了，結束後你要去村落嗎?";
+		next;
+		switch(select("我要再待一下:結束後我要去村落")) {
+		case 1:
+		mes "[布萊伊德]";
+		mes "為了更加充實自己，待在這裡練習打怪也不錯";
+		next;
+		mes "[布萊伊德]";
+		mes "利用入門入門手冊來深入了解各職業的技能特性吧!";
+		mes "我會幫你恢復HP與SP...加油囉!";
+		percentheal 100,100;
+		skilleffect 28,9999;
+		close;
+		case 2:
+		mes "[布萊伊德]";
+		mes "現在準備充足了吧!";
+		mes "自己期望的職業也決定好了吧?";
+		mes "那你要去哪個村落呢?";
+		next;
+		switch(select("普隆德拉:夢羅克:斐揚:艾爾貝塔:吉芬")) {
+			case 1:
+			mes "[布萊伊德]";
+			mes "";
+			nude;
+			close2;
+			warp "prontera",273,354;
+			case 2:
+			mes "[布萊伊德]";
+			mes "";
+			nude;
+			close2;
+			warp "morocc",160,94;
+			case 3:
+			mes "[布萊伊德]";
+			mes "";
+			nude;
+			close2;
+			warp "payon",70,100;
+			case 4:
+			mes "[布萊伊德]";
+			mes "";
+			nude;
+			close2;
+			warp "alberta",116,57;
+			case 5:
+			mes "[布萊伊德]";
+			mes "";
+			nude;
+			close2;
+			warp "geffen",120,100;
+			}
+		}
+	}
+	/*else {
+		mes "[布萊伊德]";
+		mes "Have you tried the skills in the Manuals?";
+		mes "If you want to hear information about each job, talk to the people dispatched by the Job Guilds.";
+		next;
+		mes "[布萊伊德]";
+		mes "I think you've learned enough, if you want to learn more, then speak to the Eden Group girl next to the Trainers.";
+		next;
+		mes "[布萊伊德]";
+		mes "Try using the job manuals to find out the characteristics of each job's skills.";
+		mes "I will restore your HP and SP...Keep it up.";
+		percentheal 100,100;
+		skilleffect 28,9999;
+		close;
+	}*/
+}
+
+new_1-3,96,30,4	duplicate(NvBrade)	布萊伊德#newbe1	733
+new_2-3,96,30,4	duplicate(NvBrade)	布萊伊德#newbe2	733
+new_3-3,96,30,4	duplicate(NvBrade)	布萊伊德#newbe3	733
+new_4-3,96,30,4	duplicate(NvBrade)	布萊伊德#newbe4	733
+new_5-3,96,30,4	duplicate(NvBrade)	布萊伊德#newbe5	733
+
+//============================================================================
+// Job Guides (Real Combat Training)
+//============================================================================
+// ---------------------------- Swordman Guide -------------------------------
+-	script	劍士#newbe::NvSwd	728,{
+	if(job_novice_q < 16) {
+		mes "[劍士公會相關人員]";
+		mes "你好像還在上布萊伊德教官的課程啊!";
+		close;
+	}
+	mes "[劍士公會相關人員]";
+	mes "需要什麼服務呢?";
+	next;
+	switch(select("聽取有關劍士的說明:轉職為劍士:任務:取消")) {
+	case 1:
+		mes "[劍士公會相關人員]";
+		mes "劍士，顧名思義
+		mes "泛指擅用
+		mes "劍的人，
+		mes "也有少數人會使用
+		mes "槍類，但為數不多";
+		next;
+		mes "[劍士公會相關人員]";
+		mes "劍士因體力過人的關係，
+		mes "可配戴重鎧甲與武器，
+		mes "除了弓和手杖之外的
+		mes "武器皆能使用";
+		next;
+		mes "[劍士公會相關人員]";
+		mes "基本上不能使用魔法是
+		mes "其缺點，但可用附加
+		mes "屬性的武器來
+		mes "彌補";
+		next;
+		mes "[劍士公會相關人員]";
+		mes "劍士的強壯體魄
+		mes "不易被敵人擊倒，
+		mes "具有保護自身
+		mes "安全的優點";
+		next;
+		mes "[劍士公會相關人員]";
+		mes "再加上搭配強大技能的話，
+		mes "若在近身肉搏戰時，
+		mes "可說是萬夫莫敵了";
+		next;
+		mes "[劍士公會相關人員]";
+		mes "在仙境傳說裡劍士
+		mes "擔負著保護其他
+		mes "體力較弱角色的作用，
+		mes "也在隊伍中扮演
+		mes "領導者的角色";
+		next;
+		mes "[劍士公會相關人員]";
+		mes "從劍士可轉職為 ^8C2121騎士^000000 或";
+		mes "^8C2121十字軍^000000 等";
+		next;
+		if(countitem(2819) == 0 && (getequipid(EQI_ACC_L) != 2819 || getequipid(EQI_ACC_R) != 2819)) {
+			mes "[劍士公會相關人員]";
+			mes "如果你願意親自體驗劍士技能的話，我會發入門入門手冊給你，";
+			mes "你要體驗劍士技能嗎?";
+			next;
+			if(select("我要體驗劍士技能:我不要體驗") == 2) {
+				mes "[劍士公會相關人員]";
+				mes "這樣啊!";
+				mes "選擇職業極為重要，敬請慎重考慮，";
+				mes "若想體驗歡迎隨時來找我";
+				close;
+			}
+			mes "[劍士公會相關人員]";
+			mes "在這裡給你劍士入門入門手冊，";
+			mes "其他職業的入門入門手冊我要回收了";
+			next;
+			nude;
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+			if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+			getitem 2819,1;	// 劍士入門手冊
+			next;
+			mes "[劍士公會相關人員]";
+			mes "裝備之後開啟技能欄，再來使用新登記的技能吧!";
+		}
+		mes "[劍士公會相關人員]";
+		mes "若使用現在你身上登記於入門入門手冊裡的技能";
+		mes "來親自體驗劍士的話，就能更深刻地了解吧?";
+		close;
+	case 2:
+		mes "[劍士公會相關人員]";
+		mes "你確定要轉職為劍士嗎?";
+		mes "那我立刻送你到劍士公會";
+		next;
+		mes "[劍士公會相關人員]";
+		mes "當然Job Lv已經達到了吧?";
+		mes "你現在要結束新手修練場課程後去劍士公會了嗎?";
+		next;
+		if(select("我再考慮一下:我要去劍士公會") == 2) {
+			mes "[劍士公會相關人員]";
+			mes "這樣啊!";
+			mes "非常歡迎!那完全終止新手修練場的課程後，送你到劍士公會";
+			close2;
+			if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+			if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+			if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+			if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+			nude;
+			if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+			if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+			savepoint "izlude",93,104;
+			warp "izlude_in",74,167;
+			end;
+		}
+		mes "[劍士公會相關人員]";
+		mes "你應該拿到了各職業的入門手冊，";
+		mes "請你充分體驗後再慎重決定吧!";
+		mes "當然我們隨時張臂歡迎你";
+		close;
+	case 3:
+		if(checkquest(7123,HUNTING) != 2) {
+			mes "[劍士公會相關人員]";
+			mes "你不是正在上戰鬥的基本任務嗎?";
+			mes "請你先開啟任務視窗確認任務，待完成後再來找我吧!";
+			close;
+		}
+		else if(checkquest(7123) != 2) {
+			mes "[劍士公會相關人員]";
+			mes "你不是已完成戰鬥基本任務了嗎?";
+			mes "請先結束修練場後再正式踏入世界行列的話，就能接下眾多的任務了";
+			next;
+			mes "[劍士公會相關人員]";
+			mes "在修練場的實習這樣就足夠了，哈哈哈..";
+			close;
+		}
+		else if(checkquest(7123) == 2) {
+			mes "[劍士公會相關人員]";
+			mes "你絕對有劍士的資質，";
+			mes "送你藥水以茲鼓勵";
+			completequest 7123;
+			getitem 569,200;	// 初學者專用藥水
+			getexp 1000,0;
+			getexp 1000,0;
+			getexp 1000,0;
+			getexp 1000,0;
+			getexp 1000,100;
+			//官方給722exp
+			close2;
+		}
+		else{
+			mes "[劍士公會相關人員]";
+			mes "你是指任務嗎?";
+			mes "嗯.. 什麼好呢?";
+			mes "那請你到這附近打小雞2隻給我看好嗎?";
+			next;
+			mes "^4A4AFF於是從劍士公會相關人員接下";
+			mes "打怪任務 - 戰鬥的基本 –之委託，";
+			mes "任務內容可在任務資訊視窗上查詢^000000";
+			setquest 7123;
+			next;
+			mes "[劍士公會相關人員]";
+			mes "請你好好運用在劍士入門手冊上的技能'狂擊'吧!";
+			mes "小雞目前對你而言是比較難對付的怪物，建議你去找朴曼後選擇修練場吧!";
+			next;
+			mes "[劍士公會相關人員]";
+			mes "我會慢慢等你的，";
+			mes "祝你心想事成!";
+			close;
+		}		
+	case 4:
+		mes "[劍士公會相關人員]";
+		mes "若對劍士還有疑問的話，歡迎隨時來詢問，";
+		mes "我們劍士公會非常期待您的加入";
+		close;
+	}
+}
+
+new_1-3,97,41,4	duplicate(NvSwd)	劍士#newbe1	728
+new_2-3,97,41,4	duplicate(NvSwd)	劍士#newbe2	728
+new_3-3,97,41,4	duplicate(NvSwd)	劍士#newbe3	728
+new_4-3,97,41,4	duplicate(NvSwd)	劍士#newbe4	728
+new_5-3,97,41,4	duplicate(NvSwd)	劍士#newbe5	728
+
+// ---------------------------- Mage Guide ----------------------------------
+-	script	魔法師#newbe::NvMag	123,{
+	if(job_novice_q < 16) {
+		mes "[魔法學校相關人員]";
+		mes "你好像還在上布萊伊德教官的課程啊!";
+		close;
+	}
+	mes "[魔法學校相關人員]";
+	mes "需要什麼服務呢?";
+	next;
+	switch(select("聽取有關魔法師的說明:轉職為魔法師:任務:取消")) {
+	case 1:
+		mes "[魔法學校相關人員]";
+		mes "所謂魔法師是指消耗自己的法力，";
+		mes "利用火,水,土,電等屬性";
+		mes "來進行魔法攻擊的";
+		mes "一種角色";
+		next;
+		mes "[魔法學校相關人員]";
+		mes "武器只限手杖與書籍類，";
+		mes "由於體力相對較弱之故，";
+		mes "因此有只能配戴";
+		mes "輕裝備的缺點";
+		next;
+		mes "[魔法學校相關人員]";
+		mes "不過卻具有補強其弱點的";
+		mes "強力攻擊力的關係，因此";
+		mes "魔法師也成為深受大家";
+		mes "喜愛又選擇的";
+		mes "角色之一";
+		next;
+		mes "[魔法學校相關人員]";
+		mes "在仙境傳說世界裡的魔法師，";
+		mes "於組隊時能使用強力的魔法，";
+		mes "成為隊友們強而有力的";
+		mes "護法角色";
+		next;
+		mes "[魔法學校相關人員]";
+		mes "^8C2121魔法師可轉職為巫師";
+		mes "或賢者";
+		mes "等^000000";
+		next;
+		if(countitem(2824) == 0 && (getequipid(EQI_ACC_L) != 2824 || getequipid(EQI_ACC_R) != 2824)) {
+			mes "[魔法學校相關人員]
+			mes "如果你願意親自體驗技能的話，我會發入門手冊給你，
+			mes "你要親自體驗魔法嗎?";
+			next;
+			if(select("我要體驗:我不要體驗") == 2) {
+				mes "[魔法學校相關人員]";
+				mes "這樣啊!";
+				mes "選擇職業極為重要，敬請慎重考慮，";
+				mes "若想體驗歡迎隨時來找我";
+				close;
+			}
+			mes "[魔法學校相關人員]";
+			mes "在這裡給你魔法師入門手冊，";
+			mes "其他職業的入門手冊我要回收了";
+			next;
+			nude;
+			if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+			if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			getitem 2824,1;	// 魔法師入門手冊
+			next;
+			mes "[魔法學校相關人員]";
+			mes "裝備之後開啟技能欄，再來使用新登記的技能吧!";
+		}
+		mes "[魔法學校相關人員]";
+		mes "若使用現在你身上登記於入門手冊裡的技能";
+		mes "來親自體驗的話，就能更深刻地了解吧?";
+		close;
+	case 2:
+		mes "[魔法學校相關人員]";
+		mes "你確定要轉職為魔法師嗎?";
+		mes "那我立刻送你到吉芬的魔法學校";
+		next;
+		mes "[魔法學校相關人員]";
+		mes "當然Job Lv已經達到了吧?";
+		mes "你現在要結束新手修練場課程後去魔法學校了嗎?";
+		next;
+		if(select("我再考慮一下:我要去魔法學校") == 2) {
+			mes "[魔法學校相關人員]";
+			mes "這樣啊!";
+			mes "非常歡迎!那完全終止新手修練場的課程後，送你到魔法學校";training.";
+			close2;
+			if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+			if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+			if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+			if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+			nude;
+			if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+			if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+			savepoint "geffen",119,37;
+			warp "geffen_in",163,98;
+			end;
+		}
+		mes "[魔法學校相關人員]";
+		mes "你應該拿到了各職業的入門手冊，";
+		mes "請你充分體驗後再慎重決定吧!";
+		mes "當然我們隨時張臂歡迎你";
+		close;
+	case 3:
+		if(checkquest(7124,HUNTING) != 2) {
+			mes "[魔法學校相關人員]";
+			mes "你不是正在執行任務中嗎?";
+			mes "請你先開啟任務視窗確認任務，待完成後再來找我吧!";
+			close;
+		}
+		else if(checkquest(7124) != 2) {
+			mes "[魔法學校相關人員]";
+			mes "你不是已完成戰鬥基本任務了嗎?";
+			mes "請先結束修練場後再正式踏入世界行列的話，就能接下眾多的任務了";
+			next;
+			mes "[魔法學校相關人員]";
+			mes "在修練場的實習這樣就足夠了，哈哈哈..";
+			close;
+		}
+		else if(checkquest(7124) == 2) {
+			mes "[魔法學校相關人員]";
+			mes "非常厲害，";
+			mes "你對魔法產生興趣了嗎?";
+			mes "我要送你蝴蝶翅膀以茲鼓勵";
+			completequest 7124;
+			getitem 12324,30;	// 新手專用蝴蝶翅膀
+			getexp 1000,0;
+			getexp 1000,0;
+			getexp 1000,0;
+			getexp 1000,0;
+			getexp 1000,100;
+			//官方給238/100?
+			close2;
+		}
+		else {
+			mes "[魔法學校相關人員]";
+			mes "你是指任務嗎?";
+			mes "嗯.. 什麼好呢?";
+			mes "那你使用魔法來打瘋兔好嗎?";
+			next;
+			mes "^4A4AFF於是從魔法學校相關人員接下
+			mes "打怪任務 - 戰鬥的基本2 -之委託，";
+			mes "任務內容可在任務資訊視窗上查詢^000000";
+			setquest 7124;
+			next;
+			mes "[魔法學校相關人員]";
+			mes "請你好好運用魔法師入門手冊裡的技能'火箭術'吧!";
+			mes "我會慢慢等你的，";
+			mes "祝你馬到成功";
+			close;
+		}
+	case 4:
+		mes "[魔法學校相關人員]";
+		mes "若對魔法師還有疑問的話，歡迎隨時來詢問，";
+		mes "我們魔法學校非常期待您的加入";
+		close;
+	}
+}
+
+new_1-3,101,41,4	duplicate(NvMag)	魔法師#newbe1	123
+new_2-3,101,41,4	duplicate(NvMag)	魔法師#newbe2	123
+new_3-3,101,41,4	duplicate(NvMag)	魔法師#newbe3	123
+new_4-3,101,41,4	duplicate(NvMag)	魔法師#newbe4	123
+new_5-3,101,41,4	duplicate(NvMag)	魔法師#newbe5	123
+
+// ---------------------------- Thief Guide ---------------------------------
+-	script	盜賊#newbe::NvThf	118,{
+	if(job_novice_q < 16) {
+		mes "[盜賊公會相關人員]";
+		mes "你好像還在上布萊伊德教官的課程啊!";
+		close;
+	}
+	mes "[盜賊公會相關人員]";
+	mes "需要什麼服務呢?";
+	next;
+	switch(select("聽取有關盜賊的說明:轉職為盜賊:任務:取消")) {
+	case 1:
+		mes "[盜賊公會相關人員]";
+		mes "盜賊不僅擅用短劍，又能迅速地";
+		mes "攻擊敵人，以敏捷的行動";
+		mes "迴避敵人攻擊的多項優點";
+		next;
+		mes "[盜賊公會相關人員]";
+		mes "再者盜賊";
+		mes "還能施毒";
+		mes "或隱身術，";
+		mes "當對方一旦中毒時，";
+		mes "體力就會逐漸下降";
+		next;
+		mes "[盜賊公會相關人員]";
+		mes "若處於危機狀況或";
+		mes "不想被對方發現時，";
+		mes "還可使用入土隱身";
+		mes "遁形的法術";
+		next;
+		mes "[盜賊公會相關人員]";
+		mes "^8C2121盜賊可轉職為刺客或";
+		mes "流氓^000000";
+		next;
+		if(countitem(2820) == 0 && (getequipid(EQI_ACC_L) != 2820 || getequipid(EQI_ACC_R) != 2820)) {
+		mes "[盜賊公會相關人員]";
+		mes "如果你願意親自體驗技能的話，我會發入門手冊給你，";
+		mes "你要體驗盜賊技能嗎?";
+		next;
+		if(select("我要體驗盜賊技能:我不要體驗") == 2) {
+			mes "[盜賊公會相關人員]";
+			mes "選擇職業極為重要，敬請慎重考慮，";
+			mes "若想體驗歡迎隨時來找我";
+			close;
+		}
+		mes "[盜賊公會相關人員]";
+		mes "在這裡給你盜賊入門手冊，";
+		mes "其他職業的入門手冊我要回收了";
+		next;
+		nude;
+		if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+		if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+		if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+		if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+		if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+		getitem 2820,1;	// 盜賊入門手冊
+		next;
+		mes "[盜賊公會相關人員]";
+		mes "裝備之後開啟技能欄，再來使用新登記的技能吧!";
+		}
+		mes "[盜賊公會相關人員]";
+		mes "若使用現在你身上登記於入門手冊裡的技能";
+		mes "來親自體驗的話，就能更深刻地了解吧?";
+		close;
+	case 2:
+		mes "[盜賊公會相關人員]";
+		mes "你確定要轉職為盜賊嗎?";
+		mes "那我立刻送你到盜賊公會";
+		next;
+		mes "[盜賊公會相關人員]";
+		mes "當然Job Lv已經達到了吧?";
+		mes "你現在要結束新手修練場課程後去盜賊公會了嗎?";
+		next;
+		if(select("我再考慮一下:我要去盜賊公會") == 2) {
+		mes "[盜賊公會相關人員]";
+		mes "這樣啊!";
+		mes "非常歡迎!那完全終止新手修練場的課程後，送你到盜賊公會";training.";
+		close2;
+		if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+		if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+		if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+		if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+		nude;
+		if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+		if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+		if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+		if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+		if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+		if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+		savepoint "morocc",150,99;
+		warp "moc_ruins",155,44;
+		end;
+		}
+		mes "[盜賊公會相關人員]";
+		mes "你應該拿到了各職業的入門手冊，";
+		mes "請你充分體驗後再慎重決定吧!";
+		mes "當然我們隨時張臂歡迎你";
+		close;
+	case 3:
+		if(checkquest(7127,HUNTING) != 2) {
+		mes "[盜賊公會相關人員]";
+		mes "你不是正在執行任務嗎?";
+		mes "請你先開啟任務視窗確認任務，待完成後再來找我吧!";
+		close;
+		}
+		else if(checkquest(7127) != 2) {
+		mes "[盜賊公會相關人員]";
+		mes "你不是已完成戰鬥基本任務了嗎?";
+		mes "請先結束修練場後再正式踏入世界行列的話，就能接下眾多的任務了";
+		next;
+		mes "[盜賊公會相關人員]";
+		mes "在修練場的實習這樣就足夠了，哈哈哈..";
+		close;
+		}
+		else if(checkquest(7127) == 2) {
+		mes "[盜賊公會相關人員]";
+		mes "你的實力真不錯喔!";
+		mes "送你幾樣消耗品以玆鼓勵";
+		completequest 7127;
+		getitem 12323,50;	// 新手專用蒼蠅翅膀
+		getexp 1000,0;
+		getexp 1000,0;
+		getexp 1000,0;
+		getexp 1000,0;
+		getexp 1000,100;
+		close2;
+		//官方給450/100?
+		}
+		else {
+		mes "[盜賊公會相關人員]";
+		mes "你是指任務嗎?";
+		mes "嗯.. 什麼好呢?";
+		mes "那就打樹精5隻試試看好嗎?";
+		next;
+		mes "^4A4AFF於是從盜賊公會相關人員接下";
+		mes "打怪任務 - 戰鬥的基本 3-之委託，";
+		mes "任務內容可在任務資訊視窗上查詢^000000";
+		setquest 7127;
+		next;
+		mes "[盜賊公會相關人員]";
+		mes "若放在盜賊入門手冊上的話，就能展現二刀連擊技能的效果，";
+		mes "另外迴避也會提升，";
+		mes "二刀連擊與迴避可說是盜賊的指標技能";
+		close;
+		}
+	case 4:
+		mes "[盜賊公會相關人員]";
+		mes "若對盜賊還有疑問的話，歡迎隨時來詢問";
+		close;
+	}
+}
+
+new_1-3,105,41,4	duplicate(NvThf)	盜賊#newbe1	118
+new_2-3,105,41,4	duplicate(NvThf)	盜賊#newbe2	118
+new_3-3,105,41,4	duplicate(NvThf)	盜賊#newbe3	118
+new_4-3,105,41,4	duplicate(NvThf)	盜賊#newbe4	118
+new_5-3,105,41,4	duplicate(NvThf)	盜賊#newbe5	118
+
+// ---------------------------- Merchant Guide ------------------------------
+-	script	商人#newbe::NvMer	97,{
+	if(job_novice_q < 16) {
+		mes "[商人公會相關人員]";
+		mes "你好像還在上布萊伊德教官的課程啊!";
+		close;
+	}
+	mes "[商人公會相關人員]";
+	mes "需要什麼服務呢?";
+	next;
+	switch(select("聽取有關商人的說明:轉職為商人:任務:取消")) {
+	case 1:
+		mes "[商人公會相關人員]";
+		mes "商人顧名思義就是";
+		mes "以買賣物品為主的";
+		mes "角色";
+		next;
+		mes "[商人公會相關人員]";
+		mes "以長久做生意的技巧";
+		mes "為底子，並發揮所長";
+		mes "將物品以低價買進，";
+		mes "高價賣出的職業";
+		next;
+		mes "[商人公會相關人員]";
+		mes "在仙境傳說裡的商人可以向";
+		mes "NPC以較低價格購買物品，";
+		mes "之後以更高價格賣出的";
+		mes "具有該技能的角色";
+		next;
+		mes "[商人公會相關人員]";
+		mes "再者還擁有能裝載量多";
+		mes "物品的手推車，以及";
+		mes "做生意時所需的各種";
+		mes "工具的角色";
+		next;
+		mes "[商人公會相關人員]";
+		mes "^8C2121商人可轉職為鐵匠或";
+		mes "鍊金術師";
+		mes "等^000000";
+		next;
+		if(countitem(2823) == 0 && (getequipid(EQI_ACC_L) != 2823 || getequipid(EQI_ACC_R) != 2823)) {
+		mes "[商人公會相關人員]";
+		mes "如果你願意親自體驗技能的話，我會發入門手冊給你，";
+		mes "你要體驗商人技能嗎?";
+		next;
+		if(select("我要體驗商人技能:我不要體驗") == 2) {
+			mes "[商人公會相關人員]";
+			mes "這樣啊!";
+			mes "選擇職業極為重要，敬請慎重考慮，";
+			mes "若想體驗歡迎隨時來找我";
+			close;
+		}
+		mes "[商人公會相關人員]";
+		mes "在這裡給你商人入門手冊，";
+		mes "其他職業的入門手冊我要回收了";
+		next;
+		nude;
+		if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+		if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+		if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+		if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+		if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+		getitem 2823,1;	// 商人入門手冊
+		next;
+		mes "[商人公會相關人員]";
+		mes "裝備之後開啟技能欄，再來使用新登記的技能吧!";
+		}
+		mes "[商人公會相關人員]";
+		mes "若使用現在你身上登記於入門手冊裡的技能";
+		mes "來親自體驗的話，就能更深刻地了解吧?";
+		close;
+	case 2:
+		mes "[商人公會相關人員]";
+		mes "你確定要轉職為商人嗎?";
+		mes "那我立刻送你到商人公會";
+		next;
+		mes "[商人公會相關人員]";
+		mes "當然Job Lv已經達到了吧?";
+		mes "你現在要結束新手修練場課程後去商人公會了嗎?";
+		next;
+		if(select("我再考慮一下:我要當商人") == 2) {
+		mes "[商人公會相關人員]";
+		mes "這樣啊!";
+		mes "非常歡迎!那完全終止新手修練場的課程後，送你到商人公會";training.";
+		close2;
+		if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+		if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+		if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+		if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+		nude;
+		if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+		if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+		if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+		if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+		if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+		if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+		savepoint "alberta",30,232;
+		warp "alberta_in",62,44;
+		end;
+		}
+		mes "[商人公會相關人員]";
+		mes "你應該拿到了各職業的入門手冊，";
+		mes "請你充分體驗後再慎重決定吧!";
+		mes "當然我們隨時張臂歡迎你";
+		close;
+	case 3:
+		if((checkquest(7126) == 0 || checkquest(7126) == 1) && Zeny < 300) {
+		mes "[商人公會相關人員]";
+		mes "Zeny is the currency of Rune Midgard.";
+		mes "You can make zeny by selling loot as well as through making smart business decisions.";
+		next;
+		mes "[商人公會相關人員]";
+		mes "You can get loot by killing monsters. After hunting monsters, you can sell those loot to make a profit!";
+		mes "What a valuable job it is! Isn't it?";
+		next;
+		mes "[商人公會相關人員]";
+		mes "Why don't you try to be a Merchant?";
+		mes "Making money is not easy but it will be a great experience!";
+		close;
+		}
+		else if(checkquest(7126) != 2) {
+		mes "[商人公會相關人員]";
+		mes "你不是已經完成任務了嗎?";
+		mes "請先結束修練場後再正式踏入世界行列的話，就能接下眾多的任務了";
+		next;
+		mes "[商人公會相關人員]";
+		mes "在修練場的實習這樣就足夠了，哈哈哈..";
+		}
+		else if(checkquest(7126) == 2) {
+		mes "[商人公會相關人員]";
+		mes "非常厲害!";
+		mes "金幣是仙境傳說世界裡的貨幣單位，";
+		mes "可以販售戰利品來賺取金幣";
+		next;
+		mes "[商人公會相關人員]";
+		mes "像這樣賺來的金幣，我們商人可用為強力的一擊致命武器，";
+		mes "金錢攻擊! 就是代表性的技能，";
+		mes "哈哈哈哈哈";
+		next;
+		mes "[商人公會相關人員]";
+		mes "總之完成任務了，要給你一點獎勵，";
+		mes "送你的是初學者專用藥水";
+		completequest 7126;
+		getitem 1010,7;	// Phracon
+		getexp 1000,0;
+		getexp 1000,0;
+		getexp 1000,0;
+		getexp 1000,0;
+		getexp 1000,100;
+		close2;
+		//官方給????
+		}
+		else {
+		mes "[商人公會相關人員]";
+		mes "你是指任務嗎?";
+		mes "嗯.. 什麼好呢?";
+		mes "那就把物品向商人高價賣出後，賺個 ^4A4AFF300 zeny^000000來看看吧!";
+		next;
+		mes "[商人公會相關人員]";
+		mes "^4A4AFF於是從商人公會相關人員接下";
+		mes "–唯我獨尊的特殊技術- 任務之委託，";
+		mes "任務內容可在任務資訊視窗上查詢^000000";
+		setquest 7126;
+		next;
+		mes "[商人公會相關人員]";
+		mes "請你好好運用商人入門手冊裡的技能'高價賣出'與'低價買進'吧!";
+		mes "我會慢慢等你的，";
+		mes "祝你馬到成功";
+		close;
+		}
+	case 4:
+		mes "[商人公會相關人員]";
+		mes "若對商人還有疑問的話，歡迎隨時來詢問，";
+		mes "你長得一臉福相，我們非常期待您的加入";
+		close;
+	}
+}
+
+new_1-3,109,41,4	duplicate(NvMer)	商人#newbe1	97
+new_2-3,109,41,4	duplicate(NvMer)	商人#newbe2	97
+new_3-3,109,41,4	duplicate(NvMer)	商人#newbe3	97
+new_4-3,109,41,4	duplicate(NvMer)	商人#newbe4	97
+new_5-3,109,41,4	duplicate(NvMer)	商人#newbe5	97
+
+// ---------------------------- Archer Guide --------------------------------
+-	script	弓箭手#newbe::NvArc	727,{
+	if(job_novice_q < 16) {
+		mes "[弓箭手公會相關人員]";
+		mes "你好像還在上布萊伊德教官的課程啊!";
+		close;
+	}
+	mes "[弓箭手公會相關人員]";
+	mes "需要什麼服務呢?";
+	next;
+	switch(select("聽取有關弓箭手的說明:轉職為弓箭手:取消")) {
+	case 1:
+		mes "[弓箭手公會相關人員]";
+		mes "弓箭手為擅用弓箭及";
+		mes "具有多種才華的角色，";
+		mes "在協助隊友進行長程攻擊的";
+		mes "同時，還可警戒敵人等，";
+		mes "擁有超凡的優點";
+		next;
+		mes "[弓箭手公會相關人員]";
+		mes "雖然弓箭手的體力較弱，";
+		mes "但是能進行遠距離攻擊，";
+		mes "因此可在更安全的情形下";
+		mes "展開戰鬥";
+		next;
+		mes "[弓箭手公會相關人員]";
+		mes "雖在仙境傳說裡的弓箭手體力";
+		mes "較弱，但相對地具有高命中率";
+		mes "和攻擊力，在敵人靠近前即可";
+		mes "殲敵的一種角色";
+		next;
+		mes "[弓箭手公會相關人員]";
+		mes "^8C2121弓箭手可轉職為";
+		mes "獵人，";
+		mes "獵人之外若是男性可轉職為";
+		mes "吟遊詩人，女性則是";
+		mes "舞孃 ^000000";
+		next;
+		if(countitem(2822) == 0 && (getequipid(EQI_ACC_L) != 2822 || getequipid(EQI_ACC_R) != 2822)) {
+			mes "[弓箭手公會相關人員]";
+			mes "如果你願意親自體驗技能的話，我會發入門手冊給你，";
+			mes "你要體驗弓箭手技能嗎?";
+			next;
+			if(select("我要體驗弓箭手技能:我不要體驗") == 2) {
+				mes "[弓箭手公會相關人員]";
+				mes "這樣啊!";
+				mes "選擇職業極為重要，敬請慎重考慮，";
+				mes "若想體驗歡迎隨時來找我";
+				close;
+			}
+			mes "[弓箭手公會相關人員]";
+			mes "在這裡給你弓箭手入門手冊，";
+			mes "其他職業的入門手冊我要回收了";
+			next;
+			nude;
+			if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+			getitem 2822,1;	// 弓箭手入門手冊
+			next;
+			mes "[弓箭手公會相關人員]";
+			mes "裝備之後開啟技能欄，再來使用新登記的技能吧!";
+		}
+		mes "[弓箭手公會相關人員]";
+		mes "若使用現在你身上登記於入門手冊裡的技能";
+		mes "來親自體驗的話，就能更深刻地了解吧?";
+		close;
+	case 2:
+		mes "[弓箭手公會相關人員]";
+		mes "你確定要轉職為弓箭手嗎?";
+		mes "那我立刻送你到弓箭手公會";
+		next;
+		mes "[弓箭手公會相關人員]";
+		mes "當然Job Lv已經達到了吧?";
+		mes "你現在要結束新手修練場課程後去弓箭手公會了嗎?";
+		next;
+		if(select("我再考慮一下:我要去弓箭手公會") == 2) {
+			mes "[弓箭手公會相關人員]";
+			mes "這樣啊!";
+			mes "非常歡迎!那完全終止新手修練場的課程後，送你到弓箭手公會";training.";
+			close2;
+			if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+			if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+			if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+			if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+			nude;
+			if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+			if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+			savepoint "payon",70,100;
+			warp "payon_in02",64,65;
+			end;
+		}
+		mes "[弓箭手公會相關人員]";
+		mes "你應該拿到了各職業的入門手冊，";
+		mes "請你充分體驗後再慎重決定吧!";
+		mes "當然我們隨時張臂歡迎你";
+		close;
+	case 3:
+		mes "[弓箭手公會相關人員]";
+		mes "若對弓箭手還有疑問的話，歡迎隨時來詢問，";
+		mes "我們弓箭手公會期待您的加入";
+		close;
+	}
+}
+
+new_1-3,113,41,4	duplicate(NvArc)	弓箭手#newbe1	727
+new_2-3,113,41,4	duplicate(NvArc)	弓箭手#newbe2	727
+new_3-3,113,41,4	duplicate(NvArc)	弓箭手#newbe3	727
+new_4-3,113,41,4	duplicate(NvArc)	弓箭手#newbe4	727
+new_5-3,113,41,4	duplicate(NvArc)	弓箭手#newbe5	727
+
+// ---------------------------- Acolyte Guide -------------------------------
+-	script	修女#newbe::NvAco	95,{
+	if(job_novice_q < 16) {
+		mes "[大教堂修女]";
+		mes "你好像還在上布萊伊德教官的課程啊!";
+		close;
+	}
+	mes "[大教堂修女]";
+	mes "需要什麼服務呢?";
+	next;
+	switch(select("何謂服事?:轉職為服事:取消")) {
+	case 1:
+		mes "[大教堂修女]";
+		mes "服事是祭神與崇拜者，";
+		mes "可以為他人犧牲或";
+		mes "奉獻的職業";
+		next;
+		mes "[大教堂修女]";
+		mes "在仙境傳說世界裡的服事，";
+		mes "沒有直接投入戰鬥，而是";
+		mes "扮演利用提升隊友能力的";
+		mes "輔助技術，好讓戰鬥比較";
+		mes "容易進行的助攻角色";
+		next;
+		mes "[大教堂修女]";
+		mes "服事可視為組隊時";
+		mes "必要的職業之一";
+		next;
+		mes "[大教堂修女]";
+		mes "^8C2121之後可轉職為祭司或";
+		mes "武道家^000000";
+		next;
+		if(countitem(2821) == 0 && (getequipid(EQI_ACC_L) != 2821 || getequipid(EQI_ACC_R) != 2821)) {
+			mes "[大教堂修女]";
+			mes "如果你願意親自體驗技能的話，我會發入門手冊給你，";
+			mes "你要體驗服事技能嗎?";
+			next;
+			if(select("我要體驗服事技能:我不要體驗") == 2) {
+				mes "[大教堂修女]";
+				mes "這樣啊!";
+				mes "選擇職業極為重要，敬請慎重考慮，";
+				mes "若想體驗歡迎隨時來找我";
+				close;
+			}
+			mes "[大教堂修女]";
+			mes "在這裡給你服事入門手冊，";
+			mes "其他職業的入門手冊我要回收了";
+			next;
+			nude;
+			if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+			getitem 2821,1;	// 服事入門手冊
+			next;
+			mes "[大教堂修女]";
+			mes "裝備之後開啟技能欄，再來使用新登記的技能吧!";
+			close;
+		}
+		mes "[大教堂修女]";
+		mes "若使用現在你身上登記於入門手冊裡的技能";
+		mes "來親自體驗的話，就能更深刻地了解吧?";
+		close;
+	case 2:
+		mes "[大教堂修女]";
+		mes "你確定要轉職為服事嗎?";
+		mes "那我立刻送你到普隆德拉大教堂";
+		next;
+		mes "[大教堂修女]";
+		mes "當然Job Lv已經達到了吧?";
+		mes "你現在要結束新手修練場課程後去普隆德拉大教堂了嗎?";
+		next;
+		if(select("我再考慮一下:我要去大教堂") == 2) {
+			mes "[大教堂修女]";
+			mes "這樣啊!";
+			mes "非常歡迎!那完全終止新手修練場的課程後，送你到普隆德拉大教堂";
+			close2;
+			if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+			if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+			if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+			if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+			nude;
+			if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+			if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+			if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+			if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+			if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+			if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+			savepoint "prontera",117,72;
+			warp "prt_church",172,19;
+			end;
+		}
+		mes "[大教堂修女]";
+		mes "你應該拿到了各職業的入門手冊，";
+		mes "請你充分體驗後再慎重決定吧!";
+		mes "當然我們隨時張臂歡迎你";
+		close;
+	case 3:
+		mes "[大教堂修女]";
+		mes "若對服事還有疑問的話，歡迎隨時來詢問，";
+		mes "我們奧丁神會非常期待您的加入";
+		close;
+	}
+}
+
+new_1-3,117,41,4	duplicate(NvAco)	修女#newbe1	95
+new_2-3,117,41,4	duplicate(NvAco)	修女#newbe2	95
+new_3-3,117,41,4	duplicate(NvAco)	修女#newbe3	95
+new_4-3,117,41,4	duplicate(NvAco)	修女#newbe4	95
+new_5-3,117,41,4	duplicate(NvAco)	修女#newbe5	95
+
+// ---------------------------- Bruce (Extended Jobs) -----------------------
+-	script	布魯斯#newbe::NvBruce	57,{
+	mes "[布魯斯]";
+	mes "你好嗎?
+			mes "我負責介紹的是屬於特殊職業的擴充職業群";
+	next;
+	mes "[布魯斯]";
+	mes "特殊職業共有跆拳少年,跆拳少女與
+			mes "忍者, 超級初心者, 神槍手等，
+			mes "你想聽取哪一種職業的介紹呢?";
+	next;
+	while(1) {
+		switch(select("跆拳:忍者:超級初心者:神槍手:結束對話")) {
+		case 1:
+			mes "[布魯斯]";
+			mes "在某個東方的國家所";
+			mes "廣泛流傳的格鬥技術，";
+			mes "主要以腳踢為技術的";
+			mes "角色，";
+			next;
+			mes "被歸類在特殊職業裡，";
+			mes "之後可以轉職為具有";
+			mes "高超攻擊技術的拳聖";
+			mes "或可操縱多個靈魂兼";
+			mes "助攻角色的悟靈士";
+			next;
+			break;
+		case 2:
+			mes "[布魯斯]";
+			mes "以身手矯捷為專長的忍者，";
+			mes "不僅會使用一般武器，";
+			mes "還能使用投擲武器及忍術，";
+			mes "以多種迴避技能加上";
+			mes "物理, 魔法雙重攻擊";
+			mes "皆可施展的屬於混合型";
+			mes "特殊職業，";
+			next;
+			mes "忍者可使用短劍與飛鏢等";
+			mes "丟擲的飛刀類，以及類似";
+			mes "魔法的'忍術'";
+			mes "來擊倒敵人";
+			next;
+			break;
+		case 3:
+			mes "[布魯斯]";
+			mes "沒有忘記身為初學者的意志，";
+			mes "而邁向更強大初學者之路的";
+			mes "職業，其最大魅力是幾乎能";
+			mes "習得1轉職業的大部分技能，";
+			next;
+			mes "雖然有變成超級初心者後，";
+			mes "無法轉職為其他職業的缺點，";
+			mes "不過優點是可栽培為";
+			mes "具有獨特個性的角色";
+			next;
+			break;
+		case 4:
+			mes "[布魯斯]";
+			mes "會使用在鋼鐵城市'艾音布羅克'";
+			mes "所製作的各類武器之職業，";
+			mes "最適合作長程攻擊的特殊職業，";
+			mes "可從初學者直接轉職，";
+			mes "推薦給想當超強射手的人";
+			next;
+			break;
+		case 5:
+			mes "[布魯斯]";
+			mes "更詳細的內容請上";
+			mes "'http://code.google.com/p/plutoea/'";
+			mes "以掌握更多的資訊";
+			close;
+		}
+	}
+}
+
+new_1-3,121,41,4	duplicate(NvBruce)	布魯斯#newbe1	57
+new_2-3,121,41,4	duplicate(NvBruce)	布魯斯#newbe2	57
+new_3-3,121,41,4	duplicate(NvBruce)	布魯斯#newbe3	57
+new_4-3,121,41,4	duplicate(NvBruce)	布魯斯#newbe4	57
+new_5-3,121,41,4	duplicate(NvBruce)	布魯斯#newbe5	57
+
+//============================================================================
+// Eden Group Officer (Real Combat Training)
+// 伊甸園 軍官(暫譯)
+// ※台灣未開放此NPC內容
+//============================================================================
+-	script	伊甸園 軍官#newbe::NvEdn	-1,{
+	if(BaseLevel < 10) {
+		mes "[伊甸園 軍官]";
+		mes "Hello, I am a representative of the Eden Group.";
+		mes "We are here to assist adventurers in Rune Midgard.";
+		next;
+		mes "[伊甸園 軍官]";
+		mes "We have agents all over the world waiting to send you to our secret headquarters where you can get some useful quests.";
+		next;
+		mes "[伊甸園 軍官]";
+		mes "If you take our quests we even give you weapons and equipment so be sure to visit us once you are done with your training.";
+		next;
+		mes "[伊甸園 軍官]";
+		mes "Speak to me again once you have reached Base Level 10 and I will send you out of the training grounds.";
+		mes "Have you taken the quests from all of the Guides yet?";
+		close;
+	}else{
+		mes "[伊甸園 軍官]";
+		mes "Great! You are ready to take on the challenges of the world.";
+		mes "What would you like to do?";
+		next;
+		switch(select("I want to leave the training grounds:Tell me about the towns.:Cancel")) {
+		case 1:
+			mes "[伊甸園 軍官]";
+			mes "Looks like you are ready.";
+			mes "I guess you have made up your mind, huh?";
+			next;
+			mes "[伊甸園 軍官]";
+			mes "If you know what job you want to change to, you should ask the ^4A4AFFJob Guides^000000 to send you out of the training grounds.";
+			mes "What town would you like to go to?";
+			next;
+			switch(select("Prontera:Morocc:Payon:Alberta:Geffen:Cancel")) {
+			case 1:
+				mes "[伊甸園 軍官]";
+				mes "Prontera, the Capital city of the Rune-Midgarts Kingdom.";
+				mes "Take care and may Freya bless you on your journey.";
+				close2;
+				if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+				if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+				if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+				if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+				nude;
+				if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+				if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+				if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+				if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+				if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+				if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+				savepoint "prontera",273,354;
+				warp "prontera",273,354;
+				end;
+			case 2:
+				mes "[伊甸園 軍官]";
+				mes "The desert city of Morocc was recently destroyed.";
+				mes "I will send you to the camp where the survivors are.";
+				close2;
+				if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+				if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+				if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+				if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+				nude;
+				if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+				if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+				if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+				if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+				if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+				if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+				savepoint "morocc",150,99;
+				warp "moc_ruins",155,44;
+				end;
+			case 3:
+				mes "[伊甸園 軍官]";
+				mes "Just north of Payon you'll find the Archer Village.";
+				mes "Good luck on your journeys.";
+				close2;
+				if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+				if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+				if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+				if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+				nude;
+				if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+				if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+				if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+				if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+				if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+				if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+				savepoint "payon",70,100;
+				warp "payon",70,100;
+				end;
+			case 4:
+				mes "[伊甸園 軍官]";
+				mes "Alberta, the Port City.";
+				mes "It's the main hub of all trades.";
+				mes "If you want to travel to other civilizations, Alberta is the only outlet.";
+				close2;
+				if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+				if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+				if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+				if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+				nude;
+				if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+				if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+				if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+				if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+				if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+				if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+				savepoint "alberta",116,57;
+				warp "alberta",116,57;
+				end;
+			case 5:
+				mes "[伊甸園 軍官]";
+				mes "Geffen, is known as the Magical City of Rune Midgard.";
+				mes "I will send you near the Fountains.";
+				mes "Goddess Freya bless you.";
+				close2;
+				if(checkquest(7123) == 0 || checkquest(7123) == 1) { erasequest 7123; }
+				if(checkquest(7124) == 0 || checkquest(7124) == 1) { erasequest 7124; }
+				if(checkquest(7126) == 0 || checkquest(7126) == 1) { erasequest 7126; }
+				if(checkquest(7127) == 0 || checkquest(7127) == 1) { erasequest 7127; }
+				nude;
+				if(countitem(2819) > 0) delitem 2819,1;	// 劍士入門手冊
+				if(countitem(2820) > 0) delitem 2820,1;	// 盜賊入門手冊
+				if(countitem(2821) > 0) delitem 2821,1;	// 服事入門手冊
+				if(countitem(2822) > 0) delitem 2822,1;	// 弓箭手入門手冊
+				if(countitem(2823) > 0) delitem 2823,1;	// 商人入門手冊
+				if(countitem(2824) > 0) delitem 2824,1;	// 魔法師入門手冊
+				savepoint "geffen",120,100;
+				warp "geffen",128,66;
+				end;
+			case 6:
+				mes "[伊甸園 軍官]";
+				mes "If you're still not sure what job you want, talk to the Job Guides for more help.";
+				close;
+			}
+		case 2:
+			mes "[伊甸園 軍官]";
+			mes "Prontera is the main capital of the Rune-Midgard Kingdom. Here you will find Merchants selling their items and is a favorite gathering point of adventurers.";
+			next;
+			mes "[伊甸園 軍官]";
+			mes "The Acolyte Guild is here at the Prontera Church located to the northwest. The Swordman Guild can be found at Izlude, a town just southeast of Prontera.";
+			next;
+			mes "[伊甸園 軍官]";
+			mes "Morocc is a city located in the desert that was recently destroyed due to an evil monster named Satan Morroc. The Thief Guild has been working to restore it to it's former glory.";
+			next;
+			mes "[伊甸園 軍官]";
+			mes "Payon is where the Archer Guild has made it's home. You can also find the Kafra Shop Employees selling their Item Mall items near the center of this city.";
+			next;
+			mes "[伊甸園 軍官]";
+			mes "Alberta is the trading hub of Rune Midgard. The Merchant Guild is located here and the docks have ships that will take you to different island cities.";
+			next;
+			mes "[伊甸園 軍官]";
+			mes "Geffen is known as the magical city of Rune Midgard. The Mage Guild is located here and research for new magic is always being conducted at their headquarters.";
+			next;
+			mes "[伊甸園 軍官]";
+			mes "If you wish to be sent directly to the Job Guilds, then speak to the Job Guides and tell them that you want to change your job.";
+			close;
+		case 3:
+			close;
+		}
+	}
+	
+OnTouch:
+	emotion e_gasp;
+	end;
+}
+
+new_1-3,97,50,4	duplicate(NvEdn)	伊甸園 軍官#newbe1	729,5,5
+new_2-3,97,50,4	duplicate(NvEdn)	伊甸園 軍官#newbe2	729,5,5
+new_3-3,97,50,4	duplicate(NvEdn)	伊甸園 軍官#newbe3	729,5,5
+new_4-3,97,50,4	duplicate(NvEdn)	伊甸園 軍官#newbe4	729,5,5
+new_5-3,97,50,4	duplicate(NvEdn)	伊甸園 軍官#newbe5	729,5,5
+
+//============================================================================
+// Merchant (Real Combat Training)
+// 商人
+//============================================================================
+-	shop	商人#newbe::NvPotato	93,516:15
+
+new_1-3,100,50,4	duplicate(NvPotato)	商人#newbe1	93
+new_2-3,100,50,4	duplicate(NvPotato)	商人#newbe2	93
+new_3-3,100,50,4	duplicate(NvPotato)	商人#newbe3	93
+new_4-3,100,50,4	duplicate(NvPotato)	商人#newbe4	93
+new_5-3,100,50,4	duplicate(NvPotato)	商人#newbe5	93
+
+//============================================================================
+// Trainer (Real Combat Training)
+// 訓練所人員
+//============================================================================
+-	script	訓練所人員#newbe::NvBrutus	84,{
+	mes "[朴曼]";
+	mes "雖說是新手專用怪物，";
+	mes "但別小看牠喔!有可能";
+	mes "被打的很慘，請注意!";
+	mes "另外偶而還會有先攻型";
+	mes "怪物參雜在其中喔!";
+	next;
+	mes "[朴曼]";
+	mes "如果各位覺得這裡的";
+	mes "怪物不夠看的話，";
+	mes "還有特別服務~!";
+	mes "就是可以送各位到";
+	mes "出現更強怪物的地方";
+	next;
+	mes "[朴曼]";
+	mes "你願意挑戰嗎?";
+	next;
+	switch(select("我要挑戰適中的地方:我要挑戰高難度的地方:不挑戰")) {
+	case 1:
+		mes "[朴曼]";
+		mes "I see, then let me guid you to another level. Which level do you want to go to?";
+		next;
+		for(set .@i,1; .@i<=5; set .@i,.@i+1) {
+			if(strnpcinfo(2) == "nv1") {
+				set .@select$,"Send me to Level 2:Send me to Level 3:Send me to Level 4:Send me to Level 5";
+			}
+			if(strnpcinfo(2) == "nv2") {
+				set .@select$,"Send me to Level 1:Send me to Level 3:Send me to Level 4:Send me to Level 5";
+			}
+			if(strnpcinfo(2) == "nv3") {
+				set .@select$,"Send me to Level 1:Send me to Level 2:Send me to Level 4:Send me to Level 5";
+			}
+			if(strnpcinfo(2) == "nv4") {
+				set .@select$,"Send me to Level 1:Send me to Level 2:Send me to Level 3:Send me to Level 5";
+			}
+			if(strnpcinfo(2) == "nv5") {
+				set .@select$,"Send me to Level 1:Send me to Level 2:Send me to Level 3:Send me to Level 4";
+			}
+		}
+		switch(select(""+.@select$+":Cancel")) {
+		case 1:
+			if(strnpcinfo(2) == "nv1") {
+				warp "new_2-3",96,21;
+			}else{
+				warp "new_1-3",96,21;
+			}
+			end;
+		case 2:
+			if(strnpcinfo(2) == "nv1" || strnpcinfo(2) == "nv2") {
+				warp "new_3-3",96,21;
+			}else{
+				warp "new_2-3",96,21;
+			}
+			end;
+		case 3:
+			if(strnpcinfo(2) == "nv4" || strnpcinfo(2) == "nv5") {
+				warp "new_3-3",96,21;
+			}else{
+				warp "new_4-3",96,21;
+			}
+			end;
+		case 4:
+			if(strnpcinfo(2) == "nv5") {
+				warp "new_4-3",96,21;
+			}else{
+				warp "new_5-3",96,21;
+			}
+			end;
+		case 5:
+			close;
+		}
+	case 2:
+		mes "[朴曼]";
+		mes "You seem eager to fight.";
+		mes "The monster levels increase with each level of the training grounds.";
+		next;
+		mes "[朴曼]";
+		mes "Level 1 has the weakest monsters.";
+		mes "There you'll find Poring, Drops, Lunatics, Fabres, and Chonchons.";
+		next;
+		mes "[朴曼]";
+		mes "Level 2 is more challenging.";
+		mes "There you'll find Condors, Pickys, Willows, Fabres, and Roda Frogs.";
+		next;
+		mes "[朴曼]";
+		mes "Level 3 is pretty much the same as Level 2.";
+		mes "There you'll find Condors, Pickys, Willows, Fabres, and Roda Frogs.";
+		next;
+		mes "[朴曼]";
+		mes "Level 4 has stronger monsters.";
+		mes "There you'll find Rockers, Spores, and Fabres.";
+		next;
+		mes "[朴曼]";
+		mes "Level 5 is the same as Level 4.";
+		mes "There you'll find Rockers, Spores, and Fabres.";
+		close;
+	case 3:
+		mes "[朴曼]";
+		mes "你不喜歡挑戰冒險啊...";
+		mes "當然總比一步登天好，";
+		mes "祝你一帆風順...";
+		close;
+	}
+}
+
+new_1-3,103,50,4	duplicate(NvBrutus)	訓練所人員#newbe1	84
+new_2-3,103,50,4	duplicate(NvBrutus)	訓練所人員#newbe2	84
+new_3-3,103,50,4	duplicate(NvBrutus)	訓練所人員#newbe3	84
+new_4-3,103,50,4	duplicate(NvBrutus)	訓練所人員#newbe4	84
+new_5-3,103,50,4	duplicate(NvBrutus)	訓練所人員#newbe5	84
+
+//============================================================================
+// Random Stuff (Guards & Bulletin Board)
+//============================================================================
+new_1-1,66,114,4	script	招牌#newbe	111,{
+	mes "^FF0000=================================^000000";
+	mes "^FF0000 ^000000 ^E40CAA[歡迎]^CC0000 初^FF9000學^7FFF00者 修^00FF00G練場 ^E40CAA[歡迎]^FF0000^000000";
+	mes "^FF0000=================================^000000";
+	close;
+}
+
+new_1-1,144,116,2	script	警衛#newbe1	105,{
+	mes "[新手修練場警衛]";
+	mes "你好! 歡迎來到新手修練場!";
+	mes "入城就會看到新手修練場";
+	close;
+}
+
+new_1-1,144,107,2	script	警衛#newbe2	105,{
+	mes "[新手修練場警衛]";
+	if(rand(2)) {
+		mes "你好! 歡迎來到新手修練場!";
+		mes "在這新手修練場會協助各位新手們學習、成長、以及引導未來的康莊大道!";
+	}
+	else {
+		mes "來! 去闖吧! 新手們! 嶄新的未來正在等著你發現!";
+	}
+	close;
+}
+
+new_1-2,161,182,5	script	修練所教官#愛德恩	92,{
+	mes "[愛德恩]";
+	mes "嗯? 你怎麼在這裡呢?";
+	mes "這裡已經沒有課程了";
+	next;
+	mes "[愛德恩]";
+	mes "我來送你出去，";
+	mes "去找布萊伊德教官吧!";
+	close2;
+	warp "new_1-2",100,100;
+	end;
+}
+
+//============================================================================
+// Real Combat Training Mobs
+//============================================================================
+new_1-3,0,0,0,0	monster	蒼蠅	1011,10,0,0,0
+new_1-3,0,0,0,0	monster	土波利	1113,10,0,0,0
+new_1-3,0,0,0,0	monster	綠棉蟲	1184,5,0,0,0
+new_1-3,0,0,0,0	monster	瘋兔	1063,10,0,0,0
+new_1-3,0,0,0,0	monster	波利	1002,10,0,0,0
+new_2-3,0,0,0,0	monster	禿鷹	1009,10,0,0,0
+new_2-3,0,0,0,0	monster	綠棉蟲	1184,5,0,0,0
+new_2-3,0,0,0,0	monster	蛋殼小雞	1050,10,0,0,0
+new_2-3,0,0,0,0	monster	羅達蛙	1012,10,0,0,0
+new_2-3,0,0,0,0	monster	樹精	1010,10,0,0,0
+new_3-3,0,0,0,0	monster	禿鷹	1009,10,0,0,0
+new_3-3,0,0,0,0	monster	綠棉蟲	1184,5,0,0,0
+new_3-3,0,0,0,0	monster	蛋殼小雞	1050,10,0,0,0
+new_3-3,0,0,0,0	monster	羅達蛙	1012,10,0,0,0
+new_3-3,0,0,0,0	monster	樹精	1010,10,0,0,0
+new_4-3,0,0,0,0	monster	綠棉蟲	1184,5,0,0,0
+new_4-3,0,0,0,0	monster	蝗蟲	1052,10,0,0,0
+new_4-3,0,0,0,0	monster	魔菇	1014,10,0,0,0
+new_4-3,0,0,0,0	monster	盜蟲	1051,10,0,0,0
+new_4-3,0,0,0,0	monster	浮勒盜蟲	1053,10,0,0,0
+new_5-3,0,0,0,0	monster	綠棉蟲	1184,5,0,0,0
+new_5-3,0,0,0,0	monster	蝗蟲	1052,10,0,0,0
+new_5-3,0,0,0,0	monster	魔菇	1014,1,0,0,0
+new_5-3,0,0,0,0	monster	盜蟲	1051,1,0,0,0
+new_5-3,0,0,0,0	monster	浮勒盜蟲	1053,1,0,0,0

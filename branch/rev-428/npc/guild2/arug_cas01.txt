@@ -1,0 +1,2649 @@
+//===== eAthena Script =======================================
+//= 第二期攻城戰
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 2.0
+//===== Compatible With: =====================================
+//= eAthena SVN
+//===== Description: =========================================
+//= WoE SE 阿盧納貝茲 教國 Castle 1 (馬勒杜)
+//============================================================
+
+arug_cas01,1,1,0	script	Manager#aru01_02	111,{
+	end;
+
+OnInterIfInitOnce:
+	GetCastleData "arug_cas01",0,"::OnRecvCastleAr01";
+	end;
+
+OnRecvCastleAr01:
+	RequestGuildInfo GetCastleData("arug_cas01",1);
+	if (GetCastleData("arug_cas01",1) == 0) {
+		donpcevent "Manager#aru01_02::Onstart";
+	}
+	end;
+
+OnAgitStart2:
+	if (agitcheck2()) {
+		MapRespawnGuildID "arug_cas01",GetCastleData("arug_cas01",1),2;
+		GvgOn "arug_cas01";
+		donpcevent "Manager#aru01_02::Onstart";
+	}
+	else {
+		donpcevent "#aru01_RL00::OnDisable";
+		donpcevent "#aru01_RL01::OnDisable";
+		donpcevent "#aru01_RL02::OnDisable";
+		donpcevent "#aru01_RL03::OnDisable";
+	}
+	end;
+
+OnAgitEnd2:
+	GvgOff "arug_cas01";
+	if (GetCastleData("arug_cas01",1)) {
+		KillMonster "arug_cas01","管理人#aru01::OnStartArena";
+		donpcevent "Manager#aru01_02::Onreset";
+		donpcevent "管理人#aru01::Onstop";
+	}
+	end;
+
+Onstart:
+	// 1st Guardian stone, 2nd Guardian stone, Barrier 1, Barrier 2, Barrier 3, Summon Guardians
+	// Settings for all but Summon Guardians
+	// 0 = Okay; 1 = Destroyed; 2 = Repairing
+	// Summon Guardians
+	// 0 = Do not Summon; 1 = Summon
+	if (GetCastleData("arug_cas01",1)) {
+		setarray $agit_ar01[0],0,0,0,0,0,0;
+		donpcevent "#aru01_df01::OnEnable";
+		donpcevent "#aru01_df02::OnEnable";
+		donpcevent "#aru01_RL00::OnEnable";
+		donpcevent "#aru01_RL01::OnEnable";
+		donpcevent "#aru01_RL02::OnEnable";
+		donpcevent "#aru01_RL03::OnEnable";
+	}
+	monster "arug_cas01",87,219,"華麗金屬",1288,1,"管理人#aru01::OnStartArena";
+	end;
+
+Onreset:
+	donpcevent "#aru01_df01::OnDisable";
+	donpcevent "#aru01_df02::OnDisable";
+	donpcevent "#aru01_gard01::Onreset";
+	donpcevent "#aru01_gard02::Onreset";
+	donpcevent "#aru01_RL00::OnDisable";
+	donpcevent "#aru01_RL01::OnDisable";
+	donpcevent "#aru01_RL02::OnDisable";
+	donpcevent "#aru01_RL03::OnDisable";
+	donpcevent "第1守護石#aru01::OnDisable";
+	donpcevent "第2守護石#aru01::OnDisable";
+	donpcevent "控制裝置01#aru01::OnDisable";
+	donpcevent "控制裝置02#aru01::OnDisable";
+	donpcevent "控制裝置03#aru01::OnDisable";
+	if (agitcheck2()) {
+		setarray $agit_ar01[0],0,0,1,1,1,0;
+	}
+	end;
+
+Onchange:
+	setarray $agit_ar01[0],2,2,1,1,2,0;
+	monster "arug_cas01",87,219,"華麗金屬",1288,1,"管理人#aru01::OnStartArena";
+	donpcevent "控制裝置03#aru01::OnEnable";
+	donpcevent "第1守護石#aru01::OnEnable";
+	donpcevent "第2守護石#aru01::OnEnable";
+	end;
+
+OnClock0001:
+	if (!GetCastleData("arug_cas01",1)) end;
+	killmonster "arug_cas01","Manager#aru01_02::OnTreasureDied";
+
+	if (GetCastleData("arug_cas01",4)) {
+		set .@Economy,GetCastleData("arug_cas01",2);
+		SetCastleData "arug_cas01",2,.@Economy + GetCastleData("arug_cas01",4) + (rand(2) && getgdskilllv(.@GID,10014));
+		if (GetCastleData("arug_cas01",2) > 100) SetCastleData "arug_cas01",2,100;
+		setcastledata "arug_cas01",4,0;
+	}
+	if (GetCastleData("arug_cas01",5)) {
+		set .@Defence,GetCastleData("arug_cas01",3);
+		SetCastleData "arug_cas01",3,.@Defence + GetCastleData("arug_cas01",5);
+		if (GetCastleData("arug_cas01",3) > 100) SetCastleData "arug_cas01",3,100;
+		setcastledata "arug_cas01",5,0;
+	}
+
+	set .@Treasure,GetCastleData("arug_cas01",2)/5+4;
+	if (.@Treasure) {
+		monster "arug_cas01",251,369,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		monster "arug_cas01",251,369,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		monster "arug_cas01",253,369,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		monster "arug_cas01",254,369,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 5) end;
+		monster "arug_cas01",255,368,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 6) end;
+		monster "arug_cas01",256,368,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 7) end;
+		monster "arug_cas01",257,368,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 8) end;
+		monster "arug_cas01",258,368,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 9) end;
+		monster "arug_cas01",251,367,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 10) end;
+		monster "arug_cas01",252,367,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 11) end;
+		monster "arug_cas01",253,367,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 12) end;
+		monster "arug_cas01",254,367,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 13) end;
+		monster "arug_cas01",255,366,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 14) end;
+		monster "arug_cas01",256,366,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 15) end;
+		monster "arug_cas01",257,366,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 16) end;
+		monster "arug_cas01",258,366,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 17) end;
+		monster "arug_cas01",251,365,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 18) end;
+		monster "arug_cas01",252,365,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 19) end;
+		monster "arug_cas01",253,365,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 20) end;
+		monster "arug_cas01",254,365,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 21) end;
+		monster "arug_cas01",255,364,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 22) end;
+		monster "arug_cas01",256,364,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 23) end;
+		monster "arug_cas01",257,364,"寶物箱子",1943,1,"Manager#aru01_02::OnTreasureDied";
+		if (.@Treasure < 24) end;
+		monster "arug_cas01",258,364,"寶物箱子",1324,1,"Manager#aru01_02::OnTreasureDied";
+	}
+	end;
+
+OnTreasureDied:
+	end;
+}
+
+arug_cas01,112,193,1	script	布雷依斯#aru01_01	868,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (.@GID == 0) {
+		mes "[布雷依斯]";
+		mes "何許人物?";
+		mes "請你快一點離開這座城池吧!";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		if (strcharinfo(0) != getguildmaster(.@GID)) {
+			mes "[布雷依斯]";
+			mes "我是負責城池的守護,";
+			mes "詳細的內容我想跟主人說";
+			close;
+		}
+		else {
+			if (agitcheck2() == 0) {
+				mes "[布雷依斯]";
+				mes "I am Brace, guardian of";
+				mes "this stronghold. For now,";
+				mes "all is quiet in this place.";
+				next;
+				switch(select("Converse:取消")) {
+				case 1:
+					mes "[布雷依斯]";
+					mes "Do you have any questions";
+					mes "about this stronghold?";
+					next;
+					switch(select("守護石:防禦線:空間移動系統:Battle Strategy:取消")) {
+					case 1:
+						mes "[布雷依斯]";
+						mes "There is one Emperium";
+						mes "and two Guardian Stones in";
+						mes "each fortress. These stones";
+						mes "are the first line of defense,";
+						mes "and must be destroyed before";
+						mes "enemies can even enter.";
+						next;
+						mes "[布雷依斯]";
+						mes "The stones are located in";
+						mes "^4D4DFFGate Houses^000000 which must be";
+						mes "protected to prevent enemies";
+						mes "from reaching the Emperium.";
+						mes "Guardian Stones can ^4D4DFFrecall";
+						mes "your Guardians^000000 for protection.";
+						next;
+						mes "[布雷依斯]";
+						mes "Fortresses with higher levels";
+						mes "of defense can summon more";
+						mes "Guardians: this is why it is";
+						mes "so important for guilds to";
+						mes "invest in Defense Growth.";
+						next;
+						mes "[布雷依斯]";
+						mes "Guardian Stones that have";
+						mes "been destroyed can be revived";
+						mes "after a certain time, but one of^FFFFFF ^000000 the guild members must give";
+						mes "me the order. I can also report^FFFFFF ^000000 the status of the Guardian Stones.";
+						close;
+					case 2:
+						mes "[布雷依斯]";
+						mes "^4D4DFFFortress Gates^000000 are the second ^FFFFFF ^000000 line of guild stronghold defense,";
+						mes "and are protected by extra barricades activated by the Guardian Stones.";
+						mes "These gates are located in three different parts of the fortress.";
+						next;
+						mes "[布雷依斯]";
+						mes "Barricades are protected by";
+						mes "Guardian Stones, and are";
+						mes "restored when the Guardian";
+						mes "Stones are retrieved. However,";
+						mes "it is not as easy to restore";
+						mes "destroyed Fortress Gates.";
+						next;
+						mes "[布雷依斯]";
+						mes "Fortress Gates can only be";
+						mes "restored when the ^4D4DFFguild";
+						mes "master of a stronghold";
+						mes "changes^000000, or if ^4D4DFFrestoration";
+						mes "is requested by the guild";
+						mes "master of the stronghold^000000.";
+						close;
+					case 3:
+						mes "[布雷依斯]";
+						mes "Strongholds have many";
+						mes "Link Flags that allow you";
+						mes "to access vital areas within";
+						mes "restrictions placed by the";
+						mes "Barricades. Usually, ^4D4DFFFlag 1";
+						mes "links to the Gate House^000000.";
+						next;
+						mes "[布雷依斯]";
+						mes "Many flags link directly to";
+						mes "the flag near the Emperium.";
+						mes "The final numbered flag is";
+						mes "linked to the Convenience";
+						mes "Facility of the stronghold's";
+						mes "owner. Keep this in mind.";
+						close;
+					case 4:
+						mes "[布雷依斯]";
+						mes "Strategy? It would be better";
+						mes "to develop your battle plan to";
+						mes "exploit your guild's advantages";
+						mes "and your enemies' weaknesses.";
+						mes "Use the Gate Houses and Barricades, and rebuild as quickly as you can!";
+						close;
+					case 5:
+						mes "[布雷依斯]";
+						mes "You have no questions";
+						mes "to ask of me? Well, I'm";
+						mes "here to serve your needs.";
+						close;
+					}
+				case 2:
+					mes "[布雷依斯]";
+					mes "I'm always here, so";
+					mes "feel free to request my";
+					mes "assistance whenever";
+					mes "the need arises.";
+					close;
+				}
+			}
+			else {
+				mes "[布雷依斯]";
+				mes "Greetings, "+strcharinfo(0)+".";
+				mes "What are your orders?";
+				next;
+				switch(select("Increase Stronghold Defense:檢查防禦狀態:取消")) {
+				case 1:
+					if ($agit_ar01[5] == 0) {
+						if (getgdskilllv(.@GID,10002) == 0) {
+							mes "[布雷依斯]";
+							mes "I'm sorry, but the Guardian";
+							mes "Stones aren't powerful enough";
+							mes "to summon Guardians yet. We";
+							mes "need to accumulate more";
+							mes "knowledge before they can";
+							mes "summon any Guardians.";
+							close;
+						}
+						else {
+							mes "[布雷依斯]";
+							mes "I shall endeavor to summon";
+							mes "a Guardian through a Guardian";
+							mes "Stone. However, keep in mind";
+							mes "that this will not work if the";
+							mes "Guardian Stone is destroyed.";
+							setarray $agit_ar01[5],1;
+							if ($agit_ar01[0] == 0) {
+								donpcevent "#aru01_gard01::OnEnable";
+							}
+							if ($agit_ar01[1] == 0) {
+								donpcevent "#aru01_gard02::OnEnable";
+							}
+							close;
+						}
+					}
+					else {
+						mes "[布雷依斯]";
+						mes "You've already commanded";
+						mes "me to summon a Guardian";
+						mes "to defend the stronghold.";
+						close;
+					}
+				case 2:
+					mes "[布雷依斯]";
+					mes "我們的防禦狀態是...";
+					if ($agit_ar01[0] == 1) {
+						mes "第1守護石: ^FF0000被破壞^000000";
+					}
+					else if ($agit_ar01[0] == 2) {
+						mes "第1守護石: ^008000修復中^000000";
+					}
+					else {
+						mes "第1守護石: ^4D4DFF正常^000000";
+					}
+					if ($agit_ar01[1] == 1) {
+						mes "第2守護石: ^FF0000被破壞^000000";
+					}
+					else if ($agit_ar01[1] == 2) {
+						mes "第2守護石: ^008000修復中^000000";
+					}
+					else {
+						mes "第2守護石: ^4D4DFF正常^000000";
+					}
+					if ($agit_ar01[2] == 1) {
+						mes "第1防禦線: ^FF0000被破壞^000000";
+					}
+					else if ($agit_ar01[2] == 2) {
+						mes "第1防禦線: ^008000修復中^000000";
+					}
+					else {
+						mes "第1防禦線: ^4D4DFF正常^000000";
+					}
+					if ($agit_ar01[3] == 1) {
+						mes "第2防禦線: ^FF0000被破壞^000000";
+					}
+					else if ($agit_ar01[3] == 2) {
+						mes "第2防禦線: ^008000修復中^000000";
+					}
+					else {
+						mes "第2防禦線: ^4D4DFF正常^000000";
+					}
+					if ($agit_ar01[4] == 1) {
+						mes "第3防禦線: ^FF0000被破壞^000000";
+					}
+					else if ($agit_ar01[4] == 2) {
+						mes "第3防禦線: ^008000修復中^000000";
+					}
+					else {
+						mes "第3防禦線: ^4D4DFF正常^000000";
+					}
+					close;
+				case 3:
+					mes "[布雷依斯]";
+					mes "我隨時在此,";
+					mes "等候您的指示";
+					close;
+				}
+			}
+		}
+	}
+	else {
+		mes "[布雷依斯]";
+		mes "何許人物?";
+		mes "請你快一點離開這座城池吧!";
+		close;
+	}
+
+OnInit:
+	setarray $agit_ar01[0],0,0,0,0,0,0;
+	end;
+}
+
+arug_cas01,1,1,0	script	#aru01_gard01	-1,{
+OnEnable:
+	set .@Defence,GetCastleData("arug_cas01",3);
+	guardian "arug_cas01",233,83,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //0;
+	if ((.@Defense > 10) && (.@Defense < 31)) {
+		set .MyMobCount,2;
+		guardian "arug_cas01",252,81,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //1;
+	}
+	else if ((.@Defense > 30) && (.@Defense < 51)) {
+		set .MyMobCount,3;
+		guardian "arug_cas01",252,81,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //1;
+		guardian "arug_cas01",232,108,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //2;
+	}
+	else if ((.@Defense > 50) && (.@Defense < 71)) {
+		set .MyMobCount,4;
+		guardian "arug_cas01",252,81,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //1;
+		guardian "arug_cas01",232,108,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //2;
+		guardian "arug_cas01",201,130,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //3;
+	}
+	else if (.@Defense > 70) {
+		set .MyMobCount,5;
+		guardian "arug_cas01",252,81,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //1;
+		guardian "arug_cas01",232,108,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //2;
+		guardian "arug_cas01",201,130,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //3;
+		guardian "arug_cas01",224,168,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //4;
+	}
+	else {
+		set .MyMobCount,2;
+		guardian "arug_cas01",195,250,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //1;
+	}
+	initnpctimer;
+	end;
+
+OnTimer300000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",196,137,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //5;
+	mapannounce "arug_cas01","在據點那裡 第1次追加的召喚出監護人魔物了",bc_map,"0xff4500";
+	end;
+
+OnTimer900000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",269,89,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //6;
+	mapannounce "arug_cas01","在據點那裡 第2次追加的召喚出監護人魔物了",bc_map,"0xff4500";
+	end;
+
+OnTimer1800000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",252,81,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //7;
+	mapannounce "arug_cas01","在據點那裡 第3次追加的召喚出監護人魔物了",bc_map,"0xff4500";
+	end;
+
+OnTimer2700000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",201,130,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //8;
+	mapannounce "arug_cas01","在據點那裡 第4次追加的召喚出監護人魔物了",bc_map,"0xff4500";
+	end;
+
+OnTimer3600000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",224,168,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //9;
+	mapannounce "arug_cas01","在據點那裡 第5次追加的召喚出監護人魔物了",bc_map,"0xff4500";
+	stopnpctimer;
+	end;
+
+OnGuardianDied:
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount < 2) {
+		set .MyMobCount,.MyMobCount+1;
+		guardian "arug_cas01",222,129,"劍士監護人魔物",1899,"#aru01_gard01::OnGuardianDied"; //10;
+	}
+	end;
+
+Onreset:
+	stopnpctimer;
+	killmonster "arug_cas01","#aru01_gard01::OnGuardianDied";
+	end;
+}
+
+arug_cas01,1,2,0	script	#aru01_gard02	-1,{
+OnEnable:
+	set .@Defence,GetCastleData("arug_cas01",3);
+	guardian "arug_cas01",294,210,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //11;
+	if ((.@Defense > 10) && (.@Defense < 31)) {
+		set .MyMobCount,2;
+		guardian "arug_cas01",256,203,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //12;
+	}
+	else if ((.@Defense > 30) && (.@Defense < 51)) {
+		set .MyMobCount,3;
+		guardian "arug_cas01",256,203,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //12;
+		guardian "arug_cas01",240,133,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //13;
+	}
+	else if ((.@Defense > 50) && (.@Defense < 71)) {
+		set .MyMobCount,4;
+		guardian "arug_cas01",256,203,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //12;
+		guardian "arug_cas01",240,133,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //13;
+		guardian "arug_cas01",246,92,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //14;
+	}
+	else if (.@Defense > 70) {
+		set .MyMobCount,5;
+		guardian "arug_cas01",256,203,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //12;
+		guardian "arug_cas01",240,133,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //13;
+		guardian "arug_cas01",246,92,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //14;
+		guardian "arug_cas01",235,132,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //15;
+	}
+	else {
+		set .MyMobCount,2;
+		guardian "arug_cas01",292,188,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //12;
+	}
+	initnpctimer;
+	end;
+
+OnTimer600000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",235,132,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //16;
+	end;
+
+OnTimer1200000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",246,92,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //17;
+	end;
+
+OnTimer2100000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",240,133,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //18;
+	end;
+
+OnTimer3000000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",256,203,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //19;
+	end;
+
+OnTimer3900000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian "arug_cas01",254,95,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //20;
+	stopnpctimer;
+	end;
+
+OnGuardianDied:
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount < 2) {
+		set .MyMobCount,.MyMobCount+1;
+		guardian "arug_cas01",242,151,"劍士監護人魔物",1899,"#aru01_gard02::OnGuardianDied"; //21;
+	}
+	end;
+
+Onreset:
+	stopnpctimer;
+	killmonster "arug_cas01","#aru01_gard02::OnGuardianDied";
+	end;
+}
+
+arug_cas01,1,3,0	script	#aru01_df01	-1,{
+OnEnable:
+	guardian "arug_cas01",210,234,"第 1 守護石",1907,"#aru01_df01::OnGuardianStoneDied"; //22;
+	end;
+
+OnDisable:
+	killmonster "arug_cas01","#aru01_df01::OnGuardianStoneDied";
+	setarray $agit_ar01[0],1; //Global Variable
+	stopnpctimer;
+	end;
+
+OnGuardianStoneDied:
+	// 1st Guardian Stone is Destroyed
+	setarray $agit_ar01[0],1;
+	if (($agit_ar01[0] == 1) || ($agit_ar01[0] == 2)) {
+		set .@destroyed,.@destroyed + 1;
+	}
+	if (($agit_ar01[1] == 1) || ($agit_ar01[1] == 2)) {
+		set .@destroyed,.@destroyed + 1;
+	}
+	if (.@destroyed == 2) {
+		mapannounce "arug_cas01","守護石全部 都被破壞掉了!",bc_map,"0x00ff00";
+		donpcevent "#aru01_RL00::OnDisable";
+		donpcevent "#aru01_gard01::Onreset";
+	}
+	else {
+		mapannounce "arug_cas01","第1守護石 被破壞掉了!",bc_map,"0x00ff00";
+		donpcevent "#aru01_gard01::Onreset";
+	}
+	initnpctimer;
+	end;
+
+OnTimer300000:
+	donpcevent "第1守護石#aru01::OnEnable";
+	setarray $agit_ar01[0],2; //Global Variable
+	stopnpctimer;
+	end;
+}
+
+arug_cas01,211,234,0	script	第1守護石#aru01	844,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "把破壞掉的守護石要重新形成了,";
+		mes "若要重新形成時 如下所需下列礦石";
+		next;
+		mes "神之金屬 1個,";
+		mes "鋁 1個,";
+		mes "石頭 30個,";
+		mes "藍色魔力礦石 5個,";
+		mes "黃色魔力礦石 5個,";
+		mes "紅色魔力礦石 5個";
+		next;
+		mes "請問要繼續的進行作業嗎?";
+		switch(select("結束:進行")) {
+		case 1:
+			mes "所有的作業都被取消了";
+			close;
+		case 2:
+			if ((countitem(984) > 0) && (countitem(985) > 0) && (countitem(7049) > 29) && (countitem(717) > 4) && (countitem(715) > 4) && (countitem(716) > 4)) {
+				mes "中央要依據";
+				mes "石頭,鋁,神之金屬的順序來配置,";
+				mes "為了要重新形成";
+				mes "要配置有魔力的魔力礦石";
+				next;
+				switch(select("鋁:神之金屬:石頭")) {
+				case 1:
+					mes "在中央放上鋁";
+					next;
+					break;
+				case 2:
+					mes "在中央放上神之金屬";
+					next;
+					break;
+				case 3:
+					mes "在中央放上石頭";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				}
+				switch(select("鋁:神之金屬:石頭")) {
+				case 1:
+					mes "配置鋁";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				case 2:
+					mes "配置神之金屬";
+					next;
+					break;
+				case 3:
+					mes "配置石頭";
+					next;
+					break;
+				}
+				switch(select("鋁:神之金屬:石頭")) {
+				case 1:
+					mes "把鋁放在最上位";
+					next;
+					break;
+				case 2:
+					mes "把神之金屬放在最上位";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				case 3:
+					mes "把石頭放在最上位";
+					next;
+					break;
+				}
+				mes "不違背魔法式";
+				mes "要配置有魔力的魔力礦石,";
+				mes "魔力的性質用準備的效果以便可得知";
+				next;
+				while(1) {
+					if (.@roof0 > 7) {
+						break;
+					}
+					else {
+						switch(rand(1,3)) {
+						case 1:
+							specialeffect EF_BEGINSPELL2;
+							mes "請配置跟魔力一樣的魔法式";
+							mes "魔力礦石吧";
+							next;
+							switch(select("紅色魔力礦石:黃色魔力礦石:藍色魔力礦石")) {
+							case 1:
+								mes "配置紅色魔力礦石了";
+								close;
+							case 2:
+								mes "配置黃色魔力礦石了,";
+								close;
+							case 3:
+								mes "配置藍色魔力礦石了,";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							}
+							break;
+						case 2:
+							specialeffect EF_VOLCANO;
+							mes "請配置跟魔力一樣的魔法式";
+							mes "魔力礦石吧";
+							next;
+							switch(select("紅色魔力礦石:黃色魔力礦石:藍色魔力礦石")) {
+							case 1:
+								mes "配置紅色魔力礦石了";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							case 2:
+								mes "配置黃色魔力礦石了,";
+								close;
+							case 3:
+								mes "配置藍色魔力礦石了,";
+								close;
+							}
+							break;
+						case 3:
+							specialeffect EF_BEGINSPELL4;
+							mes "請配置跟魔力一樣的魔法式";
+							mes "魔力礦石吧";
+							next;
+							switch(select("紅色魔力礦石:黃色魔力礦石:藍色魔力礦石")) {
+							case 1:
+								mes "配置紅色魔力礦石了";
+								close;
+							case 2:
+								mes "配置黃色魔力礦石了,";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							case 3:
+								mes "配置藍色魔力礦石了,";
+								close;
+							}
+						}
+					}
+				}
+				if (.@nice > 90) {
+					if ($agit_ar01[0] == 0) {
+						mes "守護石重新的形成已經被完成了";
+						close;
+					}
+					else {
+						if (agitcheck2() == 0) {
+							mes "因魔力互相的衝突";
+							mes "對守護石重新的形成失敗了";
+							close;
+						}
+						else {
+							mes "已完成了魔力礦石的配置,";
+							mes "守護石的重新形成是成功的!!!";
+							delitem 984,1; //Oridecon
+							delitem 985,1; //Elunium
+							delitem 7049,30; //Stone
+							delitem 717,5; //Blue_Gemstone
+							delitem 715,5; //Yellow_Gemstone
+							delitem 716,5; //Red_Gemstone
+							close2;
+							donpcevent "#aru01_df01::OnEnable";
+							specialeffect EF_ICECRASH;
+							disablenpc "第1守護石#aru01";
+							setarray $agit_ar01[0],0;
+							set .@df_all,$agit_ar01[0]+$agit_ar01[1];
+							if (.@df_all == 0) {
+								mapannounce "arug_cas01","守護石已完全的修復 開始強化警戒了",bc_map,"0x00ff00";
+								donpcevent "#aru01_RL00::OnEnable";
+							}
+							else {
+								mapannounce "arug_cas01","第1守護石重新形成 已成功了!",bc_map,"0x00ff00";
+							}
+							if ($agit_ar01[5] == 1) {
+								donpcevent "#aru01_gard01::OnEnable";
+							}
+							end;
+						}
+					}
+				}
+				else {
+					mes "所有的作業都做完後.. 碰咚碰咚的響著";
+					mes "沒有任何的反應";
+					mes "看樣子是失敗的樣子,";
+					mes "失去了部分的材料";
+					delitem 7049,10; //Stone
+					delitem 717,2; //Blue_Gemstone
+					delitem 715,2; //Yellow_Gemstone
+					delitem 716,2; //Red_Gemstone
+					close;
+				}
+			}
+			else {
+				mes "材料並不是很充分";
+				close;
+			}
+		}
+	}
+	end;
+
+OnInit:
+	disablenpc "第1守護石#aru01";
+	end;
+
+OnEnable:
+	enablenpc "第1守護石#aru01";
+	specialeffect EF_MAPPILLAR2;
+	end;
+
+OnDisable:
+	disablenpc "第1守護石#aru01";
+	end;
+}
+
+arug_cas01,1,4,0	script	#aru01_df02	-1,{
+OnEnable:
+	guardian "arug_cas01",308,189,"第 2 守護石",1908,"#aru01_df02::OnGuardianStoneDied"; //23;
+	end;
+
+OnDisable:
+	killmonster "arug_cas01","#aru01_df02::OnGuardianStoneDied";
+	setarray $agit_ar01[1],1; //Global Variable
+	stopnpctimer;
+	end;
+
+OnGuardianStoneDied:
+	// 2nd Guardian Stone is Destroyed
+	setarray $agit_ar01[1],1;
+	if (($agit_ar01[0] == 1) || ($agit_ar01[0] == 2)) {
+		set .@destroyed,.@destroyed + 1;
+	}
+	if (($agit_ar01[1] == 1) || ($agit_ar01[1] == 2)) {
+		set .@destroyed,.@destroyed + 1;
+	}
+	if (.@destroyed == 2) {
+		mapannounce "arug_cas01","守護石全部 都被破壞掉了!",bc_map,"0x00ff00";
+		donpcevent "#aru01_RL00::OnDisable";
+		donpcevent "#aru01_gard02::Onreset";
+	}
+	else {
+		mapannounce "arug_cas01","第2守護石 被破壞掉了!",bc_map,"0x00ff00";
+		donpcevent "#aru01_gard02::Onreset";
+	}
+	initnpctimer;
+	end;
+
+OnTimer300000:
+	donpcevent "第2守護石#aru01::OnEnable";
+	setarray $agit_ar01[1],2; //Global Variable
+	stopnpctimer;
+	end;
+}
+
+arug_cas01,308,189,0	script	第2守護石#aru01	844,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "把破壞掉的守護石要重新形成了,";
+		mes "若要重新形成時 如下所需下列礦石";
+		next;
+		mes "神之金屬 1個,";
+		mes "鋁 1個,";
+		mes "石頭 30個,";
+		mes "藍色魔力礦石 5個,";
+		mes "黃色魔力礦石 5個,";
+		mes "紅色魔力礦石 5個";
+		next;
+		mes "請問要繼續的進行作業嗎?";
+		switch(select("結束:進行")) {
+		case 1:
+			mes "所有的作業都被取消了";
+			close;
+		case 2:
+			if ((countitem(984) > 0) && (countitem(985) > 0) && (countitem(7049) > 29) && (countitem(717) > 4) && (countitem(715) > 4) && (countitem(716) > 4)) {
+				mes "中央要依據";
+				mes "石頭,鋁,神之金屬的順序來配置,";
+				mes "為了要重新形成";
+				mes "要配置有魔力的魔力礦石";
+				next;
+				switch(select("鋁:神之金屬:石頭")) {
+				case 1:
+					mes "在中央放上鋁";
+					next;
+					break;
+				case 2:
+					mes "在中央放上神之金屬";
+					next;
+					break;
+				case 3:
+					mes "在中央放上石頭";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				}
+				switch(select("鋁:神之金屬:石頭")) {
+				case 1:
+					mes "配置鋁";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				case 2:
+					mes "配置神之金屬";
+					mes "with some Oridecon.^000000";
+					next;
+					break;
+				case 3:
+					mes "配置石頭";
+					next;
+					break;
+				}
+				switch(select("鋁:神之金屬:石頭")) {
+				case 1:
+					mes "把鋁放在最上位";
+					next;
+					break;
+				case 2:
+					mes "把神之金屬放在最上位";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				case 3:
+					mes "把石頭放在最上位";
+					next;
+					break;
+				}
+				mes "不違背魔法式";
+				mes "要配置有魔力的魔力礦石,";
+				mes "魔力的性質用準備的效果以便可得知";
+				next;
+				while(1) {
+					if (.@roof0 > 7) {
+						break;
+					}
+					else {
+						switch(rand(1,3)) {
+						case 1:
+							specialeffect EF_BEGINSPELL2;
+							mes "請配置跟魔力一樣的魔法式";
+							mes "魔力礦石吧";
+							next;
+							switch(select("紅色魔力礦石:黃色魔力礦石:藍色魔力礦石")) {
+							case 1:
+								mes "配置紅色魔力礦石了";
+								close;
+							case 2:
+								mes "配置黃色魔力礦石了,";
+								close;
+							case 3:
+								mes "配置藍色魔力礦石了,";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							}
+							break;
+						case 2:
+							specialeffect EF_VOLCANO;
+							mes "請配置跟魔力一樣的魔法式";
+							mes "魔力礦石吧";
+							next;
+							switch(select("紅色魔力礦石:黃色魔力礦石:藍色魔力礦石")) {
+							case 1:
+								mes "配置紅色魔力礦石了";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							case 2:
+								mes "配置黃色魔力礦石了,";
+								close;
+							case 3:
+								mes "配置藍色魔力礦石了,";
+								close;
+							}
+							break;
+						case 3:
+							specialeffect EF_BEGINSPELL4;
+							mes "請配置跟魔力一樣的魔法式";
+							mes "魔力礦石吧";
+							next;
+							switch(select("紅色魔力礦石:黃色魔力礦石:藍色魔力礦石")) {
+							case 1:
+								mes "配置紅色魔力礦石了";
+								close;
+							case 2:
+								mes "配置黃色魔力礦石了,";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							case 3:
+								mes "配置藍色魔力礦石了,";
+								close;
+							}
+						}
+					}
+				}
+				if (.@nice > 90) {
+					if ($agit_ar01[1] == 0) {
+						mes "守護石重新的形成已經被完成了";
+						close;
+					}
+					else {
+						if (agitcheck2() == 0) {
+							mes "因魔力互相的衝突";
+							mes "對守護石重新的形成失敗了";
+							close;
+						}
+						else {
+							mes "已經完成魔力礦石的配置,";
+							mes "守護石的重新形成是成功的!!!";
+							delitem 984,1; //Oridecon
+							delitem 985,1; //Elunium
+							delitem 7049,30; //Stone
+							delitem 717,5; //Blue_Gemstone
+							delitem 715,5; //Yellow_Gemstone
+							delitem 716,5; //Red_Gemstone
+							close2;
+							donpcevent "#aru01_df02::OnEnable";
+							specialeffect EF_ICECRASH;
+							disablenpc "第2守護石#aru01";
+							setarray $agit_ar01[1],0;
+							set .@df_all,$agit_ar01[0]+$agit_ar01[1];
+							if (.@df_all == 0) {
+								mapannounce "arug_cas01","守護石已完全的修復 開始強化警戒了",bc_map,"0x00ff00";
+								donpcevent "#aru01_RL00::OnEnable";
+							}
+							else {
+								mapannounce "arug_cas01","第2守護石重新形成 已成功了!",bc_map,"0x00ff00";
+							}
+							if ($agit_ar01[5] == 1) {
+								donpcevent "#aru01_gard02::OnEnable";
+							}
+							end;
+						}
+					}
+				}
+				else {
+					mes "所有的作業都做完後.. 碰咚碰咚的響著";
+					mes "沒有任何的反應";
+					mes "看樣子是失敗的樣子,";
+					mes "失去了部分的材料";
+					delitem 7049,10; //Stone
+					delitem 717,2; //Blue_Gemstone
+					delitem 715,2; //Yellow_Gemstone
+					delitem 716,2; //Red_Gemstone
+					close;
+				}
+			}
+			else {
+				mes "材料並不是很充分";
+				close;
+			}
+		}
+	}
+	end;
+
+OnInit:
+	disablenpc "第2守護石#aru01";
+	end;
+
+OnEnable:
+	enablenpc "第2守護石#aru01";
+	specialeffect EF_MAPPILLAR2;
+	end;
+
+OnDisable:
+	disablenpc "第2守護石#aru01";
+	end;
+}
+
+arug_cas01,2,1,0	script	#aru01_RL00	-1,{
+OnEnable:
+	setwall "arug_cas01",238,74,8,6,0,"aru01_RL00";
+	guardian "arug_cas01",239,73," ",1905,"#aru01_RL00::OnBarrierDestroyed"; //24;
+	guardian "arug_cas01",241,73," ",1905,"#aru01_RL00::OnBarrierDestroyed"; //25;
+	guardian "arug_cas01",243,73," ",1905,"#aru01_RL00::OnBarrierDestroyed"; //26;
+	guardian "arug_cas01",245,73," ",1905,"#aru01_RL00::OnBarrierDestroyed"; //27;
+	end;
+
+OnDisable:
+	delwall "aru01_RL00";
+	killmonster "arug_cas01","#aru01_RL00::OnBarrierDestroyed";
+	end;
+
+OnBarrierDestroyed:
+	end;
+}
+
+arug_cas01,2,2,0	script	#aru01_RL01	-1,{
+OnEnable:
+	set .MyMobCount,6;
+	setwall "arug_cas01",239,53,8,6,1,"aru01_RL01";
+	guardian "arug_cas01",239,55," ",1905,"#aru01_RL01::OnBarrierDestroyed"; //28;
+	guardian "arug_cas01",241,55," ",1905,"#aru01_RL01::OnBarrierDestroyed"; //29;
+	guardian "arug_cas01",243,55," ",1905,"#aru01_RL01::OnBarrierDestroyed"; //30;
+	guardian "arug_cas01",240,54," ",1905,"#aru01_RL01::OnBarrierDestroyed"; //31;
+	guardian "arug_cas01",242,54," ",1905,"#aru01_RL01::OnBarrierDestroyed"; //32;
+	guardian "arug_cas01",244,54," ",1905,"#aru01_RL01::OnBarrierDestroyed"; //33;
+	end;
+
+OnBarrierDestroyed:
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount == 0) {
+		setarray $agit_ar01[2],1;
+		mapannounce "arug_cas01","第1防禦線 被突破掉了",bc_map,"0x00ff00";
+		delwall "aru01_RL01";
+	}
+	end;
+
+OnDisable:
+	delwall "aru01_RL01";
+	killmonster "arug_cas01","#aru01_RL01::OnBarrierDestroyed";
+	end;
+}
+
+arug_cas01,2,3,0	script	#aru01_RL02	-1,{
+OnEnable:
+	set .MyMobCount,6;
+	setwall "arug_cas01",107,124,6,6,1,"aru01_RL02";
+	guardian "arug_cas01",107,122," ",1905,"#aru01_RL02::OnBarrierDestroyed"; //34;
+	guardian "arug_cas01",109,122," ",1905,"#aru01_RL02::OnBarrierDestroyed"; //35;
+	guardian "arug_cas01",111,122," ",1905,"#aru01_RL02::OnBarrierDestroyed"; //36;
+	guardian "arug_cas01",108,123," ",1905,"#aru01_RL02::OnBarrierDestroyed"; //37;
+	guardian "arug_cas01",110,123," ",1905,"#aru01_RL02::OnBarrierDestroyed"; //38;
+	guardian "arug_cas01",112,123," ",1905,"#aru01_RL02::OnBarrierDestroyed"; //39;
+	end;
+
+OnBarrierDestroyed:
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount == 0) {
+		setarray $agit_ar01[3],1;
+		mapannounce "arug_cas01","第2防禦線 被突破掉了",bc_map,"0x00ff00";
+		delwall "aru01_RL02";
+	}
+	end;
+
+OnDisable:
+	delwall "aru01_RL02";
+	killmonster "arug_cas01","#aru01_RL02::OnBarrierDestroyed";
+	end;
+}
+
+arug_cas01,2,4,0	script	#aru01_RL03	-1,{
+OnEnable:
+	set .MyMobCount,4;
+	setwall "arug_cas01",84,171,8,6,1,"aru01_RL03";
+	guardian "arug_cas01",84,170," ",1905,"#aru01_RL03::OnBarrierDestroyed"; //40;
+	guardian "arug_cas01",86,170," ",1905,"#aru01_RL03::OnBarrierDestroyed"; //41;
+	guardian "arug_cas01",88,170," ",1905,"#aru01_RL03::OnBarrierDestroyed"; //42;
+	guardian "arug_cas01",90,170," ",1905,"#aru01_RL03::OnBarrierDestroyed"; //43;
+	end;
+
+OnBarrierDestroyed:
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount == 0) {
+		setarray $agit_ar01[4],1;
+		mapannounce "arug_cas01","第3防禦線 被突破掉了!!",bc_map,"0x00ff00";
+		delwall "aru01_RL03";
+	}
+	end;
+
+OnDisable:
+	delwall "aru01_RL03";
+	killmonster "arug_cas01","#aru01_RL03::OnBarrierDestroyed";
+	end;
+}
+
+arug_cas01,247,52,0	script	控制裝置01#aru01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		if (strcharinfo(0) == getguildmaster(.@GID)) {
+			if ($agit_ar01[2] == 2) {
+				mes "^3355FFDemolished Fortress";
+				mes "Gates can be repaired,";
+				mes "but you will need to gather";
+				mes "the following materials.^000000";
+				next;
+				mes "鋼鐵 10個,";
+				mes "瑪哪樹枝 30個,";
+				mes "強化武器金屬-級數二 5個,";
+				mes "神之金屬 10個";
+				next;
+				select("Continue");
+				if ((countitem(1019) > 29) && (countitem(999) > 9) && (countitem(1011) > 9) && (countitem(984) > 4)) {
+					mes "^3355FFYou will need Trunks to";
+					mes "repair the support frame,";
+					mes "Oridecon to enhance the";
+					mes "gate's endurance, and";
+					mes "Emveretarcon to basically";
+					mes "hold everything together.^000000";
+					next;
+					set .@ro_of01,rand(10,15);
+					while(1) {
+						if (.@ro_of02 == .@ro_of01) {
+							break;
+						}
+						else {
+							switch(rand(1,4)) {
+							case 1:
+								mes "^3355FFThe support frame";
+								mes "is badly damaged:";
+								mes "fixing this part";
+								mes "is a top priority.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFThe frame has been";
+									mes "reinforced with wood.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 2:
+									mes "^3355FFYou tried using steel,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon,";
+									mes "but it's not working very well.^FFFFFF ^3355FF You'll have to try something else.";
+									close;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+								break;
+							case 2:
+								mes "^3355FFIt looks like the gate's";
+								mes "overall endurance needs to";
+								mes "be reinforced with something.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood";
+									mes "to reinforce the gate.^000000";
+									set .@ro_of02,.@ro_of02 + 1;
+									next;
+									break;
+								case 2:
+									mes "^3355FFYou tried using steel";
+									mes "to reinforce the gate, but";
+									mes "it's not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou hammered the";
+									mes "oridecon: it looks";
+									mes "like this will work.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								}
+								break;
+							case 3:
+								mes "^3355FFThe damage to the gate";
+								mes "has caused all these";
+								mes "cracks. You'll have to";
+								mes "weld them solid somehow.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood to fix";
+									mes "this problem, but it seems";
+									mes "to have made it worse.";
+									mes "You'll have to start all over.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou used steel to weld";
+									mes "all the cracks: the gate is";
+									mes "is starting to look more solid.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+								break;
+							case 4:
+								mes "^3355FFNow you need to make";
+								mes "sure that the gate is held";
+								mes "together pretty solidly.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood to fix";
+									mes "this problem, but it seems";
+									mes "to have made it worse.";
+									mes "You'll have to start all over.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou tried using steel,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou successfully used";
+									mes "the emveretarcon to repair";
+									mes "much of the gate's damage.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+							}
+						}
+					}
+					mes "^3355FFWell, it looks like";
+					mes "you're just about done";
+					mes "with repairing the gate.^000000";
+					next;
+					if (agitcheck2() == 0) {
+						mes "^3355FFUnfortunately, the Fortress";
+						mes "Gate can't be reconstructed:";
+						mes "the Emperium is no longer here.^000000";
+						close;
+					}
+					else {
+						if (.@rp_temp == .@ro_of01) {
+							mes "^3355FFThe Fortress Gate has";
+							mes "been successfully repaired!^000000";
+							delitem 1019,30; //Wooden_Block
+							delitem 999,10; //Steel
+							delitem 1011,10; //Emveretarcon
+							delitem 984,5; //Oridecon
+							close2;
+							donpcevent "#aru01_RL01::OnEnable";
+							disablenpc "控制裝置01#aru01";
+							mapannounce "arug_cas01","第 1 防禦線 重新建置成功了!",bc_map,"0x00ff00";
+							setarray $agit_ar01[2],0;
+							end;
+						}
+						else {
+							mes "^3355FFThe wall has been breached,";
+							mes "and the attempt to repair the";
+							mes "Fortress Gate has failed.";
+							mes "You lost some of your";
+							mes "repair resources...^000000";
+							delitem 984,2; //Oridecon
+							delitem 999,4; //Steel
+							delitem 1019,14; //Wooden_Block
+							delitem 1011,3; //Emveretarcon
+							close;
+						}
+					}
+				}
+				else {
+					mes "^3355FFYou can't attempt to repair";
+					mes "the Fortress Gate if you don't";
+					mes "have all the needed materials.^000000";
+					close;
+				}
+			}
+		}
+	}
+	end;
+
+OnInit:
+	disablenpc "控制裝置01#aru01";
+	end;
+
+OnEnable:
+	enablenpc "控制裝置01#aru01";
+	end;
+
+OnDisable:
+	disablenpc "控制裝置01#aru01";
+	end;
+}
+
+arug_cas01,118,131,0	script	控制裝置02#aru01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		if (strcharinfo(0) == getguildmaster(.@GID)) {
+			if ($agit_ar01[3] == 2) {
+				mes "^3355FFDemolished Fortress";
+				mes "Gates can be repaired,";
+				mes "but you will need to gather";
+				mes "the following materials.^000000";
+				next;
+				mes "鋼鐵 10個,";
+				mes "瑪哪樹枝 30個,";
+				mes "強化武器金屬-級數二 5個,";
+				mes "神之金屬 10個";
+				next;
+				select("Continue");
+				if ((countitem(1019) > 29) && (countitem(999) > 9) && (countitem(1011) > 9) && (countitem(984) > 4)) {
+					mes "^3355FFYou will need Trunks to";
+					mes "repair the support frame,";
+					mes "Oridecon to enhance the";
+					mes "gate's endurance, and";
+					mes "Emveretarcon to basically";
+					mes "hold everything together.^000000";
+					next;
+					set .@ro_of01,rand(10,15);
+					while(1) {
+						if (.@ro_of02 == .@ro_of01) {
+							break;
+						}
+						else {
+							switch(rand(1,4)) {
+							case 1:
+								mes "^3355FFThe support frame";
+								mes "is badly damaged:";
+								mes "fixing this part";
+								mes "is a top priority.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFThe frame has been";
+									mes "reinforced with wood.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 2:
+									mes "^3355FFYou tried using steel,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+								break;
+							case 2:
+								mes "^3355FFIt looks like the gate's";
+								mes "overall endurance needs to";
+								mes "be reinforced with something.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood";
+									mes "to reinforce the gate.^000000";
+									set .@ro_of02,.@ro_of02 + 1;
+									next;
+									break;
+								case 2:
+									mes "^3355FFYou tried using steel";
+									mes "to reinforce the gate, but";
+									mes "it's not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou hammered the";
+									mes "oridecon: it looks";
+									mes "like this will work.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								}
+								break;
+							case 3:
+								mes "^3355FFThe damage to the gate";
+								mes "has caused all these";
+								mes "cracks. You'll have to";
+								mes "weld them solid somehow.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood to fix";
+									mes "this problem, but it seems";
+									mes "to have made it worse.";
+									mes "You'll have to start all over.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou used steel to weld";
+									mes "all the cracks: the gate is";
+									mes "is starting to look more solid.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+								break;
+							case 4:
+								mes "^3355FFNow you need to make";
+								mes "sure that the gate is held";
+								mes "together pretty solidly.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood to fix";
+									mes "this problem, but it seems";
+									mes "to have made it worse.";
+									mes "You'll have to start all over.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou tried using steel,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou successfully used";
+									mes "the emveretarcon to repair";
+									mes "much of the gate's damage.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+							}
+						}
+					}
+					mes "^3355FFWell, it looks like";
+					mes "you're just about done";
+					mes "with repairing the gate.^000000";
+					next;
+					if (agitcheck2() == 0) {
+						mes "^3355FFUnfortunately, the Fortress";
+						mes "Gate can't be reconstructed:";
+						mes "the Emperium is no longer here.^000000";
+						close;
+					}
+					else {
+						if (.@rp_temp == .@ro_of01) {
+							mes "^3355FFThe Fortress Gate has";
+							mes "been successfully repaired!^000000";
+							delitem 1019,30; //Wooden_Block
+							delitem 999,10; //Steel
+							delitem 1011,10; //Emveretarcon
+							delitem 984,5; //Oridecon
+							close2;
+							donpcevent "#aru01_RL02::OnEnable";
+							disablenpc "控制裝置02#aru01";
+							mapannounce "arug_cas01","第 2 防禦線 重新建置成功了!",bc_map,"0x00ff00";
+							setarray $agit_ar01[3],0; //Global Variable
+							setarray $agit_ar01[2],2; //Global Variable
+							donpcevent "控制裝置01#aru01::OnEnable";
+							end;
+						}
+						else {
+							mes "^3355FFThe wall has been breached,";
+							mes "and the attempt to repair the";
+							mes "Fortress Gate has failed.";
+							mes "You lost some of your";
+							mes "repair resources...^000000";
+							delitem 984,2; //Oridecon
+							delitem 999,4; //Steel
+							delitem 1019,14; //Wooden_Block
+							delitem 1011,3; //Emveretarcon
+							close;
+						}
+					}
+				}
+				else {
+					mes "^3355FFYou can't attempt to repair";
+					mes "the Fortress Gate if you don't";
+					mes "have all the needed materials.^000000";
+					close;
+				}
+			}
+		}
+	}
+	end;
+
+OnInit:
+	disablenpc "控制裝置02#aru01";
+	end;
+
+OnEnable:
+	enablenpc "控制裝置02#aru01";
+	end;
+
+OnDisable:
+	disablenpc "控制裝置02#aru01";
+	end;
+}
+
+arug_cas01,82,172,0	script	控制裝置03#aru01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		if (strcharinfo(0) == getguildmaster(.@GID)) {
+			if ($agit_ar01[4] == 2) {
+				mes "^3355FFDemolished Fortress";
+				mes "Gates can be repaired,";
+				mes "but you will need to gather";
+				mes "the following materials.^000000";
+				next;
+				mes "鋼鐵 10個,";
+				mes "瑪哪樹枝 30個,";
+				mes "強化武器金屬-級數二 5個,";
+				mes "神之金屬 10個";
+				next;
+				select("Continue");
+				if ((countitem(1019) > 29) && (countitem(999) > 9) && (countitem(1011) > 9) && (countitem(984) > 4)) {
+					mes "^3355FFYou will need Trunks to";
+					mes "repair the support frame,";
+					mes "Oridecon to enhance the";
+					mes "gate's endurance, and";
+					mes "Emveretarcon to basically";
+					mes "hold everything together.^000000";
+					next;
+					set .@ro_of01,rand(10,15);
+					while(1) {
+						if (.@ro_of02 == .@ro_of01) {
+							break;
+						}
+						else {
+							switch(rand(1,4)) {
+							case 1:
+								mes "^3355FFThe support frame";
+								mes "is badly damaged:";
+								mes "fixing this part";
+								mes "is a top priority.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFThe frame has been";
+									mes "reinforced with wood.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 2:
+									mes "^3355FFYou tried using steel,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+								break;
+							case 2:
+								mes "^3355FFIt looks like the gate's";
+								mes "overall endurance needs to";
+								mes "be reinforced with something.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood";
+									mes "to reinforce the gate.^000000";
+									set .@ro_of02,.@ro_of02 + 1;
+									next;
+									break;
+								case 2:
+									mes "^3355FFYou tried using steel";
+									mes "to reinforce the gate, but";
+									mes "it's not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou hammered the";
+									mes "oridecon: it looks";
+									mes "like this will work.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								}
+								break;
+							case 3:
+								mes "^3355FFThe damage to the gate";
+								mes "has caused all these";
+								mes "cracks. You'll have to";
+								mes "weld them solid somehow.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood to fix";
+									mes "this problem, but it seems";
+									mes "to have made it worse.";
+									mes "You'll have to start all over.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou used steel to weld";
+									mes "all the cracks: the gate is";
+									mes "is starting to look more solid.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 3:
+									mes "^3355FFYou tried using emveretarcon";
+									mes "to reinforce the gate, but it's";
+									mes "not working well at all.";
+									mes "You'll have to start over.^000000";
+									close;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+								break;
+							case 4:
+								mes "^3355FFNow you need to make";
+								mes "sure that the gate is held";
+								mes "together pretty solidly.^000000";
+								next;
+								switch(select("瑪哪樹枝:鋼鐵:強化武器金屬-級數二:神之金屬")) {
+								case 1:
+									mes "^3355FFYou tried using wood to fix";
+									mes "this problem, but it seems";
+									mes "to have made it worse.";
+									mes "You'll have to start all over.^000000";
+									close;
+								case 2:
+									mes "^3355FFYou tried using steel,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								case 3:
+									mes "^3355FFYou successfully used";
+									mes "the emveretarcon to repair";
+									mes "much of the gate's damage.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 4:
+									mes "^3355FFYou tried using oridecon,";
+									mes "but it's not working very";
+									mes "well. You'll have to try";
+									mes "something else.^000000";
+									close;
+								}
+							}
+						}
+					}
+					mes "^3355FFWell, it looks like";
+					mes "you're just about done";
+					mes "with repairing the gate.^000000";
+					next;
+					if (agitcheck2() == 0) {
+						mes "^3355FFUnfortunately, the Fortress";
+						mes "Gate can't be reconstructed:";
+						mes "the Emperium is no longer here.^000000";
+						close;
+					}
+					else {
+						if (.@rp_temp == .@ro_of01) {
+							mes "^3355FFThe Fortress Gate has";
+							mes "been successfully repaired!^000000";
+							delitem 1019,30; //Wooden_Block
+							delitem 999,10; //Steel
+							delitem 1011,10; //Emveretarcon
+							delitem 984,5; //Oridecon
+							close2;
+							donpcevent "#aru01_RL03::OnEnable";
+							disablenpc "控制裝置03#aru01";
+							mapannounce "arug_cas01","第 3 防禦線 重新建置成功了!",bc_map,"0x00ff00";
+							setarray $agit_ar01[4],0;
+							setarray $agit_ar01[3],2;
+							donpcevent "控制裝置02#aru01::OnEnable";
+							end;
+						}
+						else {
+							mes "^3355FFThe wall has been breached,";
+							mes "and the attempt to repair the";
+							mes "Fortress Gate has failed.";
+							mes "You lost some of your";
+							mes "repair resources...^000000";
+							delitem 984,2; //Oridecon
+							delitem 999,4; //Steel
+							delitem 1019,14; //Wooden_Block
+							delitem 1011,3; //Emveretarcon
+							close;
+						}
+					}
+				}
+				else {
+					mes "^3355FFYou can't attempt to repair";
+					mes "the Fortress Gate if you don't";
+					mes "have all the needed materials.^000000";
+					close;
+				}
+			}
+		}
+	}
+	end;
+
+OnInit:
+	disablenpc "控制裝置03#aru01";
+	end;
+
+OnEnable:
+	enablenpc "控制裝置03#aru01";
+	end;
+
+OnDisable:
+	disablenpc "控制裝置03#aru01";
+	end;
+}
+
+// Link Flags
+arug_cas01,74,232,0	script	LF-01#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("第 1 據點:第 2 據點:取消")) {
+		case 1:
+			warp "arug_cas01",158,237;
+			end;
+		case 2:
+			warp "arug_cas01",297,248;
+			end;
+		case 3:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,77,232,0	script	LF-02#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("防禦地區 1-1:防禦地區 1-2:取消")) {
+		case 1:
+			warp "arug_cas01",197,144;
+			end;
+		case 2:
+			warp "arug_cas01",245,103;
+			end;
+		case 3:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,80,232,0	script	LF-03#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("防禦地區 2-1:防禦地區 2-2:取消")) {
+		case 1:
+			warp "arug_cas01",256,35;
+			end;
+		case 2:
+			warp "arug_cas01",186,26;
+			end;
+		case 3:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,83,232,0	script	LF-04#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("防禦地區 2-3:防禦地區 2-4:取消")) {
+		case 1:
+			warp "arug_cas01",146,65;
+			end;
+		case 2:
+			warp "arug_cas01",176,111;
+			end;
+		case 3:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,86,232,0	script	LF-05#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("防禦地區 3-1:防禦地區 3-2:取消")) {
+		case 1:
+			warp "arug_cas01",94,126;
+			end;
+		case 2:
+			warp "arug_cas01",126,126;
+			end;
+		case 3:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,89,232,0	script	LF-06#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("防禦地區 3-3:防禦地區 3-4:取消")) {
+		case 1:
+			warp "arug_cas01",68,171;
+			end;
+		case 2:
+			warp "arug_cas01",105,182;
+			end;
+		case 3:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,92,232,0	script	LF-07#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("據點:取消")) {
+		case 1:
+			warp "arug_cas01",233,130;
+			end;
+		case 2:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,95,232,0	script	LF-08#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("區域 1-1:區域 2-1:區域 3-1:取消")) {
+		case 1:
+			warp "arug_cas01",197,144;
+			end;
+		case 2:
+			warp "arug_cas01",256,35;
+			end;
+		case 3:
+			warp "arug_cas01",146,65;
+			end;
+		case 4:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,98,232,0	script	LF-09#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "請選擇要移動的場所";
+		switch(select("區域 1-2:區域 2-2:區域 3-3:取消")) {
+		case 1:
+			warp "arug_cas01",245,103;
+			end;
+		case 2:
+			warp "arug_cas01",186,26;
+			end;
+		case 3:
+			warp "arug_cas01",68,171;
+			end;
+		case 4:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,101,232,0	script	LF-10#arug_cas01	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "可以移動到為了會員們的便利所形成的區域,";
+		mes "請問你要移動嗎?";
+		switch(select("移動到便利的區域:取消")) {
+		case 1:
+			warp "arug_cas01",121,357;
+			end;
+		case 2:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,72,176,0	script	馬勒杜#LF_ar01_1::LF_ar01_1	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "移動到有華麗金屬中央的戰略地區,";
+		mes "請問你要使用嗎?";
+		switch(select("移動:取消")) {
+		case 1:
+			warp "arug_cas01",67,193;
+			end;
+		case 2:
+			close;
+		}
+	}
+	end;
+}
+
+arug_cas01,103,186,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_2	111,{
+
+arug_cas01,92,126,4	script	馬勒杜#LF_ar01_3::LF_ar01_2	111,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID) {
+		mes "-秘密基地內部 空間移動系統-";
+		mes "移動到有華麗金屬中央的戰略地區,";
+		mes "請問你要使用嗎?";
+		switch(select("移動:取消")) {
+		case 1:
+			warp "arug_cas01",67,193;
+			end;
+		case 2:
+			close;
+		}
+	}
+	end;
+
+OnRecvCastleAr01:
+	FlagEmblem GetCastleData("arug_cas01",1);
+	end;
+}
+
+arug_cas01,127,126,4	duplicate(LF_ar01_2)	馬勒杜#LF_ar01_3	111
+arug_cas01,150,102,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_4	111
+arug_cas01,208,68,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_5	111
+arug_cas01,249,52,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_6	111
+arug_cas01,234,76,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_7	111
+arug_cas01,249,76,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_8	111
+arug_cas01,204,142,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_9	111
+arug_cas01,183,244,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_10	111
+arug_cas01,292,219,0	duplicate(LF_ar01_1)	馬勒杜#LF_ar01_11	111
+arug_cas01,102,120,4	duplicate(LF_ar01_2)	馬勒杜#LF_ar01_12	722
+arug_cas01,117,120,4	duplicate(LF_ar01_2)	馬勒杜#LF_ar01_13	722
+arug_cas01,233,140,4	duplicate(LF_ar01_2)	馬勒杜#LF_ar01_14	722
+
+// Guild Manager
+arug_cas01,92,380,3	script	管理人#aru01	55,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (.@GID == 0) {
+		mes "[ 管理人 ]";
+		mes "我在此等待我的主人... 勇敢的冒險者啊! 追隨你的命運吧!";
+		close;
+	}
+	if (getcharid(2) != .@GID || strcharinfo(0) != getguildmaster(.@GID)) {
+		mes "[ 管理人 ]";
+		mes "不管你們怎麼威脅我,我只願意追隨我的主人 ^FF0000" + getguildmaster(.@GID) + "^000000 !";
+		mes "監護人你們在哪裡呀!";
+		mes "趕快把這些無理的傢伙們趕走吧!";
+		close;
+	}
+	mes "[ 管理人 ]";
+	mes "歡迎光臨,我的主人 ^FF0000" + getguildmaster(.@GID) + "^000000先生/小姐...";
+	mes "請儘管吩咐,我將忠誠地為你完成任務";
+	next;
+	switch(select("查看秘密基地狀況:投資商業發展度:投資防禦度:雇用 / 解雇 倉庫職員:進入主人房間")) {
+	case 1:
+		mes "[ 管理人 ]";
+		mes "現在向你報告秘密基地的狀況";
+		mes "現在商業發展度是 ^0000ff" + GetCastleData("arug_cas01",2) + " ";
+		if (GetCastleData("arug_cas01",4) > 0) {
+			mes "在過去一天之內,";
+			mes "投資了 " + GetCastleData("arug_cas01",4) + " 次";
+		}
+		next;
+		mes "[ 管理人 ]";
+		mes "現在的防禦度是 " + GetCastleData("arug_cas01",3) + " ";
+		if (GetCastleData("arug_cas01",5) > 0) {
+			mes "在過去一天之內,";
+			mes "投資了 " + GetCastleData("arug_cas01",5) + " 次";
+		}
+		mes " ";
+		mes "報告完畢";
+		close;
+	case 2:
+		set .@Economy,GetCastleData("arug_cas01",2);
+		if (.@Economy < 6) { set .@eco_invest,5000; }
+		else if ((.@Economy >= 6) && (.@Economy <= 10)) { set .@eco_invest,10000; }
+		else if ((.@Economy >= 11) && (.@Economy <= 15)) { set .@eco_invest,20000; }
+		else if ((.@Economy >= 16) && (.@Economy <= 20)) { set .@eco_invest,35000; }
+		else if ((.@Economy >= 21) && (.@Economy <= 25)) { set .@eco_invest,55000; }
+		else if ((.@Economy >= 26) && (.@Economy <= 30)) { set .@eco_invest,80000; }
+		else if ((.@Economy >= 31) && (.@Economy <= 35)) { set .@eco_invest,110000; }
+		else if ((.@Economy >= 36) && (.@Economy <= 40)) { set .@eco_invest,145000; }
+		else if ((.@Economy >= 41) && (.@Economy <= 45)) { set .@eco_invest,185000; }
+		else if ((.@Economy >= 46) && (.@Economy <= 50)) { set .@eco_invest,230000; }
+		else if ((.@Economy >= 51) && (.@Economy <= 55)) { set .@eco_invest,280000; }
+		else if ((.@Economy >= 56) && (.@Economy <= 60)) { set .@eco_invest,335000; }
+		else if ((.@Economy >= 61) && (.@Economy <= 65)) { set .@eco_invest,395000; }
+		else if ((.@Economy >= 66) && (.@Economy <= 70)) { set .@eco_invest,460000; }
+		else if ((.@Economy >= 71) && (.@Economy <= 75)) { set .@eco_invest,530000; }
+		else if ((.@Economy >= 76) && (.@Economy <= 80)) { set .@eco_invest,605000; }
+		else if ((.@Economy >= 81) && (.@Economy <= 85)) { set .@eco_invest,685000; }
+		else if ((.@Economy >= 86) && (.@Economy <= 90)) { set .@eco_invest,770000; }
+		else if ((.@Economy >= 91) && (.@Economy <= 95)) { set .@eco_invest,860000; }
+		else if ((.@Economy >= 96) && (.@Economy <= 100)) { set .@eco_invest,955000; }
+		//Quadruple the cost of investing if you've already invested once.
+		if (GetCastleData("arug_cas01",4)) {
+			set .@eco_invest,.@eco_invest*4;
+		}
+		mes "[ 管理人 ]";
+		mes "提高商業發展度的話,在工會裡生產的物品數量會增加,為了以後著想的話,不能不投資啊";
+		mes " ";
+		mes "照原先的方式,一天只能投資一次,假如多付一點金錢的話,一天可以投資兩次";
+		mes " ";
+		if (.@Economy == 100) {
+			mes "[ 管理人 ]";
+			mes "^FF0000目前防禦度以經是100了,你已經不需要再加入任何投資了^000000";
+			close;
+		}
+		if (GetCastleData("arug_cas01",4) >= 2) {
+			mes "[ 管理人 ]";
+			mes "^FF0000可是你已經在今天之內投資了兩次再不能投資了,^000000讓發展度趕快上升期待著富貴的日子囉";
+			close;
+		}
+		if (GetCastleData("arug_cas01",4) == 0) {
+			mes "[ 管理人 ]";
+			mes "現在需要投資的金額是 ^FF0000" + .@eco_invest + "^000000 金幣,請問你要投資嗎?";
+		}
+		else {
+			mes "現在你已經投資一次了...";
+			mes "還要再投資嗎? 還需要追加^FF0000" + .@eco_invest + "^000000";
+			mes "金幣噢";
+		}
+		next;
+		switch(select("投資商業發展度:取消")) {
+		case 1:
+			if (GetCastleData("arug_cas01",4) >= 2) {
+				mes "[ 管理人 ]";
+				mes "You've already made two";
+				mes "investments today, so you'll";
+				mes "have to wait until tomorrow";
+				mes "to make another investment.";
+				close;
+			}
+			if (Zeny < .@eco_invest) {
+				mes "[ 管理人 ]";
+				mes "主人,你沒有足夠的資金可以投資商業發展度";
+				end;
+			}
+			set zeny,zeny-.@eco_invest;
+			SetCastleData "arug_cas01",4,GetCastleData("arug_cas01",4)+1;
+			mes "[ 管理人 ]";
+			mes "順利地完成投資了!";
+			mes "期待著我們往後要面臨的未來,明天的話發展度會上升";
+			close;
+		case 2:
+			mes "[ 管理人 ]";
+			mes "我將依照你的吩咐去執行,是我的主人";
+			mes "... 不需要太著急,我們會做得很好";
+			close;
+		}
+	case 3:
+		set .@Defence,GetCastleData("arug_cas01",3);
+		if (.@Defence < 6) { set .@def_invest,10000; }
+		else if ((.@Defence >= 6) && (.@Defence <= 10)) { set .@def_invest,20000; }
+		else if ((.@Defence >= 11) && (.@Defence <= 15)) { set .@def_invest,40000; }
+		else if ((.@Defence >= 16) && (.@Defence <= 20)) { set .@def_invest,70000; }
+		else if ((.@Defence >= 21) && (.@Defence <= 25)) { set .@def_invest,110000; }
+		else if ((.@Defence >= 26) && (.@Defence <= 30)) { set .@def_invest,160000; }
+		else if ((.@Defence >= 31) && (.@Defence <= 35)) { set .@def_invest,220000; }
+		else if ((.@Defence >= 36) && (.@Defence <= 40)) { set .@def_invest,290000; }
+		else if ((.@Defence >= 41) && (.@Defence <= 45)) { set .@def_invest,370000; }
+		else if ((.@Defence >= 46) && (.@Defence <= 50)) { set .@def_invest,460000; }
+		else if ((.@Defence >= 51) && (.@Defence <= 55)) { set .@def_invest,560000; }
+		else if ((.@Defence >= 56) && (.@Defence <= 60)) { set .@def_invest,670000; }
+		else if ((.@Defence >= 61) && (.@Defence <= 65)) { set .@def_invest,790000; }
+		else if ((.@Defence >= 66) && (.@Defence <= 70)) { set .@def_invest,920000; }
+		else if ((.@Defence >= 71) && (.@Defence <= 75)) { set .@def_invest,1060000; }
+		else if ((.@Defence >= 76) && (.@Defence <= 80)) { set .@def_invest,1210000; }
+		else if ((.@Defence >= 81) && (.@Defence <= 85)) { set .@def_invest,1370000; }
+		else if ((.@Defence >= 86) && (.@Defence <= 90)) { set .@def_invest,1540000; }
+		else if ((.@Defence >= 91) && (.@Defence <= 95)) { set .@def_invest,1720000; }
+		else if ((.@Defence >= 96) && (.@Defence <= 100)) { set .@def_invest,1910000; }
+		//Quadruple the cost of investing if you've already invested once.
+		if (GetCastleData("arug_cas01",5)) {
+			set .@def_invest,.@def_invest*4;
+		}
+		mes "[ 管理人 ]";
+		mes "提高防禦程度的話,監護人和華麗金屬的耐久度會增加,考慮到往後的戰爭,不得不投資啊,";
+		mes " ";
+		mes "照原先的方式,一天只能投資一次,假如多付一點金錢的話,一天可以投資兩次";
+		mes " ";
+		if (GetCastleData("arug_cas01",3) == 100) {
+			mes "^FF0000目前防禦度以經是100了,你已經不需要再加入任何投資了^000000";
+			close;
+		}
+		if (GetCastleData("arug_cas01",5) >= 2) {
+			mes "^FF0000可是你已經在今天之內投資了兩次再不能投資了,^000000讓發展度趕快上升期待著富貴的日子囉";
+			close;
+		}
+		if (GetCastleData("arug_cas01",5) == 0) {
+			mes "現在需要投資的金額是 ^FF0000" + .@def_invest + "^000000 金幣,請問你要投資嗎?";
+		}
+		else {
+			mes "現在你已經投資一次了...";
+			mes "還要再投資嗎? 還需要追加 ^FF0000" + .@def_invest + "^000000";
+			mes "金幣噢";
+		}
+		next;
+		switch(select("投資防禦度:取消")) {
+		case 1:
+			if (GetCastleData("arug_cas01",5) >= 2) {
+				mes "[ 管理人 ]";
+				mes "Master, you've already";
+				mes "invested in Defense twice";
+				mes "today. You'll need to wait";
+				mes "until tomorrow if you really";
+				mes "want to increase our defenses.";
+				close;
+			}
+			if (Zeny < .@def_invest) {
+				mes "[ 管理人 ]";
+				mes "主人,你沒有足夠的資金可以投資防禦度";
+				close;
+			}
+			set zeny,zeny-.@def_invest;
+			SetCastleData "arug_cas01",5,GetCastleData("arug_cas01",5)+1;
+			mes "[ 管理人 ]";
+			mes "順利地完成投資了!";
+			mes "期待著我們往後要面臨的未來,明天的話發展度會上升";
+			close;
+		case 2:
+			mes "[ 管理人 ]";
+			mes "我將依照你的吩咐去執行,是我的主人";
+			mes "... 不需要太著急,我們會做得很好";
+			close;
+		}
+	case 4:
+		if (GetCastleData("arug_cas01",9) == 1) {
+			mes "[ 管理人 ]";
+			mes "請問您要解雇卡普拉服務人員嗎?";
+			next;
+			switch(select("解雇:取消")) {
+			case 1:
+				cutin "kafra_01",2;
+				mes "[ 卡普拉 職員 ]";
+				mes "我做錯了什麼事嗎?如果我有做錯事的話,能請您原諒我,再給我一次機會嗎?";
+				next;
+				switch(select("解雇:取消")) {
+				case 1:
+					mes "[ 卡普拉 職員 ]";
+					mes "不能夠繼續為您服務真是我最大的遺憾...";
+					next;
+					cutin "kafra_01",255;
+					break;
+				case 2:
+					mes "[ 卡普拉 職員 ]";
+					mes "我會努力勤奮的為您服務的!";
+					close;
+				}
+				break;
+			case 2:
+				mes "[ 管理人 ]";
+				mes "主人,我想我們應該要留下現在這位卡普拉職員,因為她已經竭盡所能地為我們服務了!";
+				close;
+			}
+			disablenpc "卡普拉 職員#aru01";
+			SetCastleData "arug_cas01",9,0;
+			mes "[ 管理人 ]";
+			mes "卡普拉職員已經解雇了... 不過為了辛苦的會員著想,雇用卡普拉職員為上策啊";
+			close;
+		}
+		else {
+			mes "[ 管理人 ]";
+			mes "和卡普拉總公司訂契約後,想要在秘密基地裡面,雇用卡普拉職員嗎?";
+			mes "想要雇用的話,需要 ^FF000010,000 金幣^000000";
+			next;
+			switch(select("雇用:取消")) {
+			case 1:
+				if (getgdskilllv(.@GID,10001) == 0) {
+					mes "[ 管理人 ]";
+					mes "主人,如今還沒跟卡普拉總公司訂契約狀況,所以還不能雇用卡普拉職員,假如想要跟卡普拉總公司簽訂契約的話,先學會工會技能中 ^FF0000和卡普拉訂契約^000000的技能吧";
+					close;
+				}
+				if (Zeny < 10000) {
+					mes "[ 管理人 ]";
+					mes "主人,你沒有足夠的資金可以雇用卡普拉職員";
+					close;
+				}
+				set zeny,zeny-10000;
+				enablenpc "卡普拉 職員#aru01";
+				SetCastleData "arug_cas01",9,1;
+				mes "[ 管理人 ]";
+				mes "成功的和卡普拉總公司簽訂契約了,您雇用了一位卡普拉職員!";
+				next;
+				cutin "kafra_01",2;
+				mes "[ 卡普拉 職員 ]";
+				mes "您好嗎?我是總公司派來的卡普拉職員!我將會竭盡所能地為您服務!";
+				next;
+				cutin "kafra_01",255;
+				mes "[ 管理人 ]";
+				mes "雇用的卡普拉職員將有^FF00001 個月的時間^000000在此服務,時間到了之後必須重新簽訂契約";
+				close;
+			case 2:
+				mes "[ 管理人 ]";
+				mes "我已經按照你的吩咐做了,不過也要為了辛苦的會員著想,早日雇用卡普拉職員為上策啊";
+				close;
+			}
+		}
+	case 5:
+		mes "[ 管理人 ]";
+		mes "要到我們生產品囤積的,真貴物品房間嗎?";
+		mes "那個地方是為了我們的主人,的專屬於你的地方...";
+		mes "除了你之外,其它人都不能其門而入";
+		next;
+		mes "[ 管理人 ]";
+		mes "會有物品消失的情形,敬請特別注意,";
+		mes "所以為了我們公會發展,請挪出時間來收取物品";
+		next;
+		switch(select("要進入主人的房間:取消")) {
+		case 1:
+			mes "[ 管理人 ]";
+			mes "我將為你服務到祕密通道那裡,請跟我來,";
+			mes "回來的時候按下秘密按鈕即可";
+			close2;
+			warp "arug_cas01",250,363;
+			end;
+		case 2:
+			mes "[ 管理人 ]";
+			mes "生產品一天只生產一次...";
+			mes "假如沒有即時收走的話,下一次就不能進來了";
+			mes "所以說為了我們工會的發展,盡量花點時間去收取啊";
+			close;
+		}
+	}
+
+Onstop:
+	stopnpctimer;
+	end;
+
+OnStartArena:
+	set .@GID,getcharid(2);
+	// Lower castle Economy
+	set .@Economy,GetCastleData("arug_cas01",2) - 5;
+	if (.@Economy < 0) set .@Economy, 0;
+	SetCastleData "arug_cas01", 2, .@Economy;
+	// Lower Castle Defence
+	set .@Defence,GetCastleData("arug_cas01",3) - 5;
+	if (.@Defence < 0) set .@Defence, 0;
+	SetCastleData "arug_cas01", 3, .@Defence;
+	// Set new owner
+	SetCastleData "arug_cas01",1, .@GID;
+	// Clear castle's data.
+	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
+		SetCastleData "arug_cas01", .@i, 0;
+	// Disable Kafra
+	disablenpc "卡普拉 職員#aru01";
+
+	set .msg,2;
+	if (.msg == 1) {
+		announce "秘密基地 [" + GetCastleName("arug_cas01") + "]的 '馬勒杜'被 [" + getguildname(.@gid) + "] 公會所佔領了",bc_all|bc_woe;
+		donpcevent "Manager#aru01_02::Onstart";
+	}
+	else if (.msg == 2) {
+		announce "秘密基地 [" + GetCastleName("arug_cas01") + "]的 '馬勒杜'被 [" + getguildname(.@gid) + "] 公會所佔領了",bc_all|bc_woe;
+		mapannounce "arug_cas01","華麗金屬已被破壞掉了",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+		if (agitcheck2()) {
+			donpcevent "Manager#aru01_02::Onreset";
+			initnpctimer;
+		}
+		else {
+			donpcevent "Manager#aru01_02::Onreset";
+			stopnpctimer;
+		}
+	}
+	else if (.msg == 0) {
+		announce "秘密基地 [" + GetCastleName("arug_cas01") + "]的 '馬勒杜'被 [" + getguildname(.@gid) + "] 公會所佔領了",bc_all|bc_woe;
+		donpcevent "Manager#aru01_02::Onreset";
+		stopnpctimer;
+		end;
+	}
+	MapRespawnGuildID "arug_cas01",GetCastleData("arug_cas01",1),2;
+	GetCastleData "arug_cas01",0,"::OnRecvCastleAr01";
+	end;
+
+OnTimer10000:
+	donpcevent "Manager#aru01_02::Onchange";
+	mapannounce "arug_cas01","在各個據點和防禦線的修復點數 已登場了",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+	end;
+}
+
+// Guild Kafra
+arug_cas01,31,362,3	script	卡普拉 職員#aru01	117,{
+	cutin "kafra_01",2;
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (getcharid(2) == .@GID && getgdskilllv(.@GID,10001)) {
+		mes "[卡普拉 職員]";
+		mes "歡迎光臨 ^FF0000" + GetGuildName(.@GID) + "^000000 會員們,";
+		mes "卡普拉服務";
+		mes "永遠在各位身邊為您服務的";
+		next;
+		switch(select("使用倉庫服務:使用空間移動服務:使用手推車服務:結束")) {
+		case 1:
+			if (basicskillcheck() && getskilllv(1) < 6) {
+				mes "[卡普拉 職員]";
+				mes "對不起";
+				mes "想要使用倉庫服務的話,初學者的基本技能等級要到達6級以上";
+			}
+			else {
+				openstorage;
+			}
+			break;
+		case 2:
+			mes "[卡普拉 職員]";
+			mes "請說出目的地吧";
+			next;
+			switch(select("拉赫  -> 200 z:取消")) {
+			case 1:
+				if (Zeny < 200) {
+					mes "[卡普拉 職員]";
+					mes "您的金額不足,";
+					mes "請再確認";
+					close2;
+					cutin "kafra_01",255;
+					end;
+				}
+				set zeny,zeny-200;
+				warp "rachel",115,125;
+				end;
+			case 2:
+				cutin "kafra_01",255;
+			}
+			break;
+		case 3:
+			if (BaseClass != Job_Merchant) {
+				mes "[卡普拉 職員]";
+				mes "很抱歉,";
+				mes "手推車是商人和鐵匠,鍊金術師專用的服務";
+			}
+			else if (checkcart() == 1) {
+				mes "[卡普拉 職員]";
+				mes "您已經租過手推車了";
+			}
+			else {
+				mes "[卡普拉 職員]";
+				mes "手推車使用費用是 800 金幣";
+				mes "您要使用嗎?";
+				next;
+				switch(select("使用:取消")) {
+				case 1:
+					if (Zeny < 800) {
+						mes "[卡普拉 職員]";
+						mes "您的金額不足,";
+						mes "手推車使用費用是 800 金幣";
+						close2;
+						cutin "kafra_01",255;
+						end;
+					}
+					set zeny,zeny-800;
+					setcart;
+					break;
+				case 2:
+					break;
+				}
+			}
+			break;
+		case 4:
+			mes "[卡普拉 職員]";
+			mes "我們卡普拉服務會提供更完美的服務和嚴格的業務管理,讓各位顧客安心便利的使用為最大的目標";
+			mes "感謝你使用卡普拉服務";
+			close2;
+			cutin "kafra_01",255;
+			end;
+		}
+		close2;
+		cutin "kafra_01",255;
+		end;
+	}
+	else {
+		mes "[卡普拉 職員]";
+		mes "我已簽訂契約專為^FF0000" + GetGuildName(.@GID) + "^000000會員服務,請使用我們其它地方的卡普拉職員,如有不便之處敬請見諒";
+		close2;
+		cutin "kafra_01",255;
+		end;
+	}
+
+OnRecvCastleAr01:
+	if (GetCastleData("arug_cas01",1) == 0) {
+		monster "arug_cas01",0,0,"闇神官",1117,10;
+		monster "arug_cas01",0,0,"卡利斯格",1132,4;
+		monster "arug_cas01",0,0,"深淵騎士",1219,3;
+		monster "arug_cas01",0,0,"行刑者",1205,1;
+		monster "arug_cas01",0,0,"梅納海葵",1216,10;
+		monster "arug_cas01",0,0,"鐘怪",1193,18;
+		monster "arug_cas01",0,0,"古鐘魔",1269,9;
+		monster "arug_cas01",0,0,"幽靈弓箭手",1276,12;
+		monster "arug_cas01",0,0,"邪骸浪人",1208,3;
+		monster "arug_cas01",0,0,"愛麗絲女僕",1275,1;
+		monster "arug_cas01",0,0,"血腥騎士",1268,2;
+		monster "arug_cas01",0,0,"黑暗之王",1272,2;
+		monster "arug_cas01",0,0,"鐘塔守護者",1270,4;
+	}
+	if (GetCastleData("arug_cas01",9) < 1) {
+		disablenpc "卡普拉 職員#aru01";
+	}
+	end;
+}
+
+arug_cas01,259,371,0	script	#aru01_switch	111,{
+	mes " ";
+	mes "有個某種小的裝置,請問你要操作嗎?";
+	next;
+	switch(select("操作:結束")) {
+	case 1:
+		warp "arug_cas01",121,357;
+		end;
+	case 2:
+		close;
+	}
+}
+
+aru_gld,164,270,4	script	馬勒杜#flag_Ar01_1::Ar01_Flag	722,{
+	set .@GID, GetCastleData("arug_cas01",1);
+	if (.@GID == 0) {
+		mes "[ 阿盧納貝茲 教國 公告令 ]";
+		mes "The Holy Kingdom of";
+		mes "Arunafeltz declares that";
+		mes "one has yet to claim lordship";
+		mes "over this stronghold. The one";
+		mes "that breaks the Emperium will";
+		mes "be recognized as its new owner.";
+		close;
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "[ 響亮的聲音 ]";
+			mes "勇敢者們...";
+			mes "你要回到你的 那名譽的時刻嗎?";
+			next;
+			switch(select("回到秘密基地:結束")) {
+			case 1:
+				set .@GID, GetCastleData("arug_cas01",1);
+				if (getcharid(2) == .@GID) {
+					warp "arug_cas01",67,193;
+					end;
+				}
+				close;
+			case 2:
+				close;
+			}
+		}
+		mes "[ 阿盧納貝茲 教國 公告令 ]";
+		mes " ";
+		mes "1. 根據這裡的,阿盧納貝茲 教國令";
+		mes "這裡被認定為 ^FF0000" + GetGuildName(.@GID) + "^000000公會的";
+		mes "私有物";
+		mes " ";
+		mes "2. ^FF0000" + GetGuildName(.@GID) + "^000000 公會的主人是";
+		mes "　　^FF0000" + GetGuildMaster(.@GID) + "^000000,無論是誰";
+		mes "　　對這件事情有意見者";
+		mes " ";
+		mes "請你舉起您的劍,提高自己的名譽吧";
+		close;
+	}
+
+OnRecvCastleAr01:
+	FlagEmblem GetCastleData("arug_cas01",1);
+	end;
+}
+
+aru_gld,142,235,4	duplicate(Ar01_Flag)	馬勒杜#flag_Ar01_2	722
+aru_gld,164,245,5	duplicate(Ar01_Flag)	馬勒杜#flag_Ar01_3	722
+aru_gld,182,255,5	duplicate(Ar01_Flag)	馬勒杜#flag_Ar01_4	722

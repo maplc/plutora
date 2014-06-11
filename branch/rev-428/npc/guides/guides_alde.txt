@@ -1,0 +1,92 @@
+//===========================================
+// [冥] The PlutoEA Project [王]
+// http://opensvn.csie.org/PlutoEA
+// ------------------------------------------
+// - 艾爾帕蘭 導遊 腳本 -
+// ------------------------------------------
+// 版本 1.7
+//===========================================
+aldebaran,139,63,4	script	士兵#alde	105,{
+	cutin "prt_soldier",2;
+	mes "[艾爾帕蘭整備軍]";
+	mes "我可不是什麼負責村莊內安全的小小守衛喔!!";
+	mes "我是艾爾帕蘭守護隊的一員，我擔任導覽服務的工作";
+	mes "隸屬艾爾帕蘭整備隊!! (沒有名字)";
+	mes "那就讓我來為你做一下介紹吧!";
+	next;
+	if (select("接受位置導覽。:取消。") == 1) {
+		viewpoint 1,61,229,0,0xFF6633;
+		viewpoint 1,72,197,1,0x0000FF;
+		viewpoint 1,223,222,2,0x00FFFF;
+		viewpoint 1,233,105,3,0x515151;
+		viewpoint 1,197,70,4,0x3355FF;
+		viewpoint 1,60,60,5,0xFF5555;
+		mes "^FF6633+^000000 -> 卡普拉總公司";
+		mes "^0000FF+^000000 -> 武器店";
+		mes "^00FFFF+^000000 -> 魔法工會 (Closed)";
+		mes "^515151+^000000 -> 酒店";
+		mes "^3355FF+^000000 -> 道具店";
+		mes "^FF5555+^000000 -> 煉金者工會 (Closed)";
+		close2;
+		cutin "prt_soldier",255;
+		end;
+	}
+	mes "[艾爾帕蘭整備軍]";
+	mes "我是守衛艾爾帕蘭整備隊的一員!!";
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}
+/*導遊二，TRO不存在
+aldebaran,133,108,4	script	Soldier#2alde	105,{
+	cutin "prt_soldier",2;
+	mes "[Al De Baran Guard]";
+	mes "I'm just an";
+	mes "ordinary guard,";
+	mes "the kind you can";
+	mes "find in any other city.";
+	next;
+	mes "[Al De Baran Guard]";
+	mes "When I'm not too busy";
+	mes "protecting the Al De Baran";
+	mes "populace, I'm here giving directions to adventurers";
+	mes "like yourself.";
+	next;
+	switch(select("Kafra Main Office :Weapon Shop :Sorcerer Guild :Pub :Item Shop :Alchemist Guild :End Conversation ")) {
+	case 1:
+		viewpoint 1,61,229,0,0xFF6633;
+		mes "^FF6633+^000000 -> Kafra Main Office ";
+		break;
+	case 2:
+		viewpoint 1,72,197,1,0x0000FF;
+		mes "^0000FF+^000000 -> Weapon Shop ";
+		break;
+	case 3:
+		viewpoint 1,223,222,2,0x00FFFF;
+		mes "^00FFFF+^000000 -> Sorcerer Guild (Closed)";
+		break;
+	case 4:
+		viewpoint 1,233,105,3,0x515151;
+		mes "^515151+^000000 -> Pub ";
+		break;
+	case 5:
+		viewpoint 1,197,70,4,0x3355FF;
+		mes "^3355FF+^000000 -> Item Shop ";
+		break;
+	case 6:
+		viewpoint 1,60,60,5,0xFF5555;
+		mes "^FF5555+^000000 -> Alchemist Guild";
+		break;
+	case 7:
+		mes "[Al De Baran Guard]";
+		mes "We are sworn to";
+		mes "protect Al De Baran!";
+		mes "May the forces of good";
+		mes "always prevail over evil~";
+		break;
+	}
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}
+*/

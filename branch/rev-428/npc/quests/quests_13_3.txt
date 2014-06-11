@@ -1,0 +1,6247 @@
+//===== eAthena Script =======================================
+//= El Dicastes Quests Script
+//===== By: ==================================================
+//= Chilly
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= Any Athena Version
+//===== Description: =========================================
+//= Official quests for episode 13.3
+//= Quest list:
+//= El Dicastes Entrance Quest
+//= Scaraba Hole Entrance Quest
+//= Proof of Sapha's Honor Daily Quests
+//= Equipment Enchantments
+//= Bradium Earring Quest
+//= Scaraba Hole Nightmare Mode Entrance
+//===== Additional Comments: =================================
+//= 1.0 First Release
+//= 1.1 Added Scaraba Hole Nightmare Mode
+//============================================================
+
+// El Dicastes Entrance Quest
+mid_campin,93,114,3	script	Munkenro#eldic01	967,{
+	if ((ep13_2_rhea > 99) && (eldic_enter < 1)) {
+		mes "[Munkenro]";
+		mes "Ah, hello again adventurer. Have you heard the news?";
+		next;
+		mes "[Munkenro]";
+		mes "A representative of the ^0000FFSapha tribe^000000 came to visit us here at the Expedition camp!";
+		next;
+		mes "[Munkenro]";
+		mes "If only someone could translate what she is saying, then maybe we could find their headquarters.";
+		next;
+		set eldic_enter,1;
+		setquest 7182;
+		mes "[Munkenro]";
+		mes "You should talk to the Soldier upstairs for more info.";
+		close;
+	}
+	else if (eldic_enter == 1) {
+		mes "[Munkenro]";
+		mes "Talk to the Soldier upstairs for more info.";
+		close;
+	}
+	else {
+		mes "[Munkenro]";
+		mes "How do you like the new world so far?";
+		next;
+		mes "[Munkenro]";
+		mes "Keep up the good work my friend.";
+		close;
+	}
+}
+
+mid_campin,111,120,3	script	Soldier#eldic01	852,{
+	if (eldic_enter > 0) {
+		mes "[Soldier]";
+		mes "Munkenro sent you?";
+		next;
+		mes "[Soldier]";
+		mes "Ok, would you like to enter?";
+		next;
+		switch(select("Yes.:No thanks.")) {
+		case 1:
+			mes "[Soldier]";
+			mes "Right this way.";
+			close2;
+			warp "mid_campin",165,126;
+			end;
+		case 2:
+			mes "[Soldier]";
+			mes "Alright.";
+			close;
+		}
+	}
+	else {
+		mes "[Soldier]";
+		mes "I'm sorry, but you cannot enter at this time.";
+		close;
+	}
+}
+
+mid_campin,168,128,5	script	Manu	451,{
+	if (isequipped(2782) == 1) {
+		if (eldic_enter == 1) {
+			mes "[Manu]";
+			mes "Nice to meet you.  I see you have a device to help you understand our language.";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Yes, this ring I wear allows me to understand you perfectly.";
+			next;
+			mes "[Manu]";
+			mes "Very interesting, I would like to learn more about this ring later.  Anyway, our ambassador has asked for you to come visit our tribe's headquarters.";
+			next;
+			mes "[Manu]";
+			mes "We are aware that your race is not here to cause us any harm, so we are going to trust you.";
+			next;
+			cutin "ep13_captin_edq",2;
+			mes "[Commander Agip]";
+			mes "Sorry to interupt.";
+			next;
+			mes "[Commander Agip]";
+			mes "Hey, can you please talk to ^0000FFInspector Doha^000000 after you finish talking with the Sapha?";
+			next;
+			mes "[Commander Agip]";
+			mes "He has a few things he would like to know regarding the stolen reports, so don't forget.";
+			next;
+			cutin "ep13_captin_edq",255;
+			mes "[Manu]";
+			mes "What was that about?";
+			next;
+			mes "[Manu]";
+			mes "Nevermind, its none of my business so i won't interfere.";
+			next;
+			mes "[Manu]";
+			mes "If you want to visit our headquarters you must first head to the town of ^0000FFManuk^000000 and speak to the ambassador's assistant.";
+			next;
+			set eldic_enter,2;
+			set scaraba_enter,1;
+			setquest 7185;
+			mes "[Manu]";
+			mes "His name is ^0000FFCaptain Avalanche^000000, ask the person next to me for his location. Good luck on your journey!";
+			close;
+		}
+		else if (eldic_enter > 1) {
+			mes "[Manu]";
+			mes "Talk to this person next to me, i've seem him in Manuk before so I'm sure he can tell you the location of ^0000FFCaptain Avalanche^000000.";
+			close;
+		}
+		else {
+			mes "[Manu]";
+			mes "...";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+mid_campin,168,125,3	script	Cloud	997,{
+	if (eldic_enter < 2) {
+		mes "[Cloud]";
+		mes "Do you have something that can translate what she is saying?";
+		next;
+		mes "[Cloud]";
+		mes "I would love to know where the Sapha tribe's headquarters are located.";
+		close;
+	}
+	else if (eldic_enter == 2) {
+		mes "[Cloud]";
+		mes "Captain Avalanche?  Oh he must be the ambassador's assistant.";
+		next;
+		mes "[Cloud]";
+		mes "Just head inside the building at the ^0000FFSouth-East corner of Manuk^000000, then walk up the stairs.";
+		next;
+		set eldic_enter,3;
+		changequest 7182,7183;
+		mes "[Cloud]";
+		mes "That should be the guy you're looking for.";
+		close;
+	}
+	else if (eldic_enter > 2) {
+		mes "[Cloud]";
+		mes "Captain Avalanche should be in the building at the ^0000FFSouth-East corner of Manuk^000000.";
+		close;
+	}
+	else {
+		mes "[Cloud]";
+		mes "Remember to report anything interesting that you find.";
+		close;
+	}
+}
+
+man_in01,315,52,3	script	Captain Avalanche	492,{
+	if (isequipped(2782) == 1) {
+		if (eldic_enter < 3) {
+			mes "[Captain Avalanche]";
+			mes "You can understand our language?  I'm impressed!";
+			close;
+		}
+		else if (eldic_enter == 3) {
+			mes "[Captain Avalanche]";
+			mes "Ah, so you met with Manu. Then I already know why you are here.";
+			next;
+			mes "[Captain Avalanche]";
+			mes "The ambassador has something to give you as a peace offering, but to obtain it you must meet him in ^0000FFEl Dicastes^000000.";
+			next;
+			mes "[Captain Avalanche]";
+			mes "The city of El Dicastes is located west and north of here, you'll have to go through a long tunnel to enter the new region.";
+			next;
+			mes "[Captain Avalanche]";
+			mes "When you reach the new region, head north and enter a large building made of crystals. The ambassador will be in there.";
+			next;
+			set eldic_enter,4;
+			changequest 7183,7184;
+			mes "[Captain Avalanche]";
+			mes "Please talk to the ^0000FFGateway Manager^000000 in the east side of town, he is guarding the entrance to prevent strangers from entering the tunnel and being attacked by the scarabas that live there.";
+			close;
+		}
+		else if (eldic_enter == 4) {
+			mes "[Captain Avalanche]";
+			mes "Please talk to the ^0000FFGateway Manager^000000 in the east side of town, he is guarding the entrance to prevent strangers from entering the tunnel and being attacked by the scarabas that live there.";
+			close;
+		}
+		else {
+			mes "[Captain Avalanche]";
+			mes "The Light of El Dicastes is a great treasure to our people, don't lose it.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+manuk,321,182,4	script	Gateway Manager#01	450,{
+	if (isequipped(2782) == 1) {
+		if (eldic_enter > 3) {
+			mes "[Gateway Manager]";
+			mes "Would you like to enter the tunnel?";
+			next;
+			switch(select("Yes.:No thanks.")) {
+			case 1:
+				mes "[Gateway Manager]";
+				mes "Follow me.";
+				close2;
+				warp "dic_dun01",32,212;
+				end;
+			case 2:
+				mes "[Gateway Manager]";
+				mes "Good choise, it is dangerous in there.";
+				close;
+			}
+		}
+		else {
+			mes "[Gateway Manager]";
+			mes "I cannot let you through until the ambassador's assistant gives you permission.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,30,216,6	script	Gateway Manager#02	450,{
+	if (isequipped(2782) == 1) {
+		mes "[Gateway Manager]";
+		mes "Would you like to go back to Manuk?";
+		next;
+		switch(select("Yes.:No thanks.")) {
+		case 1:
+			mes "[Gateway Manager]";
+			mes "Follow me.";
+			close2;
+			warp "manuk",324,179;
+			end;
+		case 2:
+			mes "[Gateway Manager]";
+			mes "Be careful.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_fild01,146,281,6	script	Town Defender#01::dicastesguard	492,{
+	if (isequipped(2782) == 1) {
+		mes "[Town Defender]";
+		mes "Greetings adventurer. We were informed of your arrival.";
+		next;
+		mes "[Town Defender]";
+		mes "Would you like to enter El Dicastes now?";
+		next;
+		switch(select("Yes.:No thanks.")) {
+		case 1:
+			mes "[Town Defender]";
+			mes "Follow me.";
+			close2;
+			warp "dicastes01",199,38;
+			end;
+		case 2:
+			mes "[Town Defender]";
+			mes "Be careful.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_fild01,153,281,4	duplicate(dicastesguard)	Town Defender#02	450
+
+dic_in01,42,264,3	script	Adventurer Receptionist	453,{
+	if (isequipped(2782) == 1) {
+		if (eldic_enter < 4) {
+			mes "[Adventurer Receptionist]";
+			mes "...";
+			close;
+		}
+		else if (eldic_enter == 4) {
+			mes "[Adventurer Receptionist]";
+			mes "Hello, I am the ambassador of El Dicastes.";
+			next;
+			mes "[Adventurer Receptionist]";
+			mes "Thank you for taking the time to come and meet with me here.";
+			next;
+			mes "[Adventurer Receptionist]";
+			mes "I want to give you the ^0000FFLight of El Dicastes^000000, it is an item that can warp you to this city at any time.";
+			next;
+			mes "[Adventurer Receptionist]";
+			mes "It is also a symbol of pride for our people and proof that you are welcome in both Manuk and El Dicastes. With this, you will gain the trust of the people in town.";
+			next;
+			mes "[Adventurer Receptionist]";
+			mes "Please talk to the people in the ^0000FFCenter of town^000000. They could use your help for many things and will reward you for your hard work!";
+			next;
+			getitem 2844,1; // Light of El Dicastes
+			set eldic_enter,5;
+			completequest 7184;
+			mes "[Adventurer Receptionist]";
+			mes "I hope to see you again soon, adventurer.";
+			close;
+		}
+		else if ((eldic_enter == 5) && (scaraba_enter < 11)) {
+			mes "[Adventurer Receptionist]";
+			mes "Please talk to the people in the ^0000FFCenter of town^000000. They could use your help for many things and will reward you for your hard work!";
+			close;
+		}
+		else if (scaraba_enter == 11) {
+			if (countitem(6304) >= 3) {
+				mes "[Adventurer Receptionist]";
+				mes "You want to meet Daesinah Hart? Ok, please bring me ^0000FF3 Proof of Sapha's Honor^000000 and I'll let you meet her.";
+				next;
+				mes "[Adventurer Receptionist]";
+				mes "Wow, you already have them? Then I will set up a meeting for you.";
+				next;
+				delitem 6304,3; // Proof of Sapha's Honor
+				set scaraba_enter,12;
+				changequest 7197,7198;
+				mes "[Adventurer Receptionist]";
+				mes "Take the elevator to the Top Secret area. The guards know you have permission to enter now.";
+				close;
+			}
+			else {
+				mes "[Adventurer Receptionist]";
+				mes "You want to meet Daesinah Hart?";
+				next;
+				mes "[Adventurer Receptionist]";
+				mes "Ok, please bring me ^0000FF3 Proof of Sapha's Honor^000000 and I'll let you meet her.";
+				close;
+			}
+		}
+		else {
+			mes "[Adventurer Receptionist]";
+			mes "^0000FFProof of Sapha's Honor^000000 are popular with the cat people outside of El Dicastes, try giving them a few.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+// Scaraba Hole Entrance Quest
+mid_campin,168,170,3	script	Inspector Doha	59,{
+	if (scaraba_enter < 1) {
+		mes "[Inspector Doha]";
+		mes "Hmm, maybe this is the guy i've been looking for...";
+		next;
+		mes "[Inspector Doha]";
+		mes "I'm too busy to talk right now, come back later.";
+		close;
+	}
+	else if (scaraba_enter == 1) {
+		mes "[Inspector Doha]";
+		mes "There you are, I've been waiting.";
+		next;
+		mes "[Inspector Doha]";
+		mes "What did that Sapha talk to you about?";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "They trust us and want to show me the way to their headquarters.";
+		next;
+		mes "[Inspector Doha]";
+		mes "Perfect! This means I have a job for you, but keep it a secret ok?";
+		next;
+		mes "[Inspector Doha]";
+		mes "I have some information about the thief who stole the ^0000FFExpedition reports^000000 that you were asked to deliver for Commander Agip.";
+		next;
+		mes "[Inspector Doha]";
+		mes "My sources tell me the suspect was spotted in a ^0000FFTunnel between Manuk and El Dicastes^000000.";
+		next;
+		set scaraba_enter,2;
+		changequest 7185,7186;
+		mes "[Inspector Doha]";
+		mes "If you see anything suspicious going on in that tunnel report back to me. I'll make sure we catch anyone who was involved with the incident.";
+		close;
+	}
+	else if ((scaraba_enter > 1) && (scaraba_enter < 17)) {
+		mes "[Inspector Doha]";
+		mes "My sources tell me the suspect was spotted in a ^0000FFTunnel between Manuk and El Dicastes^000000.";
+		next;
+		mes "[Inspector Doha]";
+		mes "If you see anything suspicious going on in that tunnel report back to me. I'll make sure we catch anyone who was involved with the incident.";
+		close;
+	}
+	else if (scaraba_enter == 17) {
+		mes "[Inspector Doha]";
+		mes "Welcome back, so did you find out who stole the expedition reports?";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "I have some leads, but the suspect seems to be hiding in a place I can't get into easily.";
+		next;
+		mes "[Inspector Doha]";
+		mes "Hmm, a tricky one. Any other news to report? I'm sure you ran into the other guy I sent before you, did he help you at all?";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "Well... I heard he went into the Scaraba Hole and was killed by the monsters there.";
+		next;
+		mes "[Inspector Doha]";
+		mes "What? Wait a sec...";
+		next;
+		mes "[Inspector Doha]";
+		mes "Yes, I understand now. The thief must be located in there, you said yourself that he was hiding in a place that isn't easy to get into.";
+		next;
+		mes "[Inspector Doha]";
+		mes "Damn, now I'll need to hire an army just to find him.";
+		next;
+		mes "[Inspector Doha]";
+		mes "I'll handle things from here, let me know if you find out any new info. Please take this manteau as a gift for your hard work too.";
+		next;
+		getitem 2553,1; // Dragon Manteau
+		set scaraba_enter,18;
+		completequest 7202;
+		completequest 7203;
+		mes "[Inspector Doha]";
+		mes "I will let you know if I need your help again.";
+		close;
+	}
+	else if (scaraba_enter > 17) {
+		mes "[Inspector Doha]";
+		mes "So have you been in the Scaraba Hole yet?";
+		next;
+		mes "[Inspector Doha]";
+		mes "Report to me right away if you find anything suspicious.";
+		close;
+	}
+}
+
+dic_in01,245,119,5	script	Shire	884,{
+	cutin "ep13_shy",2;
+	mes "[Shire]";
+	mes "Hello, what can I do for you?";
+	next;
+	switch(select("Order a Drink.:Ask About the News.")) {
+	case 1:
+		mes "[Shire]";
+		mes "Ok, which one?";
+		switch(select("Tropical Sograt:Vermilion on the Beach:Do you offer any free drinks?")) {
+		case 1:
+			if (checkweight(908,200) == 0) {
+				mes "[Shire]";
+				mes "Hey, why did you bring";
+				mes "so much stuff with you?";
+				mes "I can't give you anything";
+				mes "to drink if you don't have";
+				mes "the room to carry it around.";
+				mes "Clear out your inventory!";
+				cutin "ep13_shy",255;
+				close;
+			}
+			else {
+				if (BaseClass == Job_Assassin) {
+					if (Zeny < 800) {
+						mes "[Shire]";
+						mes "You know...";
+						mes "I was going to charge you";
+						mes "800 zeny for this drink, but";
+						mes "it looks like you can't afford";
+						mes "it right now. Come back when";
+						mes "you have the zeny, alright?";
+					}
+					else {
+						mes "[Shire]";
+						mes "Most bartenders would";
+						mes "usually charge 1,000 zeny";
+						mes "for this stuff, but I'll only";
+						mes "ask you for 800. Enjoy it,";
+						mes "my friend, and drink it as";
+						mes "deeply as you would life.";
+						set zeny,zeny-800;
+						getitem 12112,1; //Tropical_Sograt
+					}
+					cutin "ep13_shy",255;
+					close;
+				}
+				else {
+					if (Zeny < 1000) {
+						mes "[Shire]";
+						mes "Hey, you don't have";
+						mes "the zeny for this drink.";
+						mes "Make sure you come back";
+						mes "with 1,000 zeny if you want";
+						mes "me to fix you something, okay?";
+						cutin "ep13_shy",255;
+						close;
+					}
+					else {
+						mes "[Shire]";
+						mes "For Assassins, I charge";
+						mes "800 zeny, but for you, I'm";
+						mes "gonna charge 1,000. No";
+						mes "hard feelings, but you're";
+						mes "already lucky to be here.";
+						mes "Hey, enjoy your drink~";
+						set zeny,zeny-1000;
+						getitem 12112,1; //Tropical_Sograt
+						cutin "ep13_shy",255;
+						close;
+					}
+				}
+			}
+		case 2:
+			if (checkweight(908,200) == 0) {
+				mes "[Shire]";
+				mes "Hey, why did you bring";
+				mes "so much stuff with you?";
+				mes "I can't give you anything";
+				mes "to drink if you don't have";
+				mes "the room to carry it around.";
+				mes "Clear out your inventory!";
+				cutin "ep13_shy",255;
+				close;
+			}
+			else {
+				if (BaseClass == Job_Assassin) {
+					if (Zeny < 800) {
+						mes "[Shire]";
+						mes "You know...";
+						mes "I was going to charge you";
+						mes "800 zeny for this drink, but";
+						mes "it looks like you can't afford";
+						mes "it right now. Come back when";
+						mes "you have the zeny, alright?";
+					}
+					else {
+						mes "[Shire]";
+						mes "Most bartenders would";
+						mes "usually charge 1,000 zeny";
+						mes "for this stuff, but I'll only";
+						mes "ask you for 800. Enjoy it,";
+						mes "my friend, and drink it as";
+						mes "deeply as you would life.";
+						set zeny,zeny-800;
+						getitem 12113,1; //Vermilion_The_Beach
+					}
+					cutin "ep13_shy",255;
+					close;
+				}
+				else {
+					if (Zeny < 1000) {
+						mes "[Shire]";
+						mes "Hey, you don't have";
+						mes "the zeny for this drink.";
+						mes "Make sure you come back";
+						mes "with 1,000 zeny if you want";
+						mes "me to fix you something, okay?";
+						cutin "ep13_shy",255;
+						close;
+					}
+					else {
+						mes "[Shire]";
+						mes "For Assassins, I charge";
+						mes "800 zeny, but for you, I'm";
+						mes "gonna charge 1,000. No";
+						mes "hard feelings, but you're";
+						mes "already lucky to be here.";
+						mes "Hey, enjoy your drink~";
+						set zeny,zeny-1000;
+						getitem 12113,1; //Vermilion_The_Beach
+						cutin "ep13_shy",255;
+						close;
+					}
+				}
+			}
+		case 3:
+			mes "[Shire]";
+			mes "What are you...?";
+			mes "I just told you";
+			mes "I only serve two";
+			mes "drinks. If you want";
+			mes "water, you oughtta";
+			mes "go someplace else.";
+			cutin "ep13_shy",255;
+			close;
+		}
+	case 2:
+		if (scaraba_enter < 2) {
+			mes "[Shire]";
+			mes "I haven't heard anything, try somewhere else.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if (scaraba_enter == 2) {
+			mes "[Shire]";
+			mes "Your expedition reports were stolen and the suspect is somewhere here in El Dicastes?";
+			next;
+			mes "[Shire]";
+			mes "There is a rumor going around about a man with animal ears who is known to steal from people.";
+			next;
+			set scaraba_enter,3;
+			changequest 7186,7187;
+			mes "[Shire]";
+			mes "I'd suggest asking around in town, I'm sure someone has seen something.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if ((scaraba_enter > 2) && (scaraba_enter < 6)) {
+			mes "[Shire]";
+			mes "I'd suggest asking around in town, I'm sure someone has seen something.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if (scaraba_enter == 6) {
+			mes "[Shire]";
+			mes "So you found some information? Me too.";
+			next;
+			mes "[Shire]";
+			mes "A cat named ^0000FFBikeyi^000000 was just here and I heard him talking about Daesinah Hart's assistant.";
+			next;
+			mes "[Shire]";
+			mes "But he is an alcoholic, so when you find him make sure to tell him you have ^FF0000'Shire's special cocktail delivery.'^000000 or he won't talk to you.";
+			next;
+			set scaraba_enter,7;
+			completequest 7188;
+			completequest 7189;
+			completequest 7190;
+			changequest 7187,7191;
+			mes "[Shire]";
+			mes "I think he is heading south of here to El Dicastes Field. There is a small camp where many of the cats hang out.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if (scaraba_enter == 7) {
+			mes "[Shire]";
+			mes "Talk to ^0000FFBikeyi^000000. I think he is heading south of here to El Dicastes Field. There is a small camp where many of the cats hang out.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if (scaraba_enter == 8) {
+			mes "[Shire]";
+			mes "Hmm, so he spotted them in a dangerious area. It seems you have no choice but to go there.";
+			next;
+			set scaraba_enter,9;
+			changequest 7192,7193;
+			mes "[Shire]";
+			mes "The dimentional crack is south of where you met Bikeyi, bring back some evidence if you are going there.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if (scaraba_enter == 9) {
+			mes "[Shire]";
+			mes "The dimentional crack is south of where you met Bikeyi, bring back some evidence if you are going there.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if (scaraba_enter == 10) {
+			mes "[Shire]";
+			mes "What is this?";
+			next;
+			mes "[Shire]";
+			mes "... Blood, but its been hardened. It must have been there for a while.";
+			next;
+			mes "[Shire]";
+			mes "There is only one person in El Dicastes who can harden blood like this, Daesinah Hart's assistant.";
+			next;
+			set scaraba_enter,11;
+			changequest 7194,7197;
+			mes "[Shire]";
+			mes "Nobody knows the assistant's name, so you're first step will be to find a way to meet ^0000FFDaesinah Hart^000000.";
+			cutin "ep13_shy",255;
+			close;
+		}
+		else if (scaraba_enter > 10) {
+			mes "[Shire]";
+			mes "Find a way to meet ^0000FFDaesinah Hart^000000, then you'll find the assistant.";
+			cutin "ep13_shy",255;
+			close;
+		}
+	}
+}
+
+dicastes01,207,210,4	script	Walking Knit	449,{
+	if (isequipped(2782) == 1) {
+		if (scaraba_enter < 3) {
+			mes "[Walking Knit]";
+			mes "El Dicastes is a peaceful place, don't you think?";
+			close;
+		}
+		else if (scaraba_enter == 3) {
+			mes "[Walking Knit]";
+			mes "Man with animal's ears? Do you mean the man with cat ears?";
+			next;
+			set scaraba_enter,4;
+			setquest 7188;
+			mes "[Walking Knit]";
+			mes "I don't understand why you are looking for him, but he is usually with ^0000FFDaesinah Hart^000000. She is so beautiful, so precious to me.";
+			close;
+		}
+		else if (scaraba_enter > 3) {
+			mes "[Walking Knit]";
+			mes "I don't understand why you are looking for him, but he is usually with ^0000FFDaesinah Hart^000000. She is so beautiful, so precious to me.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dicastes01,112,248,6	script	Idle Piom	455,{
+	if (isequipped(2782) == 1) {
+		if (scaraba_enter < 4) {
+			mes "[Idle Piom]";
+			mes "I'm trying to sleep, zZzZzZz~";
+			close;
+		}
+		else if (scaraba_enter == 4) {
+			mes "[Idle Piom]";
+			mes "A human with cat ears? Thats news to me.";
+			next;
+			set scaraba_enter,5;
+			setquest 7189;
+			mes "[Idle Piom]";
+			mes "If you are looking for something strange it is best to meet with ^0000FFDaesinah Hart^000000. She is a great woman, all the Sapha love her!";
+			close;
+		}
+		else if (scaraba_enter > 4) {
+			mes "[Idle Piom]";
+			mes "If you are looking for something strange it is best to meet with ^0000FFDaesinah Hart^000000. She is a great woman, all the Sapha love her!";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dicastes01,249,140,4	script	Training Galteun	450,{
+	if (isequipped(2782) == 1) {
+		if (scaraba_enter < 5) {
+			mes "[Training Galteun]";
+			mes "Training is so boring, I want to do something fun.";
+			close;
+		}
+		else if (scaraba_enter == 5) {
+			mes "[Training Galteun]";
+			mes "Cat ears? On a human?  You must mean the boy who works with ^0000FFDaesinah Hart^000000.";
+			next;
+			set scaraba_enter,6;
+			setquest 7190;
+			mes "[Training Galteun]";
+			mes "You can find them in the crystal building north of here. I know they are hiding something with great force in there!";
+			close;
+		}
+		else if (scaraba_enter > 5) {
+			mes "[Training Galteun]";
+			mes "You can find them in the crystal building north of here. I know they are hiding something with great force in there!";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_fild01,231,174,4	script	Bikeyi	496,{
+	if (scaraba_enter < 7) {
+		mes "[Bikeyi]";
+		mes "-Hiccup-";
+		next;
+		mes "[Bikeyi]";
+		mes "Leave me alone!";
+		close;
+	}
+	else if (scaraba_enter == 7) {
+		if (countitem(6304) >= 3) {
+			mes "[Bikeyi]";
+			mes "-Hiccup-";
+			next;
+			mes "[Bikeyi]";
+			mes "What do you want?";
+			next;
+			mes "[Bikeyi]";
+			mes "Oh, you brought me something? What is it?";
+			next;
+			input .@line$;
+			if (.@line$ == "Shire's special cocktail delivery.") {
+				mes "[Bikeyi]";
+				mes "My favorite!";
+				next;
+				mes "-He drinks it all at once-";
+				next;
+				mes "[Bikeyi]";
+				mes "Damn thats good!";
+				next;
+				mes "[Bikeyi]";
+				mes "So you're looking for Daesinah Hart and her assistant?";
+				next;
+				mes "[Bikeyi]";
+				mes "I saw them near the dimentional crack a few days ago, but that place is infested with spiders.";
+				next;
+				delitem 6304,3; // Proof of Sapha's Honor
+				set scaraba_enter,8;
+				changequest 7191,7192;
+				mes "[Bikeyi]";
+				mes "Don't go there unless you're really strong or have someone to help you.";
+				close;
+			}
+			else {
+				mes "[Bikeyi]";
+				mes "I don't want that!";
+				close;
+			}
+		}
+		else {
+			mes "[Bikeyi]";
+			mes "-Hiccup-";
+			next;
+			mes "[Bikeyi]";
+			mes "Oh, you brought me something?";
+			next;
+			mes "[Bikeyi]";
+			mes "I can't trust you, show me ^0000FF3 Proof of Sapha's Honor^000000 first.";
+			close;
+		}
+	}
+	else if (scaraba_enter > 7) {
+		mes "[Bikeyi]";
+		mes "-Hiccup-";
+		next;
+		mes "[Bikeyi]";
+		mes "I love alcohol, but the other cats here like ^0000FFProof of Sapha's Honor^000000.";
+		next;
+		mes "[Bikeyi]";
+		mes "Try giving them a few, I'm sure they have some special gears to offer you.";
+		close;
+	}
+}
+
+dic_fild02,207,114,4	script	Rubble#01	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#01";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#01";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#01";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#01";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,197,80,4	script	Rubble#02	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#02";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#02";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#02";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#02";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,224,74,4	script	Rubble#03	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#03";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#03";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#03";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#03";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,205,56,4	script	Rubble#04	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#04";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#04";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#04";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#04";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,193,63,4	script	Rubble#05	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#05";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#05";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#05";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#05";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,198,34,4	script	Rubble#06	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#06";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#06";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#06";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#06";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,233,41,4	script	Rubble#07	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#07";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#07";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#07";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#07";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,260,50,4	script	Rubble#08	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#08";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#08";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#08";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#08";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,217,45,4	script	Rubble#09	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#09";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#09";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#09";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#09";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,216,92,4	script	Rubble#10	844,{
+	if (scaraba_enter == 9) {
+		if (countitem(6306) < 1) {
+			getitem 6306,1; // Hard Bloodstain
+			set scaraba_enter,10;
+			changequest 7193,7194;
+			mes "["+ strcharinfo(0) +"]";
+			mes "Is this blood?  I should show it to Shire.";
+			close2;
+			initnpctimer;
+			disablenpc "Rubble#10";
+			end;
+		}
+		else {
+			mes "["+ strcharinfo(0) +"]";
+			mes "This is all the evidence I need.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 14) {
+		if (countitem(6306) < 11) {
+			getitem 6306,1; // Hard Bloodstain
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Rubble#10";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6306) < 10) {
+				getitem 6306,1; // Hard Bloodstain
+				initnpctimer;
+				disablenpc "Rubble#10";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a pile of rubble-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Rubble#10";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,271,49,4	script	Crack#01	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#01";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#01";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#01";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,204,73,4	script	Crack#02	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#02";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#02";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#02";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,213,68,4	script	Crack#03	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#03";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#03";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#03";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,221,64,4	script	Crack#04	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#04";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#04";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#04";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,230,56,4	script	Crack#05	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#05";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#05";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#05";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,225,51,4	script	Crack#06	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#06";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#06";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#06";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,223,34,4	script	Crack#07	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#07";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#07";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#07";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,242,38,4	script	Crack#08	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#08";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#08";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#08";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,204,81,4	script	Crack#09	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#09";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#09";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#09";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,176,65,4	script	Crack#10	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6305) < 11) {
+			getitem 6305,1; // Frozen_Piece_Of_Skin
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Crack#10";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6305) < 10) {
+				getitem 6305,1; // Frozen_Piece_Of_Skin
+				initnpctimer;
+				disablenpc "Crack#10";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a giant crack-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Crack#10";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,168,44,4	script	Heap#01	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#01";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#01";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#01";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,202,91,4	script	Heap#02	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#02";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#02";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#02";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,239,79,4	script	Heap#03	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#03";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#03";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#03";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,209,35,4	script	Heap#04	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#04";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#04";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#04";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,236,29,4	script	Heap#05	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#05";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#05";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#05";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,270,55,4	script	Heap#06	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#06";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#06";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#06";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,250,43,4	script	Heap#07	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#07";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#07";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#07";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,194,46,4	script	Heap#08	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#08";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#08";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#08";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,215,86,4	script	Heap#09	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#09";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#09";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#09";
+	stopnpctimer;
+	end;
+}
+
+dic_fild02,234,65,4	script	Heap#10	844,{
+	if (scaraba_enter == 14) {
+		if (countitem(6307) < 11) {
+			getitem 6307,1; // Cursed_Magical_Stone
+			if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+				setquest 7202;
+			}
+			initnpctimer;
+			disablenpc "Heap#10";
+			end;
+		}
+		else {
+			mes "You have enough evidence for today.";
+			close;
+		}
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if (countitem(6307) < 10) {
+				getitem 6307,1; // Cursed_Magical_Stone
+				initnpctimer;
+				disablenpc "Heap#10";
+				end;
+			}
+			else {
+				mes "You have enough evidence for today.";
+				close;
+			}
+		}
+		else {
+			mes "Time is up, head back to ^0000FFCheshire^000000.";
+			close;
+		}
+	}
+	else {
+		mes "-It's a heap of stones-";
+		close;
+	}
+
+OnTimer120000:
+	enablenpc "Heap#10";
+	stopnpctimer;
+	end;
+}
+
+dic_in01,263,193,3	script	Giant Guard	450,{
+	if (isequipped(2782) == 1) {
+		if (scaraba_enter > 11) {
+			mes "[Giant Guard]";
+			mes "You are allowed to enter and meet Daesinah Hart.";
+			next;
+			mes "[Giant Guard]";
+			mes "Would you like to enter now?";
+			next;
+			switch(select("Yes.:No thanks.")) {
+			case 1:
+				mes "[Giant Guard]";
+				mes "Follow me.";
+				close2;
+				warp "dic_in01",300,251;
+				end;
+			case 2:
+				mes "[Giant Guard]";
+				mes "Alright.";
+				close;
+			}
+		}
+		else {
+			mes "[Giant Guard]";
+			mes "This is a restricted area, please leave now.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,300,280,3	script	Daesinah Hart	493,{
+	if (scaraba_enter < 12) {
+		mes "[Daesinah Hart]";
+		mes "...";
+		close;
+	}
+	else if (scaraba_enter == 12) {
+		cutin "ep13_ahat_m",2;
+		mes "[Daesinah Hart]";
+		mes "Hello, I'm Daesinah Hart. Who might you be?";
+		next;
+		set scaraba_enter,13;
+		mes "[Daesinah Hart]";
+		mes "My assistant is right there, his name is ^0000FFCheshire^000000.";
+		cutin "ep13_ahat_m",255;
+		close;
+	}
+	else if ((scaraba_enter > 12) && (scaraba_enter < 15)) {
+		mes "[Daesinah Hart]";
+		mes "So you know the truth about my assistant, please don't tell anyone.";
+		close;
+	}
+	else if (scaraba_enter == 15) {
+		cutin "ep13_ahat_m",2;
+		mes "[Daesinah Hart]";
+		mes "Thank you for helping my assistant, he is a good person and I don't want to see him killed for not obeying orders from the people at Midgard Camp.";
+		next;
+		mes "[Daesinah Hart]";
+		mes "It's not much, but take this as a token of my appreciation.";
+		next;
+		getitem 2790,1; // Bradium Brooch
+		set scaraba_enter,16;
+		mes "[Daesinah Hart]";
+		mes "Talk to ^0000FFHess Lanta^000000 on your way out, she has some news for you.";
+		cutin "ep13_ahat_m",255;
+		close;
+	}
+	else if (scaraba_enter > 15) {
+		mes "[Daesinah Hart]";
+		mes "Hello again, did you come to see Cheshire?";
+		close;
+	}
+}
+
+dic_in01,294,276,5	script	Cheshire	498,{
+	if (scaraba_enter < 13) {
+		mes "[Cheshire]";
+		mes "...";
+		close;
+	}
+	else if (scaraba_enter == 13) {
+		cutin "ep13_cheshire_h",2;
+		mes "[Cheshire]";
+		mes "What do you want?";
+		next;
+		mes "[Cheshire]";
+		mes "Oh... So you found the hard bloodstain...";
+		next;
+		mes "[Cheshire]";
+		mes "I guess it's time for me to explain.";
+		next;
+		mes "[Cheshire]";
+		mes "Yes, I'm the one who stole your expedition reports. I had no choice.";
+		next;
+		mes "[Cheshire]";
+		mes "Those reports had information about the location of El Dicastes in them, Commander Agip didn't tell you that part I bet.";
+		next;
+		mes "[Cheshire]";
+		mes "We don't need tourists here, the Sapha are peaceful people. It's my job to help Daesinah Hart protect them.";
+		next;
+		mes "[Cheshire]";
+		mes "That bloodstain you found is from a tourist who came here to kidnap one of the Saphas and bring him back to Rune Midgard for profit.";
+		next;
+		mes "[Cheshire]";
+		mes "He was able to kidnap one, but I caught him and hunted him down before he could escape through the dimentional crack.";
+		next;
+		mes "[Cheshire]";
+		mes "Inspector Doha must have sent you here to find out who stole the reports, am I right?";
+		next;
+		cutin "ep13_cheshire_h",255;
+		mes "["+ strcharinfo(0) +"]";
+		mes "Yes, how did you know?";
+		next;
+		cutin "ep13_cheshire_h",2;
+		mes "[Cheshire]";
+		mes "I thought so, don't worry about it.";
+		next;
+		mes "[Cheshire]";
+		mes "Doha is the one who sent the so-called tourist to kidnap the Sapha, he will probably send more people to hunt me down and kidnap a Sapha soon, but I have a plan.";
+		next;
+		mes "[Cheshire]";
+		mes "We need to remove all the evidence from the other tourist's body near the dimentional crack, then I'll hide it here where he will never find it.";
+		next;
+		mes "[Cheshire]";
+		mes "If he asks questions about the tourist he sent, just tell him the people in El Dicastes said they saw him enter the deepest level of the ^0000FFScaraba Hole^000000.";
+		next;
+		mes "[Cheshire]";
+		mes "The deepest level is even more dangerious than the spider infested place near the dimentional crack, I doubt he will send anyone there.";
+		next;
+		mes "[Cheshire]";
+		mes "How does that sound? Will you trust me and help me out?";
+		next;
+		cutin "ep13_cheshire_h",255;
+		mes "["+ strcharinfo(0) +"]";
+		mes "Of course, your story is believable to me.";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "What do you think I should do?";
+		next;
+		cutin "ep13_cheshire_h",2;
+		mes "[Cheshire]";
+		mes "I knew I could count on you!";
+		next;
+		mes "[Cheshire]";
+		mes "Lets get started, first I want you to collect ^0000FF10 Hard Bloodstains, 10 Frozen Piece Of Skins, and 10 Cursed Magical Stones^000000 near the dimentional crack.";
+		next;
+		set scaraba_enter,14;
+		changequest 7198,7199;
+		mes "[Cheshire]";
+		mes "When you are done just bring them to me.";
+		cutin "ep13_cheshire_h",255;
+		close;
+	}
+	else if (scaraba_enter == 14) {
+		if ((countitem(6305) >= 11) && (countitem(6306) >= 11) && (countitem(6307) >= 11)) {
+			cutin "ep13_cheshire_h",2;
+			mes "[Cheshire]";
+			mes "Nice work, I'll keep these well hidden.";
+			next;
+			delitem 6305,10; // Frozen Piece Of Skin
+			delitem 6306,10; // Hard Bloodstain
+			delitem 6307,10; // Cursed Magical Stone
+			set scaraba_enter,15;
+			changequest 7199,7200;
+			mes "[Cheshire]";
+			mes "Please talk to Daesinah Hart next.";
+			cutin "ep13_cheshire_h",255;
+			close;
+		}
+		else {
+			mes "[Cheshire]";
+			mes "Please collect ^0000FF10 Hard Bloodstains, 10 Frozen Piece Of Skins, and 10 Cursed Magical Stones^000000 near the dimentional crack.";
+			close;
+		}
+	}
+	else if ((scaraba_enter > 14) && (scaraba_enter < 19)) {
+		mes "[Cheshire]";
+		mes "Don't worry about me, I won't be captured so easily.";
+		close;
+	}
+	else if (scaraba_enter == 19) {
+		if ((checkquest(7200,PLAYTIME) == 0) || (checkquest(7200,PLAYTIME) == 1)) {
+			if ((countitem(6305) >= 10) && (countitem(6306) >= 10) && (countitem(6307) >= 10)) {
+				cutin "ep13_cheshire_h",2;
+				mes "[Cheshire]";
+				mes "Thanks!";
+				next;
+				getexp 70000,30000;
+				delitem 6305,10; // Frozen Piece Of Skin
+				delitem 6306,10; // Hard Bloodstain
+				delitem 6307,10; // Cursed Magical Stone
+				getitem 6304,1; // Proof of Sapha's Honor
+				set scaraba_enter,20;
+				mes "[Cheshire]";
+				mes "Thats enough for today, wait until tomorrow to bring me more.";
+				cutin "ep13_cheshire_h",255;
+				close;
+			}
+			else {
+				mes "[Cheshire]";
+				mes "Remember, its ^0000FF10 Hard Bloodstains, 10 Frozen Piece Of Skins, and 10 Cursed Magical Stones^000000 near the dimentional crack.";
+				close;
+			}
+		}
+		else if (checkquest(7200,PLAYTIME) == 2) {
+			cutin "ep13_cheshire_h",2;
+			mes "[Cheshire]";
+			mes "It's time to collect more evidence.";
+			next;
+			mes "[Cheshire]";
+			mes "Remember, its ^0000FF10 Hard Bloodstains, 10 Frozen Piece Of Skins, and 10 Cursed Magical Stones^000000 near the dimentional crack.";
+			next;
+			erasequest 7200;
+			setquest 7200;
+			mes "[Cheshire]";
+			mes "Bring them here as soon as possible, I'll be waiting.";
+			cutin "ep13_cheshire_h",255;
+			close;
+		}
+	}
+	else if (scaraba_enter == 20) {
+		if (checkquest(7200,PLAYTIME) == 2) {
+			cutin "ep13_cheshire_h",2;
+			mes "[Cheshire]";
+			mes "It's time to collect more evidence.";
+			next;
+			mes "[Cheshire]";
+			mes "Remember, its ^0000FF10 Hard Bloodstains, 10 Frozen Piece Of Skins, and 10 Cursed Magical Stones^000000 near the dimentional crack.";
+			next;
+			set scaraba_enter,19;
+			erasequest 7200;
+			setquest 7200;
+			mes "[Cheshire]";
+			mes "Bring them here as soon as possible, I'll be waiting.";
+			cutin "ep13_cheshire_h",255;
+			close;
+		}
+		else {
+			mes "[Cheshire]";
+			mes "Thats enough for today, wait until tomorrow to bring me more.";
+			close;
+		}
+	}
+}
+
+dic_in01,137,188,4	script	#hesslanta	-1,3,3,{
+	end;
+
+OnTouch:
+	if (scaraba_enter == 16) {
+		mes "[Hess Lanta]";
+		mes "Come here for a second~";
+		next;
+		mes "[Hess Lanta]";
+		mes "I need to speak with you.";
+		close2;
+		warp "dic_in01",153,187;
+		end;
+	}
+}
+
+dic_in01,157,187,3	script	Hess Lanta	451,{
+	if (isequipped(2782) == 1) {
+		if (scaraba_enter < 16) {
+			mes "[Hess Lanta]";
+			mes "...";
+			close;
+		}
+		else if (scaraba_enter == 16) {
+			cutin "ep13_heslanta",2;
+			mes "[Hess Lanta]";
+			mes "So you finally found what you were looking for.";
+			next;
+			mes "[Hess Lanta]";
+			mes "But Inspector Doha hasn't, be careful when you return to him.";
+			next;
+			mes "[Hess Lanta]";
+			mes "I know Cheshire told you a good lie to cover up the incident with the first tourist he sent, but there is one problem.";
+			next;
+			mes "[Hess Lanta]";
+			mes "Nobody is allowed into the deepest level of the ^0000FFScaraba Hole^000000.";
+			next;
+			mes "[Hess Lanta]";
+			mes "If Inspector Doha finds out, he will know we lied to him.";
+			next;
+			mes "[Hess Lanta]";
+			mes "So here is what you will need to do to make our story seem true, tell the guards in the tunnel that you are looking for a body inside the Scaraba Hole.";
+			next;
+			mes "[Hess Lanta]";
+			mes "If Inspector Doha sends someone to interrogate the guards, they will remember what you said and think the story is true. It is flawless.";
+			next;
+			set scaraba_enter,17;
+			setquest 7203;
+			mes "[Hess Lanta]";
+			mes "I will send a messege to the gaurds, please visit them soon.";
+			cutin "ep13_heslanta",255;
+			close;
+		}
+		else if (scaraba_enter > 16) {
+			mes "[Hess Lanta]";
+			mes "Remember, Scarab Hole is a dangerious place, be very careful in there.";
+			close2;
+			warp "dic_in01",143,187;
+			end;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,286,104,6	script	Dungeon Defender#01::scarabaguard	492,{
+	if (isequipped(2782) == 1) {
+		if (scaraba_enter > 16) {
+			mes "[Dungeon Defender]";
+			mes "Hess Lanta told me to allow you inside the Scaraba Hole.";
+			next;
+			mes "[Dungeon Defender]";
+			mes "Are you prepared to enter now?";
+			next;
+			switch(select("Yes.:No thanks.")) {
+			case 1:
+				mes "[Dungeon Defender]";
+				mes "Follow me.";
+				close2;
+				warp "dic_dun02",102,144;
+				end;
+			case 2:
+				mes "[Dungeon Defender]";
+				mes "Be careful.";
+				close;
+			}
+		}
+		else {
+			mes "[Dungeon Defender]";
+			mes "It is too dangerous for you to enter right now. Please talk to Hess Lanta first.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,294,105,4	duplicate(scarabaguard)	Dungeon Defender#02	450
+
+mid_camp,215,247,4	script	#popup	-1,2,2,{
+	end;
+
+OnTouch:
+	if (scaraba_enter == 18) {
+		cutin "ep13_loki01",2;
+		mes "[A Lower Voice]";
+		mes "Psst! Over here~";
+		next;
+		mes "[A Lower Voice]";
+		mes "^0000FFCheshire^000000 said you should visit him again tomorrow.";
+		next;
+		set scaraba_enter,19;
+		mes "[A Lower Voice]";
+		mes "Don't ask me why, I'm just a messenger.";
+		cutin "ep13_loki01",255;
+		close;
+	}
+}
+
+dic_in01,254,119,4	script	Storage Lockers	844,{
+	if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+		mes "I'm sorry, but you";
+		mes "need the Novice's";
+		mes "Basic Skill Level 6 to";
+		mes "use the Storage Service.";
+		close;
+	}
+	if(Zeny < 500){
+		mes "I'm sorry, but you don't";
+		mes "have enough Zeny to use";
+		mes "the Storage Service. Our";
+		mes "Storage access fee is 500 Zeny.";
+		close;
+	}
+	mes "Would you like to use the Storage Service for 500 Zeny?";
+	next;
+	switch(select("Yes.:No thanks.")) {
+	case 1:
+		set Zeny, Zeny - 500;
+		mes "Let me open your personal";
+		mes "storage for you right away.";
+		mes "Have a good day~";
+		openstorage;
+		close;
+	case 2:
+		mes "Have a good day~";
+		close;
+	}
+}
+
+// Proof of Sapha's Honor Daily Quests
+dicastes01,187,230,6	script	Raponte	453,{
+	if (isequipped(2782) == 1) {
+		if (eldic_enter > 4) {
+			if (saphahonor1 < 1) {
+				if ((BaseLevel >= 97) && (BaseLevel < 103)) {
+					mes "[Raponte]";
+					mes "^E40CAADraco Egg Hunting:^000000";
+					mes "^E40CAAKill 10 Draco Eggs.^000000";
+					next;
+					set saphahonor1,1;
+					setquest 12099;
+					setquest 12159;
+					mes "[Raponte]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 103) && (BaseLevel < 109)) {
+					mes "[Raponte]";
+					mes "^E40CAALuciola Vespa Hunting:^000000";
+					mes "^E40CAAKill 12 Luciola Vespas.^000000";
+					next;
+					set saphahonor1,1;
+					setquest 12100;
+					setquest 12159;
+					mes "[Raponte]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 109) && (BaseLevel < 115)) {
+					mes "[Raponte]";
+					mes "^E40CAADraco Hunting:^000000";
+					mes "^E40CAAKill 5 Dracos.^000000";
+					next;
+					set saphahonor1,1;
+					setquest 12101;
+					setquest 12159;
+					mes "[Raponte]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 115) && (BaseLevel < 118)) {
+					mes "[Raponte]";
+					mes "^E40CAANaga Hunting:^000000";
+					mes "^E40CAAKill 10 Nagas.^000000";
+					next;
+					set saphahonor1,1;
+					setquest 12102;
+					setquest 12159;
+					mes "[Raponte]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 118) && (BaseLevel < 121)) {
+					mes "[Raponte]";
+					mes "^E40CAACornus Hunting:^000000";
+					mes "^E40CAAKill 1 Cornus.^000000";
+					next;
+					set saphahonor1,1;
+					setquest 12103;
+					setquest 12159;
+					mes "[Raponte]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 121) && (BaseLevel < 125)) {
+					mes "[Raponte]";
+					mes "^E40CAACentipede Hunting:^000000";
+					mes "^E40CAAKill 15 Centipedes.^000000";
+					next;
+					set saphahonor1,1;
+					setquest 12104;
+					setquest 12159;
+					mes "[Raponte]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if (BaseLevel >= 125) {
+					mes "[Raponte]";
+					mes "^E40CAABradium Golem Hunting:^000000";
+					mes "^E40CAAKill 10 Bradium Golems.^000000";
+					next;
+					set saphahonor1,1;
+					setquest 12105;
+					setquest 12159;
+					mes "[Raponte]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else {
+					mes "[Raponte]";
+					mes "You are too weak to help me, please become stronger if you want to prove yourself.";
+					close;
+				}
+			}
+			else {
+				mes "[Raponte]";
+				mes "You must wait until tomorrow for another chance to prove yourself.";
+				close;
+			}
+		}
+		else {
+			mes "[Raponte]";
+			mes "If you want my trust, first you must earn the ^0000FFLight of El Dicastes^000000. Don't borrow it from someone else.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,48,263,5	script	Hunting 1 Contact	449,{
+	if (isequipped(2782) == 1) {
+		if (saphahonor1 == 1) {
+			if ((checkquest(12159,PLAYTIME) == 0) || (checkquest(12159,PLAYTIME) == 1)) {
+				if (checkquest(12099,HUNTING) == 2) {
+					mes "[Hunting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12099;
+					mes "[Hunting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12100,HUNTING) == 2) {
+					mes "[Hunting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12100;
+					mes "[Hunting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12101,HUNTING) == 2) {
+					mes "[Hunting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12101;
+					mes "[Hunting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12102,HUNTING) == 2) {
+					mes "[Hunting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12102;
+					mes "[Hunting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12103,HUNTING) == 2) {
+					mes "[Hunting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12103;
+					mes "[Hunting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12104,HUNTING) == 2) {
+					mes "[Hunting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12104;
+					mes "[Hunting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12105,HUNTING) == 2) {
+					mes "[Hunting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12105;
+					mes "[Hunting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else {
+					mes "[Hunting 1 Contact]";
+					mes "Please come again when you complete your quest.";
+					close;
+				}
+			}
+			else if (checkquest(12159,PLAYTIME) == 2) {
+				mes "[Hunting 1 Contact]";
+				mes "I think its time for another mission.";
+				next;
+				if (checkquest(12099,HUNTING) >= 0) {
+					erasequest 12099;
+				}
+				if (checkquest(12100,HUNTING) >= 0) {
+					erasequest 12100;
+				}
+				if (checkquest(12101,HUNTING) >= 0) {
+					erasequest 12101;
+				}
+				if (checkquest(12102,HUNTING) >= 0) {
+					erasequest 12102;
+				}
+				if (checkquest(12103,HUNTING) >= 0) {
+					erasequest 12103;
+				}
+				if (checkquest(12104,HUNTING) >= 0) {
+					erasequest 12104;
+				}
+				if (checkquest(12105,HUNTING) >= 0) {
+					erasequest 12105;
+				}
+				set saphahonor1,0;
+				erasequest 12159;
+				mes "[Hunting 1 Contact]";
+				mes "Talk to ^0000FFRaponte^000000 in the center of town when you are ready.";
+				close;
+			}
+		}
+		else {
+			mes "[Hunting 1 Contact]";
+			mes "Have you talked to ^0000FFRaponte^000000 in the center of town? I will reward you for helping him.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dicastes01,175,217,6	script	Kalripo	453,{
+	if (isequipped(2782) == 1) {
+		if (eldic_enter > 4) {
+			if (saphahonor2 < 1) {
+				if ((BaseLevel >= 100) && (BaseLevel < 109)) {
+					mes "[Kalripo]";
+					mes "^E40CAAPinguicula Hunting:^000000";
+					mes "^E40CAAKill 15 Pinguiculas.^000000";
+					next;
+					set saphahonor2,1;
+					setquest 12106;
+					setquest 12160;
+					mes "[Kalripo]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 109) && (BaseLevel < 112)) {
+					mes "[Kalripo]";
+					mes "^E40CAADark Pinguicula Hunting:^000000";
+					mes "^E40CAAKill 10 Dark Pinguiculas.^000000";
+					next;
+					set saphahonor2,1;
+					setquest 12107;
+					setquest 12160;
+					mes "[Kalripo]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 112) && (BaseLevel < 116)) {
+					mes "[Kalripo]";
+					mes "^E40CAANepenthes Hunting:^000000";
+					mes "^E40CAAKill 12 Nepenthes.^000000";
+					next;
+					set saphahonor2,1;
+					setquest 12108;
+					setquest 12160;
+					mes "[Kalripo]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 116) && (BaseLevel < 119)) {
+					mes "[Kalripo]";
+					mes "^E40CAACentipede Larva Hunting:^000000";
+					mes "^E40CAAKill 14 Centipede Larvas.^000000";
+					next;
+					set saphahonor2,1;
+					setquest 12109;
+					setquest 12160;
+					mes "[Kalripo]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((BaseLevel >= 119) && (BaseLevel < 124)) {
+					mes "[Kalripo]";
+					mes "^E40CAAAqua Elemental Hunting:^000000";
+					mes "^E40CAAKill 7 Aqua Elementals.^000000";
+					next;
+					set saphahonor2,1;
+					setquest 12110;
+					setquest 12160;
+					mes "[Kalripo]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if (BaseLevel >= 124) {
+					mes "[Kalripo]";
+					mes "^E40CAATatacho Hunting:^000000";
+					mes "^E40CAAKill 10 Tatachos.^000000";
+					next;
+					set saphahonor2,1;
+					setquest 12111;
+					setquest 12160;
+					mes "[Kalripo]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else {
+					mes "[Kalripo]";
+					mes "You are too weak to help me, please become stronger if you want to prove yourself.";
+					close;
+				}
+			}
+			else {
+				mes "[Kalripo]";
+				mes "You must wait until tomorrow for another chance to prove yourself.";
+				close;
+			}
+		}
+		else {
+			mes "[Kalripo]";
+			mes "If you want my trust, first you must earn the ^0000FFLight of El Dicastes^000000. Don't borrow it from someone else.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,51,266,5	script	Hunting 2 Contact	449,{
+	if (isequipped(2782) == 1) {
+		if (saphahonor2 == 1) {
+			if ((checkquest(12160,PLAYTIME) == 0) || (checkquest(12160,PLAYTIME) == 1)) {
+				if (checkquest(12106,HUNTING) == 2) {
+					mes "[Hunting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12106;
+					mes "[Hunting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12107,HUNTING) == 2) {
+					mes "[Hunting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12107;
+					mes "[Hunting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12108,HUNTING) == 2) {
+					mes "[Hunting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12108;
+					mes "[Hunting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12109,HUNTING) == 2) {
+					mes "[Hunting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12109;
+					mes "[Hunting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12110,HUNTING) == 2) {
+					mes "[Hunting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12110;
+					mes "[Hunting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if (checkquest(12111,HUNTING) == 2) {
+					mes "[Hunting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12111;
+					mes "[Hunting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else {
+					mes "[Hunting 2 Contact]";
+					mes "Please come again when you complete your quest.";
+					close;
+				}
+			}
+			else if (checkquest(12160,PLAYTIME) == 2) {
+				mes "[Hunting 2 Contact]";
+				mes "I think its time for another mission.";
+				next;
+				if (checkquest(12106,HUNTING) >= 0) {
+					erasequest 12106;
+				}
+				if (checkquest(12107,HUNTING) >= 0) {
+					erasequest 12107;
+				}
+				if (checkquest(12108,HUNTING) >= 0) {
+					erasequest 12108;
+				}
+				if (checkquest(12109,HUNTING) >= 0) {
+					erasequest 12109;
+				}
+				if (checkquest(12110,HUNTING) >= 0) {
+					erasequest 12110;
+				}
+				if (checkquest(12111,HUNTING) >= 0) {
+					erasequest 12111;
+				}
+				set saphahonor2,0;
+				erasequest 12160;
+				mes "[Hunting 2 Contact]";
+				mes "Talk to ^0000FFKalripo^000000 in the center of town when you are ready.";
+				close;
+			}
+		}
+		else {
+			mes "[Hunting 2 Contact]";
+			mes "Have you talked to ^0000FFKalripo^000000 in the center of town? I will reward you for helping him.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dicastes01,208,230,4	script	Pwira	453,{
+	if (isequipped(2782) == 1) {
+		if ((eldic_enter > 4) && (BaseLevel >= 80)) {
+			if (saphahonor3 < 1) {
+				set .@saphalvl1,rand(0,BaseLevel-75);
+				if (.@saphalvl1 < 5) {
+					mes "[Pwira]";
+					mes "^E40CAAPiece of Egg Shell Collecting:^000000";
+					mes "^E40CAACollect 26 Piece of Egg Shells.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12121;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 5) && (.@saphalvl1 < 10)) {
+					mes "[Pwira]";
+					mes "^E40CAAScale Shell Collecting:^000000";
+					mes "^E40CAACollect 18 Scale Shells.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12125;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 10) && (.@saphalvl1 < 15)) {
+					mes "[Pwira]";
+					mes "^E40CAAShining Scale Collecting:^000000";
+					mes "^E40CAACollect 11 Shining Shells.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12126;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 15) && (.@saphalvl1 < 20)) {
+					mes "[Pwira]";
+					mes "^E40CAADragon Tail Collecting:^000000";
+					mes "^E40CAACollect 6 Dragon Tails.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12120;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 20) && (.@saphalvl1 < 25)) {
+					mes "[Pwira]";
+					mes "^E40CAAFluorescent Liquid Collecting:^000000";
+					mes "^E40CAACollect 26 Fluorescent Liquids.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12123;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 25) && (.@saphalvl1 < 35)) {
+					mes "[Pwira]";
+					mes "^E40CAAWithered Flower Collecting:^000000";
+					mes "^E40CAACollect 6 Withered Flowers.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12117;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 35) && (.@saphalvl1 < 45)) {
+					mes "[Pwira]";
+					mes "^E40CAADragon Mane Collecting:^000000";
+					mes "^E40CAACollect 16 Dragon Manes.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12119;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 45) && (.@saphalvl1 < 55)) {
+					mes "[Pwira]";
+					mes "^E40CAACrystal Tear Collecting:^000000";
+					mes "^E40CAACollect 6 Crystal Tears.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12122;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl1 >= 55) && (.@saphalvl1 < 65)) {
+					mes "[Pwira]";
+					mes "^E40CAASmall Jug Collecting:^000000";
+					mes "^E40CAACollect 1 Small Jug.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12124;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if (.@saphalvl1 >= 65) {
+					mes "[Pwira]";
+					mes "^E40CAAPure Bradium Collecting:^000000";
+					mes "^E40CAACollect 3 Pure Bradiums.^000000";
+					next;
+					set saphahonor3,1;
+					setquest 12118;
+					setquest 12161;
+					mes "[Pwira]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else {
+					mes "[Pwira]";
+					mes "You are too weak to help me, please become stronger if you want to prove yourself.";
+					close;
+				}
+			}
+			else {
+				mes "[Pwira]";
+				mes "You must wait until tomorrow for another chance to prove yourself.";
+				close;
+			}
+		}
+		else {
+			mes "[Pwira]";
+			mes "If you want my trust, first you must earn the ^0000FFLight of El Dicastes^000000. Don't borrow it from someone else.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,51,270,7	script	Collecting 1 Contact	449,{
+	if (isequipped(2782) == 1) {
+		if (saphahonor3 == 1) {
+			if ((checkquest(12161,PLAYTIME) == 0) || (checkquest(12161,PLAYTIME) == 1)) {
+				if ((checkquest(12117) == 0 || checkquest(12117) == 1) && (countitem(6086) >= 6)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6086,6; // Withered_Flower
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12117;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12118) == 0 || checkquest(12118) == 1) && (countitem(6090) >= 3)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6090,3; // Purified_Bradium
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12118;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12119) == 0 || checkquest(12119) == 1) && (countitem(6073) >= 16)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6073,16; // Dragon's_Mane
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12119;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12120) == 0 || checkquest(12120) == 1) && (countitem(1037) >= 6)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 1037,6; // Dragon_Tail
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12120;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12121) == 0 || checkquest(12121) == 1) && (countitem(7032) >= 26)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 7032,26; // Piece_Of_Egg_Shell
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12121;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12122) == 0 || checkquest(12122) == 1) && (countitem(6075) >= 6)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6075,6; // Crystalized_Teardrop
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12122;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12123) == 0 || checkquest(12123) == 1) && (countitem(7326) >= 26)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 7326,26; // Fluorescent_Liquid
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12123;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12124) == 0 || checkquest(12124) == 1) && (countitem(12353) >= 1)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 12353,1; // Tiny_Waterbottle
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12124;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12125) == 0 || checkquest(12125) == 1) && (countitem(936) >= 18)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 936,18; // Scales_Shell
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12125;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12126) == 0 || checkquest(12126) == 1) && (countitem(954) >= 11)) {
+					mes "[Collecting 1 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 954,11; // Shining_Scales
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12126;
+					mes "[Collecting 1 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else {
+					mes "[Collecting 1 Contact]";
+					mes "Please come again when you complete your quest.";
+					close;
+				}
+			}
+			else if (checkquest(12161,PLAYTIME) == 2) {
+				mes "[Collecting 1 Contact]";
+				mes "I think its time for another mission.";
+				next;
+				if (checkquest(12117) >= 0) {
+					erasequest 12117;
+				}
+				if (checkquest(12118) >= 0) {
+					erasequest 12118;
+				}
+				if (checkquest(12119) >= 0) {
+					erasequest 12119;
+				}
+				if (checkquest(12120) >= 0) {
+					erasequest 12120;
+				}
+				if (checkquest(12121) >= 0) {
+					erasequest 12121;
+				}
+				if (checkquest(12122) >= 0) {
+					erasequest 12122;
+				}
+				if (checkquest(12123) >= 0) {
+					erasequest 12123;
+				}
+				if (checkquest(12124) >= 0) {
+					erasequest 12124;
+				}
+				if (checkquest(12125) >= 0) {
+					erasequest 12125;
+				}
+				if (checkquest(12126) >= 0) {
+					erasequest 12126;
+				}
+				set saphahonor3,0;
+				erasequest 12161;
+				mes "[Collecting 1 Contact]";
+				mes "Talk to ^0000FFPwira^000000 in the center of town when you are ready.";
+				close;
+			}
+		}
+		else {
+			mes "[Collecting 1 Contact]";
+			mes "Have you talked to ^0000FFPwira^000000 in the center of town? I will reward you for helping him.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dicastes01,225,211,4	script	Spectra Geese	453,{
+	if (isequipped(2782) == 1) {
+		if ((eldic_enter > 4) && (BaseLevel >= 80)) {
+			if (saphahonor4 < 1) {
+				set .@saphalvl2,rand(0,BaseLevel-75);
+				if (.@saphalvl2 < 5) {
+					mes "[Spectra Geese]";
+					mes "^E40CAABug Leg Collecting:^000000";
+					mes "^E40CAACollect 27 Bug Legs.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12129;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 5) && (.@saphalvl2 < 10)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAABrown Root Collecting:^000000";
+					mes "^E40CAACollect 16 Brown Roots.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12135;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 10) && (.@saphalvl2 < 15)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAAHuge Leaf Collecting:^000000";
+					mes "^E40CAACollect 11 Huge Leafs.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12134;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 15) && (.@saphalvl2 < 20)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAASharp Leaf Collecting:^000000";
+					mes "^E40CAACollect 26 Sharp Leafs.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12133;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 20) && (.@saphalvl2 < 25)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAASolid Shell Collecting:^000000";
+					mes "^E40CAACollect 13 Solid Shells.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12131;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 25) && (.@saphalvl2 < 35)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAAZargon Collecting:^000000";
+					mes "^E40CAACollect 26 Zargons.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12130;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 35) && (.@saphalvl2 < 45)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAAHoney Collecting:^000000";
+					mes "^E40CAACollect 2 Honey.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12136;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 45) && (.@saphalvl2 < 55)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAAStrong Vine Collecting:^000000";
+					mes "^E40CAACollect 16 Strong Vines.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12132;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl2 >= 55) && (.@saphalvl2 < 65)) {
+					mes "[Spectra Geese]";
+					mes "^E40CAAFur Collecting:^000000";
+					mes "^E40CAACollect 21 Furs.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12128;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if (.@saphalvl2 >= 65) {
+					mes "[Spectra Geese]";
+					mes "^E40CAAMystic Horn Collecting:^000000";
+					mes "^E40CAACollect 3 Mystic Horns.^000000";
+					next;
+					set saphahonor4,1;
+					setquest 12127;
+					setquest 12162;
+					mes "[Spectra Geese]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else {
+					mes "[Spectra Geese]";
+					mes "You are too weak to help me, please become stronger if you want to prove yourself.";
+					close;
+				}
+			}
+			else {
+				mes "[Spectra Geese]";
+				mes "You must wait until tomorrow for another chance to prove yourself.";
+				close;
+			}
+		}
+		else {
+			mes "[Spectra Geese]";
+			mes "If you want my trust, first you must earn the ^0000FFLight of El Dicastes^000000. Don't borrow it from someone else.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,48,273,7	script	Collecting 2 Contact	449,{
+	if (isequipped(2782) == 1) {
+		if (saphahonor4 == 1) {
+			if ((checkquest(12162,PLAYTIME) == 0) || (checkquest(12162,PLAYTIME) == 1)) {
+				if ((checkquest(12127) == 0 || checkquest(12127) == 1) && (countitem(6023) >= 5)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6023,5; // Mystic_Horn
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12127;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12128) == 0 || checkquest(12128) == 1) && (countitem(6020) >= 21)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6020,21; // Fur
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12128;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12129) == 0 || checkquest(12129) == 1) && (countitem(1042) >= 27)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 1042,27; // Short_Leg
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12129;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12130) == 0 || checkquest(12130) == 1) && (countitem(912) >= 26)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 912,26; // Zargon
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12130;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12131) == 0 || checkquest(12131) == 1) && (countitem(943) >= 13)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 943,13; // Solid_Shell
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12131;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12132) == 0 || checkquest(12132) == 1) && (countitem(6041) >= 16)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6041,16; // Strong_Vine
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12132;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12133) == 0 || checkquest(12133) == 1) && (countitem(7100) >= 26)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 7100,26; // Sharp_Leaf
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12133;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12134) == 0 || checkquest(12134) == 1) && (countitem(7198) >= 11)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 7198,11; // Great_Leaf
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12134;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12135) == 0 || checkquest(12135) == 1) && (countitem(7188) >= 16)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 7188,16; // Browny_Root
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12135;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12136) == 0 || checkquest(12136) == 1) && (countitem(518) >= 2)) {
+					mes "[Collecting 2 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 518,2; // Honey
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12136;
+					mes "[Collecting 2 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else {
+					mes "[Collecting 2 Contact]";
+					mes "Please come again when you complete your quest.";
+					close;
+				}
+			}
+			else if (checkquest(12162,PLAYTIME) == 2) {
+				mes "[Collecting 2 Contact]";
+				mes "I think its time for another mission.";
+				next;
+				if (checkquest(12127) >= 0) {
+					erasequest 12127;
+				}
+				if (checkquest(12128) >= 0) {
+					erasequest 12128;
+				}
+				if (checkquest(12129) >= 0) {
+					erasequest 12129;
+				}
+				if (checkquest(12130) >= 0) {
+					erasequest 12130;
+				}
+				if (checkquest(12131) >= 0) {
+					erasequest 12131;
+				}
+				if (checkquest(12132) >= 0) {
+					erasequest 12132;
+				}
+				if (checkquest(12133) >= 0) {
+					erasequest 12133;
+				}
+				if (checkquest(12134) >= 0) {
+					erasequest 12134;
+				}
+				if (checkquest(12135) >= 0) {
+					erasequest 12135;
+				}
+				if (checkquest(12136) >= 0) {
+					erasequest 12136;
+				}
+				set saphahonor4,0;
+				erasequest 12162;
+				mes "[Collecting 2 Contact]";
+				mes "Talk to ^0000FFSpectra Geese^000000 in the center of town when you are ready.";
+				close;
+			}
+		}
+		else {
+			mes "[Collecting 2 Contact]";
+			mes "Have you talked to ^0000FFSpectra Geese^000000 in the center of town? I will reward you for helping him.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dicastes01,223,190,2	script	Kalrion	453,{
+	if (isequipped(2782) == 1) {
+		if ((eldic_enter > 4) && (BaseLevel >= 80)) {
+			if (saphahonor5 < 1) {
+				set .@saphalvl3,rand(0,BaseLevel-75);
+				if (.@saphalvl3 < 5) {
+					mes "[Kalrion]";
+					mes "^E40CAABill of Birds Collecting:^000000";
+					mes "^E40CAACollect 50 Bill of Birds.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12143;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 5) && (.@saphalvl3 < 10)) {
+					mes "[Kalrion]";
+					mes "^E40CAAClam Shell Collecting:^000000";
+					mes "^E40CAACollect 50 Clam Shells.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12144;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 10) && (.@saphalvl3 < 15)) {
+					mes "[Kalrion]";
+					mes "^E40CAACrab Shell Collecting:^000000";
+					mes "^E40CAACollect 20 Crab Shells.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12145;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 15) && (.@saphalvl3 < 20)) {
+					mes "[Kalrion]";
+					mes "^E40CAAScell Collecting:^000000";
+					mes "^E40CAACollect 30 Scells.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12146;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 20) && (.@saphalvl3 < 25)) {
+					mes "[Kalrion]";
+					mes "^E40CAAGarlet Collecting:^000000";
+					mes "^E40CAACollect 40 Garlets.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12147;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 25) && (.@saphalvl3 < 30)) {
+					mes "[Kalrion]";
+					mes "^E40CAAPuppet Collecting:^000000";
+					mes "^E40CAACollect 15 Puppets.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12142;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 30) && (.@saphalvl3 < 35)) {
+					mes "[Kalrion]";
+					mes "^E40CAAGlass Bead Collecting:^000000";
+					mes "^E40CAACollect 10 Glass Beads.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12141;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 35) && (.@saphalvl3 < 45)) {
+					mes "[Kalrion]";
+					mes "^E40CAAChina Collecting:^000000";
+					mes "^E40CAACollect 15 Chinas.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12140;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 45) && (.@saphalvl3 < 55)) {
+					mes "[Kalrion]";
+					mes "^E40CAABouquet Collecting:^000000";
+					mes "^E40CAACollect 5 Bouquets.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12138;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl3 >= 55) && (.@saphalvl3 < 65)) {
+					mes "[Kalrion]";
+					mes "^E40CAAGlass Tube Collecting:^000000";
+					mes "^E40CAACollect 4 Glass Tubes.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12137;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if (.@saphalvl3 >= 65) {
+					mes "[Kalrion]";
+					mes "^E40CAAWitherless Rose Collecting:^000000";
+					mes "^E40CAACollect 1 Witherless Rose.^000000";
+					next;
+					set saphahonor5,1;
+					setquest 12139;
+					setquest 12163;
+					mes "[Kalrion]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else {
+					mes "[Kalrion]";
+					mes "You are too weak to help me, please become stronger if you want to prove yourself.";
+					close;
+				}
+			}
+			else {
+				mes "[Kalrion]";
+				mes "You must wait until tomorrow for another chance to prove yourself.";
+				close;
+			}
+		}
+		else {
+			mes "[Kalrion]";
+			mes "If you want my trust, first you must earn the ^0000FFLight of El Dicastes^000000. Don't borrow it from someone else.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,43,273,1	script	Collecting 3 Contact	449,{
+	if (isequipped(2782) == 1) {
+		if (saphahonor5 == 1) {
+			if ((checkquest(12163,PLAYTIME) == 0) || (checkquest(12163,PLAYTIME) == 1)) {
+				if ((checkquest(12137) == 0 || checkquest(12137) == 1) && (countitem(7143) >= 4)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 7143,4; // Glass_Tube
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12137;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12138) == 0 || checkquest(12138) == 1) && (countitem(744) >= 5)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 744,5; // Bouquet
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12138;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12139) == 0 || checkquest(12139) == 1) && (countitem(748) >= 1)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 748,1; // Witherless_Rose
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12139;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12140) == 0 || checkquest(12140) == 1) && (countitem(736) >= 15)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 736,15; // China
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12140;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12141) == 0 || checkquest(12141) == 1) && (countitem(746) >= 10)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 746,10; // Glass_Bead
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12141;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12142) == 0 || checkquest(12142) == 1) && (countitem(740) >= 15)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 740,15; // Puppet
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12142;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12143) == 0 || checkquest(12143) == 1) && (countitem(925) >= 50)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 925,50; // Bill_of_Birds
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12143;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12144) == 0 || checkquest(12144) == 1) && (countitem(965) >= 50)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 965,50; // Clam_Shell
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12144;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12145) == 0 || checkquest(12145) == 1) && (countitem(964) >= 20)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 964,20; // Crab_Shell
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12145;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12146) == 0 || checkquest(12146) == 1) && (countitem(911) >= 30)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 911,30; // Scell
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12146;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12147) == 0 || checkquest(12147) == 1) && (countitem(910) >= 40)) {
+					mes "[Collecting 3 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 910,40; // Garlet
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12147;
+					mes "[Collecting 3 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else {
+					mes "[Collecting 3 Contact]";
+					mes "Please come again when you complete your quest.";
+					close;
+				}
+			}
+			else if (checkquest(12163,PLAYTIME) == 2) {
+				mes "[Collecting 3 Contact]";
+				mes "I think its time for another mission.";
+				next;
+				if (checkquest(12137) >= 0) {
+					erasequest 12137;
+				}
+				if (checkquest(12138) >= 0) {
+					erasequest 12138;
+				}
+				if (checkquest(12139) >= 0) {
+					erasequest 12139;
+				}
+				if (checkquest(12140) >= 0) {
+					erasequest 12140;
+				}
+				if (checkquest(12141) >= 0) {
+					erasequest 12141;
+				}
+				if (checkquest(12142) >= 0) {
+					erasequest 12142;
+				}
+				if (checkquest(12143) >= 0) {
+					erasequest 12143;
+				}
+				if (checkquest(12144) >= 0) {
+					erasequest 12144;
+				}
+				if (checkquest(12145) >= 0) {
+					erasequest 12145;
+				}
+				if (checkquest(12146) >= 0) {
+					erasequest 12146;
+				}
+				if (checkquest(12147) >= 0) {
+					erasequest 12147;
+				}
+				set saphahonor5,0;
+				erasequest 12163;
+				mes "[Collecting 3 Contact]";
+				mes "Talk to ^0000FFKalrion^000000 in the center of town when you are ready.";
+				close;
+			}
+		}
+		else {
+			mes "[Collecting 3 Contact]";
+			mes "Have you talked to ^0000FFKalrion^000000 in the center of town? I will reward you for helping him.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dicastes01,211,178,2	script	Moltuka	453,{
+	if (isequipped(2782) == 1) {
+		if ((eldic_enter > 4) && (BaseLevel >= 80)) {
+			if (saphahonor6 < 1) {
+				set .@saphalvl4,rand(0,BaseLevel-75);
+				if (.@saphalvl4 < 5) {
+					mes "[Moltuka]";
+					mes "^E40CAAMonster's Feed Collecting:^000000";
+					mes "^E40CAACollect 100 Monster's Feeds.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12148;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 5) && (.@saphalvl4 < 10)) {
+					mes "[Moltuka]";
+					mes "^E40CAAApple Collecting:^000000";
+					mes "^E40CAACollect 100 Apples.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12149;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 10) && (.@saphalvl4 < 15)) {
+					mes "[Moltuka]";
+					mes "^E40CAACarrot Collecting:^000000";
+					mes "^E40CAACollect 100 Carrots.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12150;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 15) && (.@saphalvl4 < 20)) {
+					mes "[Moltuka]";
+					mes "^E40CAAPumpkin Collecting:^000000";
+					mes "^E40CAACollect 100 Pumpkins.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12151;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 20) && (.@saphalvl4 < 25)) {
+					mes "[Moltuka]";
+					mes "^E40CAAPotato Collecting:^000000";
+					mes "^E40CAACollect 50 Potatos.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12152;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 25) && (.@saphalvl4 < 30)) {
+					mes "[Moltuka]";
+					mes "^E40CAABanana Collecting:^000000";
+					mes "^E40CAACollect 100 Bananas.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12153;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 30) && (.@saphalvl4 < 35)) {
+					mes "[Moltuka]";
+					mes "^E40CAAMeat Collecting:^000000";
+					mes "^E40CAACollect 50 Meats.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12154;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 35) && (.@saphalvl4 < 45)) {
+					mes "[Moltuka]";
+					mes "^E40CAABlack Ladle Collecting:^000000";
+					mes "^E40CAACollect 20 Black Ladles.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12155;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 45) && (.@saphalvl4 < 55)) {
+					mes "[Moltuka]";
+					mes "^E40CAACrystal Mirror Collecting:^000000";
+					mes "^E40CAACollect 5 Crystal Mirrors.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12156;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if ((.@saphalvl4 >= 55) && (.@saphalvl4 < 65)) {
+					mes "[Moltuka]";
+					mes "^E40CAAPineapple Collecting:^000000";
+					mes "^E40CAACollect 2 Pineapples.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12157;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else if (.@saphalvl4 >= 65) {
+					mes "[Moltuka]";
+					mes "^E40CAAMelon Collecting:^000000";
+					mes "^E40CAACollect 2 Melons.^000000";
+					next;
+					set saphahonor6,1;
+					setquest 12158;
+					setquest 12164;
+					mes "[Moltuka]";
+					mes "You have 23 hours to complete this quest.";
+					close;
+				}
+				else {
+					mes "[Moltuka]";
+					mes "You are too weak to help me, please become stronger if you want to prove yourself.";
+					close;
+				}
+			}
+			else {
+				mes "[Moltuka]";
+				mes "You must wait until tomorrow for another chance to prove yourself.";
+				close;
+			}
+		}
+		else {
+			mes "[Moltuka]";
+			mes "If you want my trust, first you must earn the ^0000FFLight of El Dicastes^000000. Don't borrow it from someone else.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,40,270,1	script	Collecting 4 Contact	449,{
+	if (isequipped(2782) == 1) {
+		if (saphahonor6 == 1) {
+			if ((checkquest(12164,PLAYTIME) == 0) || (checkquest(12164,PLAYTIME) == 1)) {
+				if ((checkquest(12148) == 0 || checkquest(12148) == 1) && (countitem(528) >= 100)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 528,100; // Monster's_Feed
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12148;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12149) == 0 || checkquest(12149) == 1) && (countitem(512) >= 100)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 512,100; // Apple
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12149;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12150) == 0 || checkquest(12150) == 1) && (countitem(515) >= 100)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 515,100; // Carrot
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12150;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12151) == 0 || checkquest(12151) == 1) && (countitem(535) >= 100)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 535,100; // Pumpkin
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12151;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12152) == 0 || checkquest(12152) == 1) && (countitem(516) >= 50)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 516,50; // Potato
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12152;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12153) == 0 || checkquest(12153) == 1) && (countitem(513) >= 100)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 513,100; // Banana
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12153;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12154) == 0 || checkquest(12154) == 1) && (countitem(517) >= 50)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 517,50; // Meat
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12154;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12155) == 0 || checkquest(12155) == 1) && (countitem(737) >= 20)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 737,20; // Black_Ladle
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12155;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12156) == 0 || checkquest(12156) == 1) && (countitem(747) >= 5)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 747,5; // Crystal_Mirror
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12156;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12157) == 0 || checkquest(12157) == 1) && (countitem(6265) >= 2)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6265,2; // Pineapple
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12157;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else if ((checkquest(12158) == 0 || checkquest(12158) == 1) && (countitem(6264) >= 2)) {
+					mes "[Collecting 4 Contact]";
+					mes "Good work, here is your reward.";
+					next;
+					getexp 40000,0;
+					delitem 6264,2; // Melon
+					getitem 6304,1; // Proof of Sapha's Honor
+					erasequest 12158;
+					mes "[Collecting 4 Contact]";
+					mes "Please come again soon.";
+					close;
+				}
+				else {
+					mes "[Collecting 4 Contact]";
+					mes "Please come again when you complete your quest.";
+					close;
+				}
+			}
+			else if (checkquest(12164,PLAYTIME) == 2) {
+				mes "[Collecting 4 Contact]";
+				mes "I think its time for another mission.";
+				next;
+				if (checkquest(12148) >= 0) {
+					erasequest 12148;
+				}
+				if (checkquest(12149) >= 0) {
+					erasequest 12149;
+				}
+				if (checkquest(12150) >= 0) {
+					erasequest 12150;
+				}
+				if (checkquest(12151) >= 0) {
+					erasequest 12151;
+				}
+				if (checkquest(12152) >= 0) {
+					erasequest 12152;
+				}
+				if (checkquest(12153) >= 0) {
+					erasequest 12153;
+				}
+				if (checkquest(12154) >= 0) {
+					erasequest 12154;
+				}
+				if (checkquest(12155) >= 0) {
+					erasequest 12155;
+				}
+				if (checkquest(12156) >= 0) {
+					erasequest 12156;
+				}
+				if (checkquest(12157) >= 0) {
+					erasequest 12157;
+				}
+				if (checkquest(12158) >= 0) {
+					erasequest 12158;
+				}
+				set saphahonor6,0;
+				erasequest 12164;
+				mes "[Collecting 4 Contact]";
+				mes "Talk to ^0000FFMoltuka^000000 in the center of town when you are ready.";
+				close;
+			}
+		}
+		else {
+			mes "[Collecting 4 Contact]";
+			mes "Have you talked to ^0000FFMoltuka^000000 in the center of town? I will reward you for helping him.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+// Equipment Enchantments
+dic_in01,353,37,5	script	Kareuka	460,{
+	if (eldic_enter > 4) {
+		mes "[Kareuka]";
+		mes "Hello stranger, what brings you here?";
+		next;
+		switch(select("I want an enchantment on my equipment.:What can you enchant?")) {
+		case 1:
+			if (countitem(2844) < 1) {
+				mes "[Kareuka]";
+				mes "You dont have a ^0000FFLight of El Dicastes^000000 yet, so I can't enchant it.";
+				close;
+			}
+			else if (enc_light1 < 1) {
+				mes "[Kareuka]";
+				mes "Alright, I can add up to 3 enchantments to your ^0000FFLight of El Dicastes^000000.";
+				next;
+				mes "[Kareuka]";
+				mes "The first one will always succeed, so don't worry about it breaking.";
+				next;
+				mes "[Kareuka]";
+				mes "It will cost you ^0000FF1 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 1) {
+						mes "[Kareuka]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 6304,1;
+						set enc_light1,rand(1,20);
+						if ((enc_light1 > 0) && (enc_light1 < 3)) {
+							set light_part1,4761;
+						}
+						else if ((enc_light1 >= 3) && (enc_light1 < 5)) {
+							set light_part1,4763;
+						}
+						else if ((enc_light1 >= 5) && (enc_light1 < 7)) {
+							set light_part1,4765;
+						}
+						else if ((enc_light1 >= 7) && (enc_light1 < 9)) {
+							set light_part1,4767;
+						}
+						else if ((enc_light1 >= 9) && (enc_light1 < 12)) {
+							set light_part1,4760;
+						}
+						else if ((enc_light1 >= 12) && (enc_light1 < 15)) {
+							set light_part1,4762;
+						}
+						else if ((enc_light1 >= 15) && (enc_light1 < 18)) {
+							set light_part1,4764;
+						}
+						else if ((enc_light1 >= 18) && (enc_light1 < 21)) {
+							set light_part1,4766;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							set enc_light1,0;
+							mes "[Kareuka]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						delitem 2844,1;
+						getitem2 2844, 1, 1, 0, 0, 0, 0, 0, light_part1;
+						mes "[Kareuka]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Kareuka]";
+						mes "Enchantments aren't free you know, bring me ^0000FF1 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Kareuka]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_light2 < 1) {
+				mes "[Kareuka]";
+				mes "I see you enchanced it once already, I can add 2 more to your ^0000FFLight of El Dicastes^000000.";
+				next;
+				mes "[Kareuka]";
+				mes "The second one has a ^FF0000small chance to fail^000000 and you will not get an enchantment. But don't worry, the ^0000FFFLight of El Dicastes^000000 can't break.";
+				next;
+				mes "[Kareuka]";
+				mes "It will cost you ^0000FF2 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 2) {
+						mes "[Kareuka]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 6304,2;
+						set enc_light2,rand(1,19);
+						if ((enc_light2 > 0) && (enc_light2 < 3)) {
+							set light_part2,4711;
+						}
+						else if ((enc_light2 >= 3) && (enc_light2 < 5)) {
+							set light_part2,4721;
+						}
+						else if ((enc_light2 >= 5) && (enc_light2 < 7)) {
+							set light_part2,4731;
+						}
+						else if ((enc_light2 >= 7) && (enc_light2 < 10)) {
+							set light_part2,4710;
+						}
+						else if ((enc_light2 >= 10) && (enc_light2 < 13)) {
+							set light_part2,4720;
+						}
+						else if ((enc_light2 >= 13) && (enc_light2 < 16)) {
+							set light_part2,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							set enc_light2,0;
+							mes "[Kareuka]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						delitem 2844,1;
+						getitem2 2844, 1, 1, 0, 0, 0, 0, light_part2, light_part1;
+						mes "[Kareuka]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Kareuka]";
+						mes "Enchantments aren't free you know, bring me ^0000FF2 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Kareuka]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_light3 < 1) {
+				mes "[Kareuka]";
+				mes "I see you enchanced it twice already, I can add 1 more to your ^0000FFLight of El Dicastes^000000.";
+				next;
+				mes "[Kareuka]";
+				mes "The last one has a ^FF0000small chance to fail^000000 and you will not get an enchantment. But don't worry, the ^0000FFLight of El Dicastes^000000 can't break.";
+				next;
+				mes "[Kareuka]";
+				mes "It will cost you ^0000FF3 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 3) {
+						mes "[Kareuka]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 6304,3;
+						set enc_light3,rand(1,38);
+						if ((enc_light3 > 0) && (enc_light3 < 3)) {
+							set light_part3,4712;
+						}
+						else if ((enc_light3 >= 3) && (enc_light3 < 5)) {
+							set light_part3,4722;
+						}
+						else if ((enc_light3 >= 5) && (enc_light3 < 7)) {
+							set light_part3,4732;
+						}
+						else if ((enc_light3 >= 7) && (enc_light3 < 10)) {
+							set light_part3,4711;
+						}
+						else if ((enc_light3 >= 10) && (enc_light3 < 13)) {
+							set light_part3,4721;
+						}
+						else if ((enc_light3 >= 13) && (enc_light3 < 16)) {
+							set light_part3,4731;
+						}
+						else if ((enc_light3 >= 16) && (enc_light3 < 20)) {
+							set light_part3,4710;
+						}
+						else if ((enc_light3 >= 20) && (enc_light3 < 24)) {
+							set light_part3,4720;
+						}
+						else if ((enc_light3 >= 24) && (enc_light3 < 28)) {
+							set light_part3,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							set enc_light3,0;
+							mes "[Kareuka]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						delitem 2844,1;
+						getitem2 2844, 1, 1, 0, 0, 0, light_part3, light_part2, light_part1;
+						mes "[Kareuka]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Kareuka]";
+						mes "Enchantments aren't free you know, bring me ^0000FF3 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Kareuka]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else {
+				mes "[Kareuka]";
+				mes "I already added the maximum number of enchantments, if you don't like the enchantments that were added thats too bad, there is nothing you can do about it now.";
+				close;
+			}
+		case 2:
+			mes "[Manchyo]";
+			mes "I can enchant your ^0000FFLight of El Dicastes^000000 3 times. The first enchantment will add ^E40CAAAtk, Matk, Flee, or Crit^000000.";
+			next;
+			mes "[Manchyo]";
+			mes "The second enchantment will add a small amount of ^E40CAAAgi, Dex, or Int^000000. The last enchantment will add another small amout of those stats.";
+			next;
+			mes "[Manchyo]";
+			mes "The second and third enchantments are risky, they have a ^FF0000small chance to fail^000000 and you will get no enchantment. But the ^0000FFLight of El Dicastes^000000 will never break.";
+			close;
+		}
+	}
+	else {
+		mes "[Manchyo]";
+		mes "I wont talk to anyone that ^0000FFBikeyi^000000 doesn't trust.";
+		close;
+	}
+}
+
+dic_fild01,229,158,4	script	Jyabong	496,{
+	if (scaraba_enter > 7) {
+		mes "[Jyabong]";
+		mes "Hello stranger, what brings you here?";
+		next;
+		switch(select("Give me Wild Boots.:Give me Wild Tail.:Give me Golden Bells.")) {
+		case 1:
+			if (countitem(2463) < 1) {
+				mes "[Jyabong]";
+				mes "It will only cost you ^0000FF1 Proof of Sapha's Honor^000000, would you like to buy it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 1) {
+						mes "[Jyabong]";
+						mes "Ok, here you go.";
+						next;
+						delitem 6304,1; // Proof of Sapha's Honor
+						getitem 2463,1; // Wild Boots
+						set enc_wildboot1,0;
+						set enc_wildboot2,0;
+						set enc_wildboot3,0;
+						mes "[Jyabong]";
+						mes "Be careful with it, I'll only let you have one at a time.";
+						close;
+					}
+					else {
+						mes "[Jyabong]";
+						mes "I just told you it costs ^0000FF1 Proof of Sapha's Honor^000000, come back when you have it.";
+						close;
+					}
+				case 2:
+					mes "[Jyabong]";
+					mes "Come back if you change your mind.";
+					close;
+				}
+			}
+			else {
+				mes "[Jyabong]";
+				mes "You already have my ^0000FFWild Boots^000000, take good care of it.";
+				close;
+			}
+		case 2:
+			if (countitem(2564) < 1) {
+				mes "[Jyabong]";
+				mes "It will only cost you ^0000FF1 Proof of Sapha's Honor^000000, would you like to buy it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 1) {
+						mes "[Jyabong]";
+						mes "Ok, here you go.";
+						next;
+						delitem 6304,1; // Proof of Sapha's Honor
+						getitem 2564,1; // Wild Tail
+						set enc_wildtail1,0;
+						set enc_wildtail2,0;
+						set enc_wildtail3,0;
+						mes "[Jyabong]";
+						mes "Be careful with it, I'll only let you have one at a time.";
+						close;
+					}
+					else {
+						mes "[Jyabong]";
+						mes "I just told you it costs ^0000FF1 Proof of Sapha's Honor^000000, come back when you have it.";
+						close;
+					}
+				case 2:
+					mes "[Jyabong]";
+					mes "Come back if you change your mind.";
+					close;
+				}
+			}
+			else {
+				mes "[Jyabong]";
+				mes "You already have my ^0000FFWild Tail^000000, take good care of it.";
+				close;
+			}
+		case 3:
+			if (countitem(2843) < 1) {
+				mes "[Jyabong]";
+				mes "It will only cost you ^0000FF1 Proof of Sapha's Honor^000000, would you like to buy it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 1) {
+						mes "[Jyabong]";
+						mes "Ok, here you go.";
+						next;
+						delitem 6304,1; // Proof of Sapha's Honor
+						getitem 2843,1; // Golden Bells
+						set enc_goldbell1,0;
+						set enc_goldbell2,0;
+						set enc_goldbell3,0;
+						mes "[Jyabong]";
+						mes "Be careful with it, I'll only let you have one at a time.";
+						close;
+					}
+					else {
+						mes "[Jyabong]";
+						mes "I just told you it costs ^0000FF1 Proof of Sapha's Honor^000000, come back when you have it.";
+						close;
+					}
+				case 2:
+					mes "[Jyabong]";
+					mes "Come back if you change your mind.";
+					close;
+				}
+			}
+			else {
+				mes "[Jyabong]";
+				mes "You already have my ^0000FFGolden Bells^000000, take good care of it.";
+				close;
+			}
+		}
+	}
+	else {
+		mes "[Jyabong]";
+		mes "I wont talk to anyone that ^0000FFBikeyi^000000 doesn't trust.";
+		close;
+	}
+}
+
+dic_fild01,240,198,2	script	Halrapinyo	495,{
+	if (scaraba_enter > 7) {
+		mes "[Halrapinyo]";
+		mes "Hello stranger, what brings you here?";
+		next;
+		switch(select("I want an enchantment on my equipment.:What can you enchant?")) {
+		case 1:
+			if (countitem(2463) < 1) {
+				mes "[Halrapinyo]";
+				mes "You dont have ^0000FFWild Boots^000000 yet, so I can't enchant them.";
+				close;
+			}
+			else if (enc_wildboot1 < 1) {
+				mes "[Halrapinyo]";
+				mes "Alright, I can add up to 3 enchantments to your ^0000FFWild Boots^000000.";
+				next;
+				mes "[Halrapinyo]";
+				mes "The first one will always succeed, so don't worry about it breaking.";
+				next;
+				mes "[Halrapinyo]";
+				mes "It will cost you ^0000FF1 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 1) {
+						mes "[Halrapinyo]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2463,1;
+						delitem 6304,1;
+						set enc_wildboot1,rand(1,20);
+						if ((enc_wildboot1 > 0) && (enc_wildboot1 < 3)) {
+							set wildboot_part1,4761;
+						}
+						else if ((enc_wildboot1 >= 3) && (enc_wildboot1 < 5)) {
+							set wildboot_part1,4763;
+						}
+						else if ((enc_wildboot1 >= 5) && (enc_wildboot1 < 7)) {
+							set wildboot_part1,4765;
+						}
+						else if ((enc_wildboot1 >= 7) && (enc_wildboot1 < 9)) {
+							set wildboot_part1,4767;
+						}
+						else if ((enc_wildboot1 >= 9) && (enc_wildboot1 < 12)) {
+							set wildboot_part1,4760;
+						}
+						else if ((enc_wildboot1 >= 12) && (enc_wildboot1 < 15)) {
+							set wildboot_part1,4762;
+						}
+						else if ((enc_wildboot1 >= 15) && (enc_wildboot1 < 18)) {
+							set wildboot_part1,4764;
+						}
+						else if ((enc_wildboot1 >= 18) && (enc_wildboot1 < 21)) {
+							set wildboot_part1,4766;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Halrapinyo]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2463, 1, 1, 0, 0, 0, 0, 0, wildboot_part1;
+						mes "[Halrapinyo]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Halrapinyo]";
+						mes "Enchantments aren't free you know, bring me ^0000FF1 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Halrapinyo]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_wildboot2 < 1) {
+				mes "[Halrapinyo]";
+				mes "I see you enchanced it once already, I can add 2 more to your ^0000FFWild Boots^000000.";
+				next;
+				mes "[Halrapinyo]";
+				mes "The second one has a ^FF0000small chance to break^000000, be warned.";
+				next;
+				mes "[Halrapinyo]";
+				mes "It will cost you ^0000FF2 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 2) {
+						mes "[Halrapinyo]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2463,1;
+						delitem 6304,2;
+						set enc_wildboot2,rand(1,19);
+						if ((enc_wildboot2 > 0) && (enc_wildboot2 < 3)) {
+							set wildboot_part2,4711;
+						}
+						else if ((enc_wildboot2 >= 3) && (enc_wildboot2 < 5)) {
+							set wildboot_part2,4721;
+						}
+						else if ((enc_wildboot2 >= 5) && (enc_wildboot2 < 7)) {
+							set wildboot_part2,4731;
+						}
+						else if ((enc_wildboot2 >= 7) && (enc_wildboot2 < 10)) {
+							set wildboot_part2,4710;
+						}
+						else if ((enc_wildboot2 >= 10) && (enc_wildboot2 < 13)) {
+							set wildboot_part2,4720;
+						}
+						else if ((enc_wildboot2 >= 13) && (enc_wildboot2 < 16)) {
+							set wildboot_part2,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Halrapinyo]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2463, 1, 1, 0, 0, 0, 0, wildboot_part2, wildboot_part1;
+						mes "[Halrapinyo]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Halrapinyo]";
+						mes "Enchantments aren't free you know, bring me ^0000FF2 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Halrapinyo]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_wildboot3 < 1) {
+				mes "[Halrapinyo]";
+				mes "I see you enchanced it twice already, I can add 1 more to your ^0000FFWild Boots^000000.";
+				next;
+				mes "[Halrapinyo]";
+				mes "The last one has a ^FF0000small chance to break^000000, be warned.";
+				next;
+				mes "[Halrapinyo]";
+				mes "It will cost you ^0000FF3 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 3) {
+						mes "[Halrapinyo]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2463,1;
+						delitem 6304,3;
+						set enc_wildboot3,rand(1,38);
+						if ((enc_wildboot3 > 0) && (enc_wildboot3 < 3)) {
+							set wildboot_part3,4712;
+						}
+						else if ((enc_wildboot3 >= 3) && (enc_wildboot3 < 5)) {
+							set wildboot_part3,4722;
+						}
+						else if ((enc_wildboot3 >= 5) && (enc_wildboot3 < 7)) {
+							set wildboot_part3,4732;
+						}
+						else if ((enc_wildboot3 >= 7) && (enc_wildboot3 < 10)) {
+							set wildboot_part3,4711;
+						}
+						else if ((enc_wildboot3 >= 10) && (enc_wildboot3 < 13)) {
+							set wildboot_part3,4721;
+						}
+						else if ((enc_wildboot3 >= 13) && (enc_wildboot3 < 16)) {
+							set wildboot_part3,4731;
+						}
+						else if ((enc_wildboot3 >= 16) && (enc_wildboot3 < 20)) {
+							set wildboot_part3,4710;
+						}
+						else if ((enc_wildboot3 >= 20) && (enc_wildboot3 < 24)) {
+							set wildboot_part3,4720;
+						}
+						else if ((enc_wildboot3 >= 24) && (enc_wildboot3 < 28)) {
+							set wildboot_part3,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Halrapinyo]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2463, 1, 1, 0, 0, 0, wildboot_part3, wildboot_part2, wildboot_part1;
+						mes "[Halrapinyo]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Halrapinyo]";
+						mes "Enchantments aren't free you know, bring me ^0000FF3 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Halrapinyo]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else {
+				mes "[Halrapinyo]";
+				mes "I already added the maximum number of enchantments, if you want to start over then get rid of the ^0000FFWild Boots^000000 you have and buy a new one.";
+				close;
+			}
+		case 2:
+			mes "[Halrapinyo]";
+			mes "I can enchant your ^0000FFWild Boots^000000 3 times. The first enchantment will add ^E40CAAAtk, Matk, Flee, or Crit^000000.";
+			next;
+			mes "[Halrapinyo]";
+			mes "The second enchantment will add a small amount of ^E40CAAAgi, Dex, or Int^000000. The last enchantment will add another small amout of those stats.";
+			next;
+			mes "[Halrapinyo]";
+			mes "The second and third enchantments are risky, they have a ^FF0000small chance to break^000000 your gear so think carefully before enchanting them.";
+			close;
+		}
+	}
+	else {
+		mes "[Halrapinyo]";
+		mes "I wont talk to anyone that ^0000FFBikeyi^000000 doesn't trust.";
+		close;
+	}
+}
+
+dic_fild01,251,183,4	script	Manchyo	495,{
+	if (scaraba_enter > 7) {
+		mes "[Manchyo]";
+		mes "Hello stranger, what brings you here?";
+		next;
+		switch(select("I want an enchantment on my equipment.:What can you enchant?")) {
+		case 1:
+			if (countitem(2564) < 1) {
+				mes "[Manchyo]";
+				mes "You dont have a ^0000FFWild Tail^000000 yet, so I can't enchant it.";
+				close;
+			}
+			else if (enc_wildtail1 < 1) {
+				mes "[Manchyo]";
+				mes "Alright, I can add up to 3 enchantments to your ^0000FFWild Tail^000000.";
+				next;
+				mes "[Manchyo]";
+				mes "The first one will always succeed, so don't worry about it breaking.";
+				next;
+				mes "[Manchyo]";
+				mes "It will cost you ^0000FF1 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 1) {
+						mes "[Manchyo]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2564,1;
+						delitem 6304,1;
+						set enc_wildtail1,rand(1,20);
+						if ((enc_wildtail1 > 0) && (enc_wildtail1 < 3)) {
+							set wildtail_part1,4761;
+						}
+						else if ((enc_wildtail1 >= 3) && (enc_wildtail1 < 5)) {
+							set wildtail_part1,4763;
+						}
+						else if ((enc_wildtail1 >= 5) && (enc_wildtail1 < 7)) {
+							set wildtail_part1,4765;
+						}
+						else if ((enc_wildtail1 >= 7) && (enc_wildtail1 < 9)) {
+							set wildtail_part1,4767;
+						}
+						else if ((enc_wildtail1 >= 9) && (enc_wildtail1 < 12)) {
+							set wildtail_part1,4760;
+						}
+						else if ((enc_wildtail1 >= 12) && (enc_wildtail1 < 15)) {
+							set wildtail_part1,4762;
+						}
+						else if ((enc_wildtail1 >= 15) && (enc_wildtail1 < 18)) {
+							set wildtail_part1,4764;
+						}
+						else if ((enc_wildtail1 >= 18) && (enc_wildtail1 < 21)) {
+							set wildtail_part1,4766;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Manchyo]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2564, 1, 1, 0, 0, 0, 0, 0, wildtail_part1;
+						mes "[Manchyo]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Manchyo]";
+						mes "Enchantments aren't free you know, bring me ^0000FF1 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Manchyo]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_wildtail2 < 1) {
+				mes "[Manchyo]";
+				mes "I see you enchanced it once already, I can add 2 more to your ^0000FFWild Tail^000000.";
+				next;
+				mes "[Manchyo]";
+				mes "The second one has a ^FF0000small chance to break^000000, be warned.";
+				next;
+				mes "[Manchyo]";
+				mes "It will cost you ^0000FF2 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 2) {
+						mes "[Manchyo]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2564,1;
+						delitem 6304,2;
+						set enc_wildtail2,rand(1,19);
+						if ((enc_wildtail2 > 0) && (enc_wildtail2 < 3)) {
+							set wildtail_part2,4711;
+						}
+						else if ((enc_wildtail2 >= 3) && (enc_wildtail2 < 5)) {
+							set wildtail_part2,4721;
+						}
+						else if ((enc_wildtail2 >= 5) && (enc_wildtail2 < 7)) {
+							set wildtail_part2,4731;
+						}
+						else if ((enc_wildtail2 >= 7) && (enc_wildtail2 < 10)) {
+							set wildtail_part2,4710;
+						}
+						else if ((enc_wildtail2 >= 10) && (enc_wildtail2 < 13)) {
+							set wildtail_part2,4720;
+						}
+						else if ((enc_wildtail2 >= 13) && (enc_wildtail2 < 16)) {
+							set wildtail_part2,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Manchyo]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2564, 1, 1, 0, 0, 0, 0, wildtail_part2, wildtail_part1;
+						mes "[Manchyo]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Manchyo]";
+						mes "Enchantments aren't free you know, bring me ^0000FF2 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Manchyo]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_wildtail3 < 1) {
+				mes "[Manchyo]";
+				mes "I see you enchanced it twice already, I can add 1 more to your ^0000FFWild Tail^000000.";
+				next;
+				mes "[Manchyo]";
+				mes "The last one has a ^FF0000small chance to break^000000, be warned.";
+				next;
+				mes "[Manchyo]";
+				mes "It will cost you ^0000FF3 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 3) {
+						mes "[Manchyo]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2564,1;
+						delitem 6304,3;
+						set enc_wildtail3,rand(1,38);
+						if ((enc_wildtail3 > 0) && (enc_wildtail3 < 3)) {
+							set wildtail_part3,4712;
+						}
+						else if ((enc_wildtail3 >= 3) && (enc_wildtail3 < 5)) {
+							set wildtail_part3,4722;
+						}
+						else if ((enc_wildtail3 >= 5) && (enc_wildtail3 < 7)) {
+							set wildtail_part3,4732;
+						}
+						else if ((enc_wildtail3 >= 7) && (enc_wildtail3 < 10)) {
+							set wildtail_part3,4711;
+						}
+						else if ((enc_wildtail3 >= 10) && (enc_wildtail3 < 13)) {
+							set wildtail_part3,4721;
+						}
+						else if ((enc_wildtail3 >= 13) && (enc_wildtail3 < 16)) {
+							set wildtail_part3,4731;
+						}
+						else if ((enc_wildtail3 >= 16) && (enc_wildtail3 < 20)) {
+							set wildtail_part3,4710;
+						}
+						else if ((enc_wildtail3 >= 20) && (enc_wildtail3 < 24)) {
+							set wildtail_part3,4720;
+						}
+						else if ((enc_wildtail3 >= 24) && (enc_wildtail3 < 28)) {
+							set wildtail_part3,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Manchyo]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2564, 1, 1, 0, 0, 0, wildtail_part3, wildtail_part2, wildtail_part1;
+						mes "[Manchyo]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Manchyo]";
+						mes "Enchantments aren't free you know, bring me ^0000FF3 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Manchyo]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else {
+				mes "[Manchyo]";
+				mes "I already added the maximum number of enchantments, if you want to start over then get rid of the ^0000FFWild Tail^000000 you have and buy a new one.";
+				close;
+			}
+		case 2:
+			mes "[Manchyo]";
+			mes "I can enchant your ^0000FFWild Tail^000000 3 times. The first enchantment will add ^E40CAAAtk, Matk, Flee, or Crit^000000.";
+			next;
+			mes "[Manchyo]";
+			mes "The second enchantment will add a small amount of ^E40CAAAgi, Dex, or Int^000000. The last enchantment will add another small amout of those stats.";
+			next;
+			mes "[Manchyo]";
+			mes "The second and third enchantments are risky, they have a ^FF0000small chance to break^000000 your gear so think carefully before enchanting them.";
+			close;
+		}
+	}
+	else {
+		mes "[Manchyo]";
+		mes "I wont talk to anyone that ^0000FFBikeyi^000000 doesn't trust.";
+		close;
+	}
+}
+
+dic_fild01,259,172,4	script	Beurareu	495,{
+	if (scaraba_enter > 7) {
+		mes "[Beurareu]";
+		mes "Hello stranger, what brings you here?";
+		next;
+		switch(select("I want an enchantment on my equipment.:What can you enchant?")) {
+		case 1:
+			if (countitem(2843) < 1) {
+				mes "[Beurareu]";
+				mes "You dont have ^0000FFGolden Bells^000000 yet, so I can't enchant them.";
+				close;
+			}
+			else if (enc_goldbell1 < 1) {
+				mes "[Beurareu]";
+				mes "Alright, I can add up to 3 enchantments to your ^0000FFGolden Bells^000000.";
+				next;
+				mes "[Beurareu]";
+				mes "The first one will always succeed, so don't worry about it breaking.";
+				next;
+				mes "[Beurareu]";
+				mes "It will cost you ^0000FF1 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 1) {
+						mes "[Beurareu]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2843,1;
+						delitem 6304,1;
+						set enc_goldbell1,rand(1,20);
+						if ((enc_goldbell1 > 0) && (enc_goldbell1 < 3)) {
+							set goldbell_part1,4761;
+						}
+						else if ((enc_goldbell1 >= 3) && (enc_goldbell1 < 5)) {
+							set goldbell_part1,4763;
+						}
+						else if ((enc_goldbell1 >= 5) && (enc_goldbell1 < 7)) {
+							set goldbell_part1,4765;
+						}
+						else if ((enc_goldbell1 >= 7) && (enc_goldbell1 < 9)) {
+							set goldbell_part1,4767;
+						}
+						else if ((enc_goldbell1 >= 9) && (enc_goldbell1 < 12)) {
+							set goldbell_part1,4760;
+						}
+						else if ((enc_goldbell1 >= 12) && (enc_goldbell1 < 15)) {
+							set goldbell_part1,4762;
+						}
+						else if ((enc_goldbell1 >= 15) && (enc_goldbell1 < 18)) {
+							set goldbell_part1,4764;
+						}
+						else if ((enc_goldbell1 >= 18) && (enc_goldbell1 < 21)) {
+							set goldbell_part1,4766;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Beurareu]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2843, 1, 1, 0, 0, 0, 0, 0, goldbell_part1;
+						mes "[Beurareu]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Beurareu]";
+						mes "Enchantments aren't free you know, bring me ^0000FF1 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Beurareu]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_goldbell2 < 1) {
+				mes "[Beurareu]";
+				mes "I see you enchanced it once already, I can add 2 more to your ^0000FFGolden Bells^000000.";
+				next;
+				mes "[Beurareu]";
+				mes "The second one has a ^FF0000small chance to break^000000, be warned.";
+				next;
+				mes "[Beurareu]";
+				mes "It will cost you ^0000FF2 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 2) {
+						mes "[Beurareu]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2843,1;
+						delitem 6304,2;
+						set enc_goldbell2,rand(1,19);
+						if ((enc_goldbell2 > 0) && (enc_goldbell2 < 3)) {
+							set goldbell_part2,4711;
+						}
+						else if ((enc_goldbell2 >= 3) && (enc_goldbell2 < 5)) {
+							set goldbell_part2,4721;
+						}
+						else if ((enc_goldbell2 >= 5) && (enc_goldbell2 < 7)) {
+							set goldbell_part2,4731;
+						}
+						else if ((enc_goldbell2 >= 7) && (enc_goldbell2 < 10)) {
+							set goldbell_part2,4710;
+						}
+						else if ((enc_goldbell2 >= 10) && (enc_goldbell2 < 13)) {
+							set goldbell_part2,4720;
+						}
+						else if ((enc_goldbell2 >= 13) && (enc_goldbell2 < 16)) {
+							set goldbell_part2,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Beurareu]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2843, 1, 1, 0, 0, 0, 0, goldbell_part2, goldbell_part1;
+						mes "[Beurareu]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Beurareu]";
+						mes "Enchantments aren't free you know, bring me ^0000FF2 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Beurareu]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else if (enc_goldbell3 < 1) {
+				mes "[Beurareu]";
+				mes "I see you enchanced it twice already, I can add 1 more to your ^0000FFGolden Bells^000000.";
+				next;
+				mes "[Beurareu]";
+				mes "The last one has a ^FF0000small chance to break^000000, be warned.";
+				next;
+				mes "[Beurareu]";
+				mes "It will cost you ^0000FF3 Proof of Sapha's Honor^000000, would you like to enchant it now?";
+				next;
+				switch(select("Yes.:No thanks.")) {
+				case 1:
+					if (countitem(6304) >= 3) {
+						mes "[Beurareu]";
+						mes "Ok, here we go.";
+						close2;
+						specialeffect2 EF_MAPPILLAR;
+						progressbar "ffff00",4;
+						delitem 2843,1;
+						delitem 6304,3;
+						set enc_goldbell3,rand(1,38);
+						if ((enc_goldbell3 > 0) && (enc_goldbell3 < 3)) {
+							set goldbell_part3,4712;
+						}
+						else if ((enc_goldbell3 >= 3) && (enc_goldbell3 < 5)) {
+							set goldbell_part3,4722;
+						}
+						else if ((enc_goldbell3 >= 5) && (enc_goldbell3 < 7)) {
+							set goldbell_part3,4732;
+						}
+						else if ((enc_goldbell3 >= 7) && (enc_goldbell3 < 10)) {
+							set goldbell_part3,4711;
+						}
+						else if ((enc_goldbell3 >= 10) && (enc_goldbell3 < 13)) {
+							set goldbell_part3,4721;
+						}
+						else if ((enc_goldbell3 >= 13) && (enc_goldbell3 < 16)) {
+							set goldbell_part3,4731;
+						}
+						else if ((enc_goldbell3 >= 16) && (enc_goldbell3 < 20)) {
+							set goldbell_part3,4710;
+						}
+						else if ((enc_goldbell3 >= 20) && (enc_goldbell3 < 24)) {
+							set goldbell_part3,4720;
+						}
+						else if ((enc_goldbell3 >= 24) && (enc_goldbell3 < 28)) {
+							set goldbell_part3,4730;
+						}
+						else {
+							specialeffect2 EF_PHARMACY_FAIL;
+							mes "[Beurareu]";
+							mes "Aww, too bad. You'll have to buy another one and try again.";
+							close;
+						}
+						getitem2 2843, 1, 1, 0, 0, 0, goldbell_part3, goldbell_part2, goldbell_part1;
+						mes "[Beurareu]";
+						mes "All done! I hope it was enchanted with something you like.";
+						close;
+					}
+					else {
+						mes "[Beurareu]";
+						mes "Enchantments aren't free you know, bring me ^0000FF3 Proof of Sapha's Honor^000000.";
+						close;
+					}
+				case 2:
+					mes "[Beurareu]";
+					mes "It's your loss.";
+					close;
+				}
+			}
+			else {
+				mes "[Beurareu]";
+				mes "I already added the maximum number of enchantments, if you want to start over then get rid of the ^0000FFGolden Bells^000000 you have and buy a new one.";
+				close;
+			}
+		case 2:
+			mes "[Beurareu]";
+			mes "I can enchant your ^0000FFGolden Bells^000000 3 times. The first enchantment will add ^E40CAAAtk, Matk, Flee, or Crit^000000.";
+			next;
+			mes "[Beurareu]";
+			mes "The second enchantment will add a small amount of ^E40CAAAgi, Dex, or Int^000000. The last enchantment will add another small amout of those stats.";
+			next;
+			mes "[Beurareu]";
+			mes "The second and third enchantments are risky, they have a ^FF0000small chance to break^000000 your gear so think carefully before enchanting them.";
+			close;
+		}
+	}
+	else {
+		mes "[Beurareu]";
+		mes "I wont talk to anyone that ^0000FFBikeyi^000000 doesn't trust.";
+		close;
+	}
+}
+
+// Bradium Earring Quest
+dicastes01,117,262,8	script	Fred#01	455,{
+	if (isequipped(2782) == 1) {
+		if ((eldic_enter > 4) && (bradium_earring < 1)) {
+			mes "[Fred]";
+			mes "Hey, have you heard the news?";
+			next;
+			mes "[Fred]";
+			mes "My friend said theres a problem in the tunnel... Why don't you come to my place and I'll explain more.";
+			set bradium_earring,1;
+			close2;
+			warp "dic_in01",165,101;
+			end;
+		}
+		else {
+			mes "[Fred]";
+			mes "Nice weather we are having.";
+			next;
+			mes "[Fred]";
+			mes "Come sit next to me and chill.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,165,104,1	script	Fred#02	454,{
+	if (isequipped(2782) == 1) {
+		if (bradium_earring < 1) {
+			mes "[Fred]";
+			mes "Hmm, my friend was suppose to come visit me today...";
+			close;
+		}
+		else if (bradium_earring == 1) {
+			mes "[Fred]";
+			mes "The workers in the tunnel between Manuk and El Dicastes are running out of ^0000FFPurified Bradium^000000.";
+			next;
+			mes "[Fred]";
+			mes "It can be used to fuel many of the machines we use everyday, but it takes lots of bradium pieces to make it.";
+			next;
+			mes "[Fred]";
+			mes "Oops, I didn't mean to drag you into my home just to tell you my problems. Let me offer you something to eat.";
+			next;
+			getitem 513,1; // Banana
+			set bradium_earring,2;
+			setquest 11171;
+			mes "[Fred]";
+			mes "If you want to hear more just ask, but I won't force you to.";
+			close;
+		}
+		else if (bradium_earring == 2) {
+			mes "[Fred]";
+			mes "So anyway, A few days ago a friend of mine came out of the tunnel and said the Bradium supply is getting low.";
+			next;
+			mes "[Fred]";
+			mes "Without the Purified Bradium we can't use our machines to do our jobs.";
+			next;
+			set bradium_earring,3;
+			changequest 11171,11172;
+			mes "[Fred]";
+			mes "Can you please go meet some of my freinds in the ^0000FFtunnel between Manuk and El Dicastes^000000?  Maybe there is something we can do to help them...";
+			close;
+		}
+		else if ((bradium_earring > 2) && (bradium_earring < 9)) {
+			mes "[Fred]";
+			mes "Can you please go meet some of my freinds in the ^0000FFtunnel between Manuk and El Dicastes^000000?  Maybe there is something we can do to help them...";
+			close;
+		}
+		else if (bradium_earring == 9) {
+			mes "[Fred]";
+			mes "So the rumors are true about the low supply of Bradium?";
+			next;
+			mes "[Fred]";
+			mes "Alright, there is only one person who can help us now.";
+			next;
+			set bradium_earring,10;
+			completequest 11159;
+			completequest 11160;
+			completequest 11161;
+			completequest 11162;
+			completequest 11163;
+			completequest 11164;
+			changequest 11172,11173;
+			mes "[Fred]";
+			mes "Find ^0000FFBowie^000000 and ask him for some Purified Bradium please.  He is located in the ^0000FFnorth-west part of El Dicastes^000000.";
+			close;
+		}
+		else if ((bradium_earring > 9) && (bradium_earring < 19)) {
+			mes "[Fred]";
+			mes "Find ^0000FFBowie^000000 and ask him for some Purified Bradium please.  He is located in the ^0000FFnorth-west part of El Dicastes^000000.";
+			close;
+		}
+		else if (bradium_earring == 19) {
+			mes "[Fred]";
+			mes "Bowie already told me that you've helped my friends in the tunnel.";
+			next;
+			mes "[Fred]";
+			mes "I don't know how I can repay you...";
+			next;
+			mes "[Fred]";
+			mes "Wait, I may have something of interest to you!";
+			next;
+			getitem 2788,1; // Bradium Earring
+			set bradium_earring,20;
+			completequest 11165;
+			completequest 11166;
+			completequest 11167;
+			completequest 11168;
+			completequest 11169;
+			completequest 11170;
+			completequest 11176;
+			mes "[Fred]";
+			mes "Its called the ^0000FFBradium Earring^000000, one of my best creations.  Maybe it will come in handy to a strong adventurer like you!";
+			close;
+		}
+		else {
+			mes "[Fred]";
+			mes "Hello again my freind, did you come to visit?";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,58,225,4	script	Lassie	491,{
+	if (isequipped(2782) == 1) {
+		if ((bradium_earring >= 3) && (bradium_earring < 9) && (checkquest(11164) == -1)) {
+			mes "[Lassie]";
+			mes "Hello and nice to meet you, this is what you say in your language for 'wellness' sake correct?";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11164;
+			mes "[Lassie]";
+			mes "We do not use such filters in our words, but we do need filters for our Bradium becuase its not purified! Hahahahaha!";
+			close;
+		}
+		else if ((bradium_earring >= 13) && (bradium_earring < 19) && (checkquest(11170) == -1)) {
+			mes "[Lassie]";
+			mes "Woh!  You did me a big favor!";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11170;
+			mes "[Lassie]";
+			mes "Without this I wouldn't meet the deadline for my work!";
+			close;
+		}
+		else {
+			mes "[Lassie]";
+			mes "Hello! ... (Hello)~";
+			next;
+			mes "[Lassie]";
+			mes "Hahaha, did you hear my voice echo through the tunnel?";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,235,243,8	script	John	454,{
+	if (isequipped(2782) == 1) {
+		if ((bradium_earring >= 3) && (bradium_earring < 9) && (checkquest(11160) == -1)) {
+			mes "[John]";
+			mes "Just what?";
+			next;
+			mes "[John]";
+			mes "... No ...";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11160;
+			mes "[John]";
+			mes "No problem .... Do not worry ....";
+			close;
+		}
+		else if ((bradium_earring >= 13) && (bradium_earring < 19) && (checkquest(11166) == -1)) {
+			mes "[John]";
+			mes "......";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11166;
+			mes "[John]";
+			mes "Thank you....";
+			close;
+		}
+		else {
+			mes "[John]";
+			mes "We can work... With or without.... Bradium....";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,64,107,8	script	Vane	490,{
+	if (isequipped(2782) == 1) {
+		if ((bradium_earring >= 3) && (bradium_earring < 9) && (checkquest(11163) == -1)) {
+			mes "[Vane]";
+			mes "If I tell her everything, she will have to like me.";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11163;
+			mes "[Vane]";
+			mes "Simple, right?";
+			close;
+		}
+		else if ((bradium_earring >= 13) && (bradium_earring < 19) && (checkquest(11169) == -1)) {
+			mes "[Vane]";
+			mes "Thank you very much~";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11169;
+			mes "[Vane]";
+			mes "Hope to see you again soon~";
+			close;
+		}
+		else {
+			mes "[Vane]";
+			mes "Some things are much more important than work, like finding your true love~";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,153,107,4	script	Taylor	489,{
+	if (isequipped(2782) == 1) {
+		if ((bradium_earring >= 3) && (bradium_earring < 9) && (checkquest(11161) == -1)) {
+			mes "[Taylor]";
+			mes "Hey, will you scratch my back?";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11161;
+			mes "[Taylor]";
+			mes "These insects can bite, and when they do it itches really bad.";
+			close;
+		}
+		else if ((bradium_earring >= 13) && (bradium_earring < 19) && (checkquest(11167) == -1)) {
+			mes "-He is scratching himself like crazy-";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11167;
+			mes "[Taylor]";
+			mes "Oops!  A good piece of Bradium is finally here!  Thanks!";
+			close;
+		}
+		else {
+			mes "[Taylor]";
+			mes "The more I scratch the more it itches!  When will this vicious cycle end?";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,205,43,6	script	Brian	490,{
+	if (isequipped(2782) == 1) {
+		if ((bradium_earring >= 3) && (bradium_earring < 9) && (checkquest(11159) == -1)) {
+			mes "[Brian]";
+			mes "Oh ...... A couple of days have passed since i've been to town ......";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11159;
+			mes "[Brian]";
+			mes "Do you know what day it is?";
+			close;
+		}
+		else if ((bradium_earring >= 13) && (bradium_earring < 19) && (checkquest(11165) == -1)) {
+			mes "[Brian]";
+			mes "So you are the one who helped Fred, haha.";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11165;
+			mes "[Brian]";
+			mes "Please tell him that I will be back to see him again soon.";
+			close;
+		}
+		else {
+			mes "[Brian]";
+			mes "I haven't left this tunnel in over a month, its like I live here.";
+			next;
+			mes "[Brian]";
+			mes "But work is boring, I want to go play Ragnarok Online with my friends instead.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun02,111,127,6	script	Rose	489,{
+	if (isequipped(2782) == 1) {
+		if ((bradium_earring >= 3) && (bradium_earring < 9) && (checkquest(11162) == -1)) {
+			mes "[Rose]";
+			mes "I'm too nice to him, its difficult to tell him that there is nothing between us.";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11162;
+			mes "[Rose]";
+			mes "I'm just too perfect for him.";
+			close;
+		}
+		else if ((bradium_earring >= 13) && (bradium_earring < 19) && (checkquest(11168) == -1)) {
+			mes "[Rose]";
+			mes "Sooner or later i want to go back into town.";
+			next;
+			set bradium_earring,bradium_earring+1;
+			setquest 11168;
+			mes "[Rose]";
+			mes "Then i can finally relax~";
+			close;
+		}
+		else {
+			mes "[Rose]";
+			mes "I wonder where my knight in shining armor could be... Please come and save me from this boring place~";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_in01,349,129,5	script	Bowie	449,{
+	if (isequipped(2782) == 1) {
+		if (bradium_earring < 10) {
+			mes "[Bowie]";
+			mes "I hope that rumor about the shortage of Purified Bradium isn't true...";
+			close;
+		}
+		else if (bradium_earring == 10) {
+			mes "[Bowie]";
+			mes "So the rumors were true about the shortage...";
+			next;
+			mes "[Bowie]";
+			mes "Well, you came to the right place!  I'm Bowie, an expert on all different types of Bradium.";
+			next;
+			mes "[Bowie]";
+			mes "To make Purified Bradium I'll need some tiny bradium ores to forge together into one big piece.";
+			next;
+			set bradium_earring,11;
+			changequest 11173,11174;
+			mes "[Bowie]";
+			mes "Look around the fields for monsters that drop ^0000FFTiny Bradium^000000 and bring me ^0000FF30 pieces^000000 of it, then I can make enough Purified Bradium for six people.";
+			close;
+		}
+		else if (bradium_earring == 11) {
+			if (countitem(6319) >= 30) {
+				mes "[Bowie]";
+				mes "1, 2, 3...";
+				next;
+				mes "[Bowie]";
+				mes "...28, 29, 30!";
+				next;
+				mes "[Bowie]";
+				mes "Ok, you've done your job, now I'll put them in the machine here...";
+				next;
+				mes "[Bowie]";
+				mes "My machine will take ^0000FF2 hours^000000 to purify these Tiny Bradium into a whole Purified Bradium.";
+				next;
+				delitem 6319,30; // Tiny Bradium
+				set bradium_earring,12;
+				changequest 11174,11175;
+				mes "[Bowie]";
+				mes "Please return later, I will be resting while the machine works.";
+				close;
+			}
+			else {
+				mes "[Bowie]";
+				mes "Look around the fields for monsters that drop ^0000FFTiny Bradium^000000 and bring me ^0000FF30 pieces^000000 of it, then I can make enough Purified Bradium for six people.";
+				close;
+			}
+		}
+		else if ((bradium_earring == 12) && (checkquest(11175,PLAYTIME) != 2)) {
+			mes "[Bowie]";
+			mes "My machine will take ^0000FF2 hours^000000 to purify these Tiny Bradium into a whole Purified Bradium.";
+			next;
+			mes "[Bowie]";
+			mes "Please return later, I will be resting while the machine works.";
+			close;
+		}
+		else if ((bradium_earring == 12) && (checkquest(11175,PLAYTIME) == 2)) {
+			mes "[Bowie]";
+			mes "I think its done, lets have a look.";
+			next;
+			set bradium_earring,13;
+			changequest 11175,11176;
+			mes "[Bowie]";
+			mes "Its completed!  Please ^0000FFshare them with the Fred's friends^000000 in the tunnel.";
+			close;
+		}
+		else if (bradium_earring == 13) {
+			mes "[Bowie]";
+			mes "Its completed!  Please ^0000FFshare them with the Fred's friends^000000 in the tunnel.";
+			close;
+		}
+		else {
+			mes "[Bowie]";
+			mes "That should be enough Purified Bradium to last us a while.";
+			next;
+			mes "[Bowie]";
+			mes "Thanks again for all your help!";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+// Scaraba Hole Nightmare Mode Entrance
+dic_dun01,266,113,6	script	Curious Sapha	449,{
+	if (isequipped(2782) == 1) {
+		if (scaraba_enter > 16) {
+			mes "[Curious Sapha]";
+			mes "Have you heard of ^0000FFLava Sky Perfume^000000?";
+			next;
+			mes "[Curious Sapha]";
+			mes "Using one whole bottle is suppose to cause hallucinations to the user.";
+			next;
+			mes "[Curious Sapha]";
+			mes "I'll sell you a few bottles if you want to try it, only 500z each.";
+			next;
+			switch(select("Ok.:No thanks.")) {
+			case 1:
+				mes "[Curious Sapha]";
+				mes "How many would you like?";
+				mes "Enter '0' if you want to quit.";
+				next;
+				while(1) {
+					input .@input,0,101;
+					if (.@input == 0) {
+						mes "[Curious Sapha]";
+						mes "The deal was cancelled.";
+						mes "Come again next time.";
+						close;
+					}
+					else if (.@input < 1 || .@input > 100) {
+						mes "[Curious Sapha]";
+						mes "The number must be 100 or less.";
+						next;
+					}
+					else {
+						break;
+					}
+				}
+				set .@sell,.@input * 500;
+				set .@item_weight,.@input * 10;
+				if (Zeny < .@sell) {
+					mes "[Curious Sapha]";
+					mes "You don't have enough zeny...";
+					close;
+				}
+				if ((MaxWeight - Weight) < .@item_weight) {
+					mes "[Curious Sapha]";
+					mes "It doesn't seem like";
+					mes "you can carry everything.";
+					mes "Please check the space";
+					mes "in your inventory.";
+					close;
+				}
+				set zeny,zeny-.@sell;
+				getitem 6437,.@input; // Lava Sky Perfume
+				mes "[Curious Sapha]";
+				mes "Here you go.";
+				mes "Come again.";
+				close;
+			case  2:
+				mes "[Curious Sapha]";
+				mes "Come back if you change your mind.";
+				close;
+			}
+		}
+		else {
+			mes "[Curious Sapha]";
+			mes "Have you heard of ^0000FFLava Sky Perfume^000000?";
+			next;
+			mes "[Curious Sapha]";
+			mes "Oops, I shouldn't say more.  I can't sell these to anyone until they have entered the Scaraba Hole...";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}
+
+dic_dun01,284,102,6	script	Vigilante	492,{
+	if (isequipped(2782) == 1) {
+		if (countitem(6437) >= 1) {
+			mes "[Vigilante]";
+			mes "So you have the ^0000FFLava Sky Perfume^000000...";
+			next;
+			mes "[Vigilante]";
+			mes "Are you ready to use it?";
+			next;
+			switch(select("Yes.:No thanks.")) {
+			case 1:
+				delitem 6437,1; // Lava Sky Perfume
+				mes "-He pours the bottle of perfume over your head and you start to hallucinate-";
+				close2;
+				warp "dic_dun03",102,144;
+				end;
+			case 2:
+				mes "[Vigilante]";
+				mes "Come on, give it a try.";
+				close;
+			}
+		}
+		else {
+			mes "[Vigilante]";
+			mes "Would you like to see a dream or a nightmare?";
+			next;
+			mes "[Vigilante]";
+			mes "Bring me ^0000FFLava Sky Perfume^000000 and I will show you.";
+			close;
+		}
+	}
+	else {
+		mes "-You can't understand the language at all-";
+		close;
+	}
+}

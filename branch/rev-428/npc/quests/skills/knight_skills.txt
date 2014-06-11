@@ -1,0 +1,65 @@
+//===== eAthena Script ======================================= 
+//= Knight Skills Quests
+//===== By: ================================================== 
+//= Lupus, Reddozen
+//===== Current Version: ===================================== 
+//= 1.3a
+//===== Compatible With: ===================================== 
+//= eAthena Revision 3800+
+//===== Description: ========================================= 
+//= Temp quests for new skills for 2nd classes
+//===== Additional Comments: ================================= 
+//= 1.0 for fully working skills only [Lupus]
+//= 1.1 Added more new skill quests for more classes [Lupus]
+//= Somehow eA engine doesn't let you keep learn't skill V_V'
+//= 1.2 Added to correct locations, correct NPC's, fixed
+//= some of the items required and made them into real
+//= quests. [Reddozen] 
+//= 1.3 Fixed bugs and minor typos. Optimized [Lupus]
+//= 1.3a fixed an item ID typo, thx 2Spiritual Kid
+//= 1.3b Splitted into different files [DracoRPG]
+//============================================================
+
+
+//============================================================
+// 騎士 - 衝鋒攻擊
+//============================================================
+prt_in,85,99,3	script	騎士團員#kns	734,{
+	mes "[艾索菲]";
+	if(BaseJob!=Job_Knight) goto L_noknight;
+	if(getskilllv(1001)) goto L_alreadyhave;
+
+	mes "給我這點東西我將教你個新技能:";
+	mes "5 枴杖糖";
+	mes "3 永恆玫瑰";
+	next;
+	
+	mes "[艾索菲]";
+	mes "我來檢查下你的東西哦~.";
+	next;
+	
+	if(countitem(530)<5 || countitem(748)<3)goto L_noitems;//Items: Candy_Cane, Witherless_Rose,
+	delitem 530, 5;//Items: Candy_Cane,
+	delitem 748, 3;//Items: Witherless_Rose,
+	
+	mes "[艾索菲]";
+	mes "你帶來了足夠的東西";
+	mes "那我也開始教你新的技能~.";
+	skill 1001,1,0;
+	close;
+
+L_noitems:
+	mes "[艾索菲]";
+	mes "你還沒帶足道具.";
+	mes "等你收集完了再來找我吧";
+	close;
+		
+L_noknight:
+	mes "回來看你師傅來了?";
+	emotion e_gasp;
+	close;
+
+L_alreadyhave:
+	mes "我已經教過你啦~！";
+	close;
+}

@@ -1,0 +1,492 @@
+//===== rAthena Script ======================================= 
+// Eden Group Quests - Repeatable experience quests [41-55]
+// 伊甸園委託任務[41-55]
+//===== By: ================================================== 
+//= L0ne_W0lf
+//= XD人(PlutoeA)
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= [AEGIS Conversion]
+//===== Additional Comments: ================================= 
+//= 1.0 First Version.
+//============================================================
+
+moc_para01,40,38,3	script	Mission [41 - 55]#p	857,{
+	if (checkweight(1201,1) == 0) {
+		mes "^008800Wait a sec!!";
+		mes "You cannot receive any more items because you're carrying too many items. Please try again after you lighten up.^000000";
+		close;
+	}
+	if (countitem(6219) < 1) {
+		mes "You are not an Eden group member. You are not qualified to access the bulletin board.";
+		close;
+	}
+	set .@m_client,checkquest(12088);
+	if (.@m_client == -1) {
+		if ((BaseLevel < 41) || (BaseLevel > 55)) {
+			mes "這好像是向Lv41~55的冒險家們提出委託的佈告欄";
+			close;
+		}
+		mes "[委託佈告欄]";
+		mes "這是記載著來自各地委託內容的佈告欄";
+		next;
+		switch(select("查詢委託內容:取消")) {
+		case 1:
+			switch(select("打突變蛙:打玩具士兵:打庫克雷:打獸人嬰兒:打獸人戰士:打螃蟹:打邪骸食人魚:打烏賊:打卡那多斯:打麥斯特:打貝殼魔靈:打氣泡蟲:打劍魚:打邪骸獸人:打茲諾克:打木乃伊")) {
+				case 1:
+					mes "[委託任務板的留言]";
+					mes "你有見過紅青蛙嗎?牠是稀有的突變蛙，我們正在調查牠的生活習性，幫我抓20隻吧!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12072;
+							setquest 12088;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 2:
+					mes "[委託任務板的留言]";
+					mes "玩偶會攻擊人類，幫忙去修理牠們，打個15隻看看吧!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12073;
+							setquest 12088;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 3:
+					mes "[委託任務板的留言]";
+					mes "在海洋內部常常發生偷竊事件，疑犯指向庫克雷，請你幫忙收拾 30隻吧!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12074;
+							setquest 12088;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 4:
+					mes "[委託任務板的留言]";
+					mes "獸人的數量漸漸變多了，雖有點慘忍，但必須誅滅牠們以絕後患，請你看著辦吧!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12075;
+							setquest 12088;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 5:
+					mes "[委託任務板的留言]";
+					mes "只靠解決獸人嬰兒力道似乎不夠，麻煩再解決獸人戰士好嗎? 20隻就夠了!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12076;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 6:
+					mes "[委託任務板的留言]";
+					mes "你見過有厚殼的螃蟹吧? 幫忙抓螃蟹";
+					mes "15隻啦!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12077;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 7:
+					mes "[委託任務板的留言]";
+					mes "魚夫們老是撈到死魚而困擾不已，幫忙解決30隻好嗎?";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12078;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 8:
+					mes "[委託任務板的留言]";
+					mes "這次是烏賊，幫忙解決15隻吧!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12079;
+							setquest 12088;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 9:
+					mes "[委託任務板的留言]";
+					mes "這城市的高官逛海邊時好像因為卡那多斯而受到腳傷，所以下令展開掃蕩，目標是20隻!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12080;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 10:
+					mes "[委託任務板的留言]";
+					mes "最近因到處出現的幽靈，讓村民受到極度恐懼，幫忙解決麥斯特15隻好嗎?";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12081;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 11:
+					mes "[委託任務板的留言]";
+					mes "有匿名人士要求解決貝殼魔靈30隻，麻煩你了!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12082;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 12:
+					mes "[委託任務板的留言]";
+					mes "氣泡蟲?你認識氣泡蟲嗎?友人委託要求解決15隻呢!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12083;
+							break;
+						case 2:
+							close;
+							break;
+					}
+					break;
+				case 13:
+					mes "[委託任務板的留言]";
+					mes "有個老饕高官想吃鮮魚，需要劍魚";
+					mes "20隻，你要試試看嗎?"
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12084;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 14:
+					mes "[委託任務板的留言]";
+					mes "目前殭屍獸人嚴重騷擾著王宮，雖有派軍人去掃蕩，但人手不足，你要試看看嗎?";
+					mes "打15隻即可!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12085;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 15:
+					mes "[委託任務板的留言]";
+					mes "有人委託掃蕩茲諾克30隻，你好好表現一下吧!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12086;
+							break;
+						case 2:
+							close;
+					}
+					break;
+				case 16:
+					mes "[委託任務板的留言]";
+					mes "這次的委託是消滅木乃伊15隻，嗯~很恐怖吧!我不敢想像，你去好好處理吧!";
+					next;
+					switch(select("接受委託:取消")) {
+						case 1:
+							mes "[委託佈告欄]";
+							mes "收到了紀錄委託內容的字條，詳細內容請到任務視窗上的委託消息查詢!";
+							close2;
+							setquest 12088;
+							setquest 12087;
+							break;
+						case 2:
+							close;
+					}
+					break;
+			}
+			break;
+		case 2:
+			mes "^000077委託登記改到下一次吧!^000000.";
+			close;
+		}
+		close;
+	}
+	else {
+		set .@m_client2,checkquest(12072,HUNTING);
+		if (.@m_client2 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12072;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 9600,0;
+			close;
+		}
+
+		set .@m_client3,checkquest(12073,HUNTING);
+		if (.@m_client3 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12073;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 7200,0;
+			close;
+		}
+
+		set .@m_client4,checkquest(12074,HUNTING);
+		if (.@m_client4 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12074;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 15750,0;
+			close;
+		}
+
+		set .@m_client5,checkquest(12075,HUNTING);
+		if (.@m_client5 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12075;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 7875,0;
+			close;
+		}
+
+		set .@m_client6,checkquest(12076,HUNTING);
+		if (.@m_client6 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12076;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 11100,0;
+			close;
+		}
+
+		set .@m_client7,checkquest(12077,HUNTING);
+		if (.@m_client7 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12077;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 8550,0;
+			close;
+		}
+
+		set .@m_client8,checkquest(12078,HUNTING);
+		if (.@m_client8 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12078;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 17100,0;
+			close;
+		}
+
+		set .@m_client9,checkquest(12079,HUNTING);
+		if (.@m_client9 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12079;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 9000,0;
+			close;
+		}
+
+		set .@m_client10,checkquest(12080,HUNTING);
+		if (.@m_client10 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12080;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 12300,0;
+			close;
+		}
+
+		set .@m_client11,checkquest(12081,HUNTING);
+		if (.@m_client11 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12081;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 9900,0;
+			close;
+		}
+
+		set .@m_client12,checkquest(12082,HUNTING);
+		if (.@m_client12 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12082;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 20250,0;
+			close;
+		}
+
+		set .@m_client13,checkquest(12083,HUNTING);
+		if (.@m_client13 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12083;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 10350,0;
+			close;
+		}
+
+		set .@m_client14,checkquest(12084,HUNTING);
+		if (.@m_client14 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12084;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 13800,0;
+			close;
+		}
+
+		set .@m_client15,checkquest(12085,HUNTING);
+		if (.@m_client15 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12085;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 11025,0;
+			close;
+		}
+
+		set .@m_client16,checkquest(12086,HUNTING);
+		if (.@m_client16 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12086;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 22500,0;
+			close;
+		}
+
+		set .@m_client17,checkquest(12087,HUNTING);
+		if (.@m_client17 == 2) {
+			mes "[委託佈告欄]";
+			mes "紀錄完成的委託任務後領取經驗值獎勵";
+			erasequest 12087;
+			erasequest 12088;
+			specialeffect2 EF_STEAL;
+			getexp 11250,0;
+			close;
+		}
+		if ((.@m_client2 == 0) && (.@m_client3 == 0) && (.@m_client4 == 0) && (.@m_client5 == 0) && (.@m_client6 == 0) && (.@m_client7 == 0) && (.@m_client8 == 0) && (.@m_client9 == 0) && (.@m_client10 == 0) && (.@m_client11 == 0) && (.@m_client12 == 0) && (.@m_client13 == 0) && (.@m_client14 == 0) && (.@m_client15 == 0) && (.@m_client16 == 0) && (.@m_client17 == 0)) {
+			mes "You may now view the bullitiin board.";
+			close2;
+			erasequest 12088;
+			end;
+		}
+		mes "沒有其他事情了";
+		close;
+	}
+}
